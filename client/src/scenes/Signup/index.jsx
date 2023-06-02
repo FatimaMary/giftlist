@@ -161,7 +161,7 @@ function Signup() {
                     {errors.email && <p className="error">{errors.email}</p>}
                     <TextField 
                         // id='outlined-basic' 
-                        label='Password' 
+                        label='Create Password' 
                         variant='outlined' 
                         sx={{
                             margin: '1rem',
