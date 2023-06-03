@@ -7,7 +7,7 @@ import {
 
 const router = express.Router();
 
-router.post("add", postEvent);
+router.post("/add", postEvent);
 router.get("/all", getAllEvents);
 router.put("/:eventId", updateEvent);
 

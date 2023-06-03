@@ -49,7 +49,7 @@ function Signup() {
                 console.log("Register with firebase");
 
                 //Make the POST request to your API end point
-                fetch("http://localhost:2318/giftuser/add", {
+                fetch("http://localhost:2309/user/add", {
                     method: "POST",
                     headers: {
                         "Content-Type": "application/json",

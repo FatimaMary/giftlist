@@ -1,4 +1,4 @@
-import Events from '../models/Event';
+import Events from '../models/Event.js';
 
 
 export const postEvent = (req, res) => {
