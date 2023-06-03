@@ -23,7 +23,11 @@ const eventSchema = new mongoose.Schema({
     },
     budget: {
         type: String,
-    }
+    },
+    userId: {
+        type: String,
+        required: true
+    },
 });
 
 const Events = mongoose.model("GiftlistEvents", eventSchema);
