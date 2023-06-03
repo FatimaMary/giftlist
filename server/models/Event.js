@@ -1,26 +1,31 @@
 import mongoose from "mongoose";
 
-const userSchema = new mongoose.Schema({
-    userId: {
+const eventSchema = new mongoose.Schema({
+    eventId: {
         type: String,
         required: true
     },
-    email: {
+    eventName: {
         type: String,
         required: true
     },
-    password: {
+    giftExchangeDate: {
         type: String,
         required: true
     },
-    name: {
+    rsvpDate: {
         type: String,
+        required: true,
     },
-    birthDay: {
-        type: Date
+    confirmation: {
+        type: Boolean,
+        required: true,
     },
+    budget: {
+        type: String,
+    }
 });
 
-const Users = mongoose.model("GiftlistUsers", userSchema);
+const Events = mongoose.model("GiftlistEvents", eventSchema);
 
-export default Users;
+export default Events; 
