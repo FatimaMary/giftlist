@@ -1,9 +1,11 @@
 import mongoose from "mongoose";
+import autoIncrement from "mongoose-plugin-autoinc"; 
 
 const eventSchema = new mongoose.Schema({
     eventId: {
         type: String,
-        required: true
+        required: true,
+        unique: true,
     },
     eventName: {
         type: String,
@@ -28,6 +30,13 @@ const eventSchema = new mongoose.Schema({
         type: String,
         required: true
     },
+});
+
+eventSchema.plugin(autoIncrement.plugin, {
+    model: "GiftlistEvents",
+    field: "eventId",
+    startAt: 1,
+    incrementBy: 1,
 });
 
 const Events = mongoose.model("GiftlistEvents", eventSchema);
