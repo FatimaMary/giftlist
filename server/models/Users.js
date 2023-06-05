@@ -13,7 +13,10 @@ const userSchema = new mongoose.Schema({
         type: String,
         required: true
     },
-    name: {
+    firstName: {
+        type: String,
+    },
+    secondName: {
         type: String,
     },
     birthDay: {

@@ -4,7 +4,7 @@ import { Box, Typography, TextField, FormControl as Form, Button, } from '@mui/m
 
 function Signup1() {
   return (
-    <Box>
+    <Box m='1.5rem 2.5rem'>
       <Box>
         <Box>
           <Typography>First Name</Typography>
@@ -20,9 +20,8 @@ function Signup1() {
         </Box>
       </Box>
       <Box>
-        <TextField />
-        <TextField />
-        <TextField />
+        <Typography>BirthDay</Typography>
+        <TextField type='date' />
       </Box>
       <Box>
         <Button>Submit</Button>

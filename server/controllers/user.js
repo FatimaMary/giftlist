@@ -23,7 +23,8 @@ export const updateUser = (req, res) => {
     const userId = req.params.userId;
     Users.findOne({ userId: userId })
     .then((user) => {
-        user.name = req.body.name;
+        user.firstName = req.body.firstName;
+        user.secondName = req.body.secondName;
         user.birthDay = req.body.birthDay;
         user
             .save()
