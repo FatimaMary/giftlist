@@ -40,4 +40,23 @@ export const updateEvent = (req, res) => {
             .catch((err) => res.status(400).json("Error: " + err));
     })
     .catch((err) => res.status(400).json("Error: " + err));
+};
+
+export const getEventsById = (req, res) => {
+    const userId = req.params.userId;
+    Events.find({ userId: userId })
+      .then((events) => {
+        if (events.length === 0) {
+          res.status(404).json({ message: 'No event found' });
+        } else {
+          const eventDetails = events.map(event => {
+            return {
+              eventName: event.eventName,
+              giftExchangeDate: event.giftExchangeDate,
+            };
+          });
+          res.json(eventDetails);
+        }
+      })
+      .catch((err) => res.status(400).json({ message: err.message }));
 }

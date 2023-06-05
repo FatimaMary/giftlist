@@ -4,6 +4,7 @@ import Login from './scenes/login';
 import EventCreation from './scenes/eventcreation';
 import Signup1 from './scenes/Signup1';
 import Budget from './scenes/budget';
+import GiftExchange from './scenes/giftExchange';
 
 
 function App() {
@@ -16,6 +17,7 @@ function App() {
           <Route path='/login' element={<Login/>} />
           <Route path='eventcreate' element={<EventCreation/>} />
           <Route path='budget' element={<Budget/>} />
+          <Route path='giftexchange' element={<GiftExchange/>} />
         </Routes>
       </BrowserRouter>
     </div>
