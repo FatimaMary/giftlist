@@ -65,7 +65,7 @@ function Signup() {
                 .then((data) => {
                     console.log("data: " , data);
                     console.log("fetch id: ", data.userId);
-                    // navigate(`/eventcreate?userId=${user.uid}`);
+                    navigate(`/signup1?userId=${user.uid}`);
                 })
                 .catch((error) => {
                     console.log(error);
