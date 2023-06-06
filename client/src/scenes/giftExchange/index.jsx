@@ -12,7 +12,7 @@ import axios from 'axios';
 import AddIcon from '@mui/icons-material/Add';
 
 function GiftExchange() {
-    const [eventData, setEventData] = useState();
+    const [eventData, setEventData] = useState([]);
     const [searchParam] = useSearchParams();
     const userId = searchParam.get("userId");
     const navigate = useNavigate();
