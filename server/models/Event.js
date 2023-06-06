@@ -26,6 +26,9 @@ const eventSchema = new mongoose.Schema({
     budget: {
         type: String,
     },
+    details: {
+        type: String,
+    },
     userId: {
         type: String,
         required: true

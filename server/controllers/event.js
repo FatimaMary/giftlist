@@ -33,7 +33,7 @@ export const updateEvent = (req, res) => {
     Events.findOne({ eventId: eventId })
     .then((event) => {
         event.budget = req.body.budget;
-
+        event.details = req.body.details;
         event
             .save()
             .then(() => res.json("Event Updated"))

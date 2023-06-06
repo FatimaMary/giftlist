@@ -35,7 +35,7 @@ function EventCreation() {
     .then((response) => {
       console.log("post response: ", response);
       console.log("response data: ", response.data);
-      navigate(`/budget?eventId =${response.data.eventId} `)
+      navigate(`/budget?eventId=${response.data.eventId}`);
     })
   }
 
