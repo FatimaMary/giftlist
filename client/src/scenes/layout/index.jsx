@@ -1,8 +1,9 @@
 import React, { useState } from 'react';
 import { Box, useMediaQuery } from "@mui/material";
 import { Outlet } from "react-router-dom";
-import Navbar from "components/Navbar";
-import Sidebar from "components/Sidebar";
+import Navbar from "../../components/Navbar";
+import Sidebar from '../../Components/Sidebar';
+// import Sidebar from "../../components/Sidebar";
 
 const Layout = () => {
     const isNonMobile = useMediaQuery("(min-width: 600px)");
@@ -11,7 +12,7 @@ const Layout = () => {
   return (
   <Box display={isNonMobile ? "flex" : "block"} width="100%" height="100%">
     <Sidebar
-     user={data || {}}
+    //  user={data || {}}
      isNonMobile={isNonMobile}
      drawerWidth="250px"
      isSidebarOpen={isSidebarOpen}
@@ -19,7 +20,7 @@ const Layout = () => {
     />
     <Box flexGrow={1}>
         <Navbar
-          user={data || {}}
+        //   user={data || {}}
           isSidebarOpen={isSidebarOpen}
           setIsSidebarOpen={setIsSidebarOpen}
         />

@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
-import SignupValidation from '../../Components/SignupValidation';
+import SignupValidation from '../../components/SignupValidation';
 import { Box, Typography, TextField, FormControl as Form, Button, } from '@mui/material';
 import { createUserWithEmailAndPassword, updateProfile } from "firebase/auth";
 import { auth, db, storage } from '../../firebase';
