@@ -7,6 +7,7 @@ import EventCreation from './scenes/eventcreation';
 import Signup1 from './scenes/Signup1';
 import Budget from './scenes/budget';
 import GiftExchange from './scenes/giftExchange';
+import ResponsiveDrawer from './Components/Drawer';
 
 
 function App() {
@@ -21,6 +22,7 @@ function App() {
             <Route path='eventcreate' element={<EventCreation/>} />
             <Route path='budget' element={<Budget/>} />
             <Route path='giftexchange' element={<GiftExchange/>} />
+            <Route path='drawer' element={<ResponsiveDrawer/>} />
           </Route>
         </Routes>
       </BrowserRouter>
