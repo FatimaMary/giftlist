@@ -38,7 +38,7 @@ const navItems = [
         icon: <FormatListBulletedOutlinedIcon/>
     },
     {
-        text: "Gift Exchange",
+        text: "GiftExchange",
         icon: <CardGiftcardOutlinedIcon/>
     },
     {
@@ -131,10 +131,10 @@ const Sidebar = ({
                                             setActive(lcText);
                                         }}
                                         sx={{
-                                            backgroundColor: active === lcText ? 'grey' : "transparent",
+                                            backgroundColor: active === lcText ? 'lightgrey' : "transparent",
                                             color:
                                                 active === lcText
-                                                    ? 'white'
+                                                    ? 'skyblue'
                                                     : 'black'
                                         }}
                                     >
@@ -143,7 +143,7 @@ const Sidebar = ({
                                             ml: "2rem",
                                             color:
                                                 active === lcText
-                                                    ? 'white'
+                                                    ? 'skyblue'
                                                     : 'black'
                                           }}
                                         >
@@ -164,3 +164,5 @@ const Sidebar = ({
         </Box>
     )
 }
+
+export default Sidebar;
