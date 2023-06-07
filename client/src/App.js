@@ -8,6 +8,7 @@ import Signup1 from './scenes/Signup1';
 import Budget from './scenes/budget';
 import GiftExchange from './scenes/giftExchange';
 import ResponsiveDrawer from './Components/Drawer';
+import Navbar from './Components/Navbar';
 
 
 function App() {
@@ -15,7 +16,7 @@ function App() {
     <div className="App">
       <BrowserRouter>
         <Routes>
-          <Route >
+          <Route element={<Navbar/>} >
             <Route path='/' element={<Signup/>} />
             <Route path='/signup1' element={<Signup1/>} />
             <Route path='/login' element={<Login/>} />

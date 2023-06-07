@@ -22,42 +22,145 @@ import EditCalendarOutlinedIcon from '@mui/icons-material/EditCalendarOutlined';
 import HelpOutlineOutlinedIcon from '@mui/icons-material/HelpOutlineOutlined';
 import LogoutOutlinedIcon from '@mui/icons-material/LogoutOutlined';
 import Santahat from '../assets/icons8-santas-hat-32.png';
+import { useEffect, useState } from 'react';
+import { useLocation, useNavigate } from "react-router-dom";
+import FlexBetween from './FlexBetween';
+import { FaChevronLeft } from 'react-icons/fa';
+import { ChevronRightOutlined } from '@mui/icons-material';
 
-export const Sidebar = [
+const navItems = [
     {
-      title: "Home",
-      path: "/",
-      icon: <HomeOutlinedIcon />,
-      cName: "nav-text",
+        text: "Home",
+        icon: <HomeOutlinedIcon/>
     },
     {
-      title: "Lists",
-      path: "/Lists",
-      icon: <FormatListBulletedOutlinedIcon />,
-      cName: "nav-text",
+        text: "List",
+        icon: <FormatListBulletedOutlinedIcon/>
     },
     {
-      title: "Gift Exchange",
-      path: "/giftexchange",
-      icon: <Santahat />,
-      cName: "nav-text",
+        text: "Gift Exchange",
+        icon: <CardGiftcardOutlinedIcon/>
     },
     {
-      title: "Shop",
-      path: "/shop",
-      icon: <LocalMallOutlinedIcon />,
-      cName: "nav-text",
+        text: "Customers",
+        icon: <LocalMallOutlinedIcon/>
     },
     {
-      title: "Ecards",
-      path: "/ecards",
-      icon: <LocalPostOfficeOutlinedIcon />,
-      cName: "nav-text",
+        text: "Transactions",
+        icon: <LocalPostOfficeOutlinedIcon/>
     },
     {
-      title: "My Gifts",
-      path: "/mygifts",
-      icon: <CardGiftcardOutlinedIcon />,
-      cName: "nav-text",
+        text: "Geography",
+        icon: <PersonOutlineOutlinedIcon/>
     },
-  ];
+    {
+        text: "Overview",
+        icon: <EditCalendarOutlinedIcon/>
+    },
+    {
+        text: "Daily",
+        icon: <HelpOutlineOutlinedIcon/>
+    },
+    {
+        text: "Monthly",
+        icon: <LogoutOutlinedIcon/>
+    }
+]
+
+const Sidebar = ({
+    drawerWidth,
+    isSidebarOpen,
+    setIsSidebarOpen,
+    isNonMobile
+}) => {
+    const { pathname } = useLocation();
+    const [active, setActive] = useState("");
+    const navigate = useNavigate();
+
+    useEffect(() => {
+        setActive(pathname.substring(1));
+    }, [pathname])
+    return (
+        <Box component="nav">
+            {isSidebarOpen && (
+                <Drawer
+                    open={isSidebarOpen}
+                    onClose={() => setIsSidebarOpen(false)}
+                    variant='persistent'
+                    anchor='left'
+                    sx={{
+                        width: drawerWidth,
+                        "& .MuiDrawer-paper": {
+                            // color: 
+                            boxSizing: "border-box",
+                            borderWidth: isNonMobile ? 0 : "2px",
+                            width: drawerWidth
+                        },
+                    }}
+                >
+                    <Box width='100%'>
+                        <Box m="1.5rem 2rem 2rem 3rem">
+                            <FlexBetween>
+                                <Box display="flex" alignItems="center" gap='0.5rem'>
+                                    <Typography variant='h4' fontWeight='bold'>
+                                        Giftlist
+                                    </Typography>
+                                </Box>
+                                {!isNonMobile &&(
+                                    <IconButton onClick={() => setIsSidebarOpen(!isSidebarOpen)}>
+                                        <FaChevronLeft/>
+                                    </IconButton>
+                            )}
+                            </FlexBetween>
+                        </Box>
+                        <List>
+                        {navItems.map(({ text, icon }) => {
+                            if(!icon){
+                                return (
+                                    <Typography key={text} sx={{ m: "2.25rem 0 1rem 3rem"}}>
+                                        {text}
+                                    </Typography>
+                                )
+                            } 
+                            const lcText = text.toLowerCase();
+                            return(
+                                <ListItem key={text} disablePadding>
+                                    <ListItemButton
+                                        onClick={() => {
+                                            navigate(`/${lcText}`);
+                                            setActive(lcText);
+                                        }}
+                                        sx={{
+                                            backgroundColor: active === lcText ? 'grey' : "transparent",
+                                            color:
+                                                active === lcText
+                                                    ? 'white'
+                                                    : 'black'
+                                        }}
+                                    >
+                                        <ListItemIcon
+                                          sx={{
+                                            ml: "2rem",
+                                            color:
+                                                active === lcText
+                                                    ? 'white'
+                                                    : 'black'
+                                          }}
+                                        >
+                                            {icon}
+                                        </ListItemIcon>
+                                        <ListItemText primary={text}/>
+                                        {active === lcText && (
+                                            <ChevronRightOutlined sx={{ml: "auto"}} />
+                                        )}
+                                    </ListItemButton>
+                                </ListItem>
+                            )
+                        })}
+                        </List>
+                    </Box>
+                </Drawer>
+            )}
+        </Box>
+    )
+}
