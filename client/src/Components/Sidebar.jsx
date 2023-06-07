@@ -42,27 +42,27 @@ const navItems = [
         icon: <CardGiftcardOutlinedIcon/>
     },
     {
-        text: "Customers",
+        text: "Shop",
         icon: <LocalMallOutlinedIcon/>
     },
     {
-        text: "Transactions",
+        text: "Ecards",
         icon: <LocalPostOfficeOutlinedIcon/>
     },
     {
-        text: "Geography",
+        text: "Occations",
         icon: <PersonOutlineOutlinedIcon/>
     },
     {
-        text: "Overview",
+        text: "My Gifts",
         icon: <EditCalendarOutlinedIcon/>
     },
     {
-        text: "Daily",
+        text: "FAQ",
         icon: <HelpOutlineOutlinedIcon/>
     },
     {
-        text: "Monthly",
+        text: "Logout",
         icon: <LogoutOutlinedIcon/>
     }
 ]

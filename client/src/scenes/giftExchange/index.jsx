@@ -70,7 +70,7 @@ function GiftExchange() {
                 </Typography>
               </CardContent>
             </Card>
-          )) }
+          )) } 
       </Box>
     </Box>
   </Box>
