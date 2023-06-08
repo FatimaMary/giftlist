@@ -1,8 +1,16 @@
 import React, { useState } from 'react';
-import { Box, Typography, TextField, Button } from '@mui/material';
+import { 
+    Box, 
+    Typography, 
+    TextField, 
+    Button,
+    createTheme, 
+    ThemeProvider  
+} from '@mui/material';
 import { Link, useNavigate } from 'react-router-dom';
 import { signInWithEmailAndPassword } from "firebase/auth";
 import { auth } from '../../firebase';
+import Navbar from '../../Components/Navbar';
 
 function Login() {
   const navigate = useNavigate();
@@ -18,6 +26,36 @@ function Login() {
       });
   };
 
+  const theme = createTheme({
+    components: {
+      MuiTextField: {
+        styleOverrides: {
+          root: {
+            '& .MuiOutlinedInput-root': {
+              '& fieldset': {
+                borderColor: 'grey',
+              },
+            },
+            '& .MuiOutlinedInput-root.Mui-focused': {
+              '& fieldset': {
+                borderColor: 'grey',
+              },
+            },
+          },
+        },
+      },
+      MuiButton: {
+        styleOverrides: {
+          root: {
+            '&:hover': {
+                backgroundColor: 'red !important', 
+            },
+          },
+        },
+      },
+    },
+  });
+  
   const handleLogin =async(e) => {
       e.preventDefault();
       signInWithEmailAndPassword(auth, loginData.email, loginData.password)
@@ -27,98 +65,175 @@ function Login() {
               navigate(`/giftexchange?userId=${res.user.uid}`)
           })
       console.log("button clicked");
-      // alert("Form submitted");
+  }
+
+  const handleSignup = () => {
+    navigate("/signup");
   }
 
 return (
-  <Box 
-    sx={{
-      display: 'flex', 
-      flexDirection: 'column' ,
-      justifyContent: 'space-around',
-      justifyContent: 'center',
-      alignItems: 'center'
-  }}
-    mt='50px'
-    color='red'
-  >
-      <Box>
-          <Typography variant='h3'>Login</Typography>
-          <Typography type='text'>Login to my WishList.</Typography>
-      </Box>
-      <Box>
-          <Typography type='text'>(If you don't have an account yet, Kindly
-              <Link to='/register'>Register Here </Link>)
-          </Typography>
-      </Box>
-      <form onSubmit={handleLogin}>
-          <Box
-          sx={{ 
-              display: 'flex', 
-              flexDirection: 'column', 
-              gap: '10px', 
-          }}
-          >
-              <TextField 
-                  id="outlined-basic-email"
-                  name='email' 
-                  label="Email"
-                  type='email'
-                  variant="outlined" 
-                  sx={{
-                      margin: '1rem',
-                      width: '400px',
-                      borderRadius: '10px',
-                  }}
-                  value={loginData.email}
-                  onChange={handleChange}
-              />
-              <TextField 
-                  id='outlined-basic-password'
-                  name='password' 
-                  label='Password' 
-                  type='password'
-                  variant='outlined' 
-                  sx={{
-                      margin: '1rem',
-                      width: '400px',
-                      borderRadius: '10px',
-                  }}
-                  value={loginData.password}
-                  onChange={handleChange}
-              />
-              <Box 
-                  sx={{
-                      display: 'flex',
-                      justifyContent: 'center'
-                  }}
-                  mb='15px'
-              >
-                  <Button 
-                      sx={{ 
-                          border: '2px solid green',
-                          borderRadius: '20px',
-                          width: '150px',
-                          fontSize: '1rem',
-                          color: 'green',
-                          fontWeight: 'bold'
-                      }}
-                      type="submit"
-                      
-                  >
-                      Login
-                  </Button>
-              </Box>
-          </Box>
-      </form>
-      <Box>
-          <Typography
-              sx={{cursor: 'pointer'}}
-          >
-              Forgot your password?
-          </Typography>
-      </Box>
-  </Box>
+<Box >
+        <Navbar />
+        <Box 
+            sx={{
+                backgroundColor: '#99DBF5',
+                height: '85vh',
+                // width: '100vw',
+                display: 'flex', 
+                flexDirection: 'column' ,
+                justifyContent: 'center',
+                alignItems: 'center',
+            }}
+        >
+        <Box 
+        sx={{
+            display: 'flex', 
+            flexDirection: 'column' ,
+            justifyContent: 'center',
+            // alignItems: 'center',
+            backgroundColor: 'white',
+            // height: '600px',
+            border: '1px solid grey',
+            width: '500px',
+            borderRadius: '10px',
+        }}
+        color='black'
+        m='1.5rem 2.5rem'
+        >
+            <Box mt={1.5} ml={2.5}>
+                <Typography
+                    variant='h5'
+                    fontWeight='bold'
+                    mb='15px'
+                >
+                    Login to GiftList
+                </Typography>
+            </Box>
+            <form onSubmit={handleLogin}>
+                <Box
+                    sx={{ 
+                        display: 'flex', 
+                        flexDirection: 'column', 
+                        gap: '10px', 
+                    }}
+                >
+                    <Box>
+                        <Typography
+                            ml='1rem'
+                            mt= '1.5rem'
+                            mb='0'
+                        >
+                            Email
+                        </Typography>
+                        <ThemeProvider theme={theme}>
+                        <TextField 
+                            placeholder='Enter your Email'
+                            variant="outlined"
+                            sx={{
+                                ml:'1rem',
+                                width: '450px',
+                                borderRadius: '10px',
+                                '& .MuiOutlinedInput-root': {
+                                    height: '40px',
+                                },
+                            }}
+                            type='email'
+                            name='email'
+                            value={loginData.email}
+                            onChange={handleChange}
+                         />
+                         </ThemeProvider>
+                    </Box>
+                    <Box>
+                    <Typography
+                            ml='1rem'
+                            mt= '1.5rem'
+                            mb='0'
+                        >
+                            Password
+                        </Typography>
+                        <ThemeProvider theme={theme}>
+                            <TextField
+                                placeholder='Enter your Password'
+                                variant='outlined' 
+                                sx={{
+                                    ml:'1rem',
+                                    width: '450px',
+                                    borderRadius: '10px',
+                                    '& .MuiOutlinedInput-root': {
+                                        height: '40px',
+                                    },
+                                }}
+                                type='password'
+                                name='password'
+                                value={loginData.password}
+                                onChange={handleChange}
+                            />
+                        </ThemeProvider>
+                    </Box>
+                    <Box 
+                        sx={{
+                            display: 'flex',
+                            justifyContent: 'center'
+                        }}
+                        mb='15px'
+                        mt='1rem'
+                    >
+                        <Button 
+                            variant='contained'
+                            sx={{ 
+                                border: '2px solid skyblue',
+                                borderRadius: '20px',
+                                width: '450px',
+                                fontSize: '1rem',
+                                color: 'white',
+                                background: 'skyblue',
+                                textTransform: 'inherit',
+                                fontWeight:'bold',
+                            }}
+                        type="submit"
+                        >
+                            Submit
+                        </Button>
+                    </Box>
+                </Box>
+            </form>
+            <Box 
+                sx={{
+                    display: 'flex',
+                    justifyContent: 'center',
+                }}
+            >
+                <Button
+                    sx={{
+                        textTransform: 'inherit',
+                        fontSize: '1rem',
+                        color: 'red'
+                    }}
+                >
+                    Forgot Password?
+                </Button>
+            </Box>
+            <Box
+                sx={{
+                    display: 'flex',
+                    justifyContent: 'center',
+                }}
+            >
+                <Typography>
+                    Need to create an account? 
+                    <Button
+                        sx={{
+                            textTransform: 'inherit',
+                            fontSize: '1rem',
+                        }}
+                        onClick={handleSignup}
+                    >Sign up</Button>
+                </Typography>
+            </Box>
+        </Box>
+        </Box>
+    </Box>
 )
 }
 

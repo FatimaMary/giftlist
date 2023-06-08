@@ -1,7 +1,15 @@
 import React, { useState, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
 import SignupValidation from '../../Components/SignupValidation';
-import { Box, Typography, TextField, FormControl as Form, Button, createTheme, ThemeProvider } from '@mui/material';
+import { 
+    Box, 
+    Typography, 
+    TextField, 
+    FormControl as Form, 
+    Button, 
+    createTheme, 
+    ThemeProvider 
+} from '@mui/material';
 import { createUserWithEmailAndPassword, updateProfile } from "firebase/auth";
 import { auth, db, storage } from '../../firebase';
 import { ref, uploadBytesResumable, getDownloadURL } from "firebase/storage";
