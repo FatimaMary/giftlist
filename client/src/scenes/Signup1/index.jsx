@@ -1,7 +1,16 @@
 import React, { useState } from 'react';
-import { Box, Typography, TextField, FormControl as Form, Button, } from '@mui/material';
+import { 
+  Box, 
+  Typography, 
+  TextField, 
+  FormControl as Form, 
+  Button, 
+  createTheme, 
+  ThemeProvider 
+} from '@mui/material';
 import { useNavigate, useSearchParams } from "react-router-dom";
 import axios from 'axios';
+import Navbar from '../../Components/Navbar';
 
 function Signup1() {
   const [firstName, setFirstName] = useState();
@@ -11,8 +20,32 @@ function Signup1() {
   const userId = searchParam.get("userId");
   const navigate = useNavigate();
 
+  const theme = createTheme({
+    components: {
+      MuiTextField: {
+        styleOverrides: {
+          root: {
+            '& .MuiOutlinedInput-root': {
+              '& fieldset': {
+                borderColor: 'grey', 
+              },
+            },
+            '& .MuiOutlinedInput-root.Mui-focused': {
+              '& fieldset': {
+                borderColor: 'grey', 
+              },
+            },
+            '&:hover': {
+              backgroundColor: 'none'
+            },
+          },
+        },
+      },
+    },
+  });
 
-  const handleClick = (e) => {
+
+  const handleSubmit = (e) => {
     e.preventDefault();
     axios.put(`http://localhost:2309/user/${userId}`, {
       firstName: firstName,
@@ -22,73 +55,131 @@ function Signup1() {
     .then((response) => {
       console.log("update response: " , response);
       console.log("update response data: ", response.data);
-      navigate(`/eventcreate?userId=${userId}`)
+      navigate(`/giftexchange?userId=${userId}`)
     })
-  }
+  };
+
+  const handleClick = () => {
+    navigate("/login");
+  };
 
   return (
-    <Box 
-      m='1.5rem 2.5rem'
-      sx={{ 
-        display: 'flex', 
-        flexDirection: 'column', 
-        // alignItems: 'center',
-        justifyContent: 'center',
-        gap: '15px',
-        border: '2px solid grey',
-        width: '800px',
-        boxShadow: '5px 5px grey'
-      }}
-    >
-      <Box 
+    <Box>
+      <Navbar />
+      <Box
         sx={{
-            display: 'flex',
-            justifyContent: 'space-around',
-          }}
+          backgroundColor: '#99DBF5',
+          height: '85vh',
+          // width: '100vw',
+          display: 'flex', 
+          flexDirection: 'column' ,
+          justifyContent: 'center',
+          alignItems: 'center',
+        }}
       >
-        <Box>
-          <Typography>First Name</Typography>
-          <TextField 
-            placeholder='Enter First Name'
-            sx={{
-              width: '350px'
-            }}
-            value={firstName}
-            type='text'
-            onChange={(e) => setFirstName(e.target.value)}
-          />
-        </Box>
-        <Box>
-          <Typography>Second Name</Typography>
-          <TextField 
-            placeholder='Enter Second Name'
-            sx={{
-              width: '350px'
-            }}
-            type='text'
-            value={secondName}
-            onChange={(e) => setSecondName(e.target.value)}
-          />
-        </Box>
-      </Box>
-      <Box m='1.5rem'>
-        <Typography>BirthDay</Typography>
-        <TextField 
-          type='date'
+        <Box 
+          m='1.5rem 2.5rem'
           sx={{
-            width: '250px'
-          }} 
-          value={birthDay}
-          onChange={(e) => setBirthDay(e.target.value)}
-        />
-      </Box>
-      <Box m='1.5rem'>
-        <Button 
-          variant='contained'
-          onClick={handleClick}
+            display: 'flex', 
+            flexDirection: 'column' ,
+            justifyContent: 'center',
+            alignItems: 'center',
+            backgroundColor: 'white',
+            // height: '400px',
+            border: '1px solid grey',
+            width: '350px',
+            borderRadius: '10px',
+        }}
         >
-          Submit
-        </Button>
+          {/* <Box 
+            sx={{
+                display: 'flex',
+                justifyContent: 'space-around',
+              }}
+          > */}
+            <Box m='1.5rem'>
+              <Typography>First Name</Typography>
+              <ThemeProvider theme={theme}>
+                <TextField 
+                  placeholder='Enter First Name'
+                  sx={{
+                    width: '250px',
+                    '& .MuiOutlinedInput-root': {
+                      height: '40px',
+                  },
+                  }}
+                  value={firstName}
+                  type='text'
+                  onChange={(e) => setFirstName(e.target.value)}
+                />
+              </ThemeProvider>
+            </Box>
+            <Box m='1.5rem'>
+              <Typography>Last Name</Typography>
+              <ThemeProvider theme={theme}>
+                <TextField 
+                  placeholder='Enter Second Name'
+                  sx={{
+                    width: '250px',
+                    '& .MuiOutlinedInput-root': {
+                      height: '40px',
+                  },
+                  }}
+                  type='text'
+                  value={secondName}
+                  onChange={(e) => setSecondName(e.target.value)}
+                />
+              </ThemeProvider>
+            </Box>
+          {/* </Box> */}
+          <Box m='1.5rem'>
+            <Typography>BirthDay</Typography>
+            <ThemeProvider theme={theme}>
+              <TextField 
+                type='date'
+                sx={{
+                  width: '250px',
+                  '& .MuiOutlinedInput-root': {
+                    height: '40px',
+                },
+                }} 
+                value={birthDay}
+                onChange={(e) => setBirthDay(e.target.value)}
+              />
+            </ThemeProvider>
+          </Box>
+          <Box m='1.5rem'>
+            <Button 
+              variant='contained'
+              onClick={handleSubmit}
+              sx={{ 
+                border: '2px solid skyblue',
+                borderRadius: '20px',
+                width: '250px',
+                fontSize: '1rem',
+                color: 'white',
+                background: 'skyblue',
+                textTransform: 'inherit',
+                fontWeight:'bold',
+            }}
+            >
+              Submit
+            </Button>
+          </Box>
+          <Box>
+          <Typography>
+            Already have an account? 
+            <Button 
+              onClick={handleClick}
+              sx={{
+                textTransform: 'inherit',
+              }}
+            >
+              Login
+            </Button>
+          </Typography>
+        </Box>
+        </Box>
       </Box>
     </Box>
   )

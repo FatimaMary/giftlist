@@ -24,6 +24,7 @@ function GiftExchange() {
         console.log("dashboard response: " , response);
         setEventData(response.data);
     })
+    .catch((err) => console.log("Error: ", err))
     }, [])
 
     const handleClick = () => {

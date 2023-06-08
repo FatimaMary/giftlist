@@ -36,6 +36,9 @@ function Signup() {
                     borderColor: 'grey', 
                   },
                 },
+                '&:hover': {
+                    backgroundColor: 'none'
+                  },
               },
             },
           },
