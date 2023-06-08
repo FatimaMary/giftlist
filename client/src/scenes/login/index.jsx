@@ -44,15 +44,6 @@ function Login() {
           },
         },
       },
-      MuiButton: {
-        styleOverrides: {
-          root: {
-            '&:hover': {
-                backgroundColor: 'red !important', 
-            },
-          },
-        },
-      },
     },
   });
   
@@ -226,6 +217,11 @@ return (
                         sx={{
                             textTransform: 'inherit',
                             fontSize: '1rem',
+                            '&:hover': {
+                                backgroundColor: '#D8D8D8',
+                                color: 'black',
+                                border: '1px solid skyblue'
+                              },
                         }}
                         onClick={handleSignup}
                     >Sign up</Button>

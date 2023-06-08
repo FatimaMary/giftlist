@@ -9,8 +9,7 @@ import {
 } from '@mui/material';
 import { useNavigate, useSearchParams } from 'react-router-dom';
 import axios from 'axios';
-import AddIcon from '@mui/icons-material/Add';
-import SantaImg from '../../assets/santa.png';
+import AddCircleOutlineIcon from '@mui/icons-material/AddCircleOutline';
 
 function GiftExchange() {
     const [eventData, setEventData] = useState([]);
@@ -43,6 +42,7 @@ function GiftExchange() {
         display: 'flex'
       }}
     >
+      
       <Box 
         sx={{ 
           width: 250, 
@@ -53,10 +53,25 @@ function GiftExchange() {
           alignItems: 'center',
           justifyContent: 'center',
           gap:'30px',
-          border: '2px solid black'
-        }}>
-          <AddIcon/>
-          <Button onClick={handleClick}>Create New Group</Button>
+          border: '2px solid black',
+          '&:hover': {
+            backgroundColor: 'skyblue',
+            color: 'white'
+          },
+        }}
+        onClick={handleClick}
+        >
+          <AddCircleOutlineIcon 
+            sx={{
+              fontSize: '3rem',
+              // color: 'skyblue',
+              // '&:hover': {
+              //   backgroundColor: 'skyblue',
+              //   color: 'white'
+              // },
+            }}
+          />
+          <Typography>Create a new event</Typography>
       </Box>
       <Box>
       {eventData.map((cardData, i) => (

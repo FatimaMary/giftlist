@@ -44,9 +44,6 @@ function Signup() {
                     borderColor: 'grey', 
                   },
                 },
-                '&:hover': {
-                    backgroundColor: 'none'
-                  },
               },
             },
           },
@@ -240,6 +237,11 @@ function Signup() {
                                 background: 'skyblue',
                                 textTransform: 'inherit',
                                 fontWeight:'bold',
+                                '&:hover': {
+                                    backgroundColor: '#D8D8D8',
+                                    color: 'black',
+                                    border: '1px solid skyblue'
+                                  },
                             }}
                         type="submit"
                         >
@@ -249,7 +251,6 @@ function Signup() {
                     </Box>
                 </Box>
             </form>
-            {/* <Typography>You do have an account? <Button onClick={handleClick}>Login</Button></Typography> */}
         </Box>
         </Box>
     </Box>

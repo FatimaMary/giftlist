@@ -35,9 +35,6 @@ function Signup1() {
                 borderColor: 'grey', 
               },
             },
-            '&:hover': {
-              backgroundColor: 'none'
-            },
           },
         },
       },
@@ -173,6 +170,11 @@ function Signup1() {
               onClick={handleClick}
               sx={{
                 textTransform: 'inherit',
+                '&:hover': {
+                  backgroundColor: '#D8D8D8',
+                  color: 'black',
+                  border: '1px solid skyblue'
+                },
               }}
             >
               Login
