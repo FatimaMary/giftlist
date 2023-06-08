@@ -42,7 +42,9 @@ function GiftExchange() {
         display: 'flex'
       }}
     >
-      
+      <Box>
+        <Typography>Upcoming({eventData.length})</Typography>
+      </Box>
       <Box 
         sx={{ 
           width: 250, 
