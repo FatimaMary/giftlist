@@ -8,6 +8,8 @@ import Budget from './scenes/budget';
 import GiftExchange from './scenes/giftExchange';
 import Layout from './scenes/layout'
 import Signup from './scenes/signup';
+import Navbar from './Components/Navbar';
+import WelcomePage from './scenes/welcomepage';
 
 
 function App() {
@@ -15,11 +17,14 @@ function App() {
     <div className="App">
       <BrowserRouter>
         <Routes>
-          <Route path='/signup' element={<Signup/>} />
-          <Route path='/signup1' element={<Signup1/>} />
-          <Route path='/login' element={<Login/>} />
+          {/* <Route element={<Navbar />}>
+            <Route path='/' Navigate to="/welcomepage" /> */}
+            <Route path='/' element={<WelcomePage/>} />
+            <Route path='/signup' element={<Signup/>} />
+            <Route path='/signup1' element={<Signup1/>} />
+            <Route path='/login' element={<Login/>} />
+          {/* </Route> */}
           <Route element={<Layout/>} >
-            {/* <Route path='/' element={<Navigate to="/home" replace/>} /> */}
             <Route path='eventcreate' element={<EventCreation/>} />
             <Route path='budget' element={<Budget/>} />
             <Route path='giftexchange' element={<GiftExchange/>} />

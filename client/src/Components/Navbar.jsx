@@ -1,46 +1,39 @@
 import React, { useState } from "react";
-import * as FaIcons from "react-icons/fa";
-import * as AiIcons from "react-icons/ai";
-import { Link } from "react-router-dom";
-import { Sidebar } from "./Sidebar";
+import { Outlet, useNavigate } from "react-router-dom";
+import { Icon } from "react-icons-kit";
+import { menu } from "react-icons-kit/feather/menu";
+import { x } from "react-icons-kit/feather/x";
 import "../App.css";
-import { IconContext } from "react-icons";
 
-function Navbar() {
-  const [sidebar, setSidebar] = useState(false);
 
-  const showSidebar = () => setSidebar(!sidebar);
+export const Navbar = () => {
+  const [toggle, setToggle] = useState(false);
+  const navigate = useNavigate();
 
-  return (
-    <>
-      <IconContext.Provider value={{ color: "undefined" }}>
-        <div className="navbar">
-          <Link to="#" className="menu-bars">
-            <FaIcons.FaBars onClick={showSidebar} />
-          </Link>
-        </div>
-        <nav className={sidebar ? "nav-menu active" : "nav-menu"}>
-          <ul className="nav-menu-items" onClick={showSidebar}>
-            <li className="navbar-toggle">
-              <Link to="#" className="menu-bars">
-                <AiIcons.AiOutlineClose />
-              </Link>
-            </li>
-            {Sidebar.map((item, index) => {
-              return (
-                <li key={index} className={item.cName}>
-                  <Link to={item.path}>
-                    {item.icon}
-                    <span>{item.title}</span>
-                  </Link>
-                </li>
-              );
-            })}
-          </ul>
-        </nav>
-      </IconContext.Provider>
-    </>
+  const handleToggle = () => {
+    setToggle(!toggle);
+  };
+
+  const handleClick = () => {
+    navigate("/login");
+  }
+
+  return (<div>
+    <nav className={toggle ? "navbar expanded" : "navbar"}>
+      <div className="logo"></div>
+      <div className="toggle-icon">
+        <b>GIFT</b>LIST
+      </div>
+      <ul className="links">
+        <li onClick={handleClick}>
+          Login
+        </li>
+        <li onClick={() => navigate("/signup")}>Signup</li>
+      </ul>
+    </nav>
+    <Outlet />
+    </div>
   );
-}
+};
 
 export default Navbar;
