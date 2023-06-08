@@ -8,7 +8,7 @@ import { ref, uploadBytesResumable, getDownloadURL } from "firebase/storage";
 import { doc, setDoc } from "firebase/firestore";
 import axios from 'axios';
 
-function Home() {
+function Signup() {
     const [signupData, setSignupData] = useState({
         email: "",
         password: "",
@@ -203,4 +203,4 @@ function Home() {
   )
 }
 
-export default Home
+export default Signup
