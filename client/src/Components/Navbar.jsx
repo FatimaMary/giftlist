@@ -25,10 +25,10 @@ export const Navbar = () => {
         <b>GIFT</b>LIST
       </div>
       <ul className="links">
-        <li onClick={handleClick}>
+        <li onClick={handleClick} className="login" >
           Login
         </li>
-        <li onClick={() => navigate("/signup")}>Signup</li>
+        <li onClick={() => navigate("/signup")} className="signup">Sign up</li>
       </ul>
     </nav>
     <Outlet />
