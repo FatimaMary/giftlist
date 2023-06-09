@@ -203,6 +203,11 @@ return (
                                 background: 'skyblue',
                                 textTransform: 'inherit',
                                 fontWeight:'bold',
+                                '&:hover': {
+                                    backgroundColor: '#D8D8D8',
+                                    color: 'black',
+                                    border: '1px solid skyblue'
+                                  },
                             }}
                         type="submit"
                         >
@@ -221,7 +226,7 @@ return (
                     sx={{
                         textTransform: 'inherit',
                         fontSize: '1rem',
-                        color: 'red'
+                        color: 'red',
                     }}
                 >
                     Forgot Password?
@@ -239,11 +244,6 @@ return (
                         sx={{
                             textTransform: 'inherit',
                             fontSize: '1rem',
-                            '&:hover': {
-                                backgroundColor: '#D8D8D8',
-                                color: 'black',
-                                border: '1px solid skyblue'
-                              },
                         }}
                         onClick={handleSignup}
                     >Sign up</Button>
