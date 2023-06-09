@@ -133,7 +133,7 @@ const Sidebar = ({
                                             setActive(lcText);
                                         }}
                                         sx={{
-                                            backgroundColor: active === lcText ? '#EEEEEE' : "transparent",
+                                            backgroundColor: active === lcText ? '#e8ecf1' : "transparent",
                                             color:
                                                 active === lcText
                                                     ? 'skyblue'

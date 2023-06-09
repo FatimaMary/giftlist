@@ -11,7 +11,7 @@ import {
 import { useNavigate, useSearchParams } from 'react-router-dom';
 import axios from 'axios';
 import AddCircleOutlineIcon from '@mui/icons-material/AddCircleOutline';
-import Santa from '../../assets/santa.png';
+import Santa from './Santa.png';
 
 function GiftExchange() {
     const [eventData, setEventData] = useState([]);
@@ -33,7 +33,7 @@ function GiftExchange() {
       }
     
   return <Box 
-      backgroundColor='#f8f9fa'
+      backgroundColor='#e8ecf1'
       height='100vh'
       width='100vw'
       p='50px 30px 33px 30px'
@@ -69,6 +69,8 @@ function GiftExchange() {
     <Box  sx={{
         display: 'flex',
         flexWrap: 'wrap',
+        background: '#ffffff',
+        // marginY: '-12px',
       }}
     >
       <Box 
@@ -110,16 +112,24 @@ function GiftExchange() {
               <CardContent>
                 <CardMedia
                   component="img"
-                  height="100"
+                  height="140"
                   image={Santa}
                   alt="Image Description"
                 />
+                <Box 
+                  padding='10px 15px'
+                  sx={{
+                    borderTop: '1px solid #e8ecf1',
+                    
+                  }}
+                >
                 <Typography sx={{ fontSize: 16 }}  variant='h6' fontWeight='bold' color='red' >
                 {cardData.giftExchangeDate}
                 </Typography>
                 <Typography variant="body2" fontWeight='bold'>
                   {cardData.eventName}
                 </Typography>
+                </Box>
               </CardContent>
             </Card>
           )) } 
