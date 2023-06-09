@@ -18,6 +18,7 @@ function Login() {
       email: "",
       password: "",
   })
+  const [errors, setErrors] = useState({});
 
   const handleChange = (e) => {
       setLoginData({
@@ -49,6 +50,22 @@ function Login() {
   
   const handleLogin =async(e) => {
       e.preventDefault();
+      const validationErrors = {};
+        if (!loginData.email) {
+        validationErrors.email = 'Email is required';
+        } else if (!/\S+@\S+\.\S+/.test(loginData.email)) {
+        validationErrors.email = 'Email is invalid';
+        }
+
+        if (!loginData.password) {
+        validationErrors.password = 'Password is required';
+        } else if (loginData.password.length < 5) {
+        validationErrors.password = 'Password must be more than 5 characters';
+        }
+
+        if (Object.keys(validationErrors).length > 0) {
+            setErrors(validationErrors);
+        } else {
       signInWithEmailAndPassword(auth, loginData.email, loginData.password)
           .then(async(res) => {
               console.log(res);
@@ -56,6 +73,7 @@ function Login() {
               navigate(`/giftexchange?userId=${res.user.uid}`)
           })
       console.log("button clicked");
+        }
   }
 
   const handleSignup = () => {
@@ -132,6 +150,8 @@ return (
                             name='email'
                             value={loginData.email}
                             onChange={handleChange}
+                            error={!!errors.email}
+                            helperText={errors.email}
                          />
                          </ThemeProvider>
                     </Box>
@@ -159,6 +179,8 @@ return (
                                 name='password'
                                 value={loginData.password}
                                 onChange={handleChange}
+                                error={!!errors.password}
+                                helperText={errors.password}
                             />
                         </ThemeProvider>
                     </Box>
