@@ -117,7 +117,9 @@ const Sidebar = ({
                         {navItems.map(({ text, icon }) => {
                             if(!icon){
                                 return (
-                                    <Typography key={text} sx={{ m: "2.25rem 0 1rem 3rem"}}>
+                                    <Typography key={text} 
+                                    sx={{ m: "2.25rem 0 1rem 3rem"}}
+                                    >
                                         {text}
                                     </Typography>
                                 )
@@ -131,7 +133,7 @@ const Sidebar = ({
                                             setActive(lcText);
                                         }}
                                         sx={{
-                                            backgroundColor: active === lcText ? 'lightgrey' : "transparent",
+                                            backgroundColor: active === lcText ? '#EEEEEE' : "transparent",
                                             color:
                                                 active === lcText
                                                     ? 'skyblue'
@@ -150,9 +152,9 @@ const Sidebar = ({
                                             {icon}
                                         </ListItemIcon>
                                         <ListItemText primary={text}/>
-                                        {active === lcText && (
+                                        {/* {active === lcText && (
                                             <ChevronRightOutlined sx={{ml: "auto"}} />
-                                        )}
+                                        )} */}
                                     </ListItemButton>
                                 </ListItem>
                             )

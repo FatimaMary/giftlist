@@ -6,10 +6,12 @@ import {
     Button,
     CardContent, 
     Card,
+    CardMedia,
 } from '@mui/material';
 import { useNavigate, useSearchParams } from 'react-router-dom';
 import axios from 'axios';
 import AddCircleOutlineIcon from '@mui/icons-material/AddCircleOutline';
+import Santa from '../../assets/santa.png';
 
 function GiftExchange() {
     const [eventData, setEventData] = useState([]);
@@ -31,20 +33,44 @@ function GiftExchange() {
       }
     
   return <Box 
-      m='1.5rem 2.5rem'
+      backgroundColor='#f8f9fa'
+      height='100vh'
+      width='100vw'
+      p='50px 30px 33px 30px'
     >
     <Typography 
-      variant='h4'
+      variant='h2'
+      sx={{
+        fontWeight: 600,
+        fontSize: '32px',
+        lineHeight: '34px',
+        color: '#101a34',
+        marginBottom: '16px',
+        wordBreak: 'break-word',
+      }}
     >
       Gift exchange
     </Typography>
-    <Box  sx={{
-        display: 'flex'
+    <Box 
+      sx={{
+        display: 'flex',
+        background: '#fafbfd',
+        padding: '5px 20px 20px',
+        borderBottom: '1px solid #cad3dd',
+        marginBottom: 0,
+        borderTopLeftRadius: '10px',
+        borderTopRightRadius: '10px',
+        gap: '10px',
       }}
     >
-      <Box>
         <Typography>Upcoming({eventData.length})</Typography>
+        <Typography>Past()</Typography>
       </Box>
+    <Box  sx={{
+        display: 'flex',
+        flexWrap: 'wrap',
+      }}
+    >
       <Box 
         sx={{ 
           width: 250, 
@@ -55,11 +81,14 @@ function GiftExchange() {
           alignItems: 'center',
           justifyContent: 'center',
           gap:'30px',
-          border: '2px solid black',
+          border: '1px solid lightgrey',
           '&:hover': {
             backgroundColor: 'skyblue',
             color: 'white'
           },
+          borderRadius: '10px',
+          padding: '0 12px',
+          boxSizing: 'border-box',
         }}
         onClick={handleClick}
         >
@@ -79,7 +108,12 @@ function GiftExchange() {
       {eventData.map((cardData, i) => (
               <Card sx={{ width: 250, height: '250px', m: '1.5rem' }} key={i}>
               <CardContent>
-                <img src='../../assets/santa.png' />
+                <CardMedia
+                  component="img"
+                  height="100"
+                  image={Santa}
+                  alt="Image Description"
+                />
                 <Typography sx={{ fontSize: 16 }}  variant='h6' fontWeight='bold' color='red' >
                 {cardData.giftExchangeDate}
                 </Typography>
