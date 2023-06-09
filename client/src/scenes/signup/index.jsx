@@ -263,6 +263,7 @@ function Signup() {
                                     color: 'black',
                                     border: '1px solid skyblue'
                                   },
+                                  marginTop: '10px'
                             }}
                         type="submit"
                         >
@@ -272,6 +273,23 @@ function Signup() {
                     </Box>
                 </Box>
             </form>
+            <Box 
+                sx={{
+                    display: 'flex',
+                    justifyContent: 'center',
+                }}
+            >
+                <Typography>
+                    Already have an account? 
+                    <Button
+                         sx={{
+                            textTransform: 'inherit',
+                            fontSize: '1rem',
+                        }}
+                        onClick={handleClick}
+                    >Login</Button> 
+                </Typography>
+            </Box>
         </Box>
         </Box>
     </Box>
