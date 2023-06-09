@@ -21,13 +21,17 @@ function WelcomePage() {
                 alignItems: 'center',
                 justifyContent: 'center',
                 gap: '20px',
-                height: '100vh',
+                height: '90vh',
                 width: '100vw',
             }}
             className='boxcomponent'
         >
             <Typography 
                 variant='h2'
+                sx={{
+                    fontWeight:'bold',
+                    fontSize: '5rem'
+                }}
             >
                 Gifting made easy
             </Typography>
