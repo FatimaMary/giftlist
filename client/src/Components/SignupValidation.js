@@ -1,7 +1,7 @@
 import React from 'react';
 
 
-function SignupValidation({signupData}) {
+function SignupValidation({ signupData }) {
     let errors = {};
   
     if (!signupData.email) {

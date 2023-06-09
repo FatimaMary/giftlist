@@ -60,47 +60,63 @@ function Signup() {
     const handleSubmit =async(e) => {
         setLoading(true);
         e.preventDefault();
-        // setErrors(RegisterValidation(registerData));
         setDataIsCorrect(true);
         console.log("button clicked")
-         createUserWithEmailAndPassword(auth, signupData.email, signupData.password)
-            .then(async (res) => {
-                const user = res.user;
-                await updateProfile(user, {
-                    displayName: signupData.name
-                });
-                // create profile here
-                await setDoc(doc(db, "users", res.user.uid), {
-                    uid: res.user.uid,
-                    email: signupData.email,
-                    password: signupData.password,
-                });
-                console.log("Register with firebase");
+        const validationErrors = {};
+        if (!signupData.email) {
+        validationErrors.email = 'Email is required';
+        } else if (!/\S+@\S+\.\S+/.test(signupData.email)) {
+        validationErrors.email = 'Email is invalid';
+        }
 
-                //Make the POST request to your API end point
-                fetch("http://localhost:2309/user/add", {
-                    method: "POST",
-                    headers: {
-                        "Content-Type": "application/json",
-                    },
-                    body: JSON.stringify({
-                        userId: user.uid,
+        if (!signupData.password) {
+        validationErrors.password = 'Password is required';
+        } else if (signupData.password.length < 5) {
+        validationErrors.password = 'Password must be more than 5 characters';
+        }
+
+        if (Object.keys(validationErrors).length > 0) {
+            setErrors(validationErrors);
+        } else {
+            createUserWithEmailAndPassword(auth, signupData.email, signupData.password)
+                .then(async (res) => {
+                    const user = res.user;
+                    await updateProfile(user, {
+                        displayName: signupData.name
+                    });
+                    // create profile here
+                    await setDoc(doc(db, "users", res.user.uid), {
+                        uid: res.user.uid,
                         email: signupData.email,
                         password: signupData.password,
-                    }),
-                    
-                })
-                .then((response) => response.json())
-                .then((data) => {
-                    console.log("data: " , data);
-                    console.log("fetch id: ", data.userId);
-                    navigate(`/signup1?userId=${user.uid}`);
-                })
-                .catch((error) => {
-                    console.log(error);
-                    setErrors(error.message);
-                });
-            })
+                    });
+                    console.log("Register with firebase");
+
+                    //Make the POST request to your API end point
+                    fetch("http://localhost:2309/user/add", {
+                        method: "POST",
+                        headers: {
+                            "Content-Type": "application/json",
+                        },
+                        body: JSON.stringify({
+                            userId: user.uid,
+                            email: signupData.email,
+                            password: signupData.password,
+                        }),
+                        
+                    })
+                    .then((response) => response.json())
+                    .then((data) => {
+                        console.log("data: " , data);
+                        console.log("fetch id: ", data.userId);
+                        navigate(`/signup1?userId=${user.uid}`);
+                    })
+                    .catch((error) => {
+                        console.log(error);
+                        setErrors(error.message);
+                    });
+                }) 
+        }
     }
 
     const handleClick = () => {
@@ -187,10 +203,13 @@ function Signup() {
                             name='email'
                             value={signupData.email}
                             onChange={updateHandleChange}
+                            error={!!errors.email}
+                            helperText={errors.email}
                          />
+                         {/* {errors.email && <p className="error">{errors.email}</p>} */}
                          </ThemeProvider>
                     </Box>
-                    {errors.email && <p className="error">{errors.email}</p>}
+                    
                     <Box>
                     <Typography
                             ml='1rem'
@@ -215,10 +234,12 @@ function Signup() {
                                 name='password'
                                 value={signupData.password}
                                 onChange={updateHandleChange}
+                                error={!!errors.password}
+                                helperText={errors.password}
                             />
                         </ThemeProvider>
                     </Box>
-                    {errors.password && <p className="error">{errors.password}</p>}
+                    {/* {errors.password && <p className="error">{errors.password}</p>} */}
                     <Box 
                         sx={{
                             display: 'flex',
