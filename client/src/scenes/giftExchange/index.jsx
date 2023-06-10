@@ -37,7 +37,6 @@ function GiftExchange() {
     
   return <Box 
       backgroundColor='#e8ecf1'
-      height='100vh'
       width='100vw'
       p='50px 30px 33px 30px'
     >
@@ -119,6 +118,8 @@ function GiftExchange() {
                   display: 'flex',
                   alignItems: 'center',
                   justifyContent: 'center',
+                  // flexDirection: 'column',
+                  // flexWrap: 'wrap'
                 }} 
                 key={i}
               >

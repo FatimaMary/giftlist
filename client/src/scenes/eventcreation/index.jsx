@@ -15,7 +15,8 @@ import FormLabel from '@mui/material/FormLabel';
 import axios from 'axios';
 import { useNavigate, useSearchParams } from "react-router-dom";
 import ArrowCircleLeftOutlinedIcon from '@mui/icons-material/ArrowCircleLeftOutlined';
-import Star from './star.png'
+import Star from './star.png';
+import CopyrightIcon from '@mui/icons-material/Copyright';
 
 function EventCreation() {
   const [eventName, setEventName] = useState();
@@ -59,7 +60,7 @@ function EventCreation() {
     .then((response) => {
       console.log("post response: ", response);
       console.log("response data: ", response.data);
-      navigate(`/budget?eventId=${response.data.eventId}`);
+      navigate(`/budget?eventId=${response.data.eventId}&userId=${userId}`);
     })
   }
 
@@ -69,7 +70,6 @@ function EventCreation() {
 
   return <Box 
       backgroundColor='#e8ecf1'
-      // height='100vh'
       width='100vw'
       p='50px 30px 33px 30px'
   >
@@ -273,16 +273,26 @@ function EventCreation() {
         </Box>
       </Box>
       <Box sx={{
-        width: '400px'
+        width: '400px',
+        marginBottom: '20px'
       }}>
         <FormControl>
           <FormLabel 
             id="demo-row-radio-buttons-group-label"
             sx={{
-              fontWeight: 'bold'
+              fontWeight: 600,
+              fontSize:'13px',
+              lineHeight: '18px',
+              color: '#101a34',
+              marginBottom:'5px',
+              wordBreak: 'break-all'
             }}
           >Are you participating?</FormLabel>
           <RadioGroup
+            sx={{
+              display: 'flex',
+              width: '100%',
+            }}
             row
             aria-labelledby="demo-row-radio-buttons-group-label"
             name="row-radio-buttons-group"
@@ -294,22 +304,131 @@ function EventCreation() {
               control={<Radio />} 
               label="Yes" 
               sx={{
-                width: '150px'
+                width: '200px',
+                border: '1px solid skyblue',
+                borderRadius: '10px',
+                // textAlign: 'center',
+                // fontSize: '1rem',
               }}
             />
-            <FormControlLabel value="false" control={<Radio />} label="No" />
+            <FormControlLabel 
+              value="false" 
+              control={<Radio />} 
+              label="No" 
+              sx={{
+                width: '200px',
+                border: '1px solid skyblue',
+                borderRadius: '10px',
+                // textAlign: 'center',
+                // fontSize: '1rem',
+              }}
+            />
           </RadioGroup>
         </FormControl>
       </Box>
       <Box>
         <Button 
-          variant='contained'
           onClick={moveToNextStep}
+          variant='contained'
+          sx={{ 
+            border: '2px solid skyblue',
+            borderRadius: '10px',
+            width: '100%',
+            fontSize: '1rem',
+            color: 'white',
+            background: 'skyblue',
+            textTransform: 'inherit',
+            fontWeight:'bold',
+            '&:hover': {
+              backgroundColor: '#D8D8D8',
+              color: 'black',
+              border: '1px solid skyblue'
+            },
+            marginTop: '10px'
+          }}
         >
           Next step
         </Button>
       </Box>
         </Box>
+      </Box>
+    </Box>
+    <Box sx={{
+      display: 'flex',
+      justifyContent:'space-between',
+      borderTop: '1px solid grey',
+      marginTop: '20px',
+    }}>
+      <Box sx={{
+        display: 'flex',
+        paddingTop: '10px',
+      }}
+      >
+        <CopyrightIcon 
+          sx={{
+            fontSize: '16px'
+          }} 
+        />
+        <Typography sx={{
+            fontSize: '13px'
+          }} 
+        >
+          GiftList. All Rights Reserved
+        </Typography>
+      </Box>
+      <Box>
+        <Button 
+          sx={{
+            textTransform: 'inherit',
+            color:'black',
+            '&:hover': {
+              cursor: 'pointer',
+              color: 'skyblue',
+              background: 'transparent'
+            },
+          }}
+        >
+          Privacy policy
+        </Button>
+        <Button
+          sx={{
+            textTransform: 'inherit',
+            color:'black',
+            '&:hover': {
+              cursor: 'pointer',
+              color: 'skyblue',
+              background: 'transparent'
+            },
+          }}
+        >
+          Terms of use
+        </Button>
+        <Button
+          sx={{
+            textTransform: 'inherit',
+            color:'black',
+            '&:hover': {
+              cursor: 'pointer',
+              color: 'skyblue',
+              background: 'transparent'
+            },
+          }}
+        >
+          Desclaimer
+        </Button>
+        <Button 
+          sx={{
+            textTransform: 'inherit',
+            color:'black',
+            '&:hover': {
+              cursor: 'pointer',
+              color: 'skyblue',
+              background: 'transparent'
+            },
+          }}
+        >
+          Contact Us
+        </Button>
       </Box>
     </Box>
   </Box>

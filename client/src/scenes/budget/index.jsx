@@ -4,16 +4,40 @@ import {
   Button, 
   TextField, 
   Typography,
+  createTheme,
 } from '@mui/material';
 import axios from 'axios';
 import { useSearchParams, useNavigate } from 'react-router-dom';
+import ArrowCircleLeftOutlinedIcon from '@mui/icons-material/ArrowCircleLeftOutlined';
 
 function Budget() {
   const [budget, setBudget] = useState();
   const [details, setdetails] = useState();
   const [searchParam] = useSearchParams();
   const eventId = searchParam.get("eventId");
+  const userId = searchParam.get("userId");
   const navigate = useNavigate();
+
+  const theme = createTheme({
+    components: {
+      MuiTextField: {
+        styleOverrides: {
+          root: {
+            '& .MuiOutlinedInput-root': {
+              '& fieldset': {
+                borderColor: '#cad3dd', 
+              },
+            },
+            '& .MuiOutlinedInput-root.Mui-focused': {
+              '& fieldset': {
+                borderColor: '#cad3dd', 
+              },
+            },
+          },
+        },
+      },
+    },
+  });
 
   const handleSubmit = (e) => {
     e.preventDefault();
@@ -27,18 +51,38 @@ function Budget() {
     })
   }
 
-  return <Box m='1.5rem 2.5rem'
-      p='1.5rem 2.5rem'
+  const handleClick = () => {
+    navigate(`/eventcreate?userId=${userId}`);
+  }
+
+  return <Box 
+      backgroundColor='#e8ecf1'
+      width='100vw'
+      p='50px 30px 33px 30px'
+    >
+      <Box 
       sx={{
         display: 'flex',
-        flexDirection: 'column',
-        gap: '20px',
         alignItems: 'center',
-        justifyContent: 'center',
-        width: '500px',
-        border: '2px solid grey', 
+        marginBottom: '1rem',
       }}
+      onClick={handleClick}
     >
+      <ArrowCircleLeftOutlinedIcon 
+        sx={{
+          fontSize: '1.2rem',
+          color: '#0f7b9b'
+        }}
+      />
+      <Button
+        sx={{
+          textTransform: 'inherit',
+          color: '#0f7b9b',
+          fontWeight: 'bold',
+          fontSize: '1rem'
+        }}
+      >Step1</Button>
+    </Box>
     <Typography variant='h4'>Gift exchange rules</Typography>
     <Box sx={{
       width: '400px'
