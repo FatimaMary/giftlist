@@ -12,6 +12,7 @@ import { useNavigate, useSearchParams } from 'react-router-dom';
 import axios from 'axios';
 import AddCircleOutlineIcon from '@mui/icons-material/AddCircleOutline';
 import Santa from './Santa.png';
+import CalendarMonthIcon from '@mui/icons-material/CalendarMonth';
 
 function GiftExchange() {
     const [eventData, setEventData] = useState([]);
@@ -75,7 +76,7 @@ function GiftExchange() {
     >
       <Box 
         sx={{ 
-          width: 250, 
+          width: 220, 
           height: '250px', 
           m: '1.5rem', 
           display: 'flex', 
@@ -108,25 +109,70 @@ function GiftExchange() {
       </Box>
       <Box>
       {eventData.map((cardData, i) => (
-              <Card sx={{ width: 250, height: '250px', m: '1.5rem' }} key={i}>
+              <Card 
+                sx={{ 
+                  width: 220, 
+                  height: '250px', 
+                  m: '1.5rem',
+                  display: 'flex',
+                  alignItems: 'center',
+                  justifyContent: 'center',
+                }} 
+                key={i}
+              >
               <CardContent>
-                <CardMedia
-                  component="img"
-                  height="140"
-                  image={Santa}
-                  alt="Image Description"
-                />
+                <Box sx={{
+                  height: '70%'
+                }}>
+                  <CardMedia
+                    component="img"
+                    // height="140"
+                    image={Santa}
+                    alt="Image Description"
+                    sx={{
+                      height: '100%',
+                      width: '80%',
+                      marginLeft: 'auto',
+                      marginRight: 'auto',
+                    }}
+                  />
+                </Box>
                 <Box 
-                  padding='10px 15px'
+                  // padding='10px 15px'
                   sx={{
                     borderTop: '1px solid #e8ecf1',
-                    
+                    height: '30%',
+                    width: '220px',
+                    background: '#e8ecf1',
+                    display: 'flex',
+                    flexDirection: 'column',
+                    padding: '20px 30px',
+                    '&:hover': {
+                        backgroundColor: 'skyblue',
+                        color: 'white'
+                      },
                   }}
                 >
-                <Typography sx={{ fontSize: 16 }}  variant='h6' fontWeight='bold' color='red' >
+                <Typography 
+                  sx={{ 
+                    fontSize: 16,
+                    opacity: 0.7,
+                    '&:hover' : {
+                      opacity: 1,
+                    }
+                  }}  
+                  variant='h6' 
+                  fontWeight='bold'
+                >
+                  <CalendarMonthIcon sx={{
+                    fontSize: '20px'
+                  }}/>
                 {cardData.giftExchangeDate}
                 </Typography>
-                <Typography variant="body2" fontWeight='bold'>
+                <Typography 
+                  variant="body2" 
+                  fontWeight='bold'
+                >
                   {cardData.eventName}
                 </Typography>
                 </Box>
