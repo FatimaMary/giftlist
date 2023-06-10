@@ -11,7 +11,7 @@ import {
 import { useNavigate, useSearchParams } from 'react-router-dom';
 import axios from 'axios';
 import AddCircleOutlineIcon from '@mui/icons-material/AddCircleOutline';
-import Santa from './Santa.png';
+import Santa from './santa1.png';
 import CalendarMonthIcon from '@mui/icons-material/CalendarMonth';
 import CopyrightIcon from '@mui/icons-material/Copyright';
 
@@ -32,7 +32,7 @@ function GiftExchange() {
     }, [])
 
     const handleClick = () => {
-        navigate(`/eventcreate?userId=${userId}}`)
+        navigate(`/eventcreate?userId=${userId}`)
       }
     
   return <Box 
