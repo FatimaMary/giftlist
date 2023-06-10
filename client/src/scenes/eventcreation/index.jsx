@@ -3,7 +3,9 @@ import {
   Box,
   TextField,
   Typography,
-  Button
+  Button,
+  createTheme,
+  ThemeProvider
 } from '@mui/material';
 import Radio from '@mui/material/Radio';
 import RadioGroup from '@mui/material/RadioGroup';
@@ -23,6 +25,27 @@ function EventCreation() {
   const [searchParam] = useSearchParams();
   const userId = searchParam.get("userId")
   const navigate = useNavigate();
+
+  const theme = createTheme({
+    components: {
+      MuiTextField: {
+        styleOverrides: {
+          root: {
+            '& .MuiOutlinedInput-root': {
+              '& fieldset': {
+                borderColor: '#cad3dd', 
+              },
+            },
+            '& .MuiOutlinedInput-root.Mui-focused': {
+              '& fieldset': {
+                borderColor: '#cad3dd', 
+              },
+            },
+          },
+        },
+      },
+    },
+  });
 
   const moveToNextStep = (e) => {
     e.preventDefault();
@@ -46,7 +69,7 @@ function EventCreation() {
 
   return <Box 
       backgroundColor='#e8ecf1'
-      height='100vh'
+      // height='100vh'
       width='100vw'
       p='50px 30px 33px 30px'
   >
@@ -81,53 +104,157 @@ function EventCreation() {
         borderRadius: '10px'
       }}
     >
-      <Box>
-        <Box>
-          <img src={Star} alt='star image' />
+      <Box 
+        sx={{
+          maxWidth: '517px',
+          margin: '0 auto',
+          padding: '48px 10px 16px',
+        }}
+      >
+        <Box 
+          sx={{
+            paddingBottom: '28px',
+            marginBottom: '28px',
+            borderBottom: '1px solid #cad3dd',
+            textAlign: 'center'
+          }}
+        >
+          <img 
+            src={Star} 
+            alt='star image' 
+            height={100} 
+            width={100}
+            className='starimage'
+          />
           <Typography
         variant='h4'
-        fontStyle='italic'
+        sx={{
+          margin:'0 0 20px',
+        }}
       >
         Let's get started
       </Typography>
         </Box>
         <Box>
-        <Box>
-        <Typography >Event Name</Typography>
-        <TextField 
-          placeholder='Enter event name'
+        <Box 
           sx={{
-            width: '400px'
+            marginBottom: '20px',
+
           }}
-          type='text'
-          value={eventName}
-          onChange={(e) => setEventName(e.target.value)}
-        />
+        >
+        <Typography
+          sx={{
+            fontFamily: 'Poppins,sans-serif',
+            fontWeight: 600,
+            fontSize: '13px',
+            lineHeight: '18px',
+            color: '#101a34',
+            // marginBottom: '5px',
+            wordBreak: 'break-all',
+          }}
+        >
+          Event Name
+        </Typography>
+        <ThemeProvider theme={theme}>
+          <TextField 
+            placeholder='Enter event name'
+            sx={{
+              width: '100%',
+              background:'#fff',
+              borderRadius: '7px',
+              padding: '8px 15px',
+              fontWeight: 400,
+              fontSize:"1rem",
+              color: '#101a34',
+              lineHeight: '27px',
+              '& .MuiOutlinedInput-root': {
+                height: '44px',
+            },
+            marginLeft: '-13px'
+            }}
+            type='text'
+            value={eventName}
+            onChange={(e) => setEventName(e.target.value)}
+          />
+        </ThemeProvider>
       </Box>
       <Box 
         sx={{
           display: 'flex',
-          justifyContent: 'space-evenly',
-          gap: '30px'
+          justifyContent: 'space-between',
+          gap: '30px',
+          marginBottom: '20px',
         }}
       >
         <Box>
-          <Typography>Gift exchange date:</Typography>
+          <Typography
+            sx={{
+              fontFamily: 'Poppins,sans-serif',
+              fontWeight: 600,
+              fontSize: '13px',
+              lineHeight: '18px',
+              color: '#101a34',
+              // marginBottom: '5px',
+              wordBreak: 'break-all',
+            }}
+          >
+            Gift exchange date:
+          </Typography>
+          <ThemeProvider theme={theme}>
           <TextField 
             type='date'
-            sx={{ width: '180px'}}
+            sx={{
+              // width: '100%',
+              background:'#fff',
+              borderRadius: '7px',
+              padding: '8px 15px',
+              fontWeight: 400,
+              fontSize:"1rem",
+              color: '#101a34',
+              lineHeight: '27px',
+              '& .MuiOutlinedInput-root': {
+                height: '44px',
+            },
+            marginLeft: '-13px'
+            }}
             value={giftExchangeDate}
             onChange={(e) => setGiftExchangeDate(e.target.value)}
           />
+          </ThemeProvider>
         </Box>
         <Box>
-          <Typography>RSVP Date:</Typography>
+          <Typography
+            sx={{
+              fontFamily: 'Poppins,sans-serif',
+              fontWeight: 600,
+              fontSize: '13px',
+              lineHeight: '18px',
+              color: '#101a34',
+              // marginBottom: '5px',
+              wordBreak: 'break-all',
+            }}
+          >RSVP Date:</Typography>
+          <ThemeProvider theme={theme}>
           <TextField 
             type='date' 
-            sx={{ width: '180px'}} 
+            sx={{
+              width: '100%',
+              background:'#fff',
+              borderRadius: '7px',
+              padding: '8px 15px',
+              fontWeight: 400,
+              fontSize:"1rem",
+              color: '#101a34',
+              lineHeight: '27px',
+              '& .MuiOutlinedInput-root': {
+                height: '44px',
+            },
+            marginLeft: '-13px'
+            }} 
             value={rsvpDate}
             onChange={(e) => setRsvpDate(e.target.value)}
           />
+          </ThemeProvider>
         </Box>
       </Box>
       <Box sx={{
