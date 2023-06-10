@@ -178,15 +178,18 @@ function EventCreation() {
           />
         </ThemeProvider>
       </Box>
+      <Box sx={{
+        display: 'flex',
+        flexDirection:'column',
+        marginBottom: '20px',
+      }}>
       <Box 
         sx={{
           display: 'flex',
           justifyContent: 'space-between',
-          gap: '30px',
-          marginBottom: '20px',
         }}
       >
-        <Box>
+        <Box width='50%'>
           <Typography
             sx={{
               fontFamily: 'Poppins,sans-serif',
@@ -204,7 +207,7 @@ function EventCreation() {
           <TextField 
             type='date'
             sx={{
-              // width: '100%',
+              width: '100%',
               background:'#fff',
               borderRadius: '7px',
               padding: '8px 15px',
@@ -222,7 +225,7 @@ function EventCreation() {
           />
           </ThemeProvider>
         </Box>
-        <Box>
+        <Box width='50%'>
           <Typography
             sx={{
               fontFamily: 'Poppins,sans-serif',
@@ -255,6 +258,18 @@ function EventCreation() {
             onChange={(e) => setRsvpDate(e.target.value)}
           />
           </ThemeProvider>
+        </Box>
+        </Box>
+        <Box>
+          <Typography 
+            sx={{
+              fontSize: '13px',
+              lineHeight: '18px',
+              color: '#5e6577',
+              marginBottom: 0,
+              marginTop: '6px',
+            }}
+          >Names will be drawn the day after the RSVP deadline</Typography>
         </Box>
       </Box>
       <Box sx={{
