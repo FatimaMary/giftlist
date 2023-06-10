@@ -13,6 +13,8 @@ import axios from 'axios';
 import AddCircleOutlineIcon from '@mui/icons-material/AddCircleOutline';
 import Santa from './Santa.png';
 import CalendarMonthIcon from '@mui/icons-material/CalendarMonth';
+import CopyrightIcon from '@mui/icons-material/Copyright';
+
 
 function GiftExchange() {
     const [eventData, setEventData] = useState([]);
@@ -179,6 +181,84 @@ function GiftExchange() {
               </CardContent>
             </Card>
           )) } 
+      </Box>
+    </Box>
+    <Box sx={{
+      display: 'flex',
+      justifyContent:'space-between',
+      borderTop: '1px solid grey',
+      marginTop: '20px',
+    }}>
+      <Box sx={{
+        display: 'flex',
+        paddingTop: '10px',
+      }}
+      >
+        <CopyrightIcon 
+          sx={{
+            fontSize: '16px'
+          }} 
+        />
+        <Typography sx={{
+            fontSize: '13px'
+          }} 
+        >
+          GiftList. All Rights Reserved
+        </Typography>
+      </Box>
+      <Box>
+        <Button 
+          sx={{
+            textTransform: 'inherit',
+            color:'black',
+            '&:hover': {
+              cursor: 'pointer',
+              color: 'skyblue',
+              background: 'transparent'
+            },
+          }}
+        >
+          Privacy policy
+        </Button>
+        <Button
+          sx={{
+            textTransform: 'inherit',
+            color:'black',
+            '&:hover': {
+              cursor: 'pointer',
+              color: 'skyblue',
+              background: 'transparent'
+            },
+          }}
+        >
+          Terms of use
+        </Button>
+        <Button
+          sx={{
+            textTransform: 'inherit',
+            color:'black',
+            '&:hover': {
+              cursor: 'pointer',
+              color: 'skyblue',
+              background: 'transparent'
+            },
+          }}
+        >
+          Desclaimer
+        </Button>
+        <Button 
+          sx={{
+            textTransform: 'inherit',
+            color:'black',
+            '&:hover': {
+              cursor: 'pointer',
+              color: 'skyblue',
+              background: 'transparent'
+            },
+          }}
+        >
+          Contact Us
+        </Button>
       </Box>
     </Box>
   </Box>
