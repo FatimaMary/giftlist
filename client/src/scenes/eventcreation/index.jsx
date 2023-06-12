@@ -64,19 +64,19 @@ function EventCreation() {
         if (Object.keys(validationErrors).length > 0) {
             setErrors(validationErrors);
         } else {
-    axios.post("http://localhost:2309/event/add", {
-      eventName: eventName,
-      giftExchangeDate: giftExchangeDate,
-      rsvpDate: rsvpDate,
-      confirmation: confirmation,
-      userId: userId
-    })
-    .then((response) => {
-      console.log("post response: ", response);
-      console.log("response data: ", response.data);
-      navigate(`/budget?eventId=${response.data.eventId}&userId=${userId}`);
-    })
-  }
+          axios.post("http://localhost:2309/event/add", {
+            eventName: eventName,
+            giftExchangeDate: giftExchangeDate,
+            rsvpDate: rsvpDate,
+            confirmation: confirmation,
+            userId: userId
+          })
+          .then((response) => {
+            console.log("post response: ", response);
+            console.log("response data: ", response.data);
+            navigate(`/budget?eventId=${response.data.eventId}&userId=${userId}`);
+          })
+      }
   }
 
   const handleClick = () => {
