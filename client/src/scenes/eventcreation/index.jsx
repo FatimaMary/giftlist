@@ -17,6 +17,7 @@ import { useNavigate, useSearchParams } from "react-router-dom";
 import ArrowCircleLeftOutlinedIcon from '@mui/icons-material/ArrowCircleLeftOutlined';
 import Star from './star.png';
 import CopyrightIcon from '@mui/icons-material/Copyright';
+import Footer from '../../Components/Footer';
 
 function EventCreation() {
   const [eventName, setEventName] = useState();
@@ -388,84 +389,7 @@ function EventCreation() {
         </Box>
       </Box>
     </Box>
-    <Box sx={{
-      display: 'flex',
-      justifyContent:'space-between',
-      borderTop: '1px solid grey',
-      marginTop: '20px',
-    }}>
-      <Box sx={{
-        display: 'flex',
-        paddingTop: '10px',
-      }}
-      >
-        <CopyrightIcon 
-          sx={{
-            fontSize: '16px'
-          }} 
-        />
-        <Typography sx={{
-            fontSize: '13px'
-          }} 
-        >
-          GiftList. All Rights Reserved
-        </Typography>
-      </Box>
-      <Box>
-        <Button 
-          sx={{
-            textTransform: 'inherit',
-            color:'black',
-            '&:hover': {
-              cursor: 'pointer',
-              color: 'skyblue',
-              background: 'transparent'
-            },
-          }}
-        >
-          Privacy policy
-        </Button>
-        <Button
-          sx={{
-            textTransform: 'inherit',
-            color:'black',
-            '&:hover': {
-              cursor: 'pointer',
-              color: 'skyblue',
-              background: 'transparent'
-            },
-          }}
-        >
-          Terms of use
-        </Button>
-        <Button
-          sx={{
-            textTransform: 'inherit',
-            color:'black',
-            '&:hover': {
-              cursor: 'pointer',
-              color: 'skyblue',
-              background: 'transparent'
-            },
-          }}
-        >
-          Desclaimer
-        </Button>
-        <Button 
-          sx={{
-            textTransform: 'inherit',
-            color:'black',
-            '&:hover': {
-              cursor: 'pointer',
-              color: 'skyblue',
-              background: 'transparent'
-            },
-          }}
-        >
-          Contact Us
-        </Button>
-      </Box>
-    </Box>
+    <Footer />
   </Box>
 }
 
