@@ -273,7 +273,7 @@ function EventCreation() {
         </Box>
       </Box>
       <Box sx={{
-        width: '400px',
+        width: '600px',
         marginBottom: '20px'
       }}>
         <FormControl>
@@ -292,6 +292,8 @@ function EventCreation() {
             sx={{
               display: 'flex',
               width: '100%',
+              gap: '10px',
+              marginLeft: '10px'
             }}
             row
             aria-labelledby="demo-row-radio-buttons-group-label"
@@ -301,26 +303,39 @@ function EventCreation() {
           >
             <FormControlLabel 
               value="true" 
-              control={<Radio />} 
+              control={<Radio 
+                sx={{ alignSelf: 'center' }} 
+                className="custom-radio"
+                />} 
               label="Yes" 
               sx={{
-                width: '200px',
-                border: '1px solid skyblue',
-                borderRadius: '10px',
-                // textAlign: 'center',
-                // fontSize: '1rem',
+                width: '225px',
+                border: '1px solid #cad3dd',
+                borderRadius: '7px',
+                fontSize: '0.8rem',
+                height: '44px',
+                display: 'flex',
+                alignItems: 'center',
+                justifyContent: 'center',
               }}
             />
             <FormControlLabel 
               value="false" 
-              control={<Radio />} 
+              control={<Radio 
+                sx={{ alignSelf: 'center' }} 
+                className="custom-radio"
+                />} 
               label="No" 
               sx={{
-                width: '200px',
-                border: '1px solid skyblue',
-                borderRadius: '10px',
-                // textAlign: 'center',
-                // fontSize: '1rem',
+                width: '225px',
+                border: '1px solid #cad3dd',
+                borderRadius: '7px',
+                textAlign: 'center',
+                fontSize: '0.8rem',
+                height: '44px',
+                display: 'flex',
+                alignItems: 'center',
+                justifyContent: 'center',
               }}
             />
           </RadioGroup>
