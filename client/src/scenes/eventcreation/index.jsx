@@ -142,19 +142,18 @@ function EventCreation() {
             className='starimage'
           />
           <Typography
-        variant='h4'
-        sx={{
-          margin:'0 0 20px',
-        }}
-      >
-        Let's get started
-      </Typography>
+            variant='h4'
+            sx={{
+              margin:'0 0 20px',
+            }}
+          >
+            Let's get started
+          </Typography>
         </Box>
         <Box>
         <Box 
           sx={{
             marginBottom: '20px',
-
           }}
         >
         <Typography
