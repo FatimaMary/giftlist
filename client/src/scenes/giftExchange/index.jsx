@@ -70,12 +70,21 @@ function GiftExchange() {
       </Box>
     <Box  sx={{
         display: 'flex',
-        flexWrap: 'wrap',
+        // flexWrap: 'wrap',
         background: '#ffffff',
         // marginY: '-12px',
       }}
     >
+     
       <Box 
+        sx={{
+          display: 'flex',
+          flexWrap: 'wrap',
+          gap: '20px',
+          marginLeft: '30px'
+        }}
+      >
+         <Box 
         sx={{ 
           width: 220, 
           height: '250px', 
@@ -99,16 +108,10 @@ function GiftExchange() {
           <AddCircleOutlineIcon 
             sx={{
               fontSize: '3rem',
-              // color: 'skyblue',
-              // '&:hover': {
-              //   backgroundColor: 'skyblue',
-              //   color: 'white'
-              // },
             }}
           />
           <Typography>Create a new event</Typography>
       </Box>
-      <Box>
       {eventData.map((cardData, i) => (
               <Card 
                 sx={{ 
