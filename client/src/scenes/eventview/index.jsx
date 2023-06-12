@@ -45,7 +45,8 @@ function EventView() {
         <Box 
             sx={{
                 display: 'flex',
-                justifyContent: 'space-between'
+                justifyContent: 'space-between',
+                width: '100%'
             }}
         >
             <Box>
@@ -60,13 +61,13 @@ function EventView() {
             <Box sx={{
                 background: '#fff',
                 border: '1px solid #e8ecf1',
-                borderRadius: '10px'
+                borderRadius: '10px',
+                maxWidth: '700px'
             }}>
                 <Box 
                     sx={{
                         display: 'flex',
                         justifyContent: 'space-around',
-                        maxWidth: '100%'
                     }}
                 >
                     <Typography>Exchange gifts by: Date</Typography>
