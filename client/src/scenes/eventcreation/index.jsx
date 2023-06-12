@@ -23,6 +23,7 @@ function EventCreation() {
   const [giftExchangeDate, setGiftExchangeDate] = useState();
   const [rsvpDate, setRsvpDate] = useState();
   const [confirmation, setConfirmation] = useState();
+  const [errors, setErrors] = useState({});
   const [searchParam] = useSearchParams();
   const userId = searchParam.get("userId")
   const navigate = useNavigate();
@@ -50,6 +51,19 @@ function EventCreation() {
 
   const moveToNextStep = (e) => {
     e.preventDefault();
+    const validationErrors = {};
+        if (!eventName) {
+        validationErrors.eventName = 'Event Name is required';
+        }
+        if (!giftExchangeDate) {
+        validationErrors.giftExchangeDate = 'Gift Exchange Date is required';
+        } 
+        if (!rsvpDate) {
+          validationErrors.rsvpDate = 'RSVP Date Required'
+        }
+        if (Object.keys(validationErrors).length > 0) {
+            setErrors(validationErrors);
+        } else {
     axios.post("http://localhost:2309/event/add", {
       eventName: eventName,
       giftExchangeDate: giftExchangeDate,
@@ -62,6 +76,7 @@ function EventCreation() {
       console.log("response data: ", response.data);
       navigate(`/budget?eventId=${response.data.eventId}&userId=${userId}`);
     })
+  }
   }
 
   const handleClick = () => {
@@ -175,6 +190,8 @@ function EventCreation() {
             type='text'
             value={eventName}
             onChange={(e) => setEventName(e.target.value)}
+            error={!!errors.eventName}
+             helperText={errors.eventName}
           />
         </ThemeProvider>
       </Box>
@@ -222,6 +239,8 @@ function EventCreation() {
             }}
             value={giftExchangeDate}
             onChange={(e) => setGiftExchangeDate(e.target.value)}
+            error={!!errors.giftExchangeDate}
+             helperText={errors.giftExchangeDate}
           />
           </ThemeProvider>
         </Box>
@@ -256,6 +275,8 @@ function EventCreation() {
             }} 
             value={rsvpDate}
             onChange={(e) => setRsvpDate(e.target.value)}
+            error={!!errors.rsvpDate}
+            helperText={errors.rsvpDate}
           />
           </ThemeProvider>
         </Box>
