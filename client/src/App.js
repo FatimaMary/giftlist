@@ -11,6 +11,7 @@ import Signup from './scenes/signup';
 import Navbar from './Components/Navbar';
 import WelcomePage from './scenes/welcomepage';
 import Success from './scenes/success';
+import EventView from './scenes/eventview';
 
 
 function App() {
@@ -27,6 +28,7 @@ function App() {
             <Route path='budget' element={<Budget/>} />
             <Route path='giftexchange' element={<GiftExchange/>} />
             <Route path='success' element={<Success/>} />
+            <Route path='eventview' element={<EventView/>} />
           </Route>
         </Routes>
       </BrowserRouter>
