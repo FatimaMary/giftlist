@@ -16,7 +16,6 @@ import axios from 'axios';
 import { useNavigate, useSearchParams } from "react-router-dom";
 import ArrowCircleLeftOutlinedIcon from '@mui/icons-material/ArrowCircleLeftOutlined';
 import Star from './star.png';
-import CopyrightIcon from '@mui/icons-material/Copyright';
 import Footer from '../../Components/Footer';
 
 function EventCreation() {

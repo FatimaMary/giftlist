@@ -11,7 +11,6 @@ import axios from 'axios';
 import { useSearchParams, useNavigate } from 'react-router-dom';
 import ArrowCircleLeftOutlinedIcon from '@mui/icons-material/ArrowCircleLeftOutlined';
 import Gift from './gift.png';
-import CopyrightIcon from '@mui/icons-material/Copyright';
 import Footer from '../../Components/Footer';
 
 function Budget() {
@@ -52,6 +51,7 @@ function Budget() {
     .then((response) => {
       console.log("update response: ", response);
       console.log("update data: ", response.data);
+      navigate(`/success?userId=${userId}&eventId=${eventId}`)
     })
   }
 
