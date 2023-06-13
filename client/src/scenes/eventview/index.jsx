@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 import { 
     Box,
     Typography,
@@ -9,8 +9,16 @@ import {
 import Stack from '@mui/material/Stack';
 import ShareOutlinedIcon from '@mui/icons-material/ShareOutlined';
 import EditCalendarOutlinedIcon from '@mui/icons-material/EditCalendarOutlined';
+import axios from 'axios';
+import { useNavigate, useSearchParams } from 'react-router-dom';
 
 function EventView() {
+    const [searchParam] = useSearchParams();
+    const eventId = searchParam.get("eventId");
+    useEffect(() => {
+      axios.get(`http://`)
+    }, [])
+    
     function stringAvatar(name) {
         return {
           children: `${name.split(' ')[0][0]}`,
@@ -258,10 +266,7 @@ function EventView() {
                     '&:hover': {
                         cursor: 'pointer'
                     },
-                    '&:before': {
-                        opacity: 1,
-                        
-                    }
+                    borderBottom: '3px solid #50bcd9'
                 }}
             >
                 Home
@@ -314,6 +319,38 @@ function EventView() {
             >
                 My Wishes
             </Typography>
+        </Box>
+        <Box 
+          sx={{
+            padding: '15px 0',
+            display: 'flex',
+            width: '100%'
+          }}
+        >
+            <Box
+              sx={{
+                width: '50%',
+                padding: '24px 16px',
+                background: '#fff',
+                border: '1px solid #e8ecf1',
+                borderRadius: '10px',
+
+              }}
+            >
+                <Typography
+                    variant='h3'
+                    sx={{
+                        fontSize: '20px',
+                        lineHeight: '25px',
+                        paddingBottom: '16px',
+                        marginBottom: '16px',
+                        borderBottom: '1px solid #e8ecf1'
+                    }}
+                >
+                    Your gift exchange checklist
+                </Typography>
+            </Box>
+            <Box></Box>
         </Box>
     </Box>
 }

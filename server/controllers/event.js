@@ -60,3 +60,25 @@ export const getEventsById = (req, res) => {
       })
       .catch((err) => res.status(400).json({ message: err.message }));
 }
+
+export const getEventDetailsbyEventId = (req, res) => {
+  const eventId = req.params.eventId;
+  Events.find({ eventId: eventId })
+    .then((events) => {
+      if (events.length === 0) {
+        res.status(404).json({ message: 'There is no event details' });
+      } else {
+        const eventDetail = events.map(singleEvent => {
+          return {
+            eventName: singleEvent.eventName,
+            giftExchangeDate: singleEvent.giftExchangeDate,
+            rsvpDate: singleEvent.rsvpDate,
+            budget: singleEvent.budget,
+            details: singleEvent.details,
+          };
+        });
+        res.json(eventDetail);
+      }
+    })
+    .catch((err) => res.status(400).json({ message: err.message }));
+}
