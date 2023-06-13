@@ -1,5 +1,5 @@
 import Events from '../models/Event.js';
-
+import Users from '../models/Users.js'
 
 export const postEvent = (req, res) => {
     const eventName = req.body.eventName;
@@ -84,5 +84,7 @@ export const getEventDetailsbyEventId = (req, res) => {
 };
 
 export const getuserNameByEventId = (req, res) => {
-
+  const eventId = req.params.eventId;
+  Events.find({ eventId: eventId })
+    .then(())
 }
