@@ -13,10 +13,16 @@ import axios from 'axios';
 import { useNavigate, useSearchParams } from 'react-router-dom';
 
 function EventView() {
+    const [eventDetails, setEventDetails] = useState([]);
     const [searchParam] = useSearchParams();
     const eventId = searchParam.get("eventId");
     useEffect(() => {
-      axios.get(`http://`)
+      axios.get(`http://localhost:2309/event/get/${eventId}`)
+        .then((response) => {
+            console.log("Get response: ", response);
+            console.log("Get response data: ", response.data);
+            setEventDetails(response.data);
+        })
     }, [])
     
     function stringAvatar(name) {
@@ -68,7 +74,7 @@ function EventView() {
                             color: '#101a34',
                         }}
                     >
-                        Event name
+                        {eventDetails.eventName}
                     </Typography>
                     <Box 
                        sx={{
@@ -149,7 +155,7 @@ function EventView() {
                             borderRight: '1px solid #cad3dd',
                         }}
                     >
-                        Exchange gifts by: <span style={{fontWeight: 600, color: '#101a34'}}>Date</span>
+                        Exchange gifts by: <span style={{fontWeight: 600, color: '#101a34'}}>{eventDetails.giftExchangeDate}</span>
                     </Typography>
                     <Typography
                         sx={{
@@ -161,7 +167,7 @@ function EventView() {
                             borderRight: '1px solid #cad3dd',
                         }}
                     >
-                        RSVP by: <span style={{fontWeight: 600, color: '#101a34'}}>Date</span>
+                        RSVP by: <span style={{fontWeight: 600, color: '#101a34'}}>{eventDetails.rsvpDate}</span>
                     </Typography>
                     <Typography
                         sx={{
@@ -173,7 +179,7 @@ function EventView() {
                             // borderRight: '1px solid #cad3dd',
                         }}
                     >
-                        Gift budget: <span style={{fontWeight: 600, color: '#101a34'}}>Amount</span> 
+                        Gift budget: <span style={{fontWeight: 600, color: '#101a34'}}>{eventDetails.budget}</span> 
                     </Typography>
                 </Box>
                 <Box 
@@ -243,7 +249,7 @@ function EventView() {
                             wordBreak: 'break-word',
                             margin: '0px'
                         }}
-                    >Join our son's birthday celebration</Typography>
+                    >{eventDetails.details}</Typography>
                 </Box>
             </Box>
         </Box>

@@ -77,8 +77,12 @@ export const getEventDetailsbyEventId = (req, res) => {
             details: singleEvent.details,
           };
         });
-        res.json(eventDetail);
+        res.json(eventDetail[0]);
       }
     })
     .catch((err) => res.status(400).json({ message: err.message }));
+};
+
+export const getuserNameByEventId = (req, res) => {
+
 }

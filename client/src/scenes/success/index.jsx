@@ -20,7 +20,7 @@ function Success() {
       }
 
     const moveToEventview = () => {
-        navigate(`/eventview?eventId=${eventId}`);
+        navigate(`/eventview?eventId=${eventId}&userId=${userId}`);
     }
 
     const moveToInvitepage = () => {
@@ -101,30 +101,6 @@ function Success() {
                 </Box>
                 <Box>
                     <Button 
-                    onClick={moveToInvitepage}
-                    variant='contained'
-                    sx={{ 
-                        border: '1px solid grey',
-                        borderRadius: '10px',
-                        width: '100%',
-                        fontSize: '1rem',
-                        color: '#0f7b9b',
-                        background: '#e8ecf1',
-                        textTransform: 'inherit',
-                        fontWeight:'bold',
-                        '&:hover': {
-                        backgroundColor: '#0f7b9b',
-                        color: 'white',
-                        border: '1px solid #0f7b9b'
-                        },
-                        marginTop: '10px'
-                    }}
-                    >
-                    Invite more people
-                    </Button>
-                </Box>
-                <Box>
-                    <Button 
                     onClick={moveToEventview}
                     variant='contained'
                     sx={{ 
@@ -146,6 +122,30 @@ function Success() {
                     }}
                     >
                     View Gift exchange
+                    </Button>
+                </Box>
+                <Box>
+                    <Button 
+                    onClick={moveToInvitepage}
+                    variant='contained'
+                    sx={{ 
+                        border: '1px solid grey',
+                        borderRadius: '10px',
+                        width: '100%',
+                        fontSize: '1rem',
+                        color: '#0f7b9b',
+                        background: '#e8ecf1',
+                        textTransform: 'inherit',
+                        fontWeight:'bold',
+                        '&:hover': {
+                        backgroundColor: '#0f7b9b',
+                        color: 'white',
+                        border: '1px solid #0f7b9b'
+                        },
+                        marginTop: '10px'
+                    }}
+                    >
+                    Copy Invitation
                     </Button>
                 </Box>
             </Box>
