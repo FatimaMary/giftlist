@@ -11,31 +11,8 @@ import ShareOutlinedIcon from '@mui/icons-material/ShareOutlined';
 import EditCalendarOutlinedIcon from '@mui/icons-material/EditCalendarOutlined';
 
 function EventView() {
-    function stringToColor(string) {
-        let hash = 0;
-        let i;
-      
-        /* eslint-disable no-bitwise */
-        for (i = 0; i < string.length; i += 1) {
-          hash = string.charCodeAt(i) + ((hash << 5) - hash);
-        }
-      
-        let color = '#';
-      
-        for (i = 0; i < 3; i += 1) {
-          const value = (hash >> (i * 8)) & 0xff;
-          color += `00${value.toString(16)}`.slice(-2);
-        }
-        /* eslint-enable no-bitwise */
-      
-        return color;
-      }
-
     function stringAvatar(name) {
         return {
-        //   sx: {
-        //     background: '#50bcd9',
-        //   },
           children: `${name.split(' ')[0][0]}`,
         };
       }
@@ -261,6 +238,82 @@ function EventView() {
                     >Join our son's birthday celebration</Typography>
                 </Box>
             </Box>
+        </Box>
+        <Box 
+          sx={{
+            display: 'flex',
+            alignItems: 'center',
+            justifyContent: 'center',
+          }}
+        >
+            <Typography
+                sx={{
+                    color: '#101a34',
+                    fontWeight: 600,
+                    fontSize: '17px',
+                    lineHeight: '22px',
+                    textAlign: 'center',
+                    marginRight: '20px',
+                    padding: '0 0 6px',
+                    '&:hover': {
+                        cursor: 'pointer'
+                    },
+                    '&:before': {
+                        opacity: 1,
+                        
+                    }
+                }}
+            >
+                Home
+            </Typography>
+            <Typography
+                sx={{
+                    color: '#101a34',
+                    fontWeight: 600,
+                    fontSize: '17px',
+                    lineHeight: '22px',
+                    textAlign: 'center',
+                    marginRight: '20px',
+                    padding: '0 0 6px',
+                    '&:hover': {
+                        cursor: 'pointer'
+                    }
+                }}
+            >
+                Participants
+            </Typography>
+            <Typography
+                sx={{
+                    color: '#101a34',
+                    fontWeight: 600,
+                    fontSize: '17px',
+                    lineHeight: '22px',
+                    textAlign: 'center',
+                    marginRight: '20px',
+                    padding: '0 0 6px',
+                    '&:hover': {
+                        cursor: 'pointer'
+                    }
+                }}
+            >
+                Messages
+            </Typography>
+            <Typography
+                sx={{
+                    color: '#101a34',
+                    fontWeight: 600,
+                    fontSize: '17px',
+                    lineHeight: '22px',
+                    textAlign: 'center',
+                    marginRight: '20px',
+                    padding: '0 0 6px',
+                    '&:hover': {
+                        cursor: 'pointer'
+                    }
+                }}
+            >
+                My Wishes
+            </Typography>
         </Box>
     </Box>
 }
