@@ -86,5 +86,29 @@ export const getEventDetailsbyEventId = (req, res) => {
 export const getuserNameByEventId = (req, res) => {
   const eventId = req.params.eventId;
   Events.find({ eventId: eventId })
-    .then(())
-}
+    .then((events) => {
+      if(events.length === 0) {
+        res.status(404).json({ message: 'There is no event details' });
+      } else {
+        const eventDetail = events.map((singleEvent) => singleEvent.userId)
+        
+        Users.find({ userId: { $in: eventDetail } })
+          .then((users) => {
+            if(users.length === 0) {
+              res.status(404).json({ message: 'No user' });
+            } else {
+              const userDetail = users.map((user) => {
+                return {
+                  firstName: user.firstName,
+                  secondName: user.secondName
+                }
+              });
+              console.log("userDetail: ", userDetail);
+              res.json(userDetail);
+            }
+          })
+          .catch((err) => res.status(500).json({ message: err.message }));
+      }
+    })
+    .catch((err) => res.status(400).json({ message: err.message }));
+};
