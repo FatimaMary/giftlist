@@ -11,9 +11,12 @@ import ShareOutlinedIcon from '@mui/icons-material/ShareOutlined';
 import EditCalendarOutlinedIcon from '@mui/icons-material/EditCalendarOutlined';
 import axios from 'axios';
 import { useNavigate, useSearchParams } from 'react-router-dom';
+import CheckCircleOutlineIcon from '@mui/icons-material/CheckCircleOutline';
+import CancelOutlinedIcon from '@mui/icons-material/CancelOutlined';
 
 function EventView() {
     const [eventDetails, setEventDetails] = useState([]);
+    const [name, setName] = useState([]);
     const [searchParam] = useSearchParams();
     const eventId = searchParam.get("eventId");
     useEffect(() => {
@@ -22,7 +25,13 @@ function EventView() {
             console.log("Get response: ", response);
             console.log("Get response data: ", response.data);
             setEventDetails(response.data);
-        })
+        });
+        axios.get(`http://localhost:2309/event/user/${eventId}`)
+            .then((response) => {
+                console.log("User Name get response: ", response);
+                console.log("user name get response data: ", response.data);
+                setName(response.data);
+            })
     }, [])
     
     function stringAvatar(name) {
@@ -192,7 +201,7 @@ function EventView() {
                   }}
                 >
                     <Avatar 
-                        {...stringAvatar('Organizer name')} 
+                        {...stringAvatar(`${name.firstName}`)} 
                         sx={{
                             width: '40px',
                             height: '40px',
@@ -228,7 +237,7 @@ function EventView() {
                                 marginBottom: 0,
                             }}
                         >
-                            Organizer name
+                            {name.firstName} {name.secondName}
                         </Typography>
                     </Box>
                 </Box>
@@ -330,17 +339,17 @@ function EventView() {
           sx={{
             padding: '15px 0',
             display: 'flex',
-            width: '100%'
+            width: '100%',
+            justifyContent: 'space-between',
           }}
         >
             <Box
               sx={{
-                width: '50%',
+                width: '48%',
                 padding: '24px 16px',
                 background: '#fff',
                 border: '1px solid #e8ecf1',
                 borderRadius: '10px',
-
               }}
             >
                 <Typography
@@ -355,8 +364,29 @@ function EventView() {
                 >
                     Your gift exchange checklist
                 </Typography>
+                <Box 
+                  sx={{
+                    display: 'flex',
+                    flexDirection: 'column',
+                    gap: '5px',
+                    justifyContent: 'center'
+                  }}
+                >
+                    <Typography><CheckCircleOutlineIcon/>Invite at least 3 participants</Typography>
+                    <Typography><CheckCircleOutlineIcon/>RSVP by {eventDetails.rsvpDate}</Typography>
+                    <Typography><CancelOutlinedIcon/> Add to your wish list</Typography>
+                    <Typography><CancelOutlinedIcon/> Update your gift delivery perference</Typography>
+                </Box>
             </Box>
-            <Box></Box>
+            <Box
+              sx={{
+                width: '48%',
+                padding: '24px 16px',
+                background: '#fff',
+                border: '1px solid #e8ecf1',
+                borderRadius: '10px',
+              }}
+            ></Box>
         </Box>
     </Box>
 }
