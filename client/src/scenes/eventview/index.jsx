@@ -372,10 +372,78 @@ function EventView() {
                     justifyContent: 'center'
                   }}
                 >
-                    <Typography><CheckCircleOutlineIcon/>Invite at least 3 participants</Typography>
-                    <Typography><CheckCircleOutlineIcon/>RSVP by {eventDetails.rsvpDate}</Typography>
-                    <Typography><CancelOutlinedIcon/> Add to your wish list</Typography>
-                    <Typography><CancelOutlinedIcon/> Update your gift delivery perference</Typography>
+                    <Typography 
+                        sx={{
+                            display: 'flex',
+                            gap: '5px',
+                            alignItems: 'center',
+                            flexWrap: 'wrap',
+                            marginBottom: '10px',
+                        }}
+                    >
+                        <CheckCircleOutlineIcon 
+                            sx={{
+                                color: 'green',
+                                width: '18px',
+                                height: '18px',
+                            }}
+                        />
+                        Invite at least 3 participants
+                    </Typography>
+                    <Typography
+                        sx={{
+                            display: 'flex',
+                            gap: '5px',
+                            alignItems: 'center',
+                            flexWrap: 'wrap',
+                            marginBottom: '10px',
+                        }}
+                    >
+                        <CheckCircleOutlineIcon
+                            sx={{
+                                color: 'green',
+                                width: '18px',
+                                height: '18px',
+                            }}
+                        />
+                        RSVP by {eventDetails.rsvpDate}
+                    </Typography>
+                    <Typography
+                        sx={{
+                            display: 'flex',
+                            gap: '5px',
+                            alignItems: 'center',
+                            flexWrap: 'wrap',
+                            marginBottom: '10px',
+                        }}
+                    >
+                        <CancelOutlinedIcon
+                            sx={{
+                                color: 'red',
+                                width: '18px',
+                                height: '18px',
+                            }}
+                        /> 
+                        Add to your wish list
+                    </Typography>
+                    <Typography
+                        sx={{
+                            display: 'flex',
+                            gap: '5px',
+                            alignItems: 'center',
+                            flexWrap: 'wrap',
+                            marginBottom: '10px',
+                        }}
+                    >
+                        <CancelOutlinedIcon 
+                            sx={{
+                                color: 'red',
+                                width: '18px',
+                                height: '18px',
+                            }}
+                        /> 
+                        Update your gift delivery perference
+                    </Typography>
                 </Box>
             </Box>
             <Box
