@@ -13,6 +13,11 @@ import axios from 'axios';
 import { useNavigate, useSearchParams } from 'react-router-dom';
 import CheckCircleOutlineIcon from '@mui/icons-material/CheckCircleOutline';
 import CancelOutlinedIcon from '@mui/icons-material/CancelOutlined';
+import Mail from './mail12.svg';
+import Edit from './editicblue.svg';
+import Gift from './gift12.svg';
+import Santa1 from './santa12.svg';
+import Footer from '../../Components/Footer';
 
 function EventView() {
     const [eventDetails, setEventDetails] = useState([]);
@@ -448,14 +453,231 @@ function EventView() {
             </Box>
             <Box
               sx={{
-                width: '48%',
+                width: '50%',
                 padding: '24px 16px',
                 background: '#fff',
                 border: '1px solid #e8ecf1',
                 borderRadius: '10px',
               }}
-            ></Box>
+            >
+                <Box 
+                  sx={{
+                    paddingBottom: '16px',
+                    marginBottom: '16px',
+                    borderBottom: '1px solid #e8ecf1',
+                    display: 'flex',
+                    flexWrap: 'wrap',
+                    alignItems: 'center',
+                    justifyContent: 'space-between',
+                  }}
+                >
+                    <Box 
+                      sx={{
+                        flexBasis: 'calc(100% - 134px)',
+                        maxWidth: 'calc(100% - 134px)',
+                        fontSize: '13px',
+                        lineHeight:'18px',
+                        color: '#5e6577',
+                        display: 'flex',
+                        // gap: '5px'
+                      }}
+                    >
+                        <img src={Mail} style={{paddingRight: '10px'}}/>
+                        <Box>
+                            <Typography 
+                                sx={{
+                                    // marginBottom: '2px',
+                                    fontWeight: 600,
+                                    fontSize: '13px',
+                                    color: '#101a34',
+                                    wordBreak: 'break-all',
+                                }}
+                            >
+                                RSVP Status:
+                            </Typography>
+                            <Typography 
+                                sx={{
+                                    marginBottom: 0,
+                                    fontSize: '13px',
+                                }}
+                            >
+                                Participating
+                            </Typography>
+                        </Box>
+                    </Box>
+                    <Box
+                       sx={{
+                        flexBasis: '125px',
+                        maxWidth: '125px',
+                       }}
+                    >
+                        <Button
+                            sx={{
+                                marginBottom: 0,
+                                color: '#0f7b9b',
+                                background: '#fafbfd',
+                                border: '1px solid #cad3dd',
+                                padding: '8px 12px',
+                                fontWeight: 600,
+                                fontSize: '12px',
+                                lineHeight: '18px',
+                                borderRadius: '5px',
+                                display: 'flex',
+                                alignItems: 'center',
+                                justifyContent: 'center',
+                                marginLeft: 'auto',
+                                whiteSpace: 'nowrap',
+                                '&:hover': {
+                                    cursor: 'pointer'
+                                },
+                                textTransform: 'inherit'
+                            }}
+                        >
+                            <img 
+                                src={Edit} 
+                                style={{ 
+                                    width: '17px', 
+                                    height: '17px', 
+                                    marginRight: '5px'
+                                }}
+                            />
+                            Edit RSVP
+                        </Button>
+                    </Box>
+                </Box>
+                <Box 
+                    sx={{
+                        paddingBottom: '16px',
+                        marginBottom: '16px',
+                        borderBottom: '1px solid #e8ecf1',
+                        display: 'flex',
+                        flexWrap: 'wrap',
+                        alignItems: 'center',
+                        justifyContent: 'space-between',
+                    }}
+                >
+                    <Box 
+                        sx={{
+                            flexBasis: 'calc(100% - 134px)',
+                            maxWidth: 'calc(100% - 134px)',
+                            fontSize: '13px',
+                            lineHeight:'18px',
+                            color: '#5e6577',
+                            display: 'flex',
+                          }}
+                    >
+                        <img 
+                            src={Gift} 
+                            style={{
+                                paddingRight: '10px'
+                            }}
+                            />
+                        <Box>
+                            <Typography 
+                                sx={{
+                                    marginBottom: '2px',
+                                    fontWeight: 600,
+                                    fontSize: '13px',
+                                    lineHeight: '18px',
+                                    color: '#101a34',
+                                    wordBreak: 'break-all',
+                                }}
+                            >You're giving to:</Typography>
+                            <Typography
+                                sx={{
+                                    marginBottom: 0,
+                                    fontSize: '13px',
+                                }}
+                            >Check back after the draw date on {eventDetails.rsvpDate}</Typography>
+                        </Box>
+                    </Box>
+                </Box>
+                <Box
+                    sx={{
+                        paddingBottom: '16px',
+                        marginBottom: '16px',
+                        // borderBottom: '1px solid #e8ecf1',
+                        display: 'flex',
+                        flexWrap: 'wrap',
+                        alignItems: 'center',
+                        justifyContent: 'space-between',
+                    }}
+                >
+                    <Box 
+                        sx={{
+                            flexBasis: 'calc(100% - 134px)',
+                            maxWidth: 'calc(100% - 134px)',
+                            fontSize: '13px',
+                            lineHeight:'18px',
+                            color: '#5e6577',
+                            display: 'flex',
+                          }}
+                    >
+                        <img src={Santa1} style={{ paddingRight: '10px' }}/>
+                        <Box>
+                        <Typography 
+                                sx={{
+                                    fontWeight: 600,
+                                    fontSize: '13px',
+                                    color: '#101a34',
+                                    wordBreak: 'break-all',
+                                }}
+                            >
+                                Your gift giver:
+                            </Typography>
+                            <Typography 
+                                sx={{
+                                    marginBottom: 0,
+                                    fontSize: '13px',
+                                }}
+                            >
+                                Your gift giver will be revealed after the gift exchange date set by the event organizer on {eventDetails.giftExchangeDate}
+                            </Typography>
+                        </Box>
+                    </Box>
+                    <Box
+                       sx={{
+                        flexBasis: '125px',
+                        maxWidth: '125px',
+                       }}
+                    >
+                        <Button
+                            sx={{
+                                marginBottom: 0,
+                                color: '#0f7b9b',
+                                background: '#fafbfd',
+                                border: '1px solid #cad3dd',
+                                padding: '8px 12px',
+                                fontWeight: 600,
+                                fontSize: '12px',
+                                lineHeight: '18px',
+                                borderRadius: '5px',
+                                display: 'flex',
+                                alignItems: 'center',
+                                justifyContent: 'center',
+                                marginLeft: 'auto',
+                                whiteSpace: 'nowrap',
+                                '&:hover': {
+                                    cursor: 'pointer'
+                                },
+                                textTransform: 'inherit'
+                            }}
+                        >
+                            <img 
+                                src={Edit} 
+                                style={{ 
+                                    width: '17px', 
+                                    height: '17px', 
+                                    marginRight: '5px'
+                                }}
+                            />
+                            Gift Delivery
+                        </Button>
+                    </Box>
+                </Box>
+            </Box>
         </Box>
+        <Footer />
     </Box>
 }
 
