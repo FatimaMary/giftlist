@@ -18,12 +18,15 @@ import Edit from './editicblue.svg';
 import Gift from './gift12.svg';
 import Santa1 from './santa12.svg';
 import Footer from '../../Components/Footer';
+import Participants from '../participants';
 
 function EventView() {
     const [eventDetails, setEventDetails] = useState([]);
     const [name, setName] = useState([]);
     const [searchParam] = useSearchParams();
     const eventId = searchParam.get("eventId");
+    const [activeTab, setActiveTab] = useState(0);
+
     useEffect(() => {
       axios.get(`http://localhost:2309/event/get/${eventId}`)
         .then((response) => {
@@ -43,6 +46,10 @@ function EventView() {
         return {
           children: `${name.split(' ')[0][0]}`,
         };
+      }
+
+      const handleTabActive = (index) => {
+        setActiveTab(index);
       }
   return <Box 
     backgroundColor='#e8ecf1'
@@ -275,6 +282,8 @@ function EventView() {
           }}
         >
             <Typography
+                isActive={activeTab === 0}
+                className={`tab ${activeTab === 0 ? 'active' : ''}`}
                 sx={{
                     color: '#101a34',
                     fontWeight: 600,
@@ -286,12 +295,14 @@ function EventView() {
                     '&:hover': {
                         cursor: 'pointer'
                     },
-                    borderBottom: '3px solid #50bcd9'
                 }}
+                onClick = {() => handleTabActive(0)}
             >
                 Home
             </Typography>
             <Typography
+                isActive = {activeTab === 1}
+                className={`tab ${activeTab === 1 ? 'active' : ''}`}
                 sx={{
                     color: '#101a34',
                     fontWeight: 600,
@@ -302,12 +313,18 @@ function EventView() {
                     padding: '0 0 6px',
                     '&:hover': {
                         cursor: 'pointer'
+                    },
+                    '&.active' : {
+                        borderBottom: '3px solid skyblue'
                     }
                 }}
+                onClick={() => handleTabActive(1)}
             >
                 Participants
             </Typography>
             <Typography
+                isActive={activeTab === 2}
+                className={`tab ${activeTab === 2 ? 'active' : ''}`}
                 sx={{
                     color: '#101a34',
                     fontWeight: 600,
@@ -320,10 +337,13 @@ function EventView() {
                         cursor: 'pointer'
                     }
                 }}
+                onClick={() => handleTabActive(2)}
             >
                 Messages
             </Typography>
             <Typography
+                isActive = {activeTab === 3}
+                className={`tab ${activeTab === 3 ? 'active' : ''}`}
                 sx={{
                     color: '#101a34',
                     fontWeight: 600,
@@ -336,10 +356,12 @@ function EventView() {
                         cursor: 'pointer'
                     }
                 }}
+                onClick = {() => handleTabActive(3)}
             >
                 My Wishes
             </Typography>
         </Box>
+        {activeTab === 0 &&
         <Box 
           sx={{
             padding: '15px 0',
@@ -675,8 +697,10 @@ function EventView() {
                         </Button>
                     </Box>
                 </Box>
-            </Box>
-        </Box>
+            </Box> </Box> }
+        { activeTab === 1 && <Box><Participants/></Box>}
+        { activeTab === 2 && <Box>Messages</Box>}
+        { activeTab === 3 && <Box>My Wishes</Box>}
         <Footer />
     </Box>
 }
