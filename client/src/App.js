@@ -12,6 +12,7 @@ import Navbar from './Components/Navbar';
 import WelcomePage from './scenes/welcomepage';
 import Success from './scenes/success';
 import EventView from './scenes/eventview';
+import EventView1 from './scenes/eventview1';
 
 
 function App() {
@@ -29,6 +30,7 @@ function App() {
             <Route path='giftexchange' element={<GiftExchange/>} />
             <Route path='success' element={<Success/>} />
             <Route path='eventview' element={<EventView/>} />
+            <Route path='eventview1' element={<EventView1/>} />
           </Route>
         </Routes>
       </BrowserRouter>
