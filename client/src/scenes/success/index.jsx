@@ -1,15 +1,21 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import { 
     Box,
     Typography,
-    Button
+    Button,
+    createTheme
 } from '@mui/material';
 import { useNavigate, useSearchParams } from 'react-router-dom';
 import Light from './light.png';
 import ArrowCircleLeftOutlinedIcon from '@mui/icons-material/ArrowCircleLeftOutlined';
 import Footer from '../../Components/Footer';
+import CopyInvitation from '../copyinvitation';
+import axios from 'axios';
 
 function Success() {
+    const [show, setShow] = useState(false);
+    const [eventDetails, setEventDetails] = useState([]);
+    const [user, setUser] = useState([]);
     const [searchParam] = useSearchParams();
     const userId = searchParam.get("userId");
     const eventId = searchParam.get("eventId");
@@ -24,8 +30,19 @@ function Success() {
     }
 
     const moveToInvitepage = () => {
-        navigate(`/invite`)
+        setShow(true);
     }
+    useEffect(() => {
+     axios.get(`http://localhost:2309/event/get/${eventId}`)
+        .then((response) => {
+            setEventDetails(response.data);
+        });
+    axios.get(`http://localhost:2309/event/user/${eventId}`)
+        .then((response) => {
+            setUser(response.data);
+        })
+    }, [])
+    
   return <Box 
     backgroundColor='#e8ecf1'
     width='100vw'
@@ -148,6 +165,26 @@ function Success() {
                     Copy Invitation
                     </Button>
                 </Box>
+                <Box sx={{ 
+                        // border: '1px solid grey',
+                        borderRadius: '10px',
+                        width: '100%',
+                        fontSize: '1rem',
+                        color: '#0f7b9b',
+                        textTransform: 'inherit',
+                        fontWeight:'bold',
+                        marginTop: '10px'
+                    }}>
+                { show ? 
+                    <CopyInvitation 
+                        eventName={eventDetails.eventName} 
+                        firstName={user.firstName} 
+                        rsvpDate={eventDetails.rsvpDate} 
+                    /> 
+                    : 
+                    null
+                }
+            </Box>
             </Box>
             <Box 
                 sx={{
