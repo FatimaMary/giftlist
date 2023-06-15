@@ -22,8 +22,11 @@ import Footer from '../../Components/Footer';
 function EventView1() {
     const [eventDetails, setEventDetails] = useState([]);
     const [name, setName] = useState([]);
+    const [show, setShow] = useState(false);
     const [searchParam] = useSearchParams();
     const eventId = searchParam.get("eventId");
+    const navigate = useNavigate();
+
     useEffect(() => {
       axios.get(`http://localhost:2309/event/get/${eventId}`)
         .then((response) => {
@@ -36,7 +39,7 @@ function EventView1() {
                 console.log("User Name get response: ", response);
                 console.log("user name get response data: ", response.data);
                 setName(response.data);
-            })
+            });
     }, [])
     
     function stringAvatar(name) {
@@ -44,6 +47,18 @@ function EventView1() {
           children: `${name.split(' ')[0][0]}`,
         };
       }
+
+    const handleClick = () => {
+        setShow(true);
+    }
+
+    const handleLogin = () => {
+        navigate('/login')
+    }
+
+    const handleSignup = () => {
+        navigate('/signup')
+    }
   return <Box 
     backgroundColor='#e8ecf1'
     width='100vw'
@@ -308,7 +323,94 @@ function EventView1() {
                 Participants
             </Typography>
         </Box>
-        <Box sx={{
+        {show ?  
+            <Box sx={{
+            display: 'flex',
+            justifyContent: 'center',
+            width: '100%'
+        }}>
+            <Box
+            sx={{ 
+                border: '1px solid grey',
+                borderRadius: '10px',
+                width: '280px',
+                padding: '10px',
+                fontSize: '1rem',
+                color: '#0f7b9b',
+                background: '#e8ecf1',
+                textTransform: 'inherit',
+                fontWeight:'bold',
+                marginTop: '10px',
+                display: 'flex',
+                flexDirection: 'column',
+                justifyContent: 'center'
+            }}
+            >
+                <Typography
+                    sx={{
+                        color: '#101a34',
+                        fontWeight: 600,
+                        fontSize: '17px',
+                        lineHeight: '22px',
+                        textAlign: 'center',
+                        marginRight: '20px',
+                        padding: '0 0 6px',
+                    }}
+                >Awesome! Login or Sign up to confirm your RSVP</Typography>
+                <Box
+                sx={{
+                    display: 'flex',
+                    gap: '10px'
+                }}
+                >
+                    <Button
+                        variant='contained'
+                        onClick={handleLogin}
+                        sx={{ 
+                            border: '2px solid skyblue',
+                            borderRadius: '10px',
+                            width: '48%',
+                            fontSize: '1rem',
+                            color: 'white',
+                            background: 'skyblue',
+                            textTransform: 'inherit',
+                            fontWeight:'bold',
+                            '&:hover': {
+                            backgroundColor: 'white',
+                            color: 'skyblue',
+                            border: '1px solid #0f7b9b'
+                            },
+                            marginTop: '10px',
+                        }}
+                    >
+                        Login
+                    </Button>
+                    <Button
+                        variant='contained'
+                        onClick={handleSignup}
+                        sx={{ 
+                            border: '2px solid skyblue',
+                            borderRadius: '10px',
+                            width: '48%',
+                            fontSize: '1rem',
+                            color: 'white',
+                            background: 'skyblue',
+                            textTransform: 'inherit',
+                            fontWeight:'bold',
+                            '&:hover': {
+                            backgroundColor: 'white',
+                            color: 'skyblue',
+                            border: '1px solid #0f7b9b'
+                            },
+                            marginTop: '10px',
+                        }}
+                    >
+                        Sign up
+                    </Button>
+                </Box>
+            </Box>
+            </Box> :
+            <Box sx={{
             display: 'flex',
             justifyContent: 'center',
             width: '100%'
@@ -350,6 +452,7 @@ function EventView1() {
                 >
                     <Button
                         variant='contained'
+                        onClick={handleClick}
                         sx={{ 
                             border: '2px solid skyblue',
                             borderRadius: '10px',
@@ -390,7 +493,8 @@ function EventView1() {
                     >No</Button>
                 </Box>
             </Box>
-        </Box>
+            </Box>
+        }
         <Footer />
     </Box>
 }
