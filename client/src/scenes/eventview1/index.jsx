@@ -3,20 +3,13 @@ import {
     Box,
     Typography,
     Button,
- } from '@mui/material';
- import Santa from '../giftExchange/santa1.png';
- import Avatar from '@mui/material/Avatar';
-import Stack from '@mui/material/Stack';
+} from '@mui/material';
+import Santa from '../giftExchange/santa1.png';
+import Avatar from '@mui/material/Avatar';
 import ShareOutlinedIcon from '@mui/icons-material/ShareOutlined';
 import EditCalendarOutlinedIcon from '@mui/icons-material/EditCalendarOutlined';
 import axios from 'axios';
 import { useNavigate, useSearchParams } from 'react-router-dom';
-import CheckCircleOutlineIcon from '@mui/icons-material/CheckCircleOutline';
-import CancelOutlinedIcon from '@mui/icons-material/CancelOutlined';
-import Mail from '../eventview/mail12.svg';
-import Edit from '../eventview/editicblue.svg';
-import Gift from '../eventview/gift12.svg';
-import Santa1 from '../eventview/santa12.svg';
 import Footer from '../../Components/Footer';
 
 function EventView1() {
@@ -419,20 +412,33 @@ function EventView1() {
             sx={{ 
                 border: '1px solid grey',
                 borderRadius: '10px',
-                width: '280px',
+                width: '350px',
                 padding: '10px',
                 fontSize: '1rem',
                 color: '#0f7b9b',
-                background: '#e8ecf1',
+                background: '#fff',
                 textTransform: 'inherit',
                 fontWeight:'bold',
                 marginTop: '10px',
                 display: 'flex',
                 flexDirection: 'column',
-                // alignItems: 'center',
-                justifyContent: 'center'
+                justifyContent: 'center',
+                padding: '24px 16px 16px 16px',
             }}
             >
+                <Typography
+                    sx={{
+                        color: '#101a34',
+                        fontWeight: 600,
+                        fontSize: '17px',
+                        lineHeight: '22px',
+                        textAlign: 'center',
+                        marginRight: '20px',
+                        padding: '0 0 6px',
+                    }}
+                >
+                    You're invited!
+                </Typography>
                 <Typography
                     sx={{
                         color: '#101a34',
@@ -443,7 +449,7 @@ function EventView1() {
                         marginRight: '20px',
                         padding: '0 0 6px',
                     }}
-                >Are you joining with us?</Typography>
+                >Would you like to particpate?</Typography>
                 <Box
                 sx={{
                     display: 'flex',
@@ -452,10 +458,33 @@ function EventView1() {
                 >
                     <Button
                         variant='contained'
+                        // onClick={handleClick}
+                        sx={{ 
+                            border: '2px solid #cad3dd',
+                            borderRadius: '7px',
+                            fontWeight: 600,
+                            width: '48%',
+                            fontSize: '1rem',
+                            color: '#0f7b9b',
+                            background: '#fafbfd',
+                            textTransform: 'inherit',
+                            '&:hover': {
+                            backgroundColor: '#0f7b9b',
+                            color: '#fafbfd',
+                            border: '1px solid #0f7b9b',
+                            cursor: 'pointer',
+                            },
+                            marginTop: '10px',
+                            lineHeight: '22px',
+                            // padding: '12px 30px',
+                        }}
+                    >No</Button>
+                    <Button
+                        variant='contained'
                         onClick={handleClick}
                         sx={{ 
                             border: '2px solid skyblue',
-                            borderRadius: '10px',
+                            borderRadius: '7px',
                             width: '48%',
                             fontSize: '1rem',
                             color: 'white',
@@ -471,26 +500,6 @@ function EventView1() {
                             // marginBottom: '20px',
                         }}
                     >Yes</Button>
-                    <Button
-                        variant='contained'
-                        sx={{ 
-                            border: '2px solid skyblue',
-                            borderRadius: '10px',
-                            width: '48%',
-                            fontSize: '1rem',
-                            color: 'white',
-                            background: 'skyblue',
-                            textTransform: 'inherit',
-                            fontWeight:'bold',
-                            '&:hover': {
-                            backgroundColor: 'white',
-                            color: 'skyblue',
-                            border: '1px solid #0f7b9b'
-                            },
-                            marginTop: '10px',
-                            // marginBottom: '20px',
-                        }}
-                    >No</Button>
                 </Box>
             </Box>
             </Box>
