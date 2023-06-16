@@ -90,9 +90,45 @@ function Participants() {
                 >Not Participating ()</Typography>
             </Box>
             </Box>
+            <Typography>You are participating</Typography>
         </Box>
     </Box>
-    <Box></Box>
+    <Box 
+      sx={{
+        flexBasis: 'calc(100% - 272px)',
+        maxWidth: 'calc(100% - 272px)',
+        padding: '0 20px',
+      }}
+    >
+      <Typography 
+        variant='h2'
+        sx={{
+          fontSize: '20px',
+          lineHeight: '24px',
+          marginBottom: '16px',
+          fontWeight: 600,
+          color: '#101a34',
+        }}
+      >
+        Partcipating
+      </Typography>
+      <Box>
+        <Box
+          sx={{
+            borderBottom: '1px solid #e8ecf1',
+            paddingBottom: '12px',
+            marginBottom: '12px',
+            display: 'flex',
+            flexWrap: 'wrap',
+            alignItems: 'center',
+            justifyContent: 'space-between'
+          }}
+        >
+          <Box></Box>
+          <Box></Box>
+        </Box>
+      </Box>
+    </Box>
   </Box>
 }
 
