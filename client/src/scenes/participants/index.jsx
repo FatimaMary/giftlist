@@ -5,6 +5,8 @@ import {
     Button,
 } from '@mui/material';
 import Tick from './tickic.svg';
+import Clock from './clockic.svg';
+import Cross from './crossic2.svg';
 
 function Participants() {
   return <Box sx={{
@@ -23,6 +25,16 @@ function Participants() {
             lineHeight: '25px',
           }}
         >
+          <Box 
+            sx={{
+              paddingBottom: '20px',
+              marginBottom: '12px',
+              borderBottom: '1px solid #e8ecf1',
+              gap: '10px',
+              display: 'flex',
+              flexDirection: 'column',
+            }}
+          >
             <Box 
                 sx = {{
                     display: 'flex', 
@@ -39,7 +51,44 @@ function Participants() {
                 />
                 <Typography
                     
-                >Participating()</Typography>
+                >Participating ()</Typography>
+            </Box>
+            <Box 
+                sx = {{
+                    display: 'flex', 
+                    alignItems: 'center'
+                }}
+            >
+                <img 
+                    src={Clock} 
+                    style={{
+                        width: '18px', 
+                        height: '18px', 
+                        marginRight: '6px'
+                    }} 
+                />
+                <Typography
+                    
+                >Awaiting Responses ()</Typography>
+            </Box>
+            <Box 
+                sx = {{
+                    display: 'flex', 
+                    alignItems: 'center'
+                }}
+            >
+                <img 
+                    src={Cross} 
+                    style={{
+                        width: '18px', 
+                        height: '18px', 
+                        marginRight: '6px'
+                    }} 
+                />
+                <Typography
+                    
+                >Not Participating ()</Typography>
+            </Box>
             </Box>
         </Box>
     </Box>
