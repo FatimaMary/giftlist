@@ -35,8 +35,29 @@ function Invite() {
                 justifyContent: 'space-between'
             }}
         >
-            <Typography>Add email address</Typography>
-            <Button>X</Button>
+            <Typography
+                variant='h4'
+                sx={{
+                    fontWeight: 600,
+                    fontSize: '20px',
+                    lineHeight: '24px',
+                    color: '#101a34',
+                    display: 'flex',
+                    alignItems: 'center',
+                    flexWrap: 'wrap',
+                }}
+            >Add email address</Typography>
+            <Button
+                sx={{
+                    boxSizing: 'border-box',
+                    display: 'inline-block',
+                    overflow: 'hidden',
+                    width: 'initial',
+                    height: 'initial',
+                    opacity: 1,
+                    maxWidth: '100%',
+                }}
+            >X</Button>
         </Box>
         <Box></Box>
     </Box>
