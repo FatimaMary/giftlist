@@ -8,6 +8,7 @@ import Avatar from '@mui/material/Avatar';
 import Tick from './tickic.svg';
 import Clock from './clockic.svg';
 import Cross from './crossic2.svg';
+import Edit from '../eventview/editicblue.svg'
 
 function Participants() {
   function stringAvatar(name) {
@@ -181,8 +182,44 @@ function Participants() {
           </Box>
         </Box>
         <Box>
-          <Button></Button>
-          <Button></Button>
+          <Button
+            sx={{
+              margin: '0 5px',
+              background: '#50bcd9',
+              fontSize: '15px',
+              lineHeight: '22px',
+              color: '#fff',
+              padding: '14px 30px',
+              display: 'inline-block',
+              border: '1px solid #50bcd9',
+              fontWeight: 600,
+              textTransform: 'inherit',
+              '&: hover' : {
+                cursor: 'pointer',
+                background: '#fff',
+                color: '#50bcd9',
+              },
+              borderRadius: '7px'
+            }}
+          >
+            View Wishes
+          </Button>
+          <Button
+            sx={{
+              padding: '14px 20px',
+              fontSize: '13px',
+              lineHeight: '18px',
+              background: '#fafbfd',
+              borderRadius: '7px',
+              fontWeight: '7px',
+              color: '#0f7b9b',
+              display: 'inline-block',
+              border: '1px solid #cad3dd',
+              '&:hover': {
+                cursor: 'pointer',
+              },
+            }}
+          ><img src={Edit} />Edit RSVP</Button>
         </Box>
       </Box>
     </Box>
