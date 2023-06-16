@@ -179,7 +179,8 @@ function Success() {
                     <CopyInvitation 
                         eventName={eventDetails.eventName} 
                         firstName={user.firstName} 
-                        rsvpDate={eventDetails.rsvpDate} 
+                        rsvpDate={eventDetails.rsvpDate}
+                        eventId={eventId}
                     /> 
                     : 
                     null

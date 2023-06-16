@@ -3,7 +3,7 @@ import { Box, Typography, Button, TextField, createTheme, ThemeProvider } from '
 import copy from 'copy-to-clipboard';
 
 
-function CopyInvitation({ firstName, rsvpDate, eventName }) {
+function CopyInvitation({ firstName, rsvpDate, eventName, eventId }) {
     const [copyText, setCopyText] = useState("");
     const textFieldRef = useRef(null);
     const copyToClipboard = () => {
@@ -43,7 +43,7 @@ function CopyInvitation({ firstName, rsvpDate, eventName }) {
           ${firstName} invited you to a group gift exchange: ${eventName}. Hurry! You have until ${rsvpDate} to RSVP.
           
           Click on the link to join  
-          http://localhost:3000/giftexchange1`}
+          http://localhost:3000/eventview?eventId=${eventId}`}
           sx={{ width: '100%', border: 'none', }}
         />
         </ThemeProvider>
