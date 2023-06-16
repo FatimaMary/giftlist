@@ -121,10 +121,9 @@ function GiftExchange() {
                   display: 'flex',
                   alignItems: 'center',
                   justifyContent: 'center',
-                  // flexDirection: 'column',
-                  // flexWrap: 'wrap'
                 }} 
                 key={i}
+                onClick={() => navigate(`/eventview?eventId=${cardData.eventId}`)}
               >
               <CardContent>
                 <Box sx={{

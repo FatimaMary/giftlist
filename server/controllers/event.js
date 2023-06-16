@@ -51,6 +51,7 @@ export const getEventsById = (req, res) => {
         } else {
           const eventDetails = events.map(event => {
             return {
+              eventId: event.eventId,
               eventName: event.eventName,
               giftExchangeDate: event.giftExchangeDate,
             };
