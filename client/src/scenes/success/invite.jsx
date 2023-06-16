@@ -5,7 +5,7 @@ import {
     Button 
 } from '@mui/material';
 
-function invite() {
+function Invite() {
   return <Box
     sx={{
         margin: '0 361px',
@@ -43,4 +43,4 @@ function invite() {
   </Box>
 }
 
-export default invite
+export default Invite

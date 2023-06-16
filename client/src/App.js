@@ -14,6 +14,7 @@ import Success from './scenes/success';
 import EventView from './scenes/eventview';
 import EventView1 from './scenes/eventview1';
 import Participants from './scenes/participants';
+import Invite from './scenes/success/invite';
 
 
 function App() {
@@ -33,6 +34,7 @@ function App() {
             <Route path='eventview' element={<EventView/>} />
             <Route path='eventview1' element={<EventView1/>} />
             <Route path='participants' element={<Participants/>} />
+            <Route path='invite' element={<Invite/>} />
           </Route>
         </Routes>
       </BrowserRouter>
