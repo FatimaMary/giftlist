@@ -1,5 +1,5 @@
 import mongoose from 'mongoose';
-import { autoIncrement } from 'mongoose-plugin-autoinc';
+import autoIncrement from 'mongoose-plugin-autoinc';
 
 const participantsSchema = new mongoose.Schema({
     participantsId : {
@@ -24,7 +24,7 @@ const participantsSchema = new mongoose.Schema({
 participantsSchema.plugin(autoIncrement.plugin, {
     model: "GiftlistParticipants",
     field: "participantsId",
-    startId: 1,
+    startAt: 1,
     incrementBy: 1,
 });
 
