@@ -4,11 +4,18 @@ import {
     Typography, 
     Button,
 } from '@mui/material';
+import Avatar from '@mui/material/Avatar';
 import Tick from './tickic.svg';
 import Clock from './clockic.svg';
 import Cross from './crossic2.svg';
 
 function Participants() {
+  function stringAvatar(name) {
+    return {
+      children: `${name.split(' ')[0][0]}`,
+    };
+  }
+
   return <Box sx={{
     padding: '15px 0',
     display: 'flex',
@@ -112,20 +119,70 @@ function Participants() {
       >
         Partcipating
       </Typography>
-      <Box>
+      <Box 
+        sx={{
+          borderBottom: '1px solid #e8ecf1',
+          paddingBottom: '12px',
+          marginBottom: '12px',
+          display: 'flex',
+          flexWrap: 'wrap',
+          alignItems: 'center',
+          justifyContent: 'space-between'
+        }}
+      >
         <Box
           sx={{
-            borderBottom: '1px solid #e8ecf1',
-            paddingBottom: '12px',
-            marginBottom: '12px',
-            display: 'flex',
-            flexWrap: 'wrap',
-            alignItems: 'center',
-            justifyContent: 'space-between'
+            display: 'flex'
           }}
         >
-          <Box></Box>
-          <Box></Box>
+          <Box>
+            <Avatar 
+              {...stringAvatar('Fatima')} 
+              sx={{
+                width: '26px',
+                height: '26px',
+                background: '#50bcd9',
+                fontSize: '11px',
+                marginBottom: 0,
+                lineHeight: '18px',
+                display: 'flex',
+                alignItems: 'center',
+                justifyContent: 'center'
+               }}
+            />
+          </Box>
+          <Box
+            sx={{
+              paddingLeft: '8px',
+              flexBasis: 'calc(100% - 26px)',
+              maxWidth: 'calc(100% - 26px)',
+            }}
+          >
+            <Typography 
+              variant='h4'
+              sx={{
+                fontWeight: 600,
+                fontSize: '13px',
+                lineHeight: '18px',
+                color: '#101a34',
+                marginBottom: 0
+              }}
+            >
+              Fatima Mary
+            </Typography>
+            <Typography
+              variant='body1'
+              sx={{
+                fontSize: '11px',
+                lineHeight: '18px',
+                color: '#818694'
+              }}
+            >fatisittu@gmail.com</Typography>
+          </Box>
+        </Box>
+        <Box>
+          <Button></Button>
+          <Button></Button>
         </Box>
       </Box>
     </Box>

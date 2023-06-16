@@ -4,9 +4,8 @@ import {
     Typography,
     Button,
  } from '@mui/material';
- import Santa from '../giftExchange/santa1.png';
- import Avatar from '@mui/material/Avatar';
-import Stack from '@mui/material/Stack';
+import Santa from '../giftExchange/santa1.png';
+import Avatar from '@mui/material/Avatar';
 import ShareOutlinedIcon from '@mui/icons-material/ShareOutlined';
 import EditCalendarOutlinedIcon from '@mui/icons-material/EditCalendarOutlined';
 import axios from 'axios';
