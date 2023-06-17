@@ -5,16 +5,24 @@ import {
     Button,
     Dialog,
     DialogContent,
-    DialogTitle
+    DialogTitle,
+    Box
 } from '@mui/material';
-import DeleteIcon from '@mui/icons-material/Delete';
+import Delete from './removeic.svg';
 
-function EditEvent() {
+
+function EditEvent({ open, onClose, editPage }) {
+    const handleClose = () => {
+        onClose(editPage);
+    }
+
   return <Dialog
     sx={{
         margin: '0 361px',
         display: 'flex',
     }}
+    open={open}
+    onClose={handleClose}
   >
     <DialogContent
         sx={{
@@ -26,12 +34,57 @@ function EditEvent() {
             flexDirection: 'column',
             width: '500px',
             justifyContent: 'center',
+            border: '1px solid #cad3dd',
         }}
     >
-        <DialogTitle>
-           <Typography>Edit event</Typography>
-           <Button><DeleteIcon/>Delete</Button>
-        </DialogTitle>
+        <Box 
+            sx={{
+                display: 'flex',
+                alignItems: 'center',
+                justifyContent: 'space-between',
+                borderBottom: '1px solid #e8ecf1',
+                flexWrap: 'wrap',
+                padding: '0 0 16px',
+            }}
+        >
+            <Typography 
+                variant='h4'
+                sx={{
+                    fontWeight: 600,
+                    fontSize:'20px',
+                    lineHeight: '24px',
+                    color: '#101a34',
+                    display: 'flex',
+                    alignItems: 'center',
+                    flexWrap: 'wrap',
+                    marginBottom: 0,
+                }}
+            >
+                Edit event
+            </Typography>
+            <Box
+                sx={{
+                    display: 'flex',
+                    alignItems: 'center',
+                    color: 'black',
+                    background: '#fafbfd',
+                    border: '1px solid #cad3dd',
+                    '&: hover': {
+                        background: 'red',
+                        color: '#fff'
+                    },
+                    marginLeft: 'auto',
+                    marginRight: '14px',
+                }}
+            >
+                <img src={Delete}/>
+                <Button
+                    
+                >
+                    Delete
+                </Button>
+            </Box>
+        </Box>
     </DialogContent>
   </Dialog>
 }

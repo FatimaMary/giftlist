@@ -19,6 +19,7 @@ import Santa1 from './santa12.svg';
 import Footer from '../../Components/Footer';
 import Participants from '../participants';
 import Invite from '../success/invite';
+import EditEvent from './editEvent';
 
 function EventView() {
     const [eventDetails, setEventDetails] = useState([]);
@@ -28,6 +29,7 @@ function EventView() {
     const [searchParam] = useSearchParams();
     const eventId = searchParam.get("eventId");
     const [activeTab, setActiveTab] = useState(0);
+    const [editPage, setEditPage] = useState(false);
 
     useEffect(() => {
       axios.get(`http://localhost:2309/event/get/${eventId}`)
@@ -152,6 +154,7 @@ function EventView() {
                                 border: '1px solid #cad3dd',
                                 textTransform: 'inherit'
                             }}
+                            onClick={() => setEditPage(true)}
                         >
                             <EditCalendarOutlinedIcon 
                                  sx={{
@@ -727,6 +730,10 @@ function EventView() {
             rsvpDate={eventDetails.rsvpDate}
             eventName={eventDetails.eventName}
             eventId={eventId}
+        />
+        <EditEvent
+            open={editPage}
+            onClose={() => setEditPage(false)}
         />
     </Box>
 }
