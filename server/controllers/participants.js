@@ -27,7 +27,7 @@ export const getParticipantsByEventId = (req, res) => {
     Participants.find({ eventId: eventId })
         .then((participants) => {
             if(participants.length === 0) {
-                res.status(404).json({ message: 'No Participants found' });
+                res.status(200).json({ message: 'No Participants found' });
             } else {
                 const participantsDetails = participants.map(participant => {
                     return {
