@@ -40,6 +40,10 @@ function EventView() {
                 console.log("User Name get response: ", response);
                 console.log("user name get response data: ", response.data);
                 setName(response.data);
+            });
+        axios.get(`http://localhost:2309/player/${eventId}`)
+            .then((response) => {
+                console.log("Participants List: ", response.data);
             })
     }, [])
     
@@ -711,7 +715,7 @@ function EventView() {
             firstName={name.firstName}
             rsvpDate={eventDetails.rsvpDate}
             eventName={eventDetails.eventName}
-            eventId={eventDetails.eventId}
+            eventId={eventId}
         />
     </Box>
 }
