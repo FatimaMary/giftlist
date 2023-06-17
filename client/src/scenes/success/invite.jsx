@@ -8,7 +8,16 @@ import {
 } from '@mui/material';
 import CopyInvitation from '../copyinvitation';
 
-function Invite({ open, onClose, invitePage, setInvitePage }) {
+function Invite({ 
+  open, 
+  onClose, 
+  invitePage, 
+  setInvitePage, 
+  firstName,
+  eventName,
+  rsvpDate,
+  eventId,
+}) {
     const handleClose = () => {
         onClose(invitePage);
     }
@@ -32,7 +41,13 @@ function Invite({ open, onClose, invitePage, setInvitePage }) {
             justifyContent: 'center',
         }}
     >
-            <CopyInvitation setInvitePage={setInvitePage} />
+            <CopyInvitation 
+              setInvitePage={setInvitePage}
+              firstName={firstName}
+              eventId={eventId}
+              eventName={eventName}
+              rsvpDate={rsvpDate}
+            />
     </DialogContent>
   </Dialog>
 }

@@ -38,13 +38,13 @@ function CopyInvitation({ firstName, rsvpDate, eventName, eventId, setInvitePage
         <TextField
           id="outlined-multiline-static"
           multiline
-          rows={6}
+          rows={7}
           inputRef={textFieldRef}
           defaultValue={`Hello,
           ${firstName} invited you to a group gift exchange: ${eventName}. Hurry! You have until ${rsvpDate} to RSVP.
           
           Click on the link to join  
-          http://localhost:3000/eventview?eventId=${eventId}`}
+          http://localhost:3000/eventview1?eventId=${eventId}`}
           sx={{ width: '100%', border: 'none', }}
         />
         </ThemeProvider>

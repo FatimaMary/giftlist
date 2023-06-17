@@ -708,6 +708,10 @@ function EventView() {
             open={invitePage}
             onClose={() => setInvitePage(false)}
             setInvitePage={setInvitePage}
+            firstName={name.firstName}
+            rsvpDate={eventDetails.rsvpDate}
+            eventName={eventDetails.eventName}
+            eventId={eventDetails.eventId}
         />
     </Box>
 }
