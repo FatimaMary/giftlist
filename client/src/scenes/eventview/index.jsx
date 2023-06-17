@@ -18,10 +18,12 @@ import Gift from './gift12.svg';
 import Santa1 from './santa12.svg';
 import Footer from '../../Components/Footer';
 import Participants from '../participants';
+import Invite from '../success/invite';
 
 function EventView() {
     const [eventDetails, setEventDetails] = useState([]);
     const [name, setName] = useState([]);
+    const [invitePage, setInvitePage] = useState(false);
     const [searchParam] = useSearchParams();
     const eventId = searchParam.get("eventId");
     const [activeTab, setActiveTab] = useState(0);
@@ -118,6 +120,7 @@ function EventView() {
                                 border: '1px solid #50bcd9',
                                 textTransform: 'inherit'
                             }}
+                            onClick={() => setInvitePage(true)}
                         >
                             <ShareOutlinedIcon 
                                 sx={{
@@ -701,6 +704,11 @@ function EventView() {
         { activeTab === 2 && <Box>Messages</Box>}
         { activeTab === 3 && <Box>My Wishes</Box>}
         <Footer />
+        <Invite 
+            open={invitePage}
+            onClose={() => setInvitePage(false)}
+            setInvitePage={setInvitePage}
+        />
     </Box>
 }
 

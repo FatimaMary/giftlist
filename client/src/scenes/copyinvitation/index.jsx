@@ -3,12 +3,13 @@ import { Box, Typography, Button, TextField, createTheme, ThemeProvider } from '
 import copy from 'copy-to-clipboard';
 
 
-function CopyInvitation({ firstName, rsvpDate, eventName, eventId }) {
+function CopyInvitation({ firstName, rsvpDate, eventName, eventId, setInvitePage }) {
     const [copyText, setCopyText] = useState("");
     const textFieldRef = useRef(null);
     const copyToClipboard = () => {
         copy(textFieldRef.current.defaultValue);
         setCopyText(textFieldRef.current.defaultValue);
+        setInvitePage(false);
     }
     const theme = createTheme({
         components: {

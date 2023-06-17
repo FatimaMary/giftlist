@@ -2,20 +2,25 @@ import React from 'react';
 import { 
     Box, 
     Typography, 
-    Button 
+    Button,
+    Dialog,
+    DialogContent,
 } from '@mui/material';
 import CopyInvitation from '../copyinvitation';
 
-function Invite() {
-  return <Box
+function Invite({ open, onClose, invitePage, setInvitePage }) {
+    const handleClose = () => {
+        onClose(invitePage);
+    }
+  return <Dialog
     sx={{
-        margin: '0 auto',
+        margin: '0 361px',
         display: 'flex',
-        // width: '800px',
-        
     }}
+    onClose={handleClose}
+    open={open}
   >
-    <Box 
+    <DialogContent 
         sx={{
             background: '#fff',
             boxShadow: '5px 5px 25px -5px rgba(32, 32, 36, .1)',
@@ -27,10 +32,9 @@ function Invite() {
             justifyContent: 'center',
         }}
     >
-            <CopyInvitation />
-        <Box></Box>
-    </Box>
-  </Box>
+            <CopyInvitation setInvitePage={setInvitePage} />
+    </DialogContent>
+  </Dialog>
 }
 
 export default Invite
