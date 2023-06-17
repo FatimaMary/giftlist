@@ -23,6 +23,7 @@ import Invite from '../success/invite';
 function EventView() {
     const [eventDetails, setEventDetails] = useState([]);
     const [name, setName] = useState([]);
+    const [players, setPlayers] = useState([]);
     const [invitePage, setInvitePage] = useState(false);
     const [searchParam] = useSearchParams();
     const eventId = searchParam.get("eventId");
@@ -44,6 +45,7 @@ function EventView() {
         axios.get(`http://localhost:2309/player/${eventId}`)
             .then((response) => {
                 console.log("Participants List: ", response.data);
+                setPlayers(response.data);
             })
     }, [])
     
@@ -414,13 +416,22 @@ function EventView() {
                             marginBottom: '10px',
                         }}
                     >
-                        <CheckCircleOutlineIcon 
-                            sx={{
-                                color: 'green',
-                                width: '18px',
-                                height: '18px',
-                            }}
-                        />
+                        {players.length <= 2 ? 
+                            <CancelOutlinedIcon
+                                sx={{
+                                    color: 'red',
+                                    width: '18px',
+                                    height: '18px',
+                                }}
+                            />  :
+                            <CheckCircleOutlineIcon 
+                                sx={{
+                                    color: 'green',
+                                    width: '18px',
+                                    height: '18px',
+                                }}
+                            /> 
+                        }
                         Invite at least 3 participants
                     </Typography>
                     <Typography
