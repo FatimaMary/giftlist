@@ -22,3 +22,23 @@ export const getAllParticipants = (req, res) => {
     .catch((err) => res.status(400).json("Error: " + err));
 };
 
+export const getParticipantsByEventId = (req, res) => {
+    const eventId = req.params.eventId;
+    Participants.find({ eventId: eventId })
+        .then((participants) => {
+            if(participants.length === 0) {
+                res.status(404).json({ message: 'No Participants found' });
+            } else {
+                const participantsDetails = participants.map(participant => {
+                    return {
+                        participantsEmail: participant.participantsEmail,
+                        participantsAcceptence: participant.participantsAcceptence,
+                        participantsId: participant.participantsId,
+                        eventId: participant.eventId,
+                    };
+                });
+                res.json(participantsDetails);
+            }
+        })
+        .catch((err) => res.status(400).json({ message: err.message }));
+};
