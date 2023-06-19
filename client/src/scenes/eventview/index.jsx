@@ -734,6 +734,11 @@ function EventView() {
         <EditEvent
             open={editPage}
             onClose={() => setEditPage(false)}
+            eventName={eventDetails.eventName}
+            giftExchangeDate={eventDetails.giftExchangeDate}
+            rsvpDate={eventDetails.rsvpDate}
+            budget={eventDetails.budget}
+            details={eventDetails.details}
         />
     </Box>
 }
