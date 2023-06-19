@@ -32,6 +32,7 @@ function EditEvent({
     const [rsvpDate, setRsvpDate] = useState();
     const [budget, setBudget] = useState();
     const [details, setDetails] = useState();
+    const [userId, setUserId] = useState();
     const navigate = useNavigate();
 
     const handleClose = () => {
@@ -48,6 +49,7 @@ function EditEvent({
               setRsvpDate(response.data.rsvpDate);
               setBudget(response.data.budget);
               setDetails(response.data.details);
+              setUserId(response.data.userId);
           });
       }, []);
 
@@ -65,6 +67,14 @@ function EditEvent({
             onClose(editPage);
             navigate(`/eventview?eventId=${eventId}`)
         })
+    }
+
+    const handleDelete = () => {
+        axios.delete(`http://localhost:2309/event/delete/${eventId}`)
+            .then((response) => {
+                console.log("delete response: ", response.data);
+                navigate(`/giftexchange?userId=${userId}`);
+            })
     }
 
     const theme = createTheme({
@@ -155,6 +165,7 @@ function EditEvent({
                     lineHeight: '18px',
                     textTransform: 'none',
                 }}
+                onClick={handleDelete}
             >
                 <img src={Delete} style={{marginRight: '5px'}}/>
                     Delete

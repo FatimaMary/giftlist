@@ -76,6 +76,7 @@ export const getEventDetailsbyEventId = (req, res) => {
             rsvpDate: singleEvent.rsvpDate,
             budget: singleEvent.budget,
             details: singleEvent.details,
+            userId: singleEvent.userId,
           };
         });
         res.json(eventDetail[0]);
