@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 import {
     Typography, 
     TextField,
@@ -12,20 +12,59 @@ import {
     ThemeProvider
 } from '@mui/material';
 import Delete from './removeic.svg';
+import axios from 'axios';
+import { useNavigate } from 'react-router-dom';
 
 
 function EditEvent({ 
     open, 
     onClose, 
     editPage,
-    eventName,
-    giftExchangeDate,
-    rsvpDate,
-    budget,
-    details
+    // eventName,
+    // giftExchangeDate,
+    // rsvpDate,
+    // budget,
+    // details,
+    eventId
 }) {
+    const [eventName, setEventName] = useState();
+    const [giftExchangeDate, setGiftExchangeDate] = useState();
+    const [rsvpDate, setRsvpDate] = useState();
+    const [budget, setBudget] = useState();
+    const [details, setDetails] = useState();
+    const navigate = useNavigate();
+
     const handleClose = () => {
         onClose(editPage);
+    }
+
+    useEffect(() => {
+        axios.get(`http://localhost:2309/event/get/${eventId}`)
+          .then((response) => {
+              console.log("Get response: ", response);
+              console.log("Get response data: ", response.data);
+              setEventName(response.data.eventName);
+              setGiftExchangeDate(response.data.giftExchangeDate);
+              setRsvpDate(response.data.rsvpDate);
+              setBudget(response.data.budget);
+              setDetails(response.data.details);
+          });
+      }, []);
+
+    const handleSubmit = (e) => {
+        e.preventDefault();
+        axios.put(`http://localhost:2309/event/edit/${eventId}`, {
+            eventName: eventName,
+            giftExchangeDate: giftExchangeDate,
+            rsvpDate: rsvpDate,
+            budget: budget,
+            details: details,
+        })
+        .then((response) => {
+            console.log(response.data);
+            onClose(editPage);
+            navigate(`/eventview?eventId=${eventId}`)
+        })
     }
 
     const theme = createTheme({
@@ -129,7 +168,7 @@ function EditEvent({
             padding: '20px 0 0',
           }}
         >
-            <form>
+            <form onSubmit={handleSubmit}>
                 <Box marginBottom='20px'>
                     <InputLabel 
                         sx={{
@@ -160,6 +199,7 @@ function EditEvent({
                             }}
                             type='text'
                             value={eventName}
+                            onChange={(e) => setEventName(e.target.value)}
                         />
                     </ThemeProvider>
                 </Box>
@@ -201,6 +241,7 @@ function EditEvent({
                                     width: '100%'
                                 }}
                                 value={giftExchangeDate}
+                                onChange={(e) => setGiftExchangeDate(e.target.value)}
                             />
                             </ThemeProvider>
                         </Box>
@@ -232,6 +273,7 @@ function EditEvent({
                                     width: '100%'
                                 }}
                                 value={rsvpDate}
+                                onChange={(e) => setRsvpDate(e.target.value)}
                             />
                             </ThemeProvider>
                         </Box>
@@ -278,6 +320,7 @@ function EditEvent({
                             }}
                             type='text'
                             value={budget}
+                            onChange={(e) => setBudget(e.target.value)}
                         />
                     </ThemeProvider>
                 </Box>
@@ -311,11 +354,13 @@ function EditEvent({
                             rows={4}
                             placeholder='Enter Your text'
                             value={details}
+                            onChange={(e) => setDetails(e.target.value)}
                         />
                     </ThemeProvider>
                 </Box>
                 <Box>
                     <Button 
+                        type='submit'
                         sx={{
                             background: '#50bcd9',
                             borderRadius: '7px',
