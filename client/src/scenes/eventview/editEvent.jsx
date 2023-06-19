@@ -6,7 +6,9 @@ import {
     Dialog,
     DialogContent,
     DialogTitle,
-    Box
+    Box,
+    InputLabel,
+    createTheme
 } from '@mui/material';
 import Delete from './removeic.svg';
 
@@ -15,6 +17,27 @@ function EditEvent({ open, onClose, editPage }) {
     const handleClose = () => {
         onClose(editPage);
     }
+
+    const theme = createTheme({
+        components: {
+          MuiTextField: {
+            styleOverrides: {
+              root: {
+                '& .MuiOutlinedInput-root': {
+                  '& fieldset': {
+                    border: '1px solid #cad3dd', 
+                  },
+                },
+                '& .MuiOutlinedInput-root.Mui-focused': {
+                  '& fieldset': {
+                    border: '1px solid #cad3dd', 
+                  },
+                },
+              },
+            },
+          },
+        },
+      });
 
   return <Dialog
     sx={{
@@ -62,7 +85,7 @@ function EditEvent({ open, onClose, editPage }) {
             >
                 Edit event
             </Typography>
-            <Box
+            <Button
                 sx={{
                     display: 'flex',
                     alignItems: 'center',
@@ -75,15 +98,70 @@ function EditEvent({ open, onClose, editPage }) {
                     },
                     marginLeft: 'auto',
                     marginRight: '14px',
+                    justifyContent: 'center',
+                    padding: '7px 14px',
+                    borderRadius: '5px',
+                    fontSize: '13px',
+                    fontWeight: 600,
+                    lineHeight: '18px',
+                    textTransform: 'none',
                 }}
             >
-                <img src={Delete}/>
-                <Button
-                    
-                >
+                <img src={Delete} style={{marginRight: '5px'}}/>
                     Delete
                 </Button>
-            </Box>
+        </Box>
+        <Box 
+          sx={{
+            maxHeight: '60vh',
+            overflowY : 'auto',
+            overflowX: 'hidden',
+            padding: '20px 0 0',
+          }}
+        >
+            <form>
+                <Box marginBottom='20px'>
+                    <InputLabel 
+                        sx={{
+                            fontWeight: 600,
+                            fontSize: '13px',
+                            lineHeight: '18px',
+                            color: '#101a34',
+                            marginBottom: '5px',
+                            wordBreak: 'break-all'
+                        }}
+                    >
+                        Name
+                    </InputLabel>
+                    <TextField sx={{
+                        background: '#fff',
+                        borderRadius: '7px',
+                        width: '100%',
+                        padding: '8px 15px',
+                        fontWeight: 400,
+                        fontSize: '16px',
+                        color: '#101a34',
+                        '& .MuiOutlinedInput-root': {
+                            height: '44px',
+                        },
+                        marginLeft: '-15px'
+                    }} />
+                </Box>
+                <Box marginBottom='20px'>
+                    <Box 
+                      sx={{
+                        margin: '0 -4px',
+                        display: 'flex',
+                        flexWrap: 'wrap',
+                      }}
+                    >
+                        <Box>
+                            <InputLabel>Gift exchange date:</InputLabel>
+                            <TextField />
+                        </Box>
+                    </Box>
+                </Box>
+            </form>
         </Box>
     </DialogContent>
   </Dialog>
