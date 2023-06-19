@@ -133,14 +133,17 @@ export const editEvent = (req, res) => {
 
 export const deleteEvent = (req, res) => {
   const eventId = req.params.eventId;
-  Events.deleteOne({ eventId: eventId}), (err) => {
-    if (err) {
-      // If there's an error during deletion, return an error response
-      return res.status(500).json({ error: 'Failed to delete event' });
+  Events.findOneAndDelete({ eventId: eventId})
+  .then((deletedEvent) => {
+    if (!deletedEvent) {
+      // If the event does not exist, return an error response
+      return res.status(404).json({ error: 'Event not found' });
     }
-
     // If the event is successfully deleted, return a success response
     return res.status(200).json({ message: 'Event deleted successfully' });
-  };
-   
+  })
+  .catch((err) => {
+    // If there's an error during deletion, return an error response
+    return res.status(500).json({ error: 'Failed to delete event' });
+  });
 }

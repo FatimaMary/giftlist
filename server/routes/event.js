@@ -7,6 +7,7 @@ import {
     getEventDetailsbyEventId,
     getuserNameByEventId,
     editEvent,
+    deleteEvent,
 } from '../controllers/event.js';
 
 const router = express.Router();
@@ -18,5 +19,6 @@ router.get("/:userId", getEventsById);
 router.get("/get/:eventId", getEventDetailsbyEventId);
 router.get("/user/:eventId", getuserNameByEventId);
 router.put("/edit/:eventId", editEvent);
+router.delete("/delete/:eventId", deleteEvent);
 
 export default router;
