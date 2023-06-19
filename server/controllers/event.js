@@ -113,3 +113,20 @@ export const getuserNameByEventId = (req, res) => {
     })
     .catch((err) => res.status(400).json({ message: err.message }));
 };
+
+export const editEvent = (req, res) => {
+  const eventId = req.params.eventId;
+  Events.findOne({ eventId: eventId })
+  .then((event) => {
+      event.eventName = req.body.eventName;
+      event.giftExchangeDate = req.body.giftExchangeDate;
+      event.rsvpDate = req.body.rsvpDate;
+      event.budget = req.body.budget;
+      event.details = req.body.details;
+      event
+          .save()
+          .then(() => res.json("Event Updated"))
+          .catch((err) => res.status(400).json("Error: " + err));
+  })
+  .catch((err) => res.status(400).json("Error: " + err));
+};
