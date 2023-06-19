@@ -14,10 +14,22 @@ import {
 import Delete from './removeic.svg';
 
 
-function EditEvent({ open, onClose, editPage }) {
+function EditEvent({ 
+    open, 
+    onClose, 
+    editPage,
+    eventName,
+    giftExchangeDate,
+    rsvpDate,
+    budget,
+    details
+}) {
     const handleClose = () => {
         onClose(editPage);
     }
+
+    console.log("budget: ", budget);
+    
 
     const theme = createTheme({
         components: {
@@ -150,6 +162,7 @@ function EditEvent({ open, onClose, editPage }) {
                                 marginLeft: '-15px'
                             }}
                             type='text'
+                            value={eventName}
                         />
                     </ThemeProvider>
                 </Box>
@@ -190,6 +203,7 @@ function EditEvent({ open, onClose, editPage }) {
                                     },
                                     width: '100%'
                                 }}
+                                value={giftExchangeDate}
                             />
                             </ThemeProvider>
                         </Box>
@@ -220,6 +234,7 @@ function EditEvent({ open, onClose, editPage }) {
                                     },
                                     width: '100%'
                                 }}
+                                value={rsvpDate}
                             />
                             </ThemeProvider>
                         </Box>
@@ -265,6 +280,7 @@ function EditEvent({ open, onClose, editPage }) {
                                 marginLeft: '-15px'
                             }}
                             type='text'
+                            value={budget}
                         />
                     </ThemeProvider>
                 </Box>
@@ -297,6 +313,7 @@ function EditEvent({ open, onClose, editPage }) {
                             multiline
                             rows={4}
                             placeholder='Enter Your text'
+                            value={details}
                         />
                     </ThemeProvider>
                 </Box>
