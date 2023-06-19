@@ -28,9 +28,6 @@ function EditEvent({
         onClose(editPage);
     }
 
-    console.log("budget: ", budget);
-    
-
     const theme = createTheme({
         components: {
           MuiTextField: {
