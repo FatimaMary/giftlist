@@ -159,14 +159,14 @@ function EditEvent({ open, onClose, editPage }) {
                         margin: '0 -4px',
                         display: 'flex',
                         flexWrap: 'wrap',
-                        justifyContent: 'space-around',
+                        justifyContent: 'space-between',
                         width: '100%'
                       }}
                     >
                         <Box 
                             p='0 4px'
                             sx={{
-                                width: '40%'
+                                width: '50%'
                             }}
                         >
                             <InputLabel 
@@ -196,7 +196,7 @@ function EditEvent({ open, onClose, editPage }) {
                         <Box 
                              p='0 4px'
                              sx={{
-                                 width: '40%'
+                                 width: '50%'
                              }}
                         >
                             <InputLabel 
