@@ -39,3 +39,18 @@ export const getUser = (req, res) => {
         .then((users) => res.json(users))
         .catch((err) => res.status(400).json("Error: " + err));
 };
+
+export const getUserByEmail = (req, res) => {
+    const email = req.params.email
+    Users.findOne({ email: email })
+        .then((user) => {
+            const userDetails = user.map(singleUser => {
+                return {
+                    firstName: singleUser.firstName,
+                    secondName: singleUser.secondName,
+                }
+            });
+            res.json(userDetails);
+        })
+        .catch((err) => res.status(400).json("Error: " + err));
+}
