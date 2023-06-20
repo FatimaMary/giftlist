@@ -17,6 +17,8 @@ function Participants() {
    const eventId = searchParam.get("eventId");
    const [acceptence, setAcceptence] = useState([]);
    const [participantsList, setParticipantsList] = useState([]);
+   const [emails, setEmails] = useState([]);
+   const [participantsData, setParticipantsData] = useState([]);
 
    useEffect(() => {
     axios.get(`http://localhost:2309/player/${eventId}`)
@@ -24,6 +26,9 @@ function Participants() {
           console.log("Get participants response: ", response);
           console.log("Get participants response data: ", response.data);
           setParticipantsList(response.data);
+          const participantsEmails = response.data.map((email) => email.participantsEmail);
+          setEmails(participantsEmails);
+          console.log("emails: ", participantsEmails);
           const acceptenceValues = response.data.map((item) => item.participantsAcceptence);
           setAcceptence(acceptenceValues);
           console.log("acceptence: ", acceptenceValues);
@@ -33,11 +38,27 @@ function Participants() {
   const trueCount = acceptence.filter(value => value === true).length;
   const falseCount = acceptence.filter(value => value === false).length;
 
-  function stringAvatar(name) {
+    function stringAvatar(name) {
     return {
       children: `${name.split(' ')[0][0]}`,
     };
   }
+
+  useEffect(() => {
+    const fetchParticipantData = async () => {
+      const participantDataPromises = participantsList
+        .filter((participant) => participant.participantsAcceptence === true)
+        .map(async (participant) => {
+          const partcipantsDataResponse = await axios.get(`http://localhost:2309/user/${participant.participantsEmail}`);
+          return partcipantsDataResponse.data;
+        });
+  
+      const participantData = await Promise.all(participantDataPromises);
+      setParticipantsData(participantData);
+    };
+  
+    fetchParticipantData();
+  }, [participantsList]);
 
   return <Box sx={{
     padding: '15px 0',
@@ -142,10 +163,9 @@ function Participants() {
       >
         Partcipating
       </Typography>
-      {participantsList.map((participant, i) => {
-            if(participant.participantsAcceptence === true) {
-              return (
+       {participantsData.map((participant, index) => (
       <Box 
+        key={index}
         sx={{
           borderBottom: '1px solid #e8ecf1',
           paddingBottom: '12px',
@@ -163,7 +183,7 @@ function Participants() {
         >
           <Box>
             <Avatar 
-              {...stringAvatar('Fatima')} 
+              {...stringAvatar(`${participant.firstName}`)} 
               sx={{
                 width: '26px',
                 height: '26px',
@@ -178,7 +198,6 @@ function Participants() {
             />
           </Box>
           <Box
-            key={i}
             sx={{
               paddingLeft: '8px',
               flexBasis: 'calc(100% - 26px)',
@@ -195,7 +214,7 @@ function Participants() {
                 marginBottom: 0
               }}
             >
-              Fatima Mary
+             {participant.firstName + ' ' + participant.secondName}
             </Typography>
             <Typography
               variant='body1'
@@ -204,7 +223,7 @@ function Participants() {
                 lineHeight: '18px',
                 color: '#818694'
               }}
-            >{participant.participantsEmail}</Typography>
+            >{participant.email}</Typography>
           </Box>
         </Box>
         <Box>
@@ -247,8 +266,8 @@ function Participants() {
             }}
           ><img src={Edit} />Edit RSVP</Button>
         </Box> 
-      </Box>
-      )} return null })}
+      </Box> 
+      ))}
     </Box>
   </Box>
 }
