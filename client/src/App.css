@@ -161,3 +161,8 @@ body {
 .tab.active {
   border-bottom: 3px solid #50bcd9;
 }
+
+.tab.click {
+  opacity: 1;
+  font-weight: 600;
+}
