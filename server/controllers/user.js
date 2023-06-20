@@ -44,13 +44,15 @@ export const getUserByEmail = (req, res) => {
     const email = req.params.email
     Users.findOne({ email: email })
         .then((user) => {
-            const userDetails = user.map(singleUser => {
-                return {
-                    firstName: singleUser.firstName,
-                    secondName: singleUser.secondName,
-                }
-            });
-            res.json(userDetails);
+            if (user) {
+                const userDetails = {
+                  firstName: user.firstName,
+                  secondName: user.secondName,
+                };
+                res.json(userDetails);
+              } else {
+                res.status(404).json("User not found");
+              }
         })
         .catch((err) => res.status(400).json("Error: " + err));
 }
