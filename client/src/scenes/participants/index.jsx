@@ -11,14 +11,15 @@ import Cross from './crossic2.svg';
 import Edit from '../eventview/editicblue.svg'
 import { useSearchParams } from 'react-router-dom';
 import axios from 'axios';
+import '../../App.css';
 
 function Participants() {
    const [searchParam] = useSearchParams();
    const eventId = searchParam.get("eventId");
    const [acceptence, setAcceptence] = useState([]);
    const [participantsList, setParticipantsList] = useState([]);
-   const [emails, setEmails] = useState([]);
    const [participantsData, setParticipantsData] = useState([]);
+   const [activeTab, setActiveTab] = useState(0);
 
    useEffect(() => {
     axios.get(`http://localhost:2309/player/${eventId}`)
@@ -26,9 +27,6 @@ function Participants() {
           console.log("Get participants response: ", response);
           console.log("Get participants response data: ", response.data);
           setParticipantsList(response.data);
-          const participantsEmails = response.data.map((email) => email.participantsEmail);
-          setEmails(participantsEmails);
-          console.log("emails: ", participantsEmails);
           const acceptenceValues = response.data.map((item) => item.participantsAcceptence);
           setAcceptence(acceptenceValues);
           console.log("acceptence: ", acceptenceValues);
@@ -42,6 +40,9 @@ function Participants() {
     return {
       children: `${name.split(' ')[0][0]}`,
     };
+  }
+  const handleTabActive = (index) => {
+    setActiveTab(index);
   }
 
   useEffect(() => {
@@ -91,6 +92,8 @@ function Participants() {
                     display: 'flex', 
                     alignItems: 'center'
                 }}
+                isactive = {activeTab === 0}
+                onClick={() => handleTabActive(0)}
             >
                 <img 
                     src={Tick} 
@@ -101,14 +104,26 @@ function Participants() {
                     }} 
                 />
                 <Typography
-                    
-                >Participating ({trueCount})</Typography>
+                  sx={{
+                    fontWeight: 600,
+                    opacity: 0.5,
+                    '&:hover': {
+                      cursor: 'pointer'
+                    },
+                  }}
+                  className = {`tab ${activeTab === 0 ? 'click' : ''}`}
+                >
+                  Participating ({trueCount})
+                </Typography>
             </Box>
-            <Box 
+            {/* <Box 
                 sx = {{
                     display: 'flex', 
                     alignItems: 'center'
                 }}
+                isactive = {activeTab === 1}
+                className = {`tab ${activeTab === 1 ? 'click' : ''}`}
+                onClick={() => handleTabActive(1)}
             >
                 <img 
                     src={Clock} 
@@ -118,15 +133,26 @@ function Participants() {
                         marginRight: '6px'
                     }} 
                 />
-                <Typography
-                    
-                >Awaiting Responses (0)</Typography>
-            </Box>
+                <Typography 
+                  sx={{
+                    fontWeight: 600,
+                    opacity: 0.5,
+                    '&:hover': {
+                      cursor: 'pointer'
+                    }
+                  }}
+                >
+                  Awaiting Responses (0)
+                </Typography>
+            </Box> */}
             <Box 
                 sx = {{
                     display: 'flex', 
                     alignItems: 'center'
                 }}
+                isactive = {activeTab === 2}
+                
+                onClick={() => handleTabActive(2)}
             >
                 <img 
                     src={Cross} 
@@ -137,8 +163,17 @@ function Participants() {
                     }} 
                 />
                 <Typography
-                    
-                >Not Participating ({falseCount})</Typography>
+                  sx={{
+                    fontWeight: 600,
+                    opacity: 0.5,
+                    '&:hover': {
+                      cursor: 'pointer'
+                    }
+                  }}
+                  className = {`tab ${activeTab === 2 ? 'click' : ''}`}
+                >
+                  Not Participating ({falseCount})
+                </Typography>
             </Box>
             </Box>
             <Typography>You are participating</Typography>
@@ -151,6 +186,7 @@ function Participants() {
         padding: '0 20px',
       }}
     >
+      {activeTab === 0 && <>
       <Typography 
         variant='h2'
         sx={{
@@ -267,7 +303,9 @@ function Participants() {
           ><img src={Edit} />Edit RSVP</Button>
         </Box> 
       </Box> 
-      ))}
+      ))} </>}
+      {activeTab === 1 && <>Awaiting Responses</>}
+      {activeTab === 2 && <>Not participating</>}
     </Box>
   </Box>
 }
