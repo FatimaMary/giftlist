@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 import { 
     Box, 
     Typography, 
@@ -10,10 +10,29 @@ import Clock from './clockic.svg';
 import Cross from './crossic2.svg';
 import Edit from '../eventview/editicblue.svg'
 import { useSearchParams } from 'react-router-dom';
+import axios from 'axios';
 
 function Participants() {
    const [searchParam] = useSearchParams();
    const eventId = searchParam.get("eventId");
+   const [acceptence, setAcceptence] = useState([]);
+   const [participantsList, setParticipantsList] = useState([]);
+
+   useEffect(() => {
+    axios.get(`http://localhost:2309/player/${eventId}`)
+      .then((response) => {
+          console.log("Get participants response: ", response);
+          console.log("Get participants response data: ", response.data);
+          setParticipantsList(response.data);
+          const acceptenceValues = response.data.map((item) => item.participantsAcceptence);
+          setAcceptence(acceptenceValues);
+          console.log("acceptence: ", acceptenceValues);
+         
+      });
+  }, []);
+  const trueCount = acceptence.filter(value => value === true).length;
+  const falseCount = acceptence.filter(value => value === false).length;
+
   function stringAvatar(name) {
     return {
       children: `${name.split(' ')[0][0]}`,
@@ -62,7 +81,7 @@ function Participants() {
                 />
                 <Typography
                     
-                >Participating ()</Typography>
+                >Participating ({trueCount})</Typography>
             </Box>
             <Box 
                 sx = {{
@@ -80,7 +99,7 @@ function Participants() {
                 />
                 <Typography
                     
-                >Awaiting Responses ()</Typography>
+                >Awaiting Responses (0)</Typography>
             </Box>
             <Box 
                 sx = {{
@@ -98,7 +117,7 @@ function Participants() {
                 />
                 <Typography
                     
-                >Not Participating ()</Typography>
+                >Not Participating ({falseCount})</Typography>
             </Box>
             </Box>
             <Typography>You are participating</Typography>
@@ -123,6 +142,9 @@ function Participants() {
       >
         Partcipating
       </Typography>
+      {participantsList.map((participant, i) => {
+            if(participant.participantsAcceptence === true) {
+              return (
       <Box 
         sx={{
           borderBottom: '1px solid #e8ecf1',
@@ -156,6 +178,7 @@ function Participants() {
             />
           </Box>
           <Box
+            key={i}
             sx={{
               paddingLeft: '8px',
               flexBasis: 'calc(100% - 26px)',
@@ -181,7 +204,7 @@ function Participants() {
                 lineHeight: '18px',
                 color: '#818694'
               }}
-            >fatisittu@gmail.com</Typography>
+            >{participant.participantsEmail}</Typography>
           </Box>
         </Box>
         <Box>
@@ -223,8 +246,9 @@ function Participants() {
               },
             }}
           ><img src={Edit} />Edit RSVP</Button>
-        </Box>
+        </Box> 
       </Box>
+      )} return null })}
     </Box>
   </Box>
 }
