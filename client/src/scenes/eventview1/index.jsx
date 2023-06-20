@@ -11,11 +11,13 @@ import EditCalendarOutlinedIcon from '@mui/icons-material/EditCalendarOutlined';
 import axios from 'axios';
 import { useNavigate, useSearchParams } from 'react-router-dom';
 import Footer from '../../Components/Footer';
+import Participants from '../participants';
 
 function EventView1() {
     const [eventDetails, setEventDetails] = useState([]);
     const [name, setName] = useState([]);
     const [show, setShow] = useState(false);
+    const [activeTab, setActiveTab] = useState(0);
     const [searchParam] = useSearchParams();
     const eventId = searchParam.get("eventId");
     const navigate = useNavigate();
@@ -46,12 +48,17 @@ function EventView1() {
     }
 
     const handleLogin = () => {
-        navigate('/login')
+        navigate(`/login?eventId=${eventId}`);
     }
 
     const handleSignup = () => {
-        navigate('/signup')
+        navigate(`/signup?eventId=${eventId}`);
     }
+
+    const handleTabActive = (index) => {
+        setActiveTab(index);
+      }
+
   return <Box 
     backgroundColor='#e8ecf1'
     width='100vw'
@@ -283,6 +290,8 @@ function EventView1() {
           }}
         >
             <Typography
+                isActive={activeTab === 0}
+                className={`tab ${activeTab === 0 ? 'active' : ''}`}
                 sx={{
                     color: '#101a34',
                     fontWeight: 600,
@@ -294,12 +303,15 @@ function EventView1() {
                     '&:hover': {
                         cursor: 'pointer'
                     },
-                    borderBottom: '3px solid #50bcd9'
+                    // borderBottom: '3px solid #50bcd9'
                 }}
+                onClick={() => handleTabActive(0)}
             >
                 Home
             </Typography>
             <Typography
+                isActive={activeTab === 1}
+                className={`tab ${activeTab === 1 ? 'active' : ''}`}
                 sx={{
                     color: '#101a34',
                     fontWeight: 600,
@@ -312,6 +324,7 @@ function EventView1() {
                         cursor: 'pointer'
                     }
                 }}
+                onClick={() => handleTabActive(1)}
             >
                 Participants
             </Typography>
@@ -402,7 +415,8 @@ function EventView1() {
                     </Button>
                 </Box>
             </Box>
-            </Box> :
+            </Box> :<Box>
+            { activeTab === 0 && 
             <Box sx={{
             display: 'flex',
             justifyContent: 'center',
@@ -502,8 +516,9 @@ function EventView1() {
                     >Yes</Button>
                 </Box>
             </Box>
-            </Box>
+            </Box>  } </Box>
         }
+        { activeTab === 1 && <Box><Participants/></Box>}
         <Footer />
     </Box>
 }
