@@ -9,8 +9,11 @@ import Tick from './tickic.svg';
 import Clock from './clockic.svg';
 import Cross from './crossic2.svg';
 import Edit from '../eventview/editicblue.svg'
+import { useSearchParams } from 'react-router-dom';
 
 function Participants() {
+   const [searchParam] = useSearchParams();
+   const eventId = searchParam.get("eventId");
   function stringAvatar(name) {
     return {
       children: `${name.split(' ')[0][0]}`,
