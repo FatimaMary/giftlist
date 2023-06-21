@@ -60,7 +60,7 @@ function EventView1() {
       }
 
   return <Box 
-    backgroundColor='#e8ecf1'
+    backgroundColor='#FFEAEA'
     width='100vw'
     p='50px 30px 33px 30px'
     >
@@ -122,10 +122,13 @@ function EventView1() {
                                 borderRadius: '5px',
                                 display: 'flex',
                                 alignItems: 'center',
-                                background: '#50bcd9',
+                                background: '#E11299',
                                 color: '#fff',
-                                border: '1px solid #50bcd9',
-                                textTransform: 'inherit'
+                                border: '1px solid #E11299',
+                                textTransform: 'inherit',
+                                '&:hover': {
+                                    color: '#E11299'
+                                }
                             }}
                         >
                             <ShareOutlinedIcon 
@@ -225,7 +228,7 @@ function EventView1() {
                         sx={{
                             width: '40px',
                             height: '40px',
-                            background: '#50bcd9',
+                            background: '#E11299',
                             fontSize: '13px',
                         }}
                     />
@@ -303,7 +306,7 @@ function EventView1() {
                     '&:hover': {
                         cursor: 'pointer'
                     },
-                    // borderBottom: '3px solid #50bcd9'
+                    // borderBottom: '3px solid #E11299'
                 }}
                 onClick={() => handleTabActive(0)}
             >
@@ -373,17 +376,17 @@ function EventView1() {
                         variant='contained'
                         onClick={handleLogin}
                         sx={{ 
-                            border: '2px solid skyblue',
+                            border: '2px solid #E11299',
                             borderRadius: '10px',
                             width: '48%',
                             fontSize: '1rem',
                             color: 'white',
-                            background: 'skyblue',
+                            background: '#E11299',
                             textTransform: 'inherit',
                             fontWeight:'bold',
                             '&:hover': {
                             backgroundColor: 'white',
-                            color: 'skyblue',
+                            color: '#E11299',
                             border: '1px solid #0f7b9b'
                             },
                             marginTop: '10px',
@@ -395,17 +398,17 @@ function EventView1() {
                         variant='contained'
                         onClick={handleSignup}
                         sx={{ 
-                            border: '2px solid skyblue',
+                            border: '2px solid #E11299',
                             borderRadius: '10px',
                             width: '48%',
                             fontSize: '1rem',
                             color: 'white',
-                            background: 'skyblue',
+                            background: '#E11299',
                             textTransform: 'inherit',
                             fontWeight:'bold',
                             '&:hover': {
                             backgroundColor: 'white',
-                            color: 'skyblue',
+                            color: '#E11299',
                             border: '1px solid #0f7b9b'
                             },
                             marginTop: '10px',
@@ -479,13 +482,13 @@ function EventView1() {
                             fontWeight: 600,
                             width: '48%',
                             fontSize: '1rem',
-                            color: '#0f7b9b',
+                            color: '#E11299',
                             background: '#fafbfd',
                             textTransform: 'inherit',
                             '&:hover': {
-                            backgroundColor: '#0f7b9b',
+                            backgroundColor: '#E11299',
                             color: '#fafbfd',
-                            border: '1px solid #0f7b9b',
+                            border: '1px solid #E11299',
                             cursor: 'pointer',
                             },
                             marginTop: '10px',
@@ -497,17 +500,17 @@ function EventView1() {
                         variant='contained'
                         onClick={handleClick}
                         sx={{ 
-                            border: '2px solid skyblue',
+                            border: '2px solid #E11299',
                             borderRadius: '7px',
                             width: '48%',
                             fontSize: '1rem',
                             color: 'white',
-                            background: 'skyblue',
+                            background: '#E11299',
                             textTransform: 'inherit',
                             fontWeight:'bold',
                             '&:hover': {
                             backgroundColor: 'white',
-                            color: 'skyblue',
+                            color: '#E11299',
                             border: '1px solid #0f7b9b'
                             },
                             marginTop: '10px',
