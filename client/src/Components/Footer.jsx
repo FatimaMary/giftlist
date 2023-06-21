@@ -23,7 +23,8 @@ function Footer() {
     >
       <CopyrightIcon 
         sx={{
-          fontSize: '16px'
+          fontSize: '16px',
+          color: '#F11299'
         }} 
       />
       <Typography sx={{

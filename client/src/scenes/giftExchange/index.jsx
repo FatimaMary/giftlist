@@ -14,6 +14,7 @@ import AddCircleOutlineIcon from '@mui/icons-material/AddCircleOutline';
 import Santa from './santa1.png';
 import CalendarMonthIcon from '@mui/icons-material/CalendarMonth';
 import CopyrightIcon from '@mui/icons-material/Copyright';
+import Footer from '../../Components/Footer';
 
 
 function GiftExchange() {
@@ -187,7 +188,7 @@ function GiftExchange() {
           )) } 
       </Box>
     </Box>
-    <Box sx={{
+    {/* <Box sx={{
       display: 'flex',
       justifyContent:'space-between',
       borderTop: '1px solid grey',
@@ -264,7 +265,8 @@ function GiftExchange() {
           Contact Us
         </Button>
       </Box>
-    </Box>
+    </Box> */}
+    <Footer/>
   </Box>
 }
 
