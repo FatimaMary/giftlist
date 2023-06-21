@@ -44,7 +44,7 @@ function Success() {
     }, [])
     
   return <Box 
-    backgroundColor='#e8ecf1'
+    backgroundColor='#FFEAEA'
     width='100vw'
     p='50px 30px 33px 30px'
     > 
@@ -59,13 +59,13 @@ function Success() {
             <ArrowCircleLeftOutlinedIcon 
                 sx={{
                 fontSize: '1.2rem',
-                color: '#0f7b9b'
+                color: '#F11299'
                 }}
             />
             <Button
                 sx={{
                 textTransform: 'inherit',
-                color: '#0f7b9b',
+                color: '#F11299',
                 fontWeight: 'bold',
                 fontSize: '1rem'
                 }}
@@ -77,7 +77,7 @@ function Success() {
             sx={{
                 minHeight: '80vh',
                 background: '#fff',
-                border: '1px solid #e8ecf1',
+                border: '1px solid #FFEAEA',
                 borderRadius: '10px'
             }}
         >
@@ -105,10 +105,12 @@ function Success() {
                     />
                     <Typography
                         variant='h4'
+                        color='#F11299'
                     >
                         Your event has been created!
                     </Typography>
                     <Typography 
+                        color='#F11299'
                         sx={{
                             margin:'0 0 10px',
                         }}
@@ -121,18 +123,18 @@ function Success() {
                     onClick={moveToEventview}
                     variant='contained'
                     sx={{ 
-                        border: '2px solid skyblue',
+                        border: '2px solid #F11299',
                         borderRadius: '10px',
                         width: '100%',
                         fontSize: '1rem',
                         color: 'white',
-                        background: 'skyblue',
+                        background: '#F11299',
                         textTransform: 'inherit',
                         fontWeight:'bold',
                         '&:hover': {
                         backgroundColor: 'white',
-                        color: 'skyblue',
-                        border: '1px solid #0f7b9b'
+                        color: '#F11299',
+                        border: '1px solid #F11299'
                         },
                         marginTop: '10px',
                         marginBottom: '20px',
@@ -146,18 +148,18 @@ function Success() {
                     onClick={moveToInvitepage}
                     variant='contained'
                     sx={{ 
-                        border: '1px solid grey',
+                        border: '1px solid #F11299',
                         borderRadius: '10px',
                         width: '100%',
                         fontSize: '1rem',
-                        color: '#0f7b9b',
-                        background: '#e8ecf1',
+                        color: '#F11299',
+                        background: '#fff',
                         textTransform: 'inherit',
                         fontWeight:'bold',
                         '&:hover': {
-                        backgroundColor: '#0f7b9b',
+                        backgroundColor: '#F11299',
                         color: 'white',
-                        border: '1px solid #0f7b9b'
+                        border: '1px solid #F11299'
                         },
                         marginTop: '10px'
                     }}
@@ -170,7 +172,7 @@ function Success() {
                         borderRadius: '10px',
                         width: '100%',
                         fontSize: '1rem',
-                        color: '#0f7b9b',
+                        color: '#F11299',
                         textTransform: 'inherit',
                         fontWeight:'bold',
                         marginTop: '10px'
@@ -192,7 +194,7 @@ function Success() {
                     display: 'flex',
                     alignItems: 'center',
                     justifyContent: 'center',
-                    borderBottom: '5px solid skyblue',
+                    borderBottom: '5px solid #F11299',
                     paddingBottom: '20px'
                 }}
             >
