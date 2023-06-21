@@ -126,7 +126,10 @@ function EventView() {
                                 background: '#E11299',
                                 color: '#fff',
                                 border: '1px solid #E11299',
-                                textTransform: 'inherit'
+                                textTransform: 'inherit',
+                                '&:hover': {
+                                    color: '#F11299'
+                                }
                             }}
                             onClick={() => setInvitePage(true)}
                         >

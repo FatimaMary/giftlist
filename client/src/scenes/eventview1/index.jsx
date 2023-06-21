@@ -127,7 +127,7 @@ function EventView1() {
                                 border: '1px solid #E11299',
                                 textTransform: 'inherit',
                                 '&:hover': {
-                                    color: '#E11299'
+                                    color: '#F11299'
                                 }
                             }}
                         >
