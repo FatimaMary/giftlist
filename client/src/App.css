@@ -47,7 +47,7 @@ body {
 .navbar .links{
   list-style: none;
   display: flex;
-  color: #e63946;
+  color: #E11299;
   cursor: pointer;
 }
 
@@ -57,9 +57,9 @@ body {
   font-weight: 600;
 }
 .navbar .links li:hover{
-    background-color: #0fcbff;
-    border: 2px solid #0fcbff;
-    color: white;
+    background-color: #fff;
+    border: 2px solid #E11299;
+    color: #E11299;
 }
 
 .toggle-icon {
@@ -126,7 +126,7 @@ body {
     margin: 15px 0;
   }
   .navbar .links li:hover{
-    color: #0fcbff;
+    color: #E11299;
 }
 }
 
@@ -137,9 +137,9 @@ body {
 }
 
 .signup {
-  border: 2px solid rgb(25, 30, 34);
+  border: 2px solid #E11299;
   padding: 10px 25px;
-  background-color: rgb(25, 30, 34);
+  background-color: #E11299;
   color: white;
   letter-spacing: 1px;
   border-radius: 10px;
@@ -148,7 +148,7 @@ body {
 
 .login{
   padding: 10px 25px;
-  color: rgb(62, 211, 248);
+  color: #E11299;
   letter-spacing: 1px;
   border-radius: 10px;
 }
