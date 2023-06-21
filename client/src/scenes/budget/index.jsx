@@ -60,7 +60,7 @@ function Budget() {
   }
 
   return <Box 
-      backgroundColor='#e8ecf1'
+      backgroundColor='#FFEAEA'
       width='100vw'
       p='50px 30px 33px 30px'
     >
@@ -75,13 +75,13 @@ function Budget() {
       <ArrowCircleLeftOutlinedIcon 
         sx={{
           fontSize: '1.2rem',
-          color: '#0f7b9b'
+          color: '#F11299'
         }}
       />
       <Button
         sx={{
           textTransform: 'inherit',
-          color: '#0f7b9b',
+          color: '#F11299',
           fontWeight: 'bold',
           fontSize: '1rem'
         }}
@@ -121,6 +121,7 @@ function Budget() {
             variant='h4'
             sx={{
               margin:'0 0 20px',
+              color: '#F11299'
             }}
           >
             Gift exchange rules
@@ -138,7 +139,7 @@ function Budget() {
               fontWeight: 600,
               fontSize: '13px',
               lineHeight: '18px',
-              color: '#101a34',
+              color: '#F11299',
               wordBreak: 'break-all',
             }}
           >
@@ -177,7 +178,7 @@ function Budget() {
               fontWeight: 600,
               fontSize: '13px',
               lineHeight: '18px',
-              color: '#101a34',
+              color: '#F11299',
               wordBreak: 'break-all',
             }}
           >
@@ -201,18 +202,18 @@ function Budget() {
             variant='contained'
             onClick={handleSubmit}
             sx={{ 
-              border: '2px solid skyblue',
+              border: '2px solid #F11299',
               borderRadius: '10px',
               width: '100%',
               fontSize: '1rem',
               color: 'white',
-              background: 'skyblue',
+              background: '#F11299',
               textTransform: 'inherit',
               fontWeight:'bold',
               '&:hover': {
-                backgroundColor: '#D8D8D8',
-                color: 'black',
-                border: '1px solid skyblue'
+                backgroundColor: '#fff',
+                color: '#F11299',
+                border: '1px solid #F11299'
               },
               marginTop: '10px'
             }}

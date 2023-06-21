@@ -47,7 +47,7 @@ function GiftExchange() {
         fontWeight: 600,
         fontSize: '32px',
         lineHeight: '34px',
-        color: '#101a34',
+        color: '#F11299',
         marginBottom: '16px',
         wordBreak: 'break-word',
       }}
