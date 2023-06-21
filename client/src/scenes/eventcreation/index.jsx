@@ -84,9 +84,10 @@ function EventCreation() {
   }
 
   return <Box 
-      backgroundColor='#e8ecf1'
+      backgroundColor='#FFEAEA'
       width='100vw'
       p='50px 30px 33px 30px'
+      color='#F11299'
   >
     <Box 
       sx={{
@@ -99,13 +100,13 @@ function EventCreation() {
       <ArrowCircleLeftOutlinedIcon 
         sx={{
           fontSize: '1.2rem',
-          color: '#0f7b9b'
+          color: '#F11299'
         }}
       />
       <Button
         sx={{
           textTransform: 'inherit',
-          color: '#0f7b9b',
+          color: '#F11299',
           fontWeight: 'bold',
           fontSize: '1rem'
         }}
@@ -115,7 +116,7 @@ function EventCreation() {
       sx={{
         minHeight: '80vh',
         background: '#fff',
-        border: '1px solid #e8ecf1',
+        border: '1px solid #FFEAEA',
         borderRadius: '10px'
       }}
     >
@@ -162,7 +163,7 @@ function EventCreation() {
             fontWeight: 600,
             fontSize: '13px',
             lineHeight: '18px',
-            color: '#101a34',
+            color: '#F11299',
             // marginBottom: '5px',
             wordBreak: 'break-all',
           }}
@@ -179,7 +180,7 @@ function EventCreation() {
               padding: '8px 15px',
               fontWeight: 400,
               fontSize:"1rem",
-              color: '#101a34',
+              color: '#F11299',
               lineHeight: '27px',
               '& .MuiOutlinedInput-root': {
                 height: '44px',
@@ -212,7 +213,7 @@ function EventCreation() {
               fontWeight: 600,
               fontSize: '13px',
               lineHeight: '18px',
-              color: '#101a34',
+              color: '#F11299',
               // marginBottom: '5px',
               wordBreak: 'break-all',
             }}
@@ -229,7 +230,7 @@ function EventCreation() {
               padding: '8px 15px',
               fontWeight: 400,
               fontSize:"1rem",
-              color: '#101a34',
+              color: '#F11299',
               lineHeight: '27px',
               '& .MuiOutlinedInput-root': {
                 height: '44px',
@@ -250,7 +251,7 @@ function EventCreation() {
               fontWeight: 600,
               fontSize: '13px',
               lineHeight: '18px',
-              color: '#101a34',
+              color: '#F11299',
               // marginBottom: '5px',
               wordBreak: 'break-all',
             }}
@@ -265,7 +266,7 @@ function EventCreation() {
               padding: '8px 15px',
               fontWeight: 400,
               fontSize:"1rem",
-              color: '#101a34',
+              color: '#F11299',
               lineHeight: '27px',
               '& .MuiOutlinedInput-root': {
                 height: '44px',
@@ -288,6 +289,7 @@ function EventCreation() {
               color: '#5e6577',
               marginBottom: 0,
               marginTop: '6px',
+              color: '#F11299'
             }}
           >Names will be drawn the day after the RSVP deadline</Typography>
         </Box>
@@ -303,7 +305,7 @@ function EventCreation() {
               fontWeight: 600,
               fontSize:'13px',
               lineHeight: '18px',
-              color: '#101a34',
+              color: '#F11299',
               marginBottom:'5px',
               wordBreak: 'break-all'
             }}
@@ -366,18 +368,18 @@ function EventCreation() {
           onClick={moveToNextStep}
           variant='contained'
           sx={{ 
-            border: '2px solid skyblue',
+            border: '2px solid #F11299',
             borderRadius: '10px',
             width: '100%',
             fontSize: '1rem',
-            color: 'white',
-            background: 'skyblue',
+            color: '#FFF',
+            background: '#F11299',
             textTransform: 'inherit',
             fontWeight:'bold',
             '&:hover': {
-              backgroundColor: '#D8D8D8',
-              color: 'black',
-              border: '1px solid skyblue'
+              backgroundColor: '#fff',
+              color: '#F11299',
+              border: '1px solid #F11299'
             },
             marginTop: '10px'
           }}
