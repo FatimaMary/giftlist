@@ -85,7 +85,7 @@ return (
         <Navbar />
         <Box 
             sx={{
-                backgroundColor: '#99DBF5',
+                backgroundColor: '#FFEAEA',
                 height: '85vh',
                 // width: '100vw',
                 display: 'flex', 
@@ -102,7 +102,7 @@ return (
             // alignItems: 'center',
             backgroundColor: 'white',
             // height: '600px',
-            border: '1px solid grey',
+            border: '1px solid #FFEAEA',
             width: '500px',
             borderRadius: '10px',
         }}
@@ -195,18 +195,18 @@ return (
                         <Button 
                             variant='contained'
                             sx={{ 
-                                border: '2px solid skyblue',
+                                border: '2px solid #E11299',
                                 borderRadius: '20px',
                                 width: '450px',
                                 fontSize: '1rem',
                                 color: 'white',
-                                background: 'skyblue',
+                                background: '#E11299',
                                 textTransform: 'inherit',
                                 fontWeight:'bold',
                                 '&:hover': {
-                                    backgroundColor: '#D8D8D8',
-                                    color: 'black',
-                                    border: '1px solid skyblue'
+                                    backgroundColor: '#FFF',
+                                    color: '#E11299',
+                                    border: '1px solid #E11299'
                                   },
                             }}
                         type="submit"
