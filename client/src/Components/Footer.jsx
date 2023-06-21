@@ -27,7 +27,8 @@ function Footer() {
         }} 
       />
       <Typography sx={{
-          fontSize: '13px'
+          fontSize: '13px',
+          color: '#F11299',
         }} 
       >
         GiftList. All Rights Reserved
@@ -37,7 +38,7 @@ function Footer() {
       <Button 
         sx={{
           textTransform: 'inherit',
-          color:'black',
+           color: '#F11299',
           '&:hover': {
             cursor: 'pointer',
             color: 'skyblue',
@@ -50,7 +51,7 @@ function Footer() {
       <Button
         sx={{
           textTransform: 'inherit',
-          color:'black',
+           color: '#F11299',
           '&:hover': {
             cursor: 'pointer',
             color: 'skyblue',
@@ -63,7 +64,7 @@ function Footer() {
       <Button
         sx={{
           textTransform: 'inherit',
-          color:'black',
+           color: '#F11299',
           '&:hover': {
             cursor: 'pointer',
             color: 'skyblue',
@@ -76,7 +77,7 @@ function Footer() {
       <Button 
         sx={{
           textTransform: 'inherit',
-          color:'black',
+           color: '#F11299',
           '&:hover': {
             cursor: 'pointer',
             color: 'skyblue',
