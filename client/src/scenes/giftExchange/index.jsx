@@ -36,7 +36,7 @@ function GiftExchange() {
       }
     
   return <Box 
-      backgroundColor='#e8ecf1'
+      backgroundColor='#FFEAEA'
       width='100vw'
       p='50px 30px 33px 30px'
     >
@@ -96,7 +96,7 @@ function GiftExchange() {
           gap:'30px',
           border: '1px solid lightgrey',
           '&:hover': {
-            backgroundColor: 'skyblue',
+            backgroundColor: '#E11299',
             color: 'white'
           },
           borderRadius: '10px',
@@ -153,7 +153,7 @@ function GiftExchange() {
                     flexDirection: 'column',
                     padding: '20px 30px',
                     '&:hover': {
-                        backgroundColor: 'skyblue',
+                        backgroundColor: '#E11299',
                         color: 'white'
                       },
                   }}
