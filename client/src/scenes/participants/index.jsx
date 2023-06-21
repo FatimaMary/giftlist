@@ -223,7 +223,7 @@ function Participants() {
               sx={{
                 width: '26px',
                 height: '26px',
-                background: '#50bcd9',
+                background: '#E11299',
                 fontSize: '11px',
                 marginBottom: 0,
                 lineHeight: '18px',
@@ -266,19 +266,19 @@ function Participants() {
           <Button
             sx={{
               margin: '0 5px',
-              background: '#50bcd9',
+              background: '#E11299',
               fontSize: '15px',
               lineHeight: '22px',
               color: '#fff',
               padding: '14px 30px',
               display: 'inline-block',
-              border: '1px solid #50bcd9',
+              border: '1px solid #E11299',
               fontWeight: 600,
               textTransform: 'inherit',
               '&: hover' : {
                 cursor: 'pointer',
                 background: '#fff',
-                color: '#50bcd9',
+                color: '#E11299',
               },
               borderRadius: '7px'
             }}
@@ -293,14 +293,21 @@ function Participants() {
               background: '#fafbfd',
               borderRadius: '7px',
               fontWeight: '7px',
-              color: '#0f7b9b',
+              color: '#9A208C',
               display: 'inline-block',
               border: '1px solid #cad3dd',
               '&:hover': {
                 cursor: 'pointer',
               },
             }}
-          ><img src={Edit} />Edit RSVP</Button>
+          ><img src={Edit}
+            style={{ 
+              width: '17px', 
+              height: '17px', 
+              marginRight: '5px',
+              filter: 'hue-rotate(120deg)',
+            }}
+          />Edit RSVP</Button>
         </Box> 
       </Box> 
       ))} </>}
