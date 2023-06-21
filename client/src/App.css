@@ -65,6 +65,7 @@ body {
 .toggle-icon {
   font-size: 1.5rem;
   font-style: italic;
+  color: #F11299;
 }
 
 @media(max-width: 768px){

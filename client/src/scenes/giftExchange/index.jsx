@@ -39,6 +39,7 @@ function GiftExchange() {
       backgroundColor='#FFEAEA'
       width='100vw'
       p='50px 30px 33px 30px'
+      height='100%'
     >
     <Typography 
       variant='h2'

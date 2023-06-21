@@ -150,7 +150,7 @@ function Signup() {
             width: '500px',
             borderRadius: '10px',
         }}
-        color='black'
+        color='#E11299'
         m='1.5rem 2.5rem'
         >
             <Box mt={1.5} ml={2.5}>
