@@ -19,6 +19,7 @@ function Participants() {
    const [acceptence, setAcceptence] = useState([]);
    const [participantsList, setParticipantsList] = useState([]);
    const [participantsData, setParticipantsData] = useState([]);
+   const [unparticipantsData, setUnparticipantsData] = useState([]);
    const [activeTab, setActiveTab] = useState(0);
 
    useEffect(() => {
@@ -61,6 +62,20 @@ function Participants() {
     fetchParticipantData();
   }, [participantsList]);
 
+  useEffect(() => {
+    const fetchUnParticipantsData = async() => {
+      const unparticipantDataPromises = participantsList
+        .filter((unparticipant) => unparticipant.participantsAcceptence === false)
+        .map(async (unparticipant) => {
+          const unparticipantDataResponse = await axios.get(`http://localhost:2309/user/${unparticipant.participantsEmail}`);
+          return unparticipantDataResponse.data;
+        });
+        const unparticipantData = await Promise.all(unparticipantDataPromises);
+        setUnparticipantsData(unparticipantData);
+    };
+    fetchUnParticipantsData();
+  }, [participantsList]);
+  
   return <Box sx={{
     padding: '15px 0',
     display: 'flex',
@@ -311,8 +326,131 @@ function Participants() {
         </Box> 
       </Box> 
       ))} </>}
-      {activeTab === 1 && <>Awaiting Responses</>}
-      {activeTab === 2 && <>Not participating</>}
+      {activeTab === 2 && <>
+      <Typography 
+        variant='h2'
+        sx={{
+          fontSize: '20px',
+          lineHeight: '24px',
+          marginBottom: '16px',
+          fontWeight: 600,
+          color: '#101a34',
+        }}
+      >
+        Not Partcipating
+      </Typography>
+       {unparticipantsData.map((unparticipant, index) => (
+      <Box 
+        key={index}
+        sx={{
+          borderBottom: '1px solid #e8ecf1',
+          paddingBottom: '12px',
+          marginBottom: '12px',
+          display: 'flex',
+          flexWrap: 'wrap',
+          alignItems: 'center',
+          justifyContent: 'space-between'
+        }}
+      >
+        <Box
+          sx={{
+            display: 'flex'
+          }}
+        >
+          <Box>
+            <Avatar 
+              {...stringAvatar(`${unparticipant.firstName}`)} 
+              sx={{
+                width: '26px',
+                height: '26px',
+                background: '#E11299',
+                fontSize: '11px',
+                marginBottom: 0,
+                lineHeight: '18px',
+                display: 'flex',
+                alignItems: 'center',
+                justifyContent: 'center'
+               }}
+            />
+          </Box>
+          <Box
+            sx={{
+              paddingLeft: '8px',
+              flexBasis: 'calc(100% - 26px)',
+              maxWidth: 'calc(100% - 26px)',
+            }}
+          >
+            <Typography 
+              variant='h4'
+              sx={{
+                fontWeight: 600,
+                fontSize: '13px',
+                lineHeight: '18px',
+                color: '#101a34',
+                marginBottom: 0
+              }}
+            >
+             {unparticipant.firstName + ' ' + unparticipant.secondName}
+            </Typography>
+            <Typography
+              variant='body1'
+              sx={{
+                fontSize: '11px',
+                lineHeight: '18px',
+                color: '#818694'
+              }}
+            >{unparticipant.email}</Typography>
+          </Box>
+        </Box>
+        <Box>
+          {/* <Button
+            sx={{
+              margin: '0 5px',
+              background: '#E11299',
+              fontSize: '15px',
+              lineHeight: '22px',
+              color: '#fff',
+              padding: '14px 30px',
+              display: 'inline-block',
+              border: '1px solid #E11299',
+              fontWeight: 600,
+              textTransform: 'inherit',
+              '&: hover' : {
+                cursor: 'pointer',
+                background: '#fff',
+                color: '#E11299',
+              },
+              borderRadius: '7px'
+            }}
+          >
+            View Wishes
+          </Button> */}
+          <Button
+            sx={{
+              padding: '14px 20px',
+              fontSize: '13px',
+              lineHeight: '18px',
+              background: '#fafbfd',
+              borderRadius: '7px',
+              fontWeight: '7px',
+              color: '#9A208C',
+              display: 'inline-block',
+              border: '1px solid #cad3dd',
+              '&:hover': {
+                cursor: 'pointer',
+              },
+            }}
+          ><img src={Edit}
+            style={{ 
+              width: '17px', 
+              height: '17px', 
+              marginRight: '5px',
+              filter: 'hue-rotate(120deg)',
+            }}
+          />Edit RSVP</Button>
+        </Box> 
+      </Box> 
+      ))} </>}
     </Box>
   </Box>
 }
