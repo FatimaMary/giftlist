@@ -16,6 +16,8 @@ import Participants from '../participants';
 function EventView1() {
     const [eventDetails, setEventDetails] = useState([]);
     const [name, setName] = useState([]);
+    const [yes, setYes] = useState();
+    const [no, setNo] = useState();
     const [show, setShow] = useState(false);
     const [activeTab, setActiveTab] = useState(0);
     const [searchParam] = useSearchParams();
@@ -45,6 +47,16 @@ function EventView1() {
 
     const handleClick = () => {
         setShow(true);
+        setYes("yes");
+        axios.post('http://localhost:2309/player/post', {
+            participantsAcceptence: yes,
+            eventId: eventId
+        })
+        .then((response) => {
+            console.log("participants response: ", response);
+            console.log("participants response data: ", response.data);
+            navigate(`/login1?eventId=${eventId}&participantsId=${response.data.participantsId}`);
+        })
     }
 
     const handleLogin = () => {
@@ -475,7 +487,8 @@ function EventView1() {
                 >
                     <Button
                         variant='contained'
-                        // onClick={handleClick}
+                        value={no}
+                        onClick={() => setNo("no")}
                         sx={{ 
                             border: '2px solid #cad3dd',
                             borderRadius: '7px',
@@ -498,6 +511,7 @@ function EventView1() {
                     >No</Button>
                     <Button
                         variant='contained'
+                        value={yes}
                         onClick={handleClick}
                         sx={{ 
                             border: '2px solid #E11299',
