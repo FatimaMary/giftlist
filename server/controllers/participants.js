@@ -1,12 +1,12 @@
 import Participants from "../models/Participants.js";
 
 export const postParticipant = (req, res) => {
-    const participantsEmail = req.body.participantsEmail;
+    // const participantsEmail = req.body.participantsEmail;
     const participantsAcceptence = req.body.participantsAcceptence;
     const eventId = req.body.eventId;
 
     const newParticipant = new Participants({
-        participantsEmail,
+        // participantsEmail,
         participantsAcceptence,
         eventId
     });
@@ -42,3 +42,16 @@ export const getParticipantsByEventId = (req, res) => {
         })
         .catch((err) => res.status(400).json({ message: err.message }));
 };
+
+export const updateParticipant = (req, res) => {
+    const participantsId = req.params.participantsId;
+    Participants.findOne({ participantsId: participantsId })
+        .then((participant) => {
+            participant.participantsEmail = req.body.email;
+           participant
+            .save()
+            .then(() => res.json("participants details Updated"))
+            .catch((err) => res.status(400).json("Error: " + err));
+    })
+    .catch((err) => res.status(400).json("Error: " + err));
+}
