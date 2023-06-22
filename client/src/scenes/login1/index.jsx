@@ -7,10 +7,11 @@ import {
     createTheme, 
     ThemeProvider  
 } from '@mui/material';
-import { Link, useNavigate } from 'react-router-dom';
+import { Link, useNavigate, useSearchParams } from 'react-router-dom';
 import { signInWithEmailAndPassword } from "firebase/auth";
 import { auth } from '../../firebase';
 import Navbar from '../../Components/Navbar';
+import axios from 'axios';
 
 function Login1() {
   const navigate = useNavigate();
@@ -20,6 +21,9 @@ function Login1() {
   })
   const [errors, setErrors] = useState({});
   const [isLoggedIn, setIsLoggedIn] = useState(false);
+  const [searchParam] = useSearchParams();
+  const eventId = searchParam.get("eventId");
+  const participantsId = searchParam.get("participantsId");
 
   const handleChange = (e) => {
       setLoginData({
@@ -71,8 +75,15 @@ function Login1() {
           .then(async(res) => {
               console.log(res);
               // navigate(`/groupcreate?userId=${res.user.uid}`)
-              navigate(`/giftexchange?userId=${res.user.uid}`)
+            //   navigate(`/giftexchange?userId=${res.user.uid}`)
               setIsLoggedIn(true);
+              axios.put(`http://localhost:2309/player/${participantsId}`, {
+                participantsEmail: loginData.email
+              })
+              .then((response) => {
+                console.log("participants update response: ", response.data);
+                navigate(`/eventview?eventId=${eventId}&userId=${res.user.uid}`)
+              })
           })
       console.log("button clicked");
         }
