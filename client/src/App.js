@@ -16,6 +16,7 @@ import EventView1 from './scenes/eventview1';
 import Participants from './scenes/participants';
 import Invite from './scenes/success/invite';
 import EditEvent from './scenes/eventview/editEvent';
+import Login1 from './scenes/login1';
 
 
 function App() {
@@ -27,6 +28,7 @@ function App() {
           <Route path='/signup' element={<Signup/>} />
           <Route path='/signup1' element={<Signup1/>} />
           <Route path='/login' element={<Login/>} />
+          <Route path='/login1' element={<Login1/>} />
           <Route element={<Layout/>} >
             <Route path='eventcreate' element={<EventCreation/>} />
             <Route path='budget' element={<Budget/>} />
