@@ -12,7 +12,7 @@ import { signInWithEmailAndPassword } from "firebase/auth";
 import { auth } from '../../firebase';
 import Navbar from '../../Components/Navbar';
 
-function Login() {
+function Login1() {
   const navigate = useNavigate();
   const [loginData, setLoginData] = useState({
       email: "",
@@ -257,4 +257,4 @@ return (
 )
 }
 
-export default Login
+export default Login1

@@ -147,10 +147,10 @@ function GiftExchange() {
                 <Box 
                   // padding='10px 15px'
                   sx={{
-                    borderTop: '1px solid #e8ecf1',
+                    borderTop: '1px solid #FFEAEA',
                     height: '30%',
                     width: '220px',
-                    background: '#e8ecf1',
+                    background: '#FFEAEA',
                     display: 'flex',
                     flexDirection: 'column',
                     padding: '20px 30px',

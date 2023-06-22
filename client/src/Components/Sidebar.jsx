@@ -63,9 +63,10 @@ const navItems = [
     },
     {
         text: "Logout",
-        icon: <LogoutOutlinedIcon/>
+        icon: <LogoutOutlinedIcon/>,
     }
 ]
+
 
 const Sidebar = ({
     drawerWidth,
@@ -79,7 +80,8 @@ const Sidebar = ({
 
     useEffect(() => {
         setActive(pathname.substring(1));
-    }, [pathname])
+    }, [pathname]);
+
     return (
         <Box component="nav">
             {isSidebarOpen && (
