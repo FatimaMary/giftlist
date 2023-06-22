@@ -328,9 +328,9 @@ function EventView() {
                     '&:hover': {
                         cursor: 'pointer'
                     },
-                    '&.active' : {
-                        borderBottom: '3px solid skyblue'
-                    }
+                    // '&.active' : {
+                    //     borderBottom: '3px solid skyblue'
+                    // }
                 }}
                 onClick={() => handleTabActive(1)}
             >
