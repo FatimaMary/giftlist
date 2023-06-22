@@ -48,7 +48,7 @@ function EventView1() {
     }
 
     const handleLogin = () => {
-        navigate(`/login?eventId=${eventId}`);
+        navigate(`/login1?eventId=${eventId}`);
     }
 
     const handleSignup = () => {
