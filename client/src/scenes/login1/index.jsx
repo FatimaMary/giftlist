@@ -82,6 +82,7 @@ function Login1() {
               })
               .then((response) => {
                 console.log("participants update response: ", response.data);
+                // navigate(`/giftexchange?eventId=${eventId}&userId=${res.user.uid}`)
                 navigate(`/eventview?eventId=${eventId}&userId=${res.user.uid}`)
               })
           })
