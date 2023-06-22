@@ -9,7 +9,6 @@ const participantsSchema = new mongoose.Schema({
     },
     participantsEmail : {
         type: String,
-        required: true,
     },
     participantsAcceptence: {
         type: Boolean,
