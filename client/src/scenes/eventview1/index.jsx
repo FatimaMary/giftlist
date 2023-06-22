@@ -49,7 +49,7 @@ function EventView1() {
         setShow(true);
         setYes("yes");
         axios.post('http://localhost:2309/player/post', {
-            participantsAcceptence: yes,
+            participantsAcceptence: "yes",
             eventId: eventId
         })
         .then((response) => {
