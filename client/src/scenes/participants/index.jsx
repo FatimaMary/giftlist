@@ -238,7 +238,7 @@ function Participants() {
               sx={{
                 width: '26px',
                 height: '26px',
-                background: '#E11299',
+                background: '#C21010',
                 fontSize: '11px',
                 marginBottom: 0,
                 lineHeight: '18px',
@@ -281,19 +281,19 @@ function Participants() {
           <Button
             sx={{
               margin: '0 5px',
-              background: '#E11299',
-              fontSize: '15px',
+              background: '#C21010',
+              fontSize: '13px',
               lineHeight: '22px',
               color: '#fff',
-              padding: '14px 30px',
+              padding: '14px 15px',
               display: 'inline-block',
-              border: '1px solid #E11299',
+              border: '1px solid #C21010',
               fontWeight: 600,
               textTransform: 'inherit',
               '&: hover' : {
                 cursor: 'pointer',
                 background: '#fff',
-                color: '#E11299',
+                color: '#C21010',
               },
               borderRadius: '7px'
             }}
@@ -302,25 +302,26 @@ function Participants() {
           </Button>
           <Button
             sx={{
-              padding: '14px 20px',
+              padding: '14px 15px',
               fontSize: '13px',
               lineHeight: '18px',
               background: '#fafbfd',
               borderRadius: '7px',
               fontWeight: '7px',
-              color: '#9A208C',
+              color: '#C21010',
               display: 'inline-block',
-              border: '1px solid #cad3dd',
+              border: '1px solid #C21010',
               '&:hover': {
                 cursor: 'pointer',
               },
+              textTransform: 'inherit'
             }}
           ><img src={Edit}
             style={{ 
               width: '17px', 
               height: '17px', 
               marginRight: '5px',
-              filter: 'hue-rotate(120deg)',
+              filter: 'hue-rotate(180deg)',
             }}
           />Edit RSVP</Button>
         </Box> 
@@ -363,7 +364,7 @@ function Participants() {
               sx={{
                 width: '26px',
                 height: '26px',
-                background: '#E11299',
+                background: '#C21010',
                 fontSize: '11px',
                 marginBottom: 0,
                 lineHeight: '18px',
@@ -406,19 +407,19 @@ function Participants() {
           {/* <Button
             sx={{
               margin: '0 5px',
-              background: '#E11299',
+              background: '#C21010',
               fontSize: '15px',
               lineHeight: '22px',
               color: '#fff',
               padding: '14px 30px',
               display: 'inline-block',
-              border: '1px solid #E11299',
+              border: '1px solid #C21010',
               fontWeight: 600,
               textTransform: 'inherit',
               '&: hover' : {
                 cursor: 'pointer',
                 background: '#fff',
-                color: '#E11299',
+                color: '#C21010',
               },
               borderRadius: '7px'
             }}
