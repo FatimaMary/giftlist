@@ -310,6 +310,7 @@ function Participants() {
               fontWeight: '7px',
               color: '#C21010',
               display: 'inline-block',
+              // justifyContent: 'center',
               border: '1px solid #C21010',
               '&:hover': {
                 cursor: 'pointer',
@@ -428,25 +429,26 @@ function Participants() {
           </Button> */}
           <Button
             sx={{
-              padding: '14px 20px',
+              padding: '14px 15px',
               fontSize: '13px',
               lineHeight: '18px',
               background: '#fafbfd',
               borderRadius: '7px',
               fontWeight: '7px',
-              color: '#9A208C',
-              display: 'inline-block',
-              border: '1px solid #cad3dd',
+              color: '#C21010',
+              display: 'flex',
+              border: '1px solid #C21010',
               '&:hover': {
                 cursor: 'pointer',
               },
+              textTransform: 'inherit'
             }}
           ><img src={Edit}
             style={{ 
               width: '17px', 
               height: '17px', 
               marginRight: '5px',
-              filter: 'hue-rotate(120deg)',
+              filter: 'hue-rotate(180deg)',
             }}
           />Edit RSVP</Button>
         </Box> 
