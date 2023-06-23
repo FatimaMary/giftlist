@@ -65,7 +65,7 @@ function Signup1() {
       <Navbar />
       <Box
         sx={{
-          backgroundColor: '#99DBF5',
+          backgroundColor: '#CFE8A9',
           height: '85vh',
           // width: '100vw',
           display: 'flex', 
@@ -76,6 +76,7 @@ function Signup1() {
       >
         <Box 
           m='1.5rem 2.5rem'
+          color='#C21010'
           sx={{
             display: 'flex', 
             flexDirection: 'column' ,
@@ -94,7 +95,7 @@ function Signup1() {
                 justifyContent: 'space-around',
               }}
           > */}
-            <Box m='1.5rem'>
+            <Box m='1.5rem' >
               <Typography>First Name</Typography>
               <ThemeProvider theme={theme}>
                 <TextField 
@@ -150,14 +151,19 @@ function Signup1() {
               variant='contained'
               onClick={handleSubmit}
               sx={{ 
-                border: '2px solid skyblue',
+                border: '2px solid #C21010',
                 borderRadius: '20px',
                 width: '250px',
                 fontSize: '1rem',
                 color: 'white',
-                background: 'skyblue',
+                background: '#C21010',
                 textTransform: 'inherit',
                 fontWeight:'bold',
+                '&:hover': {
+                  backgroundColor: '#fff',
+                  color: '#C21010',
+                  border: '1px solid #C21010'
+                },
             }}
             >
               Submit
@@ -172,8 +178,8 @@ function Signup1() {
                 textTransform: 'inherit',
                 '&:hover': {
                   backgroundColor: '#D8D8D8',
-                  color: 'black',
-                  border: '1px solid skyblue'
+                  color:'#C21010',
+                  border: '1px solid #C21010'
                 },
               }}
             >
