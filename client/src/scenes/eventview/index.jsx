@@ -123,9 +123,9 @@ function EventView() {
                                 borderRadius: '5px',
                                 display: 'flex',
                                 alignItems: 'center',
-                                background: '#E11299',
+                                background: '##C21010',
                                 color: '#fff',
-                                border: '1px solid #E11299',
+                                border: '1px solid ##C21010',
                                 textTransform: 'inherit',
                                 '&:hover': {
                                     color: '#F11299'
@@ -231,7 +231,7 @@ function EventView() {
                         sx={{
                             width: '40px',
                             height: '40px',
-                            background: '#E11299',
+                            background: '##C21010',
                             fontSize: '13px',
                         }}
                     />
