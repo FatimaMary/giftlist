@@ -87,7 +87,7 @@ return (
         <Navbar />
         <Box 
             sx={{
-                backgroundColor: '#FFEAEA',
+                backgroundColor: '#CFE8A9',
                 height: '85vh',
                 // width: '100vw',
                 display: 'flex', 
@@ -104,7 +104,7 @@ return (
             // alignItems: 'center',
             backgroundColor: 'white',
             // height: '600px',
-            border: '1px solid #FFEAEA',
+            border: '1px solid #CFE8A9',
             width: '500px',
             borderRadius: '10px',
         }}
@@ -116,6 +116,9 @@ return (
                     variant='h5'
                     fontWeight='bold'
                     mb='15px'
+                    sx={{
+                        color: '#C21010',
+                    }}
                 >
                     Login to GiftList
                 </Typography>
@@ -133,6 +136,9 @@ return (
                             ml='1rem'
                             mt= '1.5rem'
                             mb='0'
+                            sx={{
+                                color: '#C21010',
+                            }}
                         >
                             Email
                         </Typography>
@@ -162,6 +168,9 @@ return (
                             ml='1rem'
                             mt= '1.5rem'
                             mb='0'
+                            sx={{
+                                color: '#C21010',
+                            }}
                         >
                             Password
                         </Typography>
@@ -197,18 +206,18 @@ return (
                         <Button 
                             variant='contained'
                             sx={{ 
-                                border: '2px solid #E11299',
+                                border: '2px solid #C21010',
                                 borderRadius: '20px',
                                 width: '450px',
                                 fontSize: '1rem',
                                 color: 'white',
-                                background: '#E11299',
+                                background: '#C21010',
                                 textTransform: 'inherit',
                                 fontWeight:'bold',
                                 '&:hover': {
                                     backgroundColor: '#FFF',
-                                    color: '#E11299',
-                                    border: '1px solid #E11299'
+                                    color: '#C21010',
+                                    border: '1px solid #C21010'
                                   },
                             }}
                         type="submit"
