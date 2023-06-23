@@ -55,12 +55,12 @@ function CopyInvitation({ firstName, rsvpDate, eventName, eventId, setInvitePage
                 onClick={copyToClipboard}
                 variant='outlined'
                 sx={{ 
-                    border: '1px solid #F11299', 
+                    border: '1px solid #C21010', 
                     width: '200px',
                     borderRadius: '10px',
                     textTransform: 'inherit',
                     marginBottom: '5px',
-                    color: '#F11299',
+                    color: '#C21010',
                     background: '#fff',
                     fontWeight: 'bold',
                     marginTop: '5px'
