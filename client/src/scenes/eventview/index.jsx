@@ -155,7 +155,11 @@ function EventView() {
                                 background: '#fafbfd',
                                 color: '#101a34',
                                 border: '1px solid #cad3dd',
-                                textTransform: 'inherit'
+                                textTransform: 'inherit',
+                                '&:hover': {
+                                    color: '#C21010', 
+                                    border: '1px solid #C21010'
+                                }
                             }}
                             onClick={() => setEditPage(true)}
                         >
@@ -573,7 +577,7 @@ function EventView() {
                                 marginLeft: 'auto',
                                 whiteSpace: 'nowrap',
                                 '&:hover': {
-                                    cursor: 'pointer'
+                                    cursor: 'pointer',
                                 },
                                 textTransform: 'inherit'
                             }}
