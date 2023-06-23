@@ -47,7 +47,7 @@ body {
 .navbar .links{
   list-style: none;
   display: flex;
-  color: #E11299;
+  color: #C21010;
   cursor: pointer;
 }
 
@@ -58,8 +58,8 @@ body {
 }
 .navbar .links li:hover{
     background-color: #fff;
-    border: 2px solid #E11299;
-    color: #E11299;
+    border: 2px solid #C21010;
+    color: #C21010;
 }
 
 .toggle-icon {
@@ -127,7 +127,7 @@ body {
     margin: 15px 0;
   }
   .navbar .links li:hover{
-    color: #E11299;
+    color: #C21010;
 }
 }
 
@@ -138,9 +138,9 @@ body {
 }
 
 .signup {
-  border: 2px solid #E11299;
+  border: 2px solid #C21010;
   padding: 10px 25px;
-  background-color: #E11299;
+  background-color: #C21010;
   color: white;
   letter-spacing: 1px;
   border-radius: 10px;
@@ -149,7 +149,7 @@ body {
 
 .login{
   padding: 10px 25px;
-  color: #E11299;
+  color: #C21010;
   letter-spacing: 1px;
   border-radius: 10px;
 }
@@ -160,7 +160,7 @@ body {
 }
 
 .tab.active {
-  border-bottom: 3px solid #E11299;
+  border-bottom: 3px solid #C21010;
 }
 
 .tab.click {
