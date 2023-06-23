@@ -84,10 +84,10 @@ function EventCreation() {
   }
 
   return <Box 
-      backgroundColor='#FFEAEA'
+      backgroundColor='#FFFDE3'
       width='100vw'
       p='50px 30px 33px 30px'
-      color='#F11299'
+      color='#C21010'
   >
     <Box 
       sx={{
@@ -100,13 +100,13 @@ function EventCreation() {
       <ArrowCircleLeftOutlinedIcon 
         sx={{
           fontSize: '1.2rem',
-          color: '#F11299'
+          color: '#C21010'
         }}
       />
       <Button
         sx={{
           textTransform: 'inherit',
-          color: '#F11299',
+          color: '#C21010',
           fontWeight: 'bold',
           fontSize: '1rem'
         }}
@@ -163,7 +163,7 @@ function EventCreation() {
             fontWeight: 600,
             fontSize: '13px',
             lineHeight: '18px',
-            color: '#F11299',
+            color: '#C21010',
             // marginBottom: '5px',
             wordBreak: 'break-all',
           }}
@@ -180,7 +180,7 @@ function EventCreation() {
               padding: '8px 15px',
               fontWeight: 400,
               fontSize:"1rem",
-              color: '#F11299',
+              color: '#C21010',
               lineHeight: '27px',
               '& .MuiOutlinedInput-root': {
                 height: '44px',
@@ -213,7 +213,7 @@ function EventCreation() {
               fontWeight: 600,
               fontSize: '13px',
               lineHeight: '18px',
-              color: '#F11299',
+              color: '#C21010',
               // marginBottom: '5px',
               wordBreak: 'break-all',
             }}
@@ -230,7 +230,7 @@ function EventCreation() {
               padding: '8px 15px',
               fontWeight: 400,
               fontSize:"1rem",
-              color: '#F11299',
+              color: '#C21010',
               lineHeight: '27px',
               '& .MuiOutlinedInput-root': {
                 height: '44px',
@@ -251,7 +251,7 @@ function EventCreation() {
               fontWeight: 600,
               fontSize: '13px',
               lineHeight: '18px',
-              color: '#F11299',
+              color: '#C21010',
               // marginBottom: '5px',
               wordBreak: 'break-all',
             }}
@@ -266,7 +266,7 @@ function EventCreation() {
               padding: '8px 15px',
               fontWeight: 400,
               fontSize:"1rem",
-              color: '#F11299',
+              color: '#C21010',
               lineHeight: '27px',
               '& .MuiOutlinedInput-root': {
                 height: '44px',
@@ -289,7 +289,7 @@ function EventCreation() {
               color: '#5e6577',
               marginBottom: 0,
               marginTop: '6px',
-              color: '#F11299'
+              color: '#C21010'
             }}
           >Names will be drawn the day after the RSVP deadline</Typography>
         </Box>
@@ -305,7 +305,7 @@ function EventCreation() {
               fontWeight: 600,
               fontSize:'13px',
               lineHeight: '18px',
-              color: '#F11299',
+              color: '#C21010',
               marginBottom:'5px',
               wordBreak: 'break-all'
             }}
@@ -368,18 +368,18 @@ function EventCreation() {
           onClick={moveToNextStep}
           variant='contained'
           sx={{ 
-            border: '2px solid #F11299',
+            border: '2px solid #C21010',
             borderRadius: '10px',
             width: '100%',
             fontSize: '1rem',
             color: '#FFF',
-            background: '#F11299',
+            background: '#C21010',
             textTransform: 'inherit',
             fontWeight:'bold',
             '&:hover': {
               backgroundColor: '#fff',
-              color: '#F11299',
-              border: '1px solid #F11299'
+              color: '#C21010',
+              border: '1px solid #C21010'
             },
             marginTop: '10px'
           }}
