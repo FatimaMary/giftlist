@@ -129,7 +129,7 @@ function Signup() {
         <Navbar />
         <Box 
             sx={{
-                backgroundColor: '#FFEAEA',
+                backgroundColor: '#CFE8A9',
                 height: '85vh',
                 // width: '100vw',
                 display: 'flex', 
@@ -146,11 +146,11 @@ function Signup() {
             // alignItems: 'center',
             backgroundColor: 'white',
             // height: '600px',
-            border: '1px solid #FFEAEA',
+            border: '1px solid #CFE8A9',
             width: '500px',
             borderRadius: '10px',
         }}
-        color='#E11299'
+        color='#C21010'
         m='1.5rem 2.5rem'
         >
             <Box mt={1.5} ml={2.5}>
@@ -250,18 +250,18 @@ function Signup() {
                         <Button 
                             variant='contained'
                             sx={{ 
-                                border: '2px solid #E11299',
+                                border: '2px solid #C21010',
                                 borderRadius: '20px',
                                 width: '450px',
                                 fontSize: '1rem',
                                 color: 'white',
-                                background: '#E11299',
+                                background: '#C21010',
                                 textTransform: 'inherit',
                                 fontWeight:'bold',
                                 '&:hover': {
                                     backgroundColor: '#fff',
-                                    color: '#E11299',
-                                    border: '1px solid #E11299'
+                                    color: '#C21010',
+                                    border: '1px solid #C21010'
                                   },
                                   marginTop: '10px'
                             }}
