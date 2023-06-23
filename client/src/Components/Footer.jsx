@@ -24,12 +24,12 @@ function Footer() {
       <CopyrightIcon 
         sx={{
           fontSize: '16px',
-          color: '#F11299'
+          color: '#C21010'
         }} 
       />
       <Typography sx={{
           fontSize: '13px',
-          color: '#F11299',
+          color: '#C21010',
         }} 
       >
         GiftList. All Rights Reserved
@@ -39,7 +39,7 @@ function Footer() {
       <Button 
         sx={{
           textTransform: 'inherit',
-           color: '#F11299',
+           color: '#C21010',
           '&:hover': {
             cursor: 'pointer',
             color: 'skyblue',
@@ -52,7 +52,7 @@ function Footer() {
       <Button
         sx={{
           textTransform: 'inherit',
-           color: '#F11299',
+           color: '#C21010',
           '&:hover': {
             cursor: 'pointer',
             color: 'skyblue',
@@ -65,7 +65,7 @@ function Footer() {
       <Button
         sx={{
           textTransform: 'inherit',
-           color: '#F11299',
+           color: '#C21010',
           '&:hover': {
             cursor: 'pointer',
             color: 'skyblue',
@@ -78,7 +78,7 @@ function Footer() {
       <Button 
         sx={{
           textTransform: 'inherit',
-           color: '#F11299',
+           color: '#C21010',
           '&:hover': {
             cursor: 'pointer',
             color: 'skyblue',
