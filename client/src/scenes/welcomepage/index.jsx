@@ -31,7 +31,7 @@ function WelcomePage() {
                 sx={{
                     fontWeight:'bold',
                     fontSize: '5rem',
-                    color: '#F11299',
+                    color: '#C21010',
                 }}
             >
                 Gifting made easy
@@ -42,7 +42,7 @@ function WelcomePage() {
                     fontSize: '1.5rem',
                     width: '600px',
                     opacity: '0.5',
-                    color: '#F11299',
+                    color: '#C21010',
                 }} 
             >
                 GiftList is the easiest way to exchange gifts with friends and family for birthdays, holidays, and more!
@@ -51,7 +51,7 @@ function WelcomePage() {
                 variant='contained' 
                 onClick={handleClick}
                 sx={{
-                    background: '#F11299',
+                    background: '#C21010',
                     padding: '10px 15px',
                     borderRadius: '10px',
                     textTransform: 'inherit',
@@ -60,8 +60,8 @@ function WelcomePage() {
                     color: '#FFF',
                     '&:hover': {
                         background: '#fff',
-                        color: '#F11299',
-                        border: '1px solid #F11299'
+                        color: '#C21010',
+                        border: '1px solid #C21010'
                     }
                 }}
             >
