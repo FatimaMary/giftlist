@@ -59,13 +59,13 @@ function Success() {
             <ArrowCircleLeftOutlinedIcon 
                 sx={{
                 fontSize: '1.2rem',
-                color: '#F11299'
+                color: '#C21010'
                 }}
             />
             <Button
                 sx={{
                 textTransform: 'inherit',
-                color: '#F11299',
+                color: '#C21010',
                 fontWeight: 'bold',
                 fontSize: '1rem'
                 }}
@@ -105,12 +105,12 @@ function Success() {
                     />
                     <Typography
                         variant='h4'
-                        color='#F11299'
+                        color='#C21010'
                     >
                         Your event has been created!
                     </Typography>
                     <Typography 
-                        color='#F11299'
+                        color='#C21010'
                         sx={{
                             margin:'0 0 10px',
                         }}
@@ -123,18 +123,18 @@ function Success() {
                     onClick={moveToEventview}
                     variant='contained'
                     sx={{ 
-                        border: '2px solid #F11299',
+                        border: '2px solid #C21010',
                         borderRadius: '10px',
                         width: '100%',
                         fontSize: '1rem',
                         color: 'white',
-                        background: '#F11299',
+                        background: '#C21010',
                         textTransform: 'inherit',
                         fontWeight:'bold',
                         '&:hover': {
                         backgroundColor: 'white',
-                        color: '#F11299',
-                        border: '1px solid #F11299'
+                        color: '#C21010',
+                        border: '1px solid #C21010'
                         },
                         marginTop: '10px',
                         marginBottom: '20px',
@@ -148,18 +148,18 @@ function Success() {
                     onClick={moveToInvitepage}
                     variant='contained'
                     sx={{ 
-                        border: '1px solid #F11299',
+                        border: '1px solid #C21010',
                         borderRadius: '10px',
                         width: '100%',
                         fontSize: '1rem',
-                        color: '#F11299',
+                        color: '#C21010',
                         background: '#fff',
                         textTransform: 'inherit',
                         fontWeight:'bold',
                         '&:hover': {
-                        backgroundColor: '#F11299',
+                        backgroundColor: '#C21010',
                         color: 'white',
-                        border: '1px solid #F11299'
+                        border: '1px solid #C21010'
                         },
                         marginTop: '10px'
                     }}
@@ -172,7 +172,7 @@ function Success() {
                         borderRadius: '10px',
                         width: '100%',
                         fontSize: '1rem',
-                        color: '#F11299',
+                        color: '#C21010',
                         textTransform: 'inherit',
                         fontWeight:'bold',
                         marginTop: '10px'
@@ -194,7 +194,7 @@ function Success() {
                     display: 'flex',
                     alignItems: 'center',
                     justifyContent: 'center',
-                    borderBottom: '5px solid #F11299',
+                    borderBottom: '5px solid #C21010',
                     paddingBottom: '20px'
                 }}
             >
