@@ -104,7 +104,7 @@ const Sidebar = ({
                         <Box m="1.5rem 2rem 2rem 3rem">
                             <FlexBetween>
                                 <Box display="flex" alignItems="center" gap='0.5rem'>
-                                    <Typography variant='h4' fontWeight='bold' color='#C21010'>
+                                    <Typography variant='h4' fontWeight='bold' color='#E64848'>
                                         Giftlist
                                     </Typography>
                                 </Box>
@@ -138,7 +138,7 @@ const Sidebar = ({
                                             backgroundColor: active === lcText ? '#FFEAEA' : "transparent",
                                             color:
                                                 active === lcText
-                                                    ? '#C21010'
+                                                    ? '#E64848'
                                                     : 'black'
                                         }}
                                     >
@@ -147,7 +147,7 @@ const Sidebar = ({
                                             ml: "2rem",
                                             color:
                                                 active === lcText
-                                                    ? '#C21010'
+                                                    ? '#E64848'
                                                     : 'black'
                                           }}
                                         >
