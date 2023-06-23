@@ -48,7 +48,7 @@ function GiftExchange() {
         fontWeight: 600,
         fontSize: '32px',
         lineHeight: '34px',
-        color: '#F11299',
+        color: '#C21010',
         marginBottom: '16px',
         wordBreak: 'break-word',
       }}
@@ -98,7 +98,7 @@ function GiftExchange() {
           gap:'30px',
           border: '1px solid lightgrey',
           '&:hover': {
-            backgroundColor: '#E11299',
+            backgroundColor: '#E64848',
             color: 'white'
           },
           borderRadius: '10px',
@@ -155,7 +155,7 @@ function GiftExchange() {
                     flexDirection: 'column',
                     padding: '20px 30px',
                     '&:hover': {
-                        backgroundColor: '#E11299',
+                        backgroundColor: '#C21010',
                         color: 'white'
                       },
                   }}
