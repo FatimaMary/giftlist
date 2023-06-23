@@ -19,6 +19,7 @@ function EventView1() {
     const [yes, setYes] = useState();
     const [no, setNo] = useState();
     const [show, setShow] = useState(false);
+    const [participantsId, setParticipantsId] = useState();
     const [activeTab, setActiveTab] = useState(0);
     const [searchParam] = useSearchParams();
     const eventId = searchParam.get("eventId");
@@ -55,12 +56,12 @@ function EventView1() {
         .then((response) => {
             console.log("participants response: ", response);
             console.log("participants response data: ", response.data);
-            navigate(`/login1?eventId=${eventId}&participantsId=${response.data.participantsId}`);
+            setParticipantsId(response.data.participantsId)
         })
     }
 
     const handleLogin = () => {
-        navigate(`/login1?eventId=${eventId}`);
+        navigate(`/login1?eventId=${eventId}&participantsId=${participantsId}`);
     }
 
     const handleSignup = () => {
@@ -134,9 +135,9 @@ function EventView1() {
                                 borderRadius: '5px',
                                 display: 'flex',
                                 alignItems: 'center',
-                                background: '#E11299',
+                                background: '#C21010',
                                 color: '#fff',
-                                border: '1px solid #E11299',
+                                border: '1px solid #C21010',
                                 textTransform: 'inherit',
                                 '&:hover': {
                                     color: '#F11299'
@@ -240,7 +241,7 @@ function EventView1() {
                         sx={{
                             width: '40px',
                             height: '40px',
-                            background: '#E11299',
+                            background: '#C21010',
                             fontSize: '13px',
                         }}
                     />
@@ -318,7 +319,7 @@ function EventView1() {
                     '&:hover': {
                         cursor: 'pointer'
                     },
-                    // borderBottom: '3px solid #E11299'
+                    // borderBottom: '3px solid #C21010'
                 }}
                 onClick={() => handleTabActive(0)}
             >
@@ -388,17 +389,17 @@ function EventView1() {
                         variant='contained'
                         onClick={handleLogin}
                         sx={{ 
-                            border: '2px solid #E11299',
+                            border: '2px solid #C21010',
                             borderRadius: '10px',
                             width: '48%',
                             fontSize: '1rem',
                             color: 'white',
-                            background: '#E11299',
+                            background: '#C21010',
                             textTransform: 'inherit',
                             fontWeight:'bold',
                             '&:hover': {
                             backgroundColor: 'white',
-                            color: '#E11299',
+                            color: '#C21010',
                             border: '1px solid #0f7b9b'
                             },
                             marginTop: '10px',
@@ -410,17 +411,17 @@ function EventView1() {
                         variant='contained'
                         onClick={handleSignup}
                         sx={{ 
-                            border: '2px solid #E11299',
+                            border: '2px solid #C21010',
                             borderRadius: '10px',
                             width: '48%',
                             fontSize: '1rem',
                             color: 'white',
-                            background: '#E11299',
+                            background: '#C21010',
                             textTransform: 'inherit',
                             fontWeight:'bold',
                             '&:hover': {
                             backgroundColor: 'white',
-                            color: '#E11299',
+                            color: '#C21010',
                             border: '1px solid #0f7b9b'
                             },
                             marginTop: '10px',
@@ -495,13 +496,13 @@ function EventView1() {
                             fontWeight: 600,
                             width: '48%',
                             fontSize: '1rem',
-                            color: '#E11299',
+                            color: '#C21010',
                             background: '#fafbfd',
                             textTransform: 'inherit',
                             '&:hover': {
-                            backgroundColor: '#E11299',
+                            backgroundColor: '#C21010',
                             color: '#fafbfd',
-                            border: '1px solid #E11299',
+                            border: '1px solid #C21010',
                             cursor: 'pointer',
                             },
                             marginTop: '10px',
@@ -514,17 +515,17 @@ function EventView1() {
                         value={yes}
                         onClick={handleClick}
                         sx={{ 
-                            border: '2px solid #E11299',
+                            border: '2px solid #C21010',
                             borderRadius: '7px',
                             width: '48%',
                             fontSize: '1rem',
                             color: 'white',
-                            background: '#E11299',
+                            background: '#C21010',
                             textTransform: 'inherit',
                             fontWeight:'bold',
                             '&:hover': {
                             backgroundColor: 'white',
-                            color: '#E11299',
+                            color: '#C21010',
                             border: '1px solid #0f7b9b'
                             },
                             marginTop: '10px',
