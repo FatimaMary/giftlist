@@ -123,12 +123,12 @@ function EventView() {
                                 borderRadius: '5px',
                                 display: 'flex',
                                 alignItems: 'center',
-                                background: '##C21010',
+                                background: '#C21010',
                                 color: '#fff',
-                                border: '1px solid ##C21010',
+                                border: '1px solid #C21010',
                                 textTransform: 'inherit',
                                 '&:hover': {
-                                    color: '#F11299'
+                                    color: '#C21010'
                                 }
                             }}
                             onClick={() => setInvitePage(true)}
@@ -231,7 +231,7 @@ function EventView() {
                         sx={{
                             width: '40px',
                             height: '40px',
-                            background: '##C21010',
+                            background: '#C21010',
                             fontSize: '13px',
                         }}
                     />
@@ -527,7 +527,7 @@ function EventView() {
                         // gap: '5px'
                       }}
                     >
-                        <img src={Mail} style={{ filter: 'hue-rotate(120deg)', paddingRight: '10px'}}/>
+                        <img src={Mail} style={{ filter: 'hue-rotate(180deg)', paddingRight: '10px'}}/>
                         <Box>
                             <Typography 
                                 sx={{
@@ -559,7 +559,7 @@ function EventView() {
                         <Button
                             sx={{
                                 marginBottom: 0,
-                                color: '#9A208C',
+                                color: '#C21010',
                                 background: '#fafbfd',
                                 border: '1px solid #cad3dd',
                                 padding: '8px 12px',
@@ -584,8 +584,8 @@ function EventView() {
                                     width: '17px', 
                                     height: '17px', 
                                     marginRight: '5px',
-                                    // background: '#9A208C',
-                                    filter: 'hue-rotate(120deg)',
+                                    // background: '#C21010',
+                                    filter: 'hue-rotate(180deg)',
                                 }}
                             />
                             Edit RSVP
@@ -617,7 +617,7 @@ function EventView() {
                             src={Gift} 
                             style={{
                                 paddingRight: '10px',
-                                filter: 'hue-rotate(120deg)',
+                                filter: 'hue-rotate(180deg)',
                             }}
                             />
                         <Box>
@@ -661,7 +661,7 @@ function EventView() {
                             display: 'flex',
                           }}
                     >
-                        <img src={Santa1} style={{ paddingRight: '10px', filter: 'hue-rotate(120deg)', }}/>
+                        <img src={Santa1} style={{ paddingRight: '10px', filter: 'hue-rotate(180deg)', }}/>
                         <Box>
                         <Typography 
                                 sx={{
@@ -692,7 +692,7 @@ function EventView() {
                         <Button
                             sx={{
                                 marginBottom: 0,
-                                color: '#9A208C',
+                                color: '#C21010',
                                 background: '#fafbfd',
                                 border: '1px solid #cad3dd',
                                 padding: '8px 12px',
@@ -717,7 +717,7 @@ function EventView() {
                                     width: '17px', 
                                     height: '17px', 
                                     marginRight: '5px',
-                                    filter: 'hue-rotate(120deg)',
+                                    filter: 'hue-rotate(180deg)',
                                 }}
                             />
                             Gift Delivery
