@@ -373,18 +373,18 @@ function EditEvent({
                     <Button 
                         type='submit'
                         sx={{
-                            background: '#50bcd9',
+                            background: '#C21010',
                             borderRadius: '7px',
                             fontSize: '15px',
                             lineHeight: '22px',
                             color: '#fff',
                             padding: '14px 30px',
-                            border: '1px solid #50bcd9',
+                            border: '1px solid #C21010',
                             fontWeight: 600,
                             width: '100%',
                             textTransform: 'none',
                             '&: hover': {
-                                color: '#50bcd9',
+                                color: '#C21010',
                                 background: '#fff'
                             }
                         }}
