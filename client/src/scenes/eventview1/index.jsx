@@ -72,6 +72,11 @@ function EventView1() {
         setActiveTab(index);
       }
 
+    const handleNo = () => {
+        setNo("no");
+        alert("Thanks for your response")
+    }
+
   return <Box 
     backgroundColor='#FFEAEA'
     width='100vw'
@@ -166,7 +171,11 @@ function EventView1() {
                                 background: '#fafbfd',
                                 color: '#101a34',
                                 border: '1px solid #cad3dd',
-                                textTransform: 'inherit'
+                                textTransform: 'inherit',
+                                '&:hover': {
+                                    color: '#C21010', 
+                                    border: '1px solid #C21010'
+                                }
                             }}
                         >
                             <EditCalendarOutlinedIcon 
@@ -489,7 +498,7 @@ function EventView1() {
                     <Button
                         variant='contained'
                         value={no}
-                        onClick={() => setNo("no")}
+                        onClick={handleNo}
                         sx={{ 
                             border: '2px solid #cad3dd',
                             borderRadius: '7px',
