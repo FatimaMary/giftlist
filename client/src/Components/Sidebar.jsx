@@ -104,7 +104,7 @@ const Sidebar = ({
                         <Box m="1.5rem 2rem 2rem 3rem">
                             <FlexBetween>
                                 <Box display="flex" alignItems="center" gap='0.5rem'>
-                                    <Typography variant='h4' fontWeight='bold' color='#E64848'>
+                                    <Typography variant='h4' fontWeight='bold' color='#C21010'>
                                         Giftlist
                                     </Typography>
                                 </Box>
