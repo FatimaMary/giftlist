@@ -6,7 +6,7 @@ import {
     createTheme
 } from '@mui/material';
 import { useNavigate, useSearchParams } from 'react-router-dom';
-import Light from './light.png';
+import Light from './bow.png';
 import ArrowCircleLeftOutlinedIcon from '@mui/icons-material/ArrowCircleLeftOutlined';
 import Footer from '../../Components/Footer';
 import CopyInvitation from '../copyinvitation';
@@ -99,8 +99,8 @@ function Success() {
                     <img 
                         src={Light} 
                         alt='Light image' 
-                        height={100} 
-                        width={100}
+                        height={150} 
+                        width={125}
                         className='starimage'
                     />
                     <Typography
