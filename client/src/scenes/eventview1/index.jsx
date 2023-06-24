@@ -19,6 +19,7 @@ function EventView1() {
     const [yes, setYes] = useState();
     const [no, setNo] = useState();
     const [show, setShow] = useState(false);
+    const [show1, setShow1] = useState(false);
     const [participantsId, setParticipantsId] = useState();
     const [activeTab, setActiveTab] = useState(0);
     const [searchParam] = useSearchParams();
@@ -74,7 +75,7 @@ function EventView1() {
 
     const handleNo = () => {
         setNo("no");
-        alert("Thanks for your response")
+       setShow1(true);
     }
 
   return <Box 
@@ -495,6 +496,8 @@ function EventView1() {
                     gap: '10px'
                 }}
                 >
+                    {show1 ? <Box>Thanks for your response </Box> :
+                    <Box> </Box>}
                     <Button
                         variant='contained'
                         value={no}
@@ -518,7 +521,7 @@ function EventView1() {
                             lineHeight: '22px',
                             // padding: '12px 30px',
                         }}
-                    >No</Button>
+                    >No</Button> 
                     <Button
                         variant='contained'
                         value={yes}
@@ -540,7 +543,7 @@ function EventView1() {
                             marginTop: '10px',
                             // marginBottom: '20px',
                         }}
-                    >Yes</Button>
+                    >Yes</Button> 
                 </Box>
             </Box>
             </Box>  } </Box>
