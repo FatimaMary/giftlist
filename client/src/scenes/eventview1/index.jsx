@@ -123,7 +123,7 @@ function EventView1() {
                     >
                         {eventDetails.eventName}
                     </Typography>
-                    <Box 
+                    {/* <Box 
                        sx={{
                         display: 'flex',
                         flexWrap: 'wrap',
@@ -187,7 +187,7 @@ function EventView1() {
                             />
                             Edit
                         </Button>
-                    </Box>
+                    </Box> */}
                 </Box>
                 <Box 
                     sx={{
