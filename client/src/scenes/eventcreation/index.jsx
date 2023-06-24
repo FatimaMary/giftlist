@@ -15,7 +15,7 @@ import FormLabel from '@mui/material/FormLabel';
 import axios from 'axios';
 import { useNavigate, useSearchParams } from "react-router-dom";
 import ArrowCircleLeftOutlinedIcon from '@mui/icons-material/ArrowCircleLeftOutlined';
-import Star from './star.png';
+import Star from './star1.png';
 import Footer from '../../Components/Footer';
 
 function EventCreation() {
@@ -141,6 +141,9 @@ function EventCreation() {
             height={100} 
             width={100}
             className='starimage'
+            style={{
+              background: 'transparent'
+            }}
           />
           <Typography
             variant='h4'
