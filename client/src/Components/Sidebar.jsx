@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useContext } from 'react';
 import {
     Box,
     Divider,
@@ -27,45 +27,47 @@ import { useLocation, useNavigate } from "react-router-dom";
 import FlexBetween from './FlexBetween';
 import { FaChevronLeft } from 'react-icons/fa';
 import { ChevronRightOutlined } from '@mui/icons-material';
+import { MyContext } from './MyContext';
 
-const navItems = [
-    {
-        text: "Home",
-        icon: <HomeOutlinedIcon/>
-    },
-    {
-        text: "List",
-        icon: <FormatListBulletedOutlinedIcon/>
-    },
-    {
-        text: "GiftExchange",
-        icon: <CardGiftcardOutlinedIcon/>
-    },
-    {
-        text: "Shop",
-        icon: <LocalMallOutlinedIcon/>
-    },
-    {
-        text: "Ecards",
-        icon: <LocalPostOfficeOutlinedIcon/>
-    },
-    {
-        text: "Occations",
-        icon: <PersonOutlineOutlinedIcon/>
-    },
-    {
-        text: "My Gifts",
-        icon: <EditCalendarOutlinedIcon/>
-    },
-    {
-        text: "FAQ",
-        icon: <HelpOutlineOutlinedIcon/>
-    },
-    {
-        text: "Logout",
-        icon: <LogoutOutlinedIcon/>,
-    }
-]
+// const navItems = [
+//     {
+//         text: "Home",
+//         icon: <HomeOutlinedIcon/>
+//     },
+//     {
+//         text: "List",
+//         icon: <FormatListBulletedOutlinedIcon/>
+//     },
+//     {
+//         text: "GiftExchange",
+//         icon: <CardGiftcardOutlinedIcon/>
+//     },
+//     {
+//         text: "Shop",
+//         icon: <LocalMallOutlinedIcon/>
+//     },
+//     {
+//         text: "Ecards",
+//         icon: <LocalPostOfficeOutlinedIcon/>
+//     },
+//     {
+//         text: "Occations",
+//         icon: <PersonOutlineOutlinedIcon/>
+//     },
+//     {
+//         text: "My Gifts",
+//         icon: <EditCalendarOutlinedIcon/>
+//     },
+//     {
+//         text: "FAQ",
+//         icon: <HelpOutlineOutlinedIcon/>
+//     },
+//     {
+//         text: "Logout",
+//         icon: <LogoutOutlinedIcon/>,
+//        action: handleLogout
+//     }
+// ]
 
 
 const Sidebar = ({
@@ -77,6 +79,51 @@ const Sidebar = ({
     const { pathname } = useLocation();
     const [active, setActive] = useState("");
     const navigate = useNavigate();
+    const { setIsLoggedIn } = useContext(MyContext);
+
+    const handleLogout = () => {
+        setIsLoggedIn(false); 
+      };
+
+    const navItems = [
+        {
+            text: "Home",
+            icon: <HomeOutlinedIcon/>
+        },
+        {
+            text: "List",
+            icon: <FormatListBulletedOutlinedIcon/>
+        },
+        {
+            text: "GiftExchange",
+            icon: <CardGiftcardOutlinedIcon/>
+        },
+        {
+            text: "Shop",
+            icon: <LocalMallOutlinedIcon/>
+        },
+        {
+            text: "Ecards",
+            icon: <LocalPostOfficeOutlinedIcon/>
+        },
+        {
+            text: "Occations",
+            icon: <PersonOutlineOutlinedIcon/>
+        },
+        {
+            text: "My Gifts",
+            icon: <EditCalendarOutlinedIcon/>
+        },
+        {
+            text: "FAQ",
+            icon: <HelpOutlineOutlinedIcon/>
+        },
+        {
+            text: "Logout",
+            icon: <LogoutOutlinedIcon/>,
+            action: handleLogout
+        }
+    ]
 
     useEffect(() => {
         setActive(pathname.substring(1));
@@ -131,8 +178,9 @@ const Sidebar = ({
                                 <ListItem key={text} disablePadding>
                                     <ListItemButton
                                         onClick={() => {
-                                            navigate(`/${lcText}`);
-                                            setActive(lcText);
+                                            // navigate(`/${lcText}`);
+                                            // setActive(lcText);
+                                            action();
                                         }}
                                         sx={{
                                             backgroundColor: active === lcText ? '#FFEAEA' : "transparent",

@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useContext } from 'react';
 import { 
     Box, 
     Typography, 
@@ -11,6 +11,7 @@ import { Link, useNavigate } from 'react-router-dom';
 import { signInWithEmailAndPassword } from "firebase/auth";
 import { auth } from '../../firebase';
 import Navbar from '../../Components/Navbar';
+import { MyContext } from '../../Components/MyContext';
 
 function Login() {
   const navigate = useNavigate();
@@ -19,7 +20,7 @@ function Login() {
       password: "",
   })
   const [errors, setErrors] = useState({});
-  const [isLoggedIn, setIsLoggedIn] = useState(false);
+  const { isLoggedIn, setIsLoggedIn } = useContext(MyContext);
 
   const handleChange = (e) => {
       setLoginData({
