@@ -29,6 +29,7 @@ function App() {
           <Route path="/signup1" element={<Signup1 />} />
           <Route path="/login" element={<Login />} />
           <Route path="/login1" element={<Login1 />} />
+          <Route path='/logout' element={<WelcomePage/>} />
           <Route path="/*" element={<Layout />}>
             <Route path="eventcreate" element={<EventCreation />} />
             <Route path="budget" element={<Budget />} />
