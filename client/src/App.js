@@ -1,14 +1,12 @@
-import { BrowserRouter, Routes, Route, Navigate } from 'react-router-dom';
-import { useMemo, useState } from "react";
-import { useSelector } from "react-redux";
+import React, { useState } from 'react';
+import { BrowserRouter, Routes, Route } from 'react-router-dom';
 import Login from './scenes/login';
 import EventCreation from './scenes/eventcreation';
 import Signup1 from './scenes/Signup1';
 import Budget from './scenes/budget';
 import GiftExchange from './scenes/giftExchange';
-import Layout from './scenes/layout'
+import Layout from './scenes/layout';
 import Signup from './scenes/signup';
-import Navbar from './Components/Navbar';
 import WelcomePage from './scenes/welcomepage';
 import Success from './scenes/success';
 import EventView from './scenes/eventview';
@@ -19,34 +17,32 @@ import EditEvent from './scenes/eventview/editEvent';
 import Login1 from './scenes/login1';
 import { MyContext } from './Components/MyContext';
 
-
 function App() {
   const [isLoggedIn, setIsLoggedIn] = useState(false);
+
   return (
-    <div className="App">
-      <BrowserRouter>
+    <BrowserRouter>
+      <MyContext.Provider value={{ isLoggedIn, setIsLoggedIn }}>
         <Routes>
-          <Route path='/' element={<WelcomePage/>} />
-          <Route path='/signup' element={<Signup/>} />
-          <Route path='/signup1' element={<Signup1/>} />
-          <MyContext.Provider value={{ isLoggedIn, setIsLoggedIn }} >
-            <Route path='/login' element={<Login/>} />
-            </MyContext.Provider>
-            <Route path='/login1' element={<Login1/>} />
-          <Route element={<Layout/>} >
-            <Route path='eventcreate' element={<EventCreation/>} />
-            <Route path='budget' element={<Budget/>} />
-            <Route path='giftexchange' element={<GiftExchange/>} />
-            <Route path='success' element={<Success/>} />
-            <Route path='eventview' element={<EventView/>} />
-            <Route path='eventview1' element={<EventView1/>} />
-            <Route path='participants' element={<Participants/>} />
-            <Route path='invite' element={<Invite/>} />
-            <Route path='editevent' element={<EditEvent/>} />
+          <Route path="/" element={<WelcomePage />} />
+          <Route path="/signup" element={<Signup />} />
+          <Route path="/signup1" element={<Signup1 />} />
+          <Route path="/login" element={<Login />} />
+          <Route path="/login1" element={<Login1 />} />
+          <Route path="/*" element={<Layout />}>
+            <Route path="eventcreate" element={<EventCreation />} />
+            <Route path="budget" element={<Budget />} />
+            <Route path="giftexchange" element={<GiftExchange />} />
+            <Route path="success" element={<Success />} />
+            <Route path="eventview" element={<EventView />} />
+            <Route path="eventview1" element={<EventView1 />} />
+            <Route path="participants" element={<Participants />} />
+            <Route path="invite" element={<Invite />} />
+            <Route path="editevent" element={<EditEvent />} />
           </Route>
         </Routes>
-      </BrowserRouter>
-    </div>
+      </MyContext.Provider>
+    </BrowserRouter>
   );
 }
 
