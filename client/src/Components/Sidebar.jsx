@@ -87,50 +87,38 @@ const Sidebar = ({
         navigate('/')
       };
 
-    //   const handleAction = (lcText) => {
-    //     navigate(`/${lcText}`);
-    //     setActive(lcText);
-    //   };
     const navItems = [
         {
             text: "Home",
             icon: <HomeOutlinedIcon/>,
-            // action: handleAction
         },
         {
             text: "List",
             icon: <FormatListBulletedOutlinedIcon/>,
-            // action: handleAction
         },
         {
             text: "GiftExchange",
             icon: <CardGiftcardOutlinedIcon/>,
-            // action: handleAction
         },
         {
             text: "Shop",
             icon: <LocalMallOutlinedIcon/>,
-            // action: handleAction
         },
         {
             text: "Ecards",
             icon: <LocalPostOfficeOutlinedIcon/>,
-            // action: handleAction
         },
         {
             text: "Occations",
             icon: <PersonOutlineOutlinedIcon/>,
-            // action: handleAction
         },
         {
             text: "My Gifts",
             icon: <EditCalendarOutlinedIcon/>,
-            // action: handleAction
         },
         {
             text: "FAQ",
             icon: <HelpOutlineOutlinedIcon/>,
-            // action: handleAction
         },
         {
             text: "Logout",
