@@ -29,47 +29,6 @@ import { FaChevronLeft } from 'react-icons/fa';
 import { ChevronRightOutlined } from '@mui/icons-material';
 import { MyContext } from './MyContext';
 
-// const navItems = [
-//     {
-//         text: "Home",
-//         icon: <HomeOutlinedIcon/>
-//     },
-//     {
-//         text: "List",
-//         icon: <FormatListBulletedOutlinedIcon/>
-//     },
-//     {
-//         text: "GiftExchange",
-//         icon: <CardGiftcardOutlinedIcon/>
-//     },
-//     {
-//         text: "Shop",
-//         icon: <LocalMallOutlinedIcon/>
-//     },
-//     {
-//         text: "Ecards",
-//         icon: <LocalPostOfficeOutlinedIcon/>
-//     },
-//     {
-//         text: "Occations",
-//         icon: <PersonOutlineOutlinedIcon/>
-//     },
-//     {
-//         text: "My Gifts",
-//         icon: <EditCalendarOutlinedIcon/>
-//     },
-//     {
-//         text: "FAQ",
-//         icon: <HelpOutlineOutlinedIcon/>
-//     },
-//     {
-//         text: "Logout",
-//         icon: <LogoutOutlinedIcon/>,
-//        action: handleLogout
-//     }
-// ]
-
-
 const Sidebar = ({
     drawerWidth,
     isSidebarOpen,
