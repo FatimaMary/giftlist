@@ -82,41 +82,55 @@ const Sidebar = ({
     const { setIsLoggedIn } = useContext(MyContext);
 
     const handleLogout = () => {
-        setIsLoggedIn(false); 
+        console.log("Logout Clicked")
+        setIsLoggedIn(false);
+        navigate('/')
       };
 
+    //   const handleAction = (lcText) => {
+    //     navigate(`/${lcText}`);
+    //     setActive(lcText);
+    //   };
     const navItems = [
         {
             text: "Home",
-            icon: <HomeOutlinedIcon/>
+            icon: <HomeOutlinedIcon/>,
+            // action: handleAction
         },
         {
             text: "List",
-            icon: <FormatListBulletedOutlinedIcon/>
+            icon: <FormatListBulletedOutlinedIcon/>,
+            // action: handleAction
         },
         {
             text: "GiftExchange",
-            icon: <CardGiftcardOutlinedIcon/>
+            icon: <CardGiftcardOutlinedIcon/>,
+            // action: handleAction
         },
         {
             text: "Shop",
-            icon: <LocalMallOutlinedIcon/>
+            icon: <LocalMallOutlinedIcon/>,
+            // action: handleAction
         },
         {
             text: "Ecards",
-            icon: <LocalPostOfficeOutlinedIcon/>
+            icon: <LocalPostOfficeOutlinedIcon/>,
+            // action: handleAction
         },
         {
             text: "Occations",
-            icon: <PersonOutlineOutlinedIcon/>
+            icon: <PersonOutlineOutlinedIcon/>,
+            // action: handleAction
         },
         {
             text: "My Gifts",
-            icon: <EditCalendarOutlinedIcon/>
+            icon: <EditCalendarOutlinedIcon/>,
+            // action: handleAction
         },
         {
             text: "FAQ",
-            icon: <HelpOutlineOutlinedIcon/>
+            icon: <HelpOutlineOutlinedIcon/>,
+            // action: handleAction
         },
         {
             text: "Logout",
@@ -163,7 +177,7 @@ const Sidebar = ({
                             </FlexBetween>
                         </Box>
                         <List>
-                        {navItems.map(({ text, icon }) => {
+                        {/* {navItems.map(({ text, icon }) => {
                             if(!icon){
                                 return (
                                     <Typography key={text} 
@@ -180,7 +194,9 @@ const Sidebar = ({
                                         onClick={() => {
                                             // navigate(`/${lcText}`);
                                             // setActive(lcText);
-                                            action();
+                                            // action(lcText);
+                                            item.action && item.action();
+                      navigate(item.text.toLowerCase());
                                         }}
                                         sx={{
                                             backgroundColor: active === lcText ? '#FFEAEA' : "transparent",
@@ -202,13 +218,32 @@ const Sidebar = ({
                                             {icon}
                                         </ListItemIcon>
                                         <ListItemText primary={text}/>
-                                        {/* {active === lcText && (
+                                         {active === lcText && (
                                             <ChevronRightOutlined sx={{ml: "auto"}} />
-                                        )} */}
+                                        )} 
                                     </ListItemButton>
                                 </ListItem>
                             )
-                        })}
+                        })} */}
+                        {navItems.map((item) => (
+                  <ListItemButton
+                    key={item.text}
+                    onClick={() => {
+                      item.action && item.action();
+                      navigate(item.text.toLowerCase());
+                    }}
+                    sx={{
+                        backgroundColor: active === item.text.toLowerCase() ? '#FFEAEA' : "transparent",
+                        color:
+                            active === item.text.toLowerCase()
+                                ? '#E64848'
+                                : 'black'
+                    }}
+                  >
+                    <ListItemIcon>{item.icon}</ListItemIcon>
+                    <ListItemText primary={item.text} />
+                  </ListItemButton>
+                ))}
                         </List>
                     </Box>
                 </Drawer>
@@ -218,3 +253,175 @@ const Sidebar = ({
 }
 
 export default Sidebar;
+
+// import React, { useContext, useEffect, useState } from 'react';
+// import {
+//   Box,
+//   Divider,
+//   Drawer,
+//   IconButton,
+//   List,
+//   ListItem,
+//   ListItemButton,
+//   ListItemIcon,
+//   ListItemText,
+//   Typography,
+//   useTheme
+// } from "@mui/material";
+// import HomeOutlinedIcon from '@mui/icons-material/HomeOutlined';
+// import FormatListBulletedOutlinedIcon from '@mui/icons-material/FormatListBulletedOutlined';
+// import LocalMallOutlinedIcon from '@mui/icons-material/LocalMallOutlined';
+// import LocalPostOfficeOutlinedIcon from '@mui/icons-material/LocalPostOfficeOutlined';
+// import CardGiftcardOutlinedIcon from '@mui/icons-material/CardGiftcardOutlined';
+// import PersonOutlineOutlinedIcon from '@mui/icons-material/PersonOutlineOutlined';
+// import EditCalendarOutlinedIcon from '@mui/icons-material/EditCalendarOutlined';
+// import HelpOutlineOutlinedIcon from '@mui/icons-material/HelpOutlineOutlined';
+// import LogoutOutlinedIcon from '@mui/icons-material/LogoutOutlined';
+// import Santahat from '../assets/icons8-santas-hat-32.png';
+// import { useLocation, useNavigate } from "react-router-dom";
+// import FlexBetween from './FlexBetween';
+// import { FaChevronLeft } from 'react-icons/fa';
+// import { ChevronRightOutlined } from '@mui/icons-material';
+// import { MyContext } from './MyContext';
+
+// const Sidebar = ({
+//   drawerWidth,
+//   isSidebarOpen,
+//   setIsSidebarOpen,
+//   isNonMobile
+// }) => {
+//   const { pathname } = useLocation();
+//   const [active, setActive] = useState("");
+//   const navigate = useNavigate();
+//   const { setIsLoggedIn } = useContext(MyContext);
+
+//   const handleLogout = () => {
+//     setIsLoggedIn(false);
+//   };
+
+//   const navItems = [
+//     {
+//       text: "Home",
+//       icon: <HomeOutlinedIcon/>
+//     },
+//     {
+//       text: "List",
+//       icon: <FormatListBulletedOutlinedIcon/>
+//     },
+//     {
+//       text: "GiftExchange",
+//       icon: <CardGiftcardOutlinedIcon/>
+//     },
+//     {
+//       text: "Shop",
+//       icon: <LocalMallOutlinedIcon/>
+//     },
+//     {
+//       text: "Ecards",
+//       icon: <LocalPostOfficeOutlinedIcon/>
+//     },
+//     {
+//       text: "Occations",
+//       icon: <PersonOutlineOutlinedIcon/>
+//     },
+//     {
+//       text: "My Gifts",
+//       icon: <EditCalendarOutlinedIcon/>
+//     },
+//     {
+//       text: "FAQ",
+//       icon: <HelpOutlineOutlinedIcon/>
+//     },
+//     {
+//       text: "Logout",
+//       icon: <LogoutOutlinedIcon/>,
+//       action: handleLogout
+//     }
+//   ];
+
+//   useEffect(() => {
+//     setActive(pathname.substring(1));
+//   }, [pathname]);
+
+//   return (
+//     <Box component="nav">
+//       {isSidebarOpen && (
+//         <Drawer
+//           open={isSidebarOpen}
+//           onClose={() => setIsSidebarOpen(false)}
+//           variant='persistent'
+//           anchor='left'
+//           sx={{
+//             width: drawerWidth,
+//             "& .MuiDrawer-paper": {
+//               // color: 
+//               boxSizing: "border-box",
+//               borderWidth: isNonMobile ? 0 : "2px",
+//               width: drawerWidth
+//             },
+//           }}
+//         >
+//           <Box width='100%'>
+//             <Box m="1.5rem 2rem 2rem 3rem">
+//               <FlexBetween>
+//                 <Box display="flex" alignItems="center">
+//                   <IconButton
+//                     onClick={() => setIsSidebarOpen(false)}
+//                     aria-label="Close sidebar"
+//                     edge="start"
+//                   >
+//                     <FaChevronLeft />
+//                   </IconButton>
+//                   <Typography
+//                     variant="h6"
+//                     component="div"
+//                     sx={{
+//                       fontWeight: "bold",
+//                       letterSpacing: "1px",
+//                     }}
+//                   >
+//                     Dashboard
+//                   </Typography>
+//                 </Box>
+//               </FlexBetween>
+//               <Divider sx={{ mt: "1.5rem" }} />
+
+//               <List>
+//                 {navItems.map((item) => (
+//                   <ListItemButton
+//                     key={item.text}
+//                     onClick={() => {
+//                       item.action && item.action();
+//                       navigate(item.text.toLowerCase());
+//                     }}
+//                     sx={{
+//                       color: active === item.text.toLowerCase() ? "#3f51b5" : "",
+//                       padding: "10px 8px",
+//                     }}
+//                   >
+//                     <ListItemIcon>{item.icon}</ListItemIcon>
+//                     <ListItemText primary={item.text} />
+//                   </ListItemButton>
+//                 ))}
+//               </List>
+//               <Divider sx={{ mt: "auto" }} />
+//               <List>
+//                 <ListItem
+//                   sx={{
+//                     color: "#757575",
+//                     fontSize: "0.875rem",
+//                     display: "flex",
+//                     alignItems: "center",
+//                   }}
+//                 >
+//                 </ListItem>
+//               </List>
+//             </Box>
+//           </Box>
+//         </Drawer>
+//       )}
+//     </Box>
+//   );
+// };
+
+// export default Sidebar;
