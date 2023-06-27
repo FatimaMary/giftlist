@@ -4,7 +4,7 @@ import {
     Typography,
     Button,
 } from '@mui/material';
-import Santa from '../giftExchange/santa1.png';
+import Santa from '../giftExchange/santa2.png';
 import Avatar from '@mui/material/Avatar';
 import ShareOutlinedIcon from '@mui/icons-material/ShareOutlined';
 import EditCalendarOutlinedIcon from '@mui/icons-material/EditCalendarOutlined';
@@ -466,6 +466,17 @@ function EventView1() {
                 padding: '24px 16px 16px 16px',
             }}
             >
+                {show1 ? <Box 
+                    sx={{
+                        color: '#C21010',
+                        textAlign: 'center',
+                        fontSize: '16px',
+                        letterSpacing: '1px',
+                    }}
+                >
+                    Thanks for your response 
+                </Box> :
+                    <Box> 
                 <Typography
                     sx={{
                         color: '#101a34',
@@ -496,8 +507,7 @@ function EventView1() {
                     gap: '10px'
                 }}
                 >
-                    {show1 ? <Box>Thanks for your response </Box> :
-                    <Box> </Box>}
+                    
                     <Button
                         variant='contained'
                         value={no}
@@ -544,7 +554,7 @@ function EventView1() {
                             // marginBottom: '20px',
                         }}
                     >Yes</Button> 
-                </Box>
+                </Box> </Box>}
             </Box>
             </Box>  } </Box>
         }
