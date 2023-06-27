@@ -38,7 +38,8 @@ const Sidebar = ({
     const { pathname } = useLocation();
     const [active, setActive] = useState("");
     const navigate = useNavigate();
-    const { setIsLoggedIn } = useContext(MyContext);
+    const { setIsLoggedIn, isLoggedIn } = useContext(MyContext);
+    // const [isLoggedIn, setIsLoggedIn] = useState(false);
 
     const handleLogout = () => {
         console.log("Logout Clicked")
@@ -79,11 +80,14 @@ const Sidebar = ({
             text: "FAQ",
             icon: <HelpOutlineOutlinedIcon/>,
         },
-        {
-            text: "Logout",
-            icon: <LogoutOutlinedIcon/>,
-            action: handleLogout
-        }
+        // {
+        //     text: "Logout",
+        //     icon: <LogoutOutlinedIcon/>,
+        //     action: () => {
+        //         handleLogout();
+        //         setIsLoggedIn(false);
+        //     },
+        // }
     ]
 
     useEffect(() => {
@@ -125,24 +129,59 @@ const Sidebar = ({
                         </Box>
                         <List>
                         {navItems.map((item) => (
-                  <ListItemButton
-                    key={item.text}
-                    onClick={() => {
-                      item.action && item.action();
-                      navigate(item.text.toLowerCase());
-                    }}
-                    sx={{
-                        backgroundColor: active === item.text.toLowerCase() ? '#FFEAEA' : "transparent",
-                        color:
-                            active === item.text.toLowerCase()
-                                ? '#E64848'
-                                : 'black'
-                    }}
-                  >
-                    <ListItemIcon>{item.icon}</ListItemIcon>
-                    <ListItemText primary={item.text} />
-                  </ListItemButton>
-                ))}
+                            <ListItemButton
+                                key={item.text}
+                                onClick={() => {
+                                item.action && item.action();
+                                navigate(item.text.toLowerCase());
+                                }}
+                                sx={{
+                                    backgroundColor: active === item.text.toLowerCase() ? '#FFEAEA' : "transparent",
+                                    color:
+                                        active === item.text.toLowerCase()
+                                            ? '#E64848'
+                                            : 'black'
+                                }}
+                            >
+                                <ListItemIcon>{item.icon}</ListItemIcon>
+                                <ListItemText primary={item.text} />
+                            </ListItemButton>
+                        ))}
+                        {isLoggedIn ?(
+                            <ListItemButton
+                            key="logout"
+                            onClick={() => {
+                                // Handle login logic here
+                                setIsLoggedIn(false);
+                            }}
+                            sx={{
+                                backgroundColor: active === "logout" ? '#FFEAEA' : "transparent",
+                                color: active === "logout" ? '#E64848' : 'black'
+                            }}
+                            >
+                            <ListItemIcon>
+                                <LogoutOutlinedIcon />
+                            </ListItemIcon>
+                            <ListItemText primary="Logout" />
+                            </ListItemButton>
+                        ) :(
+                            <ListItemButton
+                            key="login"
+                            onClick={() => {
+                                // Handle login logic here
+                                setIsLoggedIn(true);
+                            }}
+                            sx={{
+                                backgroundColor: active === "login" ? '#FFEAEA' : "transparent",
+                                color: active === "login" ? '#E64848' : 'black'
+                            }}
+                            >
+                            <ListItemIcon>
+                                {/* <LoginOutlinedIcon /> */}
+                            </ListItemIcon>
+                            <ListItemText primary="Login" />
+                            </ListItemButton>
+                        ) }
                         </List>
                     </Box>
                 </Drawer>
