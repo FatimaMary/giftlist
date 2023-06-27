@@ -193,6 +193,34 @@ const Sidebar = ({
                                 fontSize:'16px'
                             }} />
                             </ListItemButton>
+                            <ListItemButton
+                            key="signup"
+                            onClick={() => {
+                                setIsLoggedIn(true);
+                                navigate("/signup")
+                            }}
+                            sx={{
+                                backgroundColor: "#C21010",
+                                color: "#FFF",
+                                padding: '5px 5px',
+                                border: '2px solid #C21010',
+                                margin: '10px 25px',
+                                borderRadius: '10px',
+                                // fontWeight: 600,
+                                // fontSize:'16px',
+                                '&: hover':{
+                                    background: "#FFF",
+                                    color: '#C21010'
+                                }
+                            }}
+                            >
+                            <ListItemText primary="Sign Up" sx={{
+                                 display: 'flex',
+                                 justifyContent: 'center',
+                                 fontWeight: 'bold',
+                                fontSize:'16px'
+                            }} />
+                            </ListItemButton>
                             </>
                         ) }
                         </List>
