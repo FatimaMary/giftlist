@@ -12,6 +12,7 @@ import { signInWithEmailAndPassword } from "firebase/auth";
 import { auth } from '../../firebase';
 import Navbar from '../../Components/Navbar';
 import axios from 'axios';
+import { MyContext } from '../../Components/MyContext';
 
 function Login1() {
   const navigate = useNavigate();
@@ -20,10 +21,11 @@ function Login1() {
       password: "",
   })
   const [errors, setErrors] = useState({});
-  const [isLoggedIn, setIsLoggedIn] = useState(false);
   const [searchParam] = useSearchParams();
   const eventId = searchParam.get("eventId");
   const participantsId = searchParam.get("participantsId");
+  const { isLoggedIn, setIsLoggedIn } = useContext(MyContext);
+
 
   const handleChange = (e) => {
       setLoginData({
@@ -83,7 +85,8 @@ function Login1() {
               .then((response) => {
                 console.log("participants update response: ", response.data);
                 // navigate(`/giftexchange?eventId=${eventId}&userId=${res.user.uid}`)
-                navigate(`/eventview?eventId=${eventId}&userId=${res.user.uid}`)
+                navigate(`/eventview?eventId=${eventId}&userId=${res.user.uid}`);
+                setIsLoggedIn(true);
               })
           })
       console.log("button clicked");
