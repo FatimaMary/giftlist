@@ -75,7 +75,7 @@ function Login1() {
           .then(async(res) => {
               console.log(res);
               // navigate(`/groupcreate?userId=${res.user.uid}`)
-            //   navigate(`/giftexchange?userId=${res.user.uid}`)
+              // navigate(`/giftexchange?userId=${res.user.uid}`)
               setIsLoggedIn(true);
               axios.put(`http://localhost:2309/player/${participantsId}`, {
                 participantsEmail: loginData.email
