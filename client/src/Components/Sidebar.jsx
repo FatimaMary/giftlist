@@ -168,7 +168,7 @@ const Sidebar = ({
                             <ListItemButton
                             key="login"
                             onClick={() => {
-                                setIsLoggedIn(true);
+                                // setIsLoggedIn(true);
                                 navigate("/login")
                             }}
                             sx={{
@@ -196,7 +196,6 @@ const Sidebar = ({
                             <ListItemButton
                             key="signup"
                             onClick={() => {
-                                setIsLoggedIn(true);
                                 navigate("/signup")
                             }}
                             sx={{
