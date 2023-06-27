@@ -168,7 +168,6 @@ const Sidebar = ({
                             <ListItemButton
                             key="login"
                             onClick={() => {
-                                // setIsLoggedIn(true);
                                 navigate("/login")
                             }}
                             sx={{
