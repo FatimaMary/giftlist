@@ -171,8 +171,8 @@ const Sidebar = ({
                                 navigate("/login")
                             }}
                             sx={{
-                                backgroundColor: active === "login" ? '#FFEAEA' : "transparent",
-                                color: active === "login" ? '#E64848' : '#C21010',
+                                backgroundColor: "transparent",
+                                color: '#C21010',
                                 padding: '5px 5px',
                                 border: '2px solid #C21010',
                                 margin: '0px 25px',
