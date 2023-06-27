@@ -151,8 +151,8 @@ const Sidebar = ({
                             <ListItemButton
                             key="logout"
                             onClick={() => {
-                                // Handle login logic here
                                 setIsLoggedIn(false);
+                                navigate("/")
                             }}
                             sx={{
                                 backgroundColor: active === "logout" ? '#FFEAEA' : "transparent",
@@ -164,23 +164,36 @@ const Sidebar = ({
                             </ListItemIcon>
                             <ListItemText primary="Logout" />
                             </ListItemButton>
-                        ) :(
+                        ) :( <>
                             <ListItemButton
                             key="login"
                             onClick={() => {
-                                // Handle login logic here
                                 setIsLoggedIn(true);
+                                navigate("/login")
                             }}
                             sx={{
                                 backgroundColor: active === "login" ? '#FFEAEA' : "transparent",
-                                color: active === "login" ? '#E64848' : 'black'
+                                color: active === "login" ? '#E64848' : '#C21010',
+                                padding: '5px 5px',
+                                border: '2px solid #C21010',
+                                margin: '0px 25px',
+                                borderRadius: '10px',
+                                // fontWeight: 600,
+                                // fontSize:'16px',
+                                '&: hover':{
+                                    background: "#C21010",
+                                    color: '#FFF'
+                                }
                             }}
                             >
-                            <ListItemIcon>
-                                {/* <LoginOutlinedIcon /> */}
-                            </ListItemIcon>
-                            <ListItemText primary="Login" />
+                            <ListItemText primary="Login" sx={{
+                                 display: 'flex',
+                                 justifyContent: 'center',
+                                 fontWeight: 'bold',
+                                fontSize:'16px'
+                            }} />
                             </ListItemButton>
+                            </>
                         ) }
                         </List>
                     </Box>
