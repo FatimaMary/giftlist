@@ -136,14 +136,24 @@ const Sidebar = ({
                                 navigate(item.text.toLowerCase());
                                 }}
                                 sx={{
-                                    backgroundColor: active === item.text.toLowerCase() ? '#FFEAEA' : "transparent",
+                                    backgroundColor: active === item.text.toLowerCase() && item.icon ? '#FFEAEA' : "transparent",
                                     color:
-                                        active === item.text.toLowerCase()
+                                        active === item.text.toLowerCase() && item.icon
                                             ? '#E64848'
                                             : 'black'
                                 }}
                             >
-                                <ListItemIcon>{item.icon}</ListItemIcon>
+                                <ListItemIcon
+                                    sx={{
+                                        backgroundColor: active === item.text.toLowerCase() && item.icon ? '#FFEAEA' : "transparent",
+                                        color:
+                                            active === item.text.toLowerCase() && item.icon
+                                                ? '#E64848'
+                                                : 'black'
+                                    }}
+                                >
+                                    {item.icon}
+                                </ListItemIcon>
                                 <ListItemText primary={item.text} />
                             </ListItemButton>
                         ))}
