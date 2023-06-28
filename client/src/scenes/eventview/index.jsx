@@ -443,7 +443,7 @@ function EventView() {
                                 }}
                             /> 
                         }
-                        Invite at least 3 participants
+                        At least 3 participants joined
                     </Typography>
                     <Typography
                         sx={{
@@ -461,7 +461,7 @@ function EventView() {
                                 height: '18px',
                             }}
                         />
-                        RSVP by {eventDetails.rsvpDate}
+                        Name to be drawn by the organizer
                     </Typography>
                     <Typography
                         sx={{
