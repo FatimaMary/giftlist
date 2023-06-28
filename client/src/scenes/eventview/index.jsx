@@ -4,7 +4,7 @@ import {
     Typography,
     Button,
  } from '@mui/material';
-import Santa from '../giftExchange/santa2.png';
+import Santa from '../giftExchange/santa3.jpg';
 import Avatar from '@mui/material/Avatar';
 import ShareOutlinedIcon from '@mui/icons-material/ShareOutlined';
 import EditCalendarOutlinedIcon from '@mui/icons-material/EditCalendarOutlined';
@@ -79,7 +79,7 @@ function EventView() {
                     height={200} 
                     width={250}
                     className='starimage'
-                    style={{backgroundColor: '#FFF'}}
+                    // style={{backgroundColor: '#FFF'}}
                 />
             </Box>
             <Box sx={{
