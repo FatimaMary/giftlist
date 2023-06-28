@@ -30,6 +30,7 @@ function EventView() {
     const eventId = searchParam.get("eventId");
     const [activeTab, setActiveTab] = useState(0);
     const [editPage, setEditPage] = useState(false);
+    const [drawnNames, setDrawnNames] = useState([]);
 
     useEffect(() => {
       axios.get(`http://localhost:2309/event/get/${eventId}`)
@@ -60,6 +61,14 @@ function EventView() {
       const handleTabActive = (index) => {
         setActiveTab(index);
       }
+
+      const handleDrawNames = () => {
+        axios.get(`http://localhost:2309/player/drawn/${eventId}`)
+            .then((response) => {
+                console.log("drawn names response: ", response.data);
+                setDrawnNames(response.data);
+            })
+      }
   return <Box 
     backgroundColor='#FFEAEA'
     width='100vw'
@@ -79,7 +88,6 @@ function EventView() {
                     height={200} 
                     width={250}
                     className='starimage'
-                    // style={{backgroundColor: '#FFF'}}
                 />
             </Box>
             <Box sx={{
@@ -181,8 +189,6 @@ function EventView() {
                         justifyContent: 'felx-start',
                         alignItems: 'center',
                         marginBottom: '22px',
-                        // gap: '25px',
-
                     }}
                 >
                     <Typography
@@ -216,7 +222,6 @@ function EventView() {
                             color: '#5e6577',
                             paddingRight: '15px',
                             marginRight: '15px',
-                            // borderRight: '1px solid #cad3dd',
                         }}
                     >
                         Gift budget: <span style={{fontWeight: 600, color: '#101a34'}}>{eventDetails.budget}</span> 
@@ -226,50 +231,80 @@ function EventView() {
                   sx={{
                     display: 'flex',
                     alignItems: 'center',
-                    justifyContent: 'flex-start',
+                    justifyContent: 'space-between',
                     marginBottom: '10px',
                     width: '100%',
                   }}
                 >
-                    <Avatar 
-                        {...stringAvatar(`${name.firstName}`)} 
-                        sx={{
-                            width: '40px',
-                            height: '40px',
-                            background: '#C21010',
-                            fontSize: '13px',
-                        }}
-                    />
                     <Box 
-                      sx={{
-                        flexBasis: 'calc(100% - 48px)',
-                        maxWidth: 'calc(100% - 48px)',
-                        paddingLeft: '12px'
-                      }}
+                        sx={{
+                            display: 'flex'
+                        }}
                     >
-                        <Typography
+                        <Avatar 
+                            {...stringAvatar(`${name.firstName}`)} 
                             sx={{
-                                fontWeight: 400,
+                                width: '40px',
+                                height: '40px',
+                                background: '#C21010',
                                 fontSize: '13px',
-                                lineHeight: '16px',
-                                color: '#818694',
-                                marginBottom: 0,
                             }}
+                        />
+                        <Box 
+                        sx={{
+                            // flexBasis: 'calc(100% - 48px)',
+                            // maxWidth: 'calc(100% - 48px)',
+                            paddingLeft: '12px'
+                        }}
                         >
-                            Organizer
-                        </Typography>
-                        <Typography
-                            variant='h4'
+                            <Typography
+                                sx={{
+                                    fontWeight: 400,
+                                    fontSize: '13px',
+                                    lineHeight: '16px',
+                                    color: '#818694',
+                                    marginBottom: 0,
+                                }}
+                            >
+                                Organizer
+                            </Typography>
+                            <Typography
+                                variant='h4'
+                                sx={{
+                                    fontWeight: 600,
+                                    fontSize: '17px',
+                                    lineHeight: '22px',
+                                    color: '#101a34',
+                                    marginBottom: 0,
+                                }}
+                            >
+                                {name.firstName} {name.secondName}
+                            </Typography>
+                        </Box>
+                    </Box>
+                    <Box>
+                        <Button 
                             sx={{
+                                marginRight: '12px',
+                                padding: '8px 15px',
                                 fontWeight: 600,
-                                fontSize: '17px',
-                                lineHeight: '22px',
-                                color: '#101a34',
-                                marginBottom: 0,
+                                fontSize: '13px',
+                                lineHeight: '18px',
+                                borderRadius: '5px',
+                                display: 'flex',
+                                alignItems: 'center',
+                                background: '#C21010',
+                                color: '#fff',
+                                border: '1px solid #C21010',
+                                textTransform: 'inherit',
+                                '&:hover': {
+                                    color: '#C21010'
+                                }
                             }}
+                            onClick={handleDrawNames}
                         >
-                            {name.firstName} {name.secondName}
-                        </Typography>
+                            Draw Names
+                        </Button>
                     </Box>
                 </Box>
                 <Box 
