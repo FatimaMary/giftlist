@@ -145,7 +145,7 @@ const Sidebar = ({
                             >
                                 <ListItemIcon
                                     sx={{
-                                        backgroundColor: active === item.text.toLowerCase() && item.icon ? '#FFEAEA' : "transparent",
+                                        // backgroundColor: active === item.text.toLowerCase() && item.icon ? '#FFEAEA' : "transparent",
                                         color:
                                             active === item.text.toLowerCase() && item.icon
                                                 ? '#E64848'
