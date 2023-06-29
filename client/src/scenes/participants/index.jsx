@@ -265,7 +265,7 @@ function Participants() {
                 marginBottom: 0
               }}
             >
-             {participant.firstName + ' ' + participant.secondName}
+             {participant.firstName } {participant.secondName ? participant.secondName :  ''}
             </Typography>
             <Typography
               variant='body1'
@@ -392,7 +392,7 @@ function Participants() {
                 marginBottom: 0
               }}
             >
-             {unparticipant.firstName + ' ' + unparticipant.secondName}
+             {unparticipant.firstName }  {unparticipant.secondName ? unparticipant.secondName : ''} 
             </Typography>
             <Typography
               variant='body1'
