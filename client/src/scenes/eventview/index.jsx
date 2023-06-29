@@ -31,6 +31,7 @@ function EventView() {
     const [activeTab, setActiveTab] = useState(0);
     const [editPage, setEditPage] = useState(false);
     const [drawnNames, setDrawnNames] = useState([]);
+    const [isButtonDisabled, setIsButtonDisabled] = useState(false)
 
     useEffect(() => {
       axios.get(`http://localhost:2309/event/get/${eventId}`)
@@ -67,6 +68,7 @@ function EventView() {
             .then((response) => {
                 console.log("drawn names response: ", response.data);
                 setDrawnNames(response.data);
+                setIsButtonDisabled(true);
             })
       }
   return <Box 
@@ -168,7 +170,7 @@ function EventView() {
                                 '&:hover': {
                                     color: '#C21010', 
                                     border: '1px solid #C21010'
-                                }
+                                },
                             }}
                             onClick={() => setEditPage(true)}
                         >
@@ -299,9 +301,16 @@ function EventView() {
                                 textTransform: 'inherit',
                                 '&:hover': {
                                     color: '#C21010'
+                                },
+                                '&: disabled' : {
+                                    color: 'black',
+                                    border: '1px solid black',
+                                    background: 'none',
+                                    opacity: 0.5
                                 }
                             }}
                             onClick={handleDrawNames}
+                            disabled={isButtonDisabled}
                         >
                             Draw Names
                         </Button>
@@ -489,13 +498,22 @@ function EventView() {
                             marginBottom: '10px',
                         }}
                     >
-                        <CheckCircleOutlineIcon
-                            sx={{
-                                color: 'green',
-                                width: '18px',
-                                height: '18px',
-                            }}
-                        />
+                        {!isButtonDisabled ? 
+                            <CancelOutlinedIcon
+                                sx={{
+                                    color: 'red',
+                                    width: '18px',
+                                    height: '18px',
+                                }}
+                            />  :
+                            <CheckCircleOutlineIcon 
+                                sx={{
+                                    color: 'green',
+                                    width: '18px',
+                                    height: '18px',
+                                }}
+                            /> 
+                        }
                         Name to be drawn by the organizer
                     </Typography>
                     <Typography
