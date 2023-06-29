@@ -50,7 +50,13 @@ function EventView() {
             .then((response) => {
                 console.log("Participants List: ", response.data);
                 setPlayers(response.data);
-            })
+            });
+            const storedDisabledState = localStorage.getItem('isButtonDisabled');
+            const storedEventId = localStorage.getItem('eventId');
+            if (storedEventId === eventId) {
+            // if (storedDisabledState) {
+              setIsButtonDisabled(JSON.stringify(storedDisabledState));
+            }
     }, [])
     
     function stringAvatar(name) {
@@ -69,6 +75,8 @@ function EventView() {
                 console.log("drawn names response: ", response.data);
                 setDrawnNames(response.data);
                 setIsButtonDisabled(true);
+                localStorage.setItem('isButtonDisabled', JSON.stringify(true));
+                localStorage.setItem('eventId', `${eventId}`);
             })
       }
   return <Box 
