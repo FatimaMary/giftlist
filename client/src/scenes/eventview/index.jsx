@@ -288,7 +288,7 @@ function EventView() {
                                     marginBottom: 0,
                                 }}
                             >
-                                {name.firstName} {name.secondName}
+                                {name.firstName} {name.secondName === undefined ? '' : name.secondName}
                             </Typography>
                         </Box>
                     </Box>
