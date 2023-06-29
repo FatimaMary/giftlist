@@ -11,7 +11,7 @@ import {
 import { useNavigate, useSearchParams } from 'react-router-dom';
 import axios from 'axios';
 import AddCircleOutlineIcon from '@mui/icons-material/AddCircleOutline';
-import Santa from './santa2.png';
+import Santa from './santa3.jpg';
 import CalendarMonthIcon from '@mui/icons-material/CalendarMonth';
 import CopyrightIcon from '@mui/icons-material/Copyright';
 import Footer from '../../Components/Footer';
@@ -141,6 +141,7 @@ function GiftExchange() {
                       width: '80%',
                       marginLeft: 'auto',
                       marginRight: 'auto',
+                      // marginTop: '10px'
                     }}
                   />
                 </Box>
