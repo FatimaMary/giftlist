@@ -283,7 +283,7 @@ function EventView1() {
                                 marginBottom: 0,
                             }}
                         >
-                            {name.firstName} {name.secondName}
+                            {name.firstName} {name.secondName ? name.secondName : ''}
                         </Typography>
                     </Box>
                 </Box>
