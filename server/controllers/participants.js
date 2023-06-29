@@ -1,5 +1,6 @@
 import Participants from "../models/Participants.js";
 import Users from '../models/Users.js';
+import Events from "../models/Event.js";
 
 export const postParticipant = (req, res) => {
     const participantsEmail = "";
@@ -58,41 +59,61 @@ export const updateParticipant = (req, res) => {
 };
 
 export const getDrawnNames = async (req, res) => {
-    const eventId = req.params.eventId;
-  
-    try {
-      const participants = await Participants.find({ eventId: eventId }).exec();
-  
-      const participantEmails = participants.map((participant) => {
-        return participant.participantsEmail;
-      });
-  
-      const users = await Users.find({ email: { $in: participantEmails } }).exec();
-  
-      const participantsEmailsList = participants.map((participant) => {
-        const user = users.find((user) => user.email === participant.participantsEmail);
-  
-        return {
-        //   participantEmail: participant.participantsEmail,
-          userName: user ? user.firstName : "Unknown" 
-        };
-      });
-    //   res.json(participantsEmailsList);
-      function shuffleArray(array) {
-                for (let i = array.length - 1; i > 0; i--) {
-                  const j = Math.floor(Math.random() * (i + 1));
-                  [array[i], array[j]] = [array[j], array[i]];
-                }
-              }
-
-              shuffleArray(participantsEmailsList);
-              const pairings = participantsEmailsList.map((giver, index) => ({
-                        giver,
-                        receiver: participantsEmailsList[(index + 1) % participantsEmailsList.length],
-                      }));
-            res.json(pairings);
-    } catch (error) {
-      res.status(500).json({ error: "An error occurred while fetching participants." });
+  const eventId = req.params.eventId;
+  try {
+    const events = await Events.find({ eventId: eventId });
+    if (events.length === 0) {
+      return res.status(404).json({ message: 'There are no event details' });
     }
-  };
-  
+
+    const eventDetail = events.map((singleEvent) => singleEvent.userId);
+
+    const users = await Users.find({ userId: { $in: eventDetail } });
+    if (users.length === 0) {
+      return res.status(404).json({ message: 'No user found' });
+    }
+
+    const userDetail = users.map((user) => {
+      return {
+        firstName: user.firstName,
+        // secondName: user.secondName
+      };
+    });
+    console.log('userDetail: ', userDetail);
+
+    const participants = await Participants.find({ eventId: eventId });
+
+    const participantEmails = participants.map((participant) => {
+      return participant.participantsEmail;
+    });
+
+    const usersWithEmail = await Users.find({ email: { $in: participantEmails } })
+
+    const participantsEmailsList = participants.map((participant) => {
+      const user = usersWithEmail.find((user) => user.email === participant.participantsEmail);
+
+      return {
+        // participantEmail: participant.participantsEmail,
+        userName: user ? user.firstName : 'Unknown',
+      };
+    });
+
+    function shuffleArray(array) {
+      for (let i = array.length - 1; i > 0; i--) {
+        const j = Math.floor(Math.random() * (i + 1));
+        [array[i], array[j]] = [array[j], array[i]];
+      }
+    }
+    const names = participantsEmailsList.map((participant) => participant.userName);
+    shuffleArray(names);
+
+    const pairings = names.map((giver, index) => ({
+      giver,
+      receiver: names[(index + 1) % names.length],
+    }));
+
+    res.json(pairings);
+  } catch (error) {
+    res.status(500).json({ error: 'An error occurred while fetching participants.' });
+  }
+};
