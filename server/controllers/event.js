@@ -79,6 +79,7 @@ export const getEventDetailsbyEventId = (req, res) => {
             budget: singleEvent.budget,
             details: singleEvent.details,
             userId: singleEvent.userId,
+            drawNames: singleEvent.drawNames,
           };
         });
         res.json(eventDetail[0]);
