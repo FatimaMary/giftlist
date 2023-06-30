@@ -6,6 +6,7 @@ export const postEvent = (req, res) => {
     const giftExchangeDate = req.body.giftExchangeDate;
     const rsvpDate = req. body.rsvpDate;
     const confirmation = req.body.confirmation;
+    const drawNames = 'false';
     const userId = req.body.userId;
 
     const newEvent = new Events({
@@ -13,6 +14,7 @@ export const postEvent = (req, res) => {
        giftExchangeDate,
        rsvpDate,
        confirmation,
+       drawNames,
        userId,
     });
 
@@ -150,7 +152,7 @@ export const updateDrawNames = (req, res) => {
   const eventId = req.params.eventId;
   Events.findOne({ eventId: eventId })
   .then((event) => {
-      event.drawNames = req.body.budget;
+      event.drawNames = req.body.drawNames;
       event
           .save()
           .then(() => res.json("Event Updated"))
