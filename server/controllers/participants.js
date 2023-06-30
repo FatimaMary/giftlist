@@ -74,10 +74,8 @@ export const getDrawnNames = async (req, res) => {
     }
 
     const userDetail = users.map((user) => {
-      return {
-        firstName: user.firstName,
-        // secondName: user.secondName
-      };
+      return  user.firstName
+
     });
     console.log('userDetail: ', userDetail);
 
@@ -104,8 +102,9 @@ export const getDrawnNames = async (req, res) => {
         [array[i], array[j]] = [array[j], array[i]];
       }
     }
-    const names = participantsEmailsList.map((participant) => participant.userName);
-    shuffleArray(names);
+    const names = participantsEmailsList.map((participant) => participant.userName)
+    const renames = names.push(`${userDetail}`)
+    shuffleArray(renames);
 
     const pairings = names.map((giver, index) => ({
       giver,
