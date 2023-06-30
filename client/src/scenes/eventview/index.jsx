@@ -28,10 +28,13 @@ function EventView() {
     const [invitePage, setInvitePage] = useState(false);
     const [searchParam] = useSearchParams();
     const eventId = searchParam.get("eventId");
+    const playerUserId = searchParam.get("userId");
     const [activeTab, setActiveTab] = useState(0);
     const [editPage, setEditPage] = useState(false);
     const [drawnNames, setDrawnNames] = useState([]);
-    const [isButtonDisabled, setIsButtonDisabled] = useState(false)
+    const [isButtonDisabled, setIsButtonDisabled] = useState(false);
+
+    console.log("player user id: ", playerUserId);
 
     useEffect(() => {
       axios.get(`http://localhost:2309/event/get/${eventId}`)
@@ -51,12 +54,6 @@ function EventView() {
                 console.log("Participants List: ", response.data);
                 setPlayers(response.data);
             });
-            const storedDisabledState = localStorage.getItem('isButtonDisabled');
-            const storedEventId = localStorage.getItem('eventId');
-            if (storedEventId === eventId) {
-            // if (storedDisabledState) {
-              setIsButtonDisabled(JSON.stringify(storedDisabledState));
-            }
     }, [])
     
     function stringAvatar(name) {
@@ -75,8 +72,6 @@ function EventView() {
                 console.log("drawn names response: ", response.data);
                 setDrawnNames(response.data);
                 setIsButtonDisabled(true);
-                localStorage.setItem('isButtonDisabled', JSON.stringify(true));
-                localStorage.setItem('eventId', `${eventId}`);
             })
       }
   return <Box 
@@ -293,7 +288,36 @@ function EventView() {
                         </Box>
                     </Box>
                     <Box>
-                        <Button 
+                        {eventDetails.userId !== playerUserId ? (<Button 
+                            sx={{
+                                marginRight: '12px',
+                                padding: '8px 15px',
+                                fontWeight: 600,
+                                fontSize: '13px',
+                                lineHeight: '18px',
+                                borderRadius: '5px',
+                                display: 'flex',
+                                alignItems: 'center',
+                                background: '#C21010',
+                                color: '#fff',
+                                border: '1px solid #C21010',
+                                textTransform: 'inherit',
+                                '&:hover': {
+                                    color: '#C21010'
+                                },
+                                '&: disabled' : {
+                                    color: 'black',
+                                    border: '1px solid black',
+                                    background: 'none',
+                                    opacity: 0.5
+                                }
+                            }}
+                            onClick={handleDrawNames}
+                            disabled
+                        >
+                            Draw Names
+                        </Button>) :
+                        (<Button 
                             sx={{
                                 marginRight: '12px',
                                 padding: '8px 15px',
@@ -321,7 +345,7 @@ function EventView() {
                             disabled={isButtonDisabled}
                         >
                             Draw Names
-                        </Button>
+                        </Button>) } 
                     </Box>
                 </Box>
                 <Box 
