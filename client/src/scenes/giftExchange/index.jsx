@@ -125,7 +125,7 @@ function GiftExchange() {
                   justifyContent: 'center',
                 }} 
                 key={i}
-                onClick={() => navigate(`/eventview?eventId=${cardData.eventId}`)}
+                onClick={() => navigate(`/eventview?eventId=${cardData.eventId}&userId=${userId}`)}
               >
               <CardContent>
                 <Box sx={{
