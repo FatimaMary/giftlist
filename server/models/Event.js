@@ -29,6 +29,9 @@ const eventSchema = new mongoose.Schema({
     details: {
         type: String,
     },
+    drawNames : {
+        type: Boolean,
+    },
     userId: {
         type: String,
         required: true
