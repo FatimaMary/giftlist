@@ -144,4 +144,17 @@ export const deleteEvent = (req, res) => {
   .catch((err) => {
     return res.status(500).json({ error: 'Failed to delete event' });
   });
-}
+};
+
+export const updateDrawNames = (req, res) => {
+  const eventId = req.params.eventId;
+  Events.findOne({ eventId: eventId })
+  .then((event) => {
+      event.drawNames = req.body.budget;
+      event
+          .save()
+          .then(() => res.json("Event Updated"))
+          .catch((err) => res.status(400).json("Error: " + err));
+  })
+  .catch((err) => res.status(400).json("Error: " + err));
+};
