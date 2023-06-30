@@ -42,6 +42,7 @@ function EventView() {
             console.log("Get response: ", response);
             console.log("Get response data: ", response.data);
             setEventDetails(response.data);
+            setIsButtonDisabled(response.data.drawNames);
         });
         axios.get(`http://localhost:2309/event/user/${eventId}`)
             .then((response) => {
@@ -71,7 +72,6 @@ function EventView() {
             .then((response) => {
                 console.log("drawn names response: ", response.data);
                 setDrawnNames(response.data);
-                setIsButtonDisabled(true);
             })
       }
   return <Box 
