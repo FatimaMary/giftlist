@@ -4,10 +4,8 @@ import {
     Typography,
     Button,
 } from '@mui/material';
-import Santa from '../giftExchange/santa2.png';
+import Santa from '../giftExchange/santa3.jpg';
 import Avatar from '@mui/material/Avatar';
-import ShareOutlinedIcon from '@mui/icons-material/ShareOutlined';
-import EditCalendarOutlinedIcon from '@mui/icons-material/EditCalendarOutlined';
 import axios from 'axios';
 import { useNavigate, useSearchParams } from 'react-router-dom';
 import Footer from '../../Components/Footer';
@@ -124,71 +122,6 @@ function EventView1() {
                     >
                         {eventDetails.eventName}
                     </Typography>
-                    {/* <Box 
-                       sx={{
-                        display: 'flex',
-                        flexWrap: 'wrap',
-                        justifyContent: 'flex-end'
-                       }}
-                    >
-                        <Button
-                            sx={{
-                                marginRight: '12px',
-                                padding: '8px 15px',
-                                fontWeight: 600,
-                                fontSize: '13px',
-                                lineHeight: '18px',
-                                borderRadius: '5px',
-                                display: 'flex',
-                                alignItems: 'center',
-                                background: '#C21010',
-                                color: '#fff',
-                                border: '1px solid #C21010',
-                                textTransform: 'inherit',
-                                '&:hover': {
-                                    color: '#F11299'
-                                }
-                            }}
-                        >
-                            <ShareOutlinedIcon 
-                                sx={{
-                                    width: '16px', 
-                                    height: '16px',
-                                    marginRight: '5px'
-                                }}
-                            />
-                            Invite
-                        </Button>
-                        <Button
-                             sx={{
-                                marginRight: '12px',
-                                padding: '8px 15px',
-                                fontWeight: 600,
-                                fontSize: '13px',
-                                lineHeight: '18px',
-                                borderRadius: '5px',
-                                display: 'flex',
-                                alignItems: 'center',
-                                background: '#fafbfd',
-                                color: '#101a34',
-                                border: '1px solid #cad3dd',
-                                textTransform: 'inherit',
-                                '&:hover': {
-                                    color: '#C21010', 
-                                    border: '1px solid #C21010'
-                                }
-                            }}
-                        >
-                            <EditCalendarOutlinedIcon 
-                                 sx={{
-                                    width: '16px', 
-                                    height: '16px', 
-                                    marginRight: '5px'
-                                }}
-                            />
-                            Edit
-                        </Button>
-                    </Box> */}
                 </Box>
                 <Box 
                     sx={{
