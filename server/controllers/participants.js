@@ -37,6 +37,7 @@ export const getParticipantsByEventId = (req, res) => {
                         participantsAcceptence: participant.participantsAcceptence,
                         participantsId: participant.participantsId,
                         eventId: participant.eventId,
+                        userId: participant.userId,
                     };
                 });
                 res.json(participantsDetails);
