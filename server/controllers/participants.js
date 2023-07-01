@@ -50,6 +50,7 @@ export const updateParticipant = (req, res) => {
     Participants.findOne({ participantsId: participantsId })
         .then((participant) => {
             participant.participantsEmail = req.body.participantsEmail;
+            participant.userId = req.body.userId;
            participant
             .save()
             .then(() => res.json("participants details Updated"))
@@ -116,3 +117,9 @@ export const getDrawnNames = async (req, res) => {
     res.status(500).json({ error: 'An error occurred while fetching participants.' });
   }
 };
+
+  export const getEventDetailsByUserId = (req, res) => {
+    const userId = req.params.userId;
+    Users.findOne({ userId: userId }); 
+    
+  }
