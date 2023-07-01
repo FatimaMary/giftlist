@@ -18,6 +18,9 @@ const participantsSchema = new mongoose.Schema({
         type: String,
         required: true,
     },
+    userId : {
+        type: String,
+    }
 });
 
 participantsSchema.plugin(autoIncrement.plugin, {
