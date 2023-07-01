@@ -80,7 +80,8 @@ function Login1() {
               // navigate(`/giftexchange?userId=${res.user.uid}`)
               setIsLoggedIn(true);
               axios.put(`http://localhost:2309/player/${participantsId}`, {
-                participantsEmail: loginData.email
+                participantsEmail: loginData.email,
+                userId: res.user.uid,
               })
               .then((response) => {
                 console.log("participants update response: ", response.data);
