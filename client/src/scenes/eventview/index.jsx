@@ -33,6 +33,7 @@ function EventView() {
     const [editPage, setEditPage] = useState(false);
     const [drawnNames, setDrawnNames] = useState([]);
     const [isButtonDisabled, setIsButtonDisabled] = useState(false);
+    const [receiver, setReceiver] = useState({})
 
     console.log("player user id: ", playerUserId);
 
@@ -43,6 +44,13 @@ function EventView() {
             console.log("Get response data: ", response.data);
             setEventDetails(response.data);
             setIsButtonDisabled(response.data.drawNames);
+            // if(response.data.drawNames === true) {
+            //     axios.get(`http://localhost:2309/user/get/${playerUserId}`)
+            //     .then((res) => {
+            //         console.log("User Name by userId: ", res.data);
+            //         if(res.data.firstName === response.data.)
+            //     })
+            // }
         });
         axios.get(`http://localhost:2309/event/user/${eventId}`)
             .then((response) => {
@@ -55,6 +63,16 @@ function EventView() {
                 console.log("Participants List: ", response.data);
                 setPlayers(response.data);
             });
+        if(eventDetails.drawNames===true) {
+            axios.get(`http://localhost:2309/user/get/${playerUserId}`)
+                .then((res) => {
+                    console.log("User Name by userId: ", res.data);
+                    if(eventDetails.drawnNames.giver === res.data.firstName){
+                        console.log("Receiver: ",eventDetails.drawnNames.receiver)
+                        setReceiver(eventDetails.drawnNames.receiver);
+                    }
+                })
+        }
     }, [])
     
     function stringAvatar(name) {
