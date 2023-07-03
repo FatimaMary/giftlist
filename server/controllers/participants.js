@@ -113,7 +113,18 @@ export const getDrawnNames = async (req, res) => {
       receiver: names[(index + 1) % names.length],
     }));
 
-    res.json(pairings);
+    const event = await Events.findOne({ eventId: eventId });
+    if(!event) {
+      return res.status(404).json({ message: 'Event not found' });
+    }
+      event.drawNames = true;
+      event.drawnNames = pairings;
+
+      const savedEvent = await event.save();
+      console.log("Parings saved: ", savedEvent.drawnNames);
+    
+
+    res.json(savedEvent.drawnNames);
   } catch (error) {
     res.status(500).json({ error: 'An error occurred while fetching participants.' });
   }
