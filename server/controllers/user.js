@@ -57,3 +57,20 @@ export const getUserByEmail = (req, res) => {
         })
         .catch((err) => res.status(400).json("Error: " + err));
 }
+
+export const getUserNameByUserId = (req, res) => {
+    const userId = req.params.userId;
+    Users.findOne({ userId: userId })
+    .then((user) => {
+        if(user) {
+            const userDetails ={
+                firstName: user.firstName,
+                secondName: user.secondName
+            };
+            res.json(userDetails);
+        } else {
+            res.status(404).json("User not found");
+        }
+    })
+    .catch((err) => res.status(400).json("Error: ", err));
+}
