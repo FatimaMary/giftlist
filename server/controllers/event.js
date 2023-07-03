@@ -80,6 +80,7 @@ export const getEventDetailsbyEventId = (req, res) => {
             details: singleEvent.details,
             userId: singleEvent.userId,
             drawNames: singleEvent.drawNames,
+            drawnNames: singleEvent.drawnNames
           };
         });
         res.json(eventDetail[0]);
