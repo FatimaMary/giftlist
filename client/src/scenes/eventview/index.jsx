@@ -56,13 +56,6 @@ function EventView() {
                 setPlayers(response.data);
             });
     }, [])
-    // if(eventDetails.drawNames === true) {
-    //     axios.get(`http://localhost:2309/player/drawn/${eventId}`)
-    //     .then((response) => {
-    //         console.log("drawn names response: ", response.data);
-    //         setDrawnNames(response.data);
-    //     });
-    // }
     
     function stringAvatar(name) {
         return {
