@@ -31,6 +31,12 @@ const eventSchema = new mongoose.Schema({
     },
     drawNames : {
         type: Boolean,
+        required: true,
+        default: false,
+    },
+    drawnNames : {
+        type: Array,
+        default: [],
     },
     userId: {
         type: String,
