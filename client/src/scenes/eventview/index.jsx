@@ -44,13 +44,17 @@ function EventView() {
             console.log("Get response data: ", response.data);
             setEventDetails(response.data);
             setIsButtonDisabled(response.data.drawNames);
-            // if(response.data.drawNames === true) {
-            //     axios.get(`http://localhost:2309/user/get/${playerUserId}`)
-            //     .then((res) => {
-            //         console.log("User Name by userId: ", res.data);
-            //         if(res.data.firstName === response.data.)
-            //     })
-            // }
+            if(eventDetails.drawNames === true) {
+                axios.get(`http://localhost:2309/user/get/${playerUserId}`)
+                    .then((res) => {
+                        console.log("User Name by userId: ", res.data);
+                        const filteredNames = eventDetails.drawnNames.filter(name => name.giver === res.data.firstName);
+                        if (filteredNames.length > 0) {
+                            console.log("Receiver: ", filteredNames[0].receiver);
+                            setReceiver(filteredNames[0].receiver);
+                        }
+                    })
+            }
         });
         axios.get(`http://localhost:2309/event/user/${eventId}`)
             .then((response) => {
@@ -63,16 +67,6 @@ function EventView() {
                 console.log("Participants List: ", response.data);
                 setPlayers(response.data);
             });
-        if(eventDetails.drawNames===true) {
-            axios.get(`http://localhost:2309/user/get/${playerUserId}`)
-                .then((res) => {
-                    console.log("User Name by userId: ", res.data);
-                    if(eventDetails.drawnNames.giver === res.data.firstName){
-                        console.log("Receiver: ",eventDetails.drawnNames.receiver)
-                        setReceiver(eventDetails.drawnNames.receiver);
-                    }
-                })
-        }
     }, [])
     
     function stringAvatar(name) {
@@ -306,35 +300,7 @@ function EventView() {
                         </Box>
                     </Box>
                     <Box>
-                        {eventDetails.userId !== playerUserId ? (<Button 
-                            sx={{
-                                marginRight: '12px',
-                                padding: '8px 15px',
-                                fontWeight: 600,
-                                fontSize: '13px',
-                                lineHeight: '18px',
-                                borderRadius: '5px',
-                                display: 'flex',
-                                alignItems: 'center',
-                                background: '#C21010',
-                                color: '#fff',
-                                border: '1px solid #C21010',
-                                textTransform: 'inherit',
-                                '&:hover': {
-                                    color: '#C21010'
-                                },
-                                '&: disabled' : {
-                                    color: 'black',
-                                    border: '1px solid black',
-                                    background: 'none',
-                                    opacity: 0.5
-                                }
-                            }}
-                            onClick={handleDrawNames}
-                            disabled
-                        >
-                            Draw Names
-                        </Button>) :
+                        {eventDetails.userId !== playerUserId ? null :
                         (<Button 
                             sx={{
                                 marginRight: '12px',
@@ -744,7 +710,9 @@ function EventView() {
                                     marginBottom: 0,
                                     fontSize: '13px',
                                 }}
-                            >Check back after the draw date on {eventDetails.rsvpDate}</Typography>
+                            >
+                                {eventDetails.drawNames === true ? (receiver) : <>
+                                Check back after the draw date on {eventDetails.rsvpDate}</>}</Typography>
                         </Box>
                     </Box>
                 </Box>
