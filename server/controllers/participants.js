@@ -136,13 +136,14 @@ export const getDrawnNames = async (req, res) => {
     Participants.find({ userId: userId })
         .then((participants) => {
           console.log("Retrieved participants:", participants);
-          const participantsDetails = participants.map((participant) => {
+          const eventIdList = participants.map((participant) => {
                     return {
                         eventId: participant.eventId,
                     };
                 });
-                console.log("participants Details:", participantsDetails);
-                res.json(participantsDetails);
+                console.log("Event id List:", eventIdList);
+                res.json(eventIdList);
+                
         })
         .catch((err) => res.status(400).json({ message: err.message }));
 };
