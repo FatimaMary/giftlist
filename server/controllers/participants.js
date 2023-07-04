@@ -132,14 +132,17 @@ export const getDrawnNames = async (req, res) => {
 
   export const getEventDetailsByUserId = (req, res) => {
     const userId = req.params.userId;
+    console.log("userId:", userId);
     Participants.find({ userId: userId })
-      .then((participant) => {
-        const eventIdsList = participant.map((event) => {
-          return {
-            eventId: event.eventId
-          };
-        });
-        res.json(eventIdsList)
-      })
-      .catch((err) => res.status(400).json("Error: " + err));
-  }
+        .then((participants) => {
+          console.log("Retrieved participants:", participants);
+          const participantsDetails = participants.map((participant) => {
+                    return {
+                        eventId: participant.eventId,
+                    };
+                });
+                console.log("participants Details:", participantsDetails);
+                res.json(participantsDetails);
+        })
+        .catch((err) => res.status(400).json({ message: err.message }));
+};
