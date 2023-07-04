@@ -5,6 +5,7 @@ import {
     getParticipantsByEventId,
     updateParticipant,
     getDrawnNames,
+    getEventDetailsByUserId
 } from '../controllers/participants.js';
 
 const router = express.Router();
@@ -14,5 +15,6 @@ router.get("/all", getAllParticipants);
 router.get("/:eventId", getParticipantsByEventId);
 router.put("/:participantsId", updateParticipant);
 router.get("/drawn/:eventId", getDrawnNames);
+router.get("/userId", getEventDetailsByUserId);
 
 export default router;
