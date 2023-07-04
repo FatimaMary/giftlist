@@ -15,6 +15,6 @@ router.get("/all", getAllParticipants);
 router.get("/:eventId", getParticipantsByEventId);
 router.put("/:participantsId", updateParticipant);
 router.get("/drawn/:eventId", getDrawnNames);
-router.get("/userId", getEventDetailsByUserId);
+router.get("/get/:userId", getEventDetailsByUserId);
 
 export default router;
