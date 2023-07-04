@@ -33,7 +33,7 @@ function EventView() {
     const [editPage, setEditPage] = useState(false);
     const [drawnNames, setDrawnNames] = useState([]);
     const [isButtonDisabled, setIsButtonDisabled] = useState(false);
-    const [receiver, setReceiver] = useState({})
+    const [receiver, setReceiver] = useState({});
 
     console.log("player user id: ", playerUserId);
 
@@ -711,8 +711,10 @@ function EventView() {
                                     fontSize: '13px',
                                 }}
                             >
-                                {eventDetails.drawNames === true ? (receiver) : <>
-                                Check back after the draw date on {eventDetails.rsvpDate}</>}</Typography>
+                                {eventDetails.drawNames === true ? <> {receiver} </> : <>
+                                Check back after the draw date on {eventDetails.rsvpDate}
+                                </>}
+                                </Typography>
                         </Box>
                     </Box>
                 </Box>
