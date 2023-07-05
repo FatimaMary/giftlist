@@ -22,7 +22,7 @@ import Invite from '../success/invite';
 import EditEvent from './editEvent';
 
 function EventView() {
-    const [eventDetails, setEventDetails] = useState([]);
+    const [eventDetails, setEventDetails] = useState({});
     const [name, setName] = useState([]);
     const [players, setPlayers] = useState([]);
     const [invitePage, setInvitePage] = useState(false);
@@ -44,11 +44,12 @@ function EventView() {
             console.log("Get response data: ", response.data);
             setEventDetails(response.data);
             setIsButtonDisabled(response.data.drawNames);
-            if(eventDetails.drawNames === true) {
+            // console.log("Event Details value: ", eventDetails);
+            if(response.data.drawNames === true) {
                 axios.get(`http://localhost:2309/user/get/${playerUserId}`)
                     .then((res) => {
                         console.log("User Name by userId: ", res.data);
-                        const filteredNames = eventDetails.drawnNames.filter(name => name.giver === res.data.firstName);
+                        const filteredNames = response.data.drawnNames.filter(name => name.giver === res.data.firstName);
                         if (filteredNames.length > 0) {
                             console.log("Receiver: ", filteredNames[0].receiver);
                             setReceiver(filteredNames[0].receiver);
