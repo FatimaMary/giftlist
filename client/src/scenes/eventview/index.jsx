@@ -311,6 +311,37 @@ function EventView() {
             </Box>
             <Box>
               {eventDetails.userId !== playerUserId ? null : (
+                <>
+                {players.length <= 2 ? <>
+                    <Button
+                  sx={{
+                    marginRight: "12px",
+                    padding: "8px 15px",
+                    fontWeight: 600,
+                    fontSize: "13px",
+                    lineHeight: "18px",
+                    borderRadius: "5px",
+                    display: "flex",
+                    alignItems: "center",
+                    background: "#C21010",
+                    color: "#fff",
+                    border: "1px solid #C21010",
+                    textTransform: "inherit",
+                    "&:hover": {
+                      color: "#C21010",
+                    },
+                    "&: disabled": {
+                      color: "black",
+                      border: "1px solid black",
+                      background: "none",
+                      opacity: 0.5,
+                    },
+                  }}
+                  onClick={handleDrawNames}
+                  disabled
+                >
+                  Draw Names
+                </Button> </> : <>
                 <Button
                   sx={{
                     marginRight: "12px",
@@ -339,7 +370,9 @@ function EventView() {
                   disabled={isButtonDisabled}
                 >
                   Draw Names
-                </Button>
+                </Button> 
+                </>}
+                </>
               )}
             </Box>
           </Box>
