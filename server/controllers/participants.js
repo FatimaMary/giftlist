@@ -130,51 +130,151 @@ export const getDrawnNames = async (req, res) => {
   }
 };
 
-//   export const getEventDetailsByUserId = (req, res) => {
-//     const userId = req.params.userId;
-//     console.log("userId:", userId);
-//     Participants.find({ userId: userId })
+// export const getEventDetailsByUserId = (req, res) => {
+//   const userId = req.params.userId;
+//   console.log("userId:", userId);
+//   Events.findOne({ userId: userId})
+//   .then((events) => {
+//     if (events.length === 0) {
+//       res.status(404).json({ message: 'No event found' });
+//     } else {
+//       const eventDetails = events.map(event => {
+//         return {
+//           eventId: event.eventId,
+//           eventName: event.eventName,
+//           giftExchangeDate: event.giftExchangeDate,
+//         };
+//       });
+//       res.json(eventDetails);
+//     }
+//   })
+//   Participants.find({ userId: userId })
+//     .then((participants) => {
+//       console.log("Retrieved participants:", participants);
+//       const eventIdList = participants.map((participant) => {
+//         return {
+//           eventId: participant.eventId,
+//         };
+//       });
+//       console.log("Event id List:", eventIdList);
+
+//       const eventDetailsPromises = eventIdList.map((event) =>
+//         Events.findOne({ eventId: event.eventId })
+//       );
+
+//       Promise.all(eventDetailsPromises)
+//         .then((eventDetails) => {
+//           console.log("Event details:", eventDetails);
+//           res.json(eventDetails);
+//         })
+//         .catch((err) => {
+//           console.error("Error retrieving event details:", err);
+//           res.status(400).json({ message: err.message });
+//         });
+//     })
+//     .catch((err) => res.status(400).json({ message: err.message }));
+// };
+
+// export const getEventDetailsByUserId = (req, res) => {
+//   const userId = req.params.userId;
+//   console.log("userId:", userId);
+  
+//   Events.find({ userId: userId })
+//     .then((events) => {
+//       if (events.length === 0) {
+//         return res.status(404).json({ message: 'No event found' });
+//       }
+      
+//       const eventDetails = events.map(event => {
+//         return {
+//           eventId: event.eventId,
+//           eventName: event.eventName,
+//           giftExchangeDate: event.giftExchangeDate,
+//         };
+//       });
+      
+//       const eventIdList = events.map(event => event.eventId);
+
+//       Participants.find({ eventId: { $in: eventIdList } })
 //         .then((participants) => {
 //           console.log("Retrieved participants:", participants);
-//           const eventIdList = participants.map((participant) => {
-//                     return {
-//                         eventId: participant.eventId,
-//                     };
-//                 });
-//                 console.log("Event id List:", eventIdList);
-//                 res.json(eventIdList);
+          
+//           const participantEventIds = participants.map(participant => participant.eventId);
+//           const eventDetailsPromises = eventIdList
+//             .filter(eventId => participantEventIds.includes(eventId))
+//             .map(eventId => Events.findOne({ eventId }));
 
+//           Promise.all(eventDetailsPromises)
+//             .then((eventDetails) => {
+//               console.log("Event details:", eventDetails);
+//               res.json(eventDetails);
+//             })
+//             .catch((err) => {
+//               console.error("Error retrieving event details:", err);
+//               res.status(400).json({ message: err.message });
+//             });
 //         })
-//         .catch((err) => res.status(400).json({ message: err.message }));
+//         .catch((err) => {
+//           console.error("Error retrieving participants:", err);
+//           res.status(400).json({ message: err.message });
+//         });
+//     })
+//     .catch((err) => {
+//       console.error("Error retrieving events:", err);
+//       res.status(400).json({ message: err.message });
+//     });
 // };
 
 export const getEventDetailsByUserId = (req, res) => {
   const userId = req.params.userId;
   console.log("userId:", userId);
 
-  Participants.find({ userId: userId })
-    .then((participants) => {
-      console.log("Retrieved participants:", participants);
-      const eventIdList = participants.map((participant) => {
+  const eventsPromise = Events.find({ userId: userId })
+  const participantsPromise = Participants.find({ userId: userId })
+
+  Promise.all([eventsPromise, participantsPromise])
+    .then(([events, participants]) => {
+      if (events.length === 0) {
+        return res.status(404).json({ message: 'No event found' });
+      }
+
+      const eventDetails = events.map(event => {
+        return {
+          eventId: event.eventId,
+          eventName: event.eventName,
+          giftExchangeDate: event.giftExchangeDate,
+          rsvpDate: event.rsvpDate,
+          confirmation: event.confirmation,
+          drawNames: event.drawNames,
+          drawnNames: event.drawnNames,
+          userId: event.userId,
+          budget: event.budget,
+          detaiils: event.details,
+        };
+      });
+
+      const eventIdList = participants.map(participant => {
         return {
           eventId: participant.eventId,
         };
       });
-      console.log("Event id List:", eventIdList);
 
-      const eventDetailsPromises = eventIdList.map((event) =>
-        Events.findOne({ eventId: event.eventId })
+      const eventDetailsPromises = eventIdList.map(event =>
+        Events.findOne({ eventId: event.eventId }).exec()
       );
 
       Promise.all(eventDetailsPromises)
-        .then((eventDetails) => {
-          console.log("Event details:", eventDetails);
-          res.json(eventDetails);
+        .then(eventDetailsResults => {
+          const mergedEventDetails = eventDetails.concat(eventDetailsResults);
+          res.json(mergedEventDetails);
         })
-        .catch((err) => {
+        .catch(err => {
           console.error("Error retrieving event details:", err);
           res.status(400).json({ message: err.message });
         });
     })
-    .catch((err) => res.status(400).json({ message: err.message }));
+    .catch(err => {
+      console.error("Error retrieving events and participants:", err);
+      res.status(400).json({ message: err.message });
+    });
 };
