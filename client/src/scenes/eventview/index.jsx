@@ -33,7 +33,7 @@ function EventView() {
     const [editPage, setEditPage] = useState(false);
     const [drawnNames, setDrawnNames] = useState([]);
     const [isButtonDisabled, setIsButtonDisabled] = useState(false);
-    const [receiver, setReceiver] = useState({});
+    const [receiver, setReceiver] = useState([]);
 
     console.log("player user id: ", playerUserId);
 
@@ -50,9 +50,11 @@ function EventView() {
                     .then((res) => {
                         console.log("User Name by userId: ", res.data);
                         const filteredNames = response.data.drawnNames.filter(name => name.giver === res.data.firstName);
+                        console.log("filtered Names: ", filteredNames);
                         if (filteredNames.length > 0) {
                             console.log("Receiver: ", filteredNames[0].receiver);
-                            setReceiver(filteredNames[0].receiver);
+                            const receiverName = filteredNames[0].receiver;
+                            setReceiver(receiverName);
                         }
                     })
             }
