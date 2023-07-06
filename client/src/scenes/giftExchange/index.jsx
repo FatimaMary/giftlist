@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React, { useContext, useEffect, useState } from "react";
 import {
   Box,
   TextField,
@@ -15,12 +15,15 @@ import Santa from "./santa3.jpg";
 import CalendarMonthIcon from "@mui/icons-material/CalendarMonth";
 import CopyrightIcon from "@mui/icons-material/Copyright";
 import Footer from "../../Components/Footer";
+import { MyContext } from "../../Components/MyContext";
 
 function GiftExchange() {
   const [eventData, setEventData] = useState([]);
   const [searchParam] = useSearchParams();
   const userId = searchParam.get("userId");
   const navigate = useNavigate();
+  const { isLoggedIn, setIsLoggedIn } = useContext(MyContext);
+
 
   useEffect(() => {
     axios
@@ -30,6 +33,11 @@ function GiftExchange() {
         setEventData(response.data);
       })
       .catch((err) => console.log("Error: ", err));
+      const userLoggedIn = localStorage.getItem("isLoggedIn");
+      if (userLoggedIn === "true") {
+        setIsLoggedIn(true);
+        // navigate(`/giftexchange?userId=${res.user.uid}`); // or any other protected route
+      }
   }, []);
 
   const handleClick = () => {
