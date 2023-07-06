@@ -131,56 +131,84 @@ export const getDrawnNames = async (req, res) => {
 };
 
 
-export const getEventDetailsByUserId = (req, res) => {
-  const userId = req.params.userId;
-  console.log("userId:", userId);
+// export const getEventDetailsByUserId = (req, res) => {
+//   const userId = req.params.userId;
+//   console.log("userId:", userId);
 
-  const eventsPromise = Events.find({ userId: userId })
-  const participantsPromise = Participants.find({ userId: userId })
+//   const eventsPromise = Events.find({ userId: userId })
+//   const participantsPromise = Participants.find({ userId: userId })
 
-  Promise.all([eventsPromise, participantsPromise])
-    .then(([events, participants]) => {
-      if (events.length === 0) {
-        return res.status(404).json({ message: 'No event found' });
-      }
+//   Promise.all([eventsPromise, participantsPromise])
+//     .then(([events, participants]) => {
+//       if (events.length === 0) {
+//         return res.status(404).json({ message: 'No event found' });
+//       }
 
-      const eventDetails = events.map(event => {
-        return {
-          eventId: event.eventId,
-          eventName: event.eventName,
-          giftExchangeDate: event.giftExchangeDate,
-          rsvpDate: event.rsvpDate,
-          confirmation: event.confirmation,
-          drawNames: event.drawNames,
-          drawnNames: event.drawnNames,
-          userId: event.userId,
-          budget: event.budget,
-          detaiils: event.details,
-        };
-      });
+//       const eventDetails = events.map(event => {
+//         return {
+//           eventId: event.eventId,
+//           eventName: event.eventName,
+//           giftExchangeDate: event.giftExchangeDate,
+//           rsvpDate: event.rsvpDate,
+//           confirmation: event.confirmation,
+//           drawNames: event.drawNames,
+//           drawnNames: event.drawnNames,
+//           userId: event.userId,
+//           budget: event.budget,
+//           detaiils: event.details,
+//         };
+//       });
 
-      const eventIdList = participants.map(participant => {
-        return {
-          eventId: participant.eventId,
-        };
-      });
+//       const eventIdList = participants.map(participant => {
+//         return {
+//           eventId: participant.eventId,
+//         };
+//       });
 
-      const eventDetailsPromises = eventIdList.map(event =>
-        Events.findOne({ eventId: event.eventId })
-      );
+//       const eventDetailsPromises = eventIdList.map(event =>
+//         Events.findOne({ eventId: event.eventId })
+//       );
 
-      Promise.all(eventDetailsPromises)
-        .then(eventDetailsResults => {
-          const mergedEventDetails = eventDetails.concat(eventDetailsResults);
-          res.json(mergedEventDetails);
-        })
-        .catch(err => {
-          console.error("Error retrieving event details:", err);
-          res.status(400).json({ message: err.message });
-        });
-    })
-    .catch(err => {
-      console.error("Error retrieving events and participants:", err);
-      res.status(400).json({ message: err.message });
-    });
+//       Promise.all(eventDetailsPromises)
+//         .then(eventDetailsResults => {
+//           const mergedEventDetails = eventDetails.concat(eventDetailsResults);
+//           res.json(mergedEventDetails);
+//         })
+//         .catch(err => {
+//           console.error("Error retrieving event details:", err);
+//           res.status(400).json({ message: err.message });
+//         });
+//     })
+//     .catch(err => {
+//       console.error("Error retrieving events and participants:", err);
+//       res.status(400).json({ message: err.message });
+//     });
+// };
+
+export const getEventDetailsByUserId = async (req, res) => {
+  try {
+    const userId = req.params.userId;
+    console.log("userId:", userId);
+
+    const events = await Events.find({ userId }).exec();
+    const eventIds = events.map(event => event.eventId);
+
+    const participants = await Participants.find({ userId }).exec();
+    const participantEventIds = participants.map(participant => participant.eventId);
+
+    const eventDetailsPromises = eventIds.map(eventId => Events.findOne({ eventId }).exec());
+    const participantEventDetailsPromises = participantEventIds.map(eventId => Events.findOne({ eventId }).exec());
+
+    const eventDetailsResults = await Promise.all(eventDetailsPromises);
+    const participantEventDetailsResults = await Promise.all(participantEventDetailsPromises);
+
+    const mergedEventDetails = [...events,  ...participantEventDetailsResults].filter(
+    event => event !== null
+    );
+    res.json(mergedEventDetails);
+  } catch (err) {
+    console.error("Error retrieving event details:", err);
+    res.status(400).json({ message: err.message });
+  }
 };
+
