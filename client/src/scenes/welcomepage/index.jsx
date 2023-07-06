@@ -23,6 +23,12 @@ function WelcomePage() {
                 gap: '20px',
                 height: '90vh',
                 width: '100vw',
+                "@media (min-width: 768px)": { 
+                    padding: '0 40px',
+                },
+                "@media (min-width: 1024px)": { 
+                    padding: '0 80px',
+                },
             }}
             className='boxcomponent'
         >
@@ -32,6 +38,9 @@ function WelcomePage() {
                     fontWeight:'bold',
                     fontSize: '5rem',
                     color: '#C21010',
+                    "@media (max-width: 768px)": { 
+                        fontSize: '3.5rem',
+                    },
                 }}
             >
                 Gifting made easy
@@ -43,6 +52,10 @@ function WelcomePage() {
                     width: '600px',
                     opacity: '0.5',
                     color: '#C21010',
+                    "@media (max-width: 768px)": { 
+                        fontSize: '1.2rem',
+                        width: '90%',
+                    },
                 }} 
             >
                 GiftList is the easiest way to exchange gifts with friends and family for birthdays, holidays, and more!
@@ -62,7 +75,10 @@ function WelcomePage() {
                         background: '#fff',
                         color: '#C21010',
                         border: '1px solid #C21010'
-                    }
+                    },
+                    "@media (max-width: 768px)": { 
+                        width: '80%',
+                    },
                 }}
             >
                 Create a gift list
