@@ -1,4 +1,4 @@
-import React, { useState, useContext } from "react";
+import React, { useState, useContext, useEffect } from "react";
 import {
   Box,
   Typography,
@@ -50,6 +50,14 @@ function Login() {
     },
   });
 
+  useEffect(() => {
+    // Check if the user is already logged in using localStorage
+    const userLoggedIn = localStorage.getItem("isLoggedIn");
+    if (userLoggedIn === "true") {
+      setIsLoggedIn(true);
+      // navigate(`/giftexchange?userId=${res.user.uid}`); // or any other protected route
+    }
+  }, []);
   const handleLogin = async (e) => {
     e.preventDefault();
     const validationErrors = {};
@@ -77,6 +85,7 @@ function Login() {
         // navigate(`/groupcreate?userId=${res.user.uid}`)
         navigate(`/giftexchange?userId=${res.user.uid}`);
         setIsLoggedIn(true);
+        localStorage.setItem("isLoggedIn", "true");
       });
       console.log("button clicked");
     }
