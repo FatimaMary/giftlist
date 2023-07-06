@@ -19,6 +19,7 @@ function Success() {
     const [searchParam] = useSearchParams();
     const userId = searchParam.get("userId");
     const eventId = searchParam.get("eventId");
+    const [invitePage, setInvitePage] = useState(true);
     const navigate = useNavigate();
 
     const handleClick = () => {
@@ -183,6 +184,7 @@ function Success() {
                         firstName={user.firstName} 
                         rsvpDate={eventDetails.rsvpDate}
                         eventId={eventId}
+                        setInvitePage={setInvitePage}
                     /> 
                     : 
                     null
