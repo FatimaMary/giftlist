@@ -4,7 +4,7 @@ import {
   getAllProducts,
   getProductsByParticipantsId,
   getProductsByEventId,
-} from "../controllers/participants.js";
+} from "../controllers/products.js";
 
 const router = express.Router();
 
