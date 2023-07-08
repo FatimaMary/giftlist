@@ -20,7 +20,11 @@ const participantsSchema = new mongoose.Schema({
     },
     userId : {
         type: String,
-    }
+    },
+    wishList : {
+        type: Array,
+        default: [],
+    },
 });
 
 participantsSchema.plugin(autoIncrement.plugin, {
