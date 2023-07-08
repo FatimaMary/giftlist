@@ -1,11 +1,11 @@
-import express from 'express';
-import { 
-    postUser,
-    updateUser,
-    getUser,
-    getUserByEmail,
-    getUserNameByUserId,
-} from '../controllers/user.js';
+import express from "express";
+import {
+  postUser,
+  updateUser,
+  getUser,
+  getUserByEmail,
+  getUserNameByUserId,
+} from "../controllers/user.js";
 
 const router = express.Router();
 
