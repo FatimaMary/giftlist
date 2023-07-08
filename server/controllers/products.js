@@ -31,10 +31,10 @@ export const getAllProducts = (req, res) => {
 
 export const getProductsByParticipantsId = (req, res) => {
   const participantsId = req.params.participantsId;
-  Products.findOne({ participantsId: participantsId })
+  Products.find({ participantsId: participantsId })
     .then((products) => {
       if (products.length === 0) {
-        res.status(200).json("No Products Found");
+        res.status(200).json({ message: "No Products Found" });
       } else {
         const productDetails = products.map((product) => {
           return {
@@ -54,10 +54,10 @@ export const getProductsByParticipantsId = (req, res) => {
 
 export const getProductsByEventId = (req, res) => {
   const eventId = req.params.eventId;
-  Products.findOne({ eventId: eventId })
+  Products.find({ eventId: eventId })
     .then((products) => {
       if (products.length === 0) {
-        res.status(200).json("No Products Found");
+        res.status(200).json({ message: "No Products Found" });
       } else {
         const productDetails = products.map((product) => {
           return {
