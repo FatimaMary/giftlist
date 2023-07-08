@@ -51,3 +51,26 @@ export const getProductsByParticipantsId = (req, res) => {
     })
     .catch((err) => res.status(400).json({ message: err.message }));
 };
+
+export const getProductsByEventId = (req, res) => {
+  const eventId = req.params.eventId;
+  Products.findOne({ eventId: eventId })
+    .then((products) => {
+      if (products.length === 0) {
+        res.status(200).json("No Products Found");
+      } else {
+        const productDetails = products.map((product) => {
+          return {
+            productId: product.productId,
+            productName: product.productName,
+            productPrice: product.productPrice,
+            description: product.description,
+            eventId: product.eventId,
+            participantsId: product.participantsId,
+          };
+        });
+        res.json(productDetails);
+      }
+    })
+    .catch((err) => res.status(400).json({ message: err.message }));
+};
