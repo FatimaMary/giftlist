@@ -1,12 +1,12 @@
-import express from 'express';
-import { 
-    postParticipant,
-    getAllParticipants,
-    getParticipantsByEventId,
-    updateParticipant,
-    getDrawnNames,
-    getEventDetailsByUserId
-} from '../controllers/participants.js';
+import express from "express";
+import {
+  postParticipant,
+  getAllParticipants,
+  getParticipantsByEventId,
+  updateParticipant,
+  getDrawnNames,
+  getEventDetailsByUserId,
+} from "../controllers/participants.js";
 
 const router = express.Router();
 
