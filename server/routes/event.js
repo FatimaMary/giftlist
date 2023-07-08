@@ -1,15 +1,15 @@
-import express from 'express';
-import { 
-    postEvent,
-    getAllEvents,
-    updateEvent,
-    getEventsById,
-    getEventDetailsbyEventId,
-    getuserNameByEventId,
-    editEvent,
-    deleteEvent,
-    updateDrawNames,
-} from '../controllers/event.js';
+import express from "express";
+import {
+  postEvent,
+  getAllEvents,
+  updateEvent,
+  getEventsById,
+  getEventDetailsbyEventId,
+  getuserNameByEventId,
+  editEvent,
+  deleteEvent,
+  updateDrawNames,
+} from "../controllers/event.js";
 
 const router = express.Router();
 
