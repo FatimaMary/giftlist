@@ -1,21 +1,22 @@
-import React, { useState } from 'react';
-import { BrowserRouter, Routes, Route } from 'react-router-dom';
-import Login from './scenes/login';
-import EventCreation from './scenes/eventcreation';
-import Signup1 from './scenes/Signup1';
-import Budget from './scenes/budget';
-import GiftExchange from './scenes/giftExchange';
-import Layout from './scenes/layout';
-import Signup from './scenes/signup';
-import WelcomePage from './scenes/welcomepage';
-import Success from './scenes/success';
-import EventView from './scenes/eventview';
-import EventView1 from './scenes/eventview1';
-import Participants from './scenes/participants';
-import Invite from './scenes/success/invite';
-import EditEvent from './scenes/eventview/editEvent';
-import Login1 from './scenes/login1';
-import { MyContext } from './Components/MyContext';
+import React, { useState } from "react";
+import { BrowserRouter, Routes, Route } from "react-router-dom";
+import Login from "./scenes/login";
+import EventCreation from "./scenes/eventcreation";
+import Signup1 from "./scenes/Signup1";
+import Budget from "./scenes/budget";
+import GiftExchange from "./scenes/giftExchange";
+import Layout from "./scenes/layout";
+import Signup from "./scenes/signup";
+import WelcomePage from "./scenes/welcomepage";
+import Success from "./scenes/success";
+import EventView from "./scenes/eventview";
+import EventView1 from "./scenes/eventview1";
+import Participants from "./scenes/participants";
+import Invite from "./scenes/success/invite";
+import EditEvent from "./scenes/eventview/editEvent";
+import Login1 from "./scenes/login1";
+import { MyContext } from "./Components/MyContext";
+import Product from "./scenes/product";
 
 function App() {
   const [isLoggedIn, setIsLoggedIn] = useState(false);
@@ -29,7 +30,7 @@ function App() {
           <Route path="/signup1" element={<Signup1 />} />
           <Route path="/login" element={<Login />} />
           <Route path="/login1" element={<Login1 />} />
-          <Route path='/logout' element={<WelcomePage/>} />
+          <Route path="/logout" element={<WelcomePage />} />
           <Route path="/*" element={<Layout />}>
             <Route path="eventcreate" element={<EventCreation />} />
             <Route path="budget" element={<Budget />} />
@@ -40,6 +41,7 @@ function App() {
             <Route path="participants" element={<Participants />} />
             <Route path="invite" element={<Invite />} />
             <Route path="editevent" element={<EditEvent />} />
+            <Route path="product" element={<Product />} />
           </Route>
         </Routes>
       </MyContext.Provider>
