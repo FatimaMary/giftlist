@@ -1,19 +1,29 @@
 import React, { useState } from "react";
 import { Box, Typography, Button, TextField } from "@mui/material";
 import axios from "axios";
+import cheerio from "cheerio";
 
 function Product() {
   const [productUrl, setProductUrl] = useState("");
 
-  const fetchProductDetails = async (url) => {
+  async function fetchProductDetails(url) {
     try {
       const response = await axios.get(url);
-      const productDetails = response.data;
-      console.log(productDetails);
+      const $ = cheerio.load(response.data);
+      // Parse the HTML and extract the product details using Cheerio selectors
+      // Return the extracted product details
+      console.log("title: ", $("title").text());
+      console.log("price: ", $("#price").text());
+      return {
+        title: $("title").text(),
+        price: $("#price").text(),
+        // Add more properties as needed
+      };
     } catch (error) {
       console.error("Error fetching product details:", error);
+      return null;
     }
-  };
+  }
 
   const handleFetchProduct = () => {
     if (isValidUrl(productUrl)) {
