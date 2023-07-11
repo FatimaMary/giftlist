@@ -5,7 +5,6 @@ import { menu } from "react-icons-kit/feather/menu";
 import { x } from "react-icons-kit/feather/x";
 import "../App.css";
 
-
 export const Navbar = () => {
   const [toggle, setToggle] = useState(false);
   const navigate = useNavigate();
@@ -16,28 +15,31 @@ export const Navbar = () => {
 
   const handleClick = () => {
     navigate("/login");
-  }
+  };
 
-  return (<div>
-    <nav className={!toggle ? "navbar expanded" : "navbar"}>
-      <div className="toggle-icon">
-        <b>GIFT</b>LIST
-      </div>
-      <ul className="links">
-        <li onClick={handleClick} className="login" >
-          Login
-        </li>
-        <li onClick={() => navigate("/signup")} className="signup">Sign up</li>
-      </ul>
-      {/* <div className="menu-icon" onClick={handleToggle}>
+  return (
+    <div>
+      <nav className={!toggle ? "navbar expanded" : "navbar"}>
+        <div className="toggle-icon">
+          <b>GIFT</b>NOTE
+        </div>
+        <ul className="links">
+          <li onClick={handleClick} className="login">
+            Login
+          </li>
+          <li onClick={() => navigate("/signup")} className="signup">
+            Sign up
+          </li>
+        </ul>
+        {/* <div className="menu-icon" onClick={handleToggle}>
           {toggle ? (
             <Icon icon={x} size={24} />
           ) : (
             <Icon icon={menu} size={24} />
           )}
         </div> */}
-    </nav>
-    <Outlet />
+      </nav>
+      <Outlet />
     </div>
   );
 };
