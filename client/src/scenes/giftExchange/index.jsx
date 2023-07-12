@@ -23,7 +23,7 @@ function GiftExchange() {
   const userId = searchParam.get("userId");
   const navigate = useNavigate();
   const { isLoggedIn, setIsLoggedIn } = useContext(MyContext);
-
+  const currentDate = new Date();
 
   useEffect(() => {
     axios
@@ -33,11 +33,11 @@ function GiftExchange() {
         setEventData(response.data);
       })
       .catch((err) => console.log("Error: ", err));
-      const userLoggedIn = localStorage.getItem("isLoggedIn");
-      if (userLoggedIn === "true") {
-        setIsLoggedIn(true);
-        // navigate(`/giftexchange?userId=${res.user.uid}`); // or any other protected route
-      }
+    const userLoggedIn = localStorage.getItem("isLoggedIn");
+    if (userLoggedIn === "true") {
+      setIsLoggedIn(true);
+      // navigate(`/giftexchange?userId=${res.user.uid}`); // or any other protected route
+    }
   }, []);
 
   const handleClick = () => {
