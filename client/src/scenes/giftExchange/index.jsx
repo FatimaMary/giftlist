@@ -19,11 +19,14 @@ import { MyContext } from "../../Components/MyContext";
 
 function GiftExchange() {
   const [eventData, setEventData] = useState([]);
+  // const [dates, setDates] = useState([]);
   const [searchParam] = useSearchParams();
   const userId = searchParam.get("userId");
   const navigate = useNavigate();
   const { isLoggedIn, setIsLoggedIn } = useContext(MyContext);
   const currentDate = new Date();
+  const dates = eventData.map((event) => event.giftExchangeDate);
+  console.log("dates: ", dates);
 
   useEffect(() => {
     axios
@@ -31,6 +34,7 @@ function GiftExchange() {
       .then((response) => {
         console.log("dashboard response: ", response);
         setEventData(response.data);
+        // console.log("dates: ", response.data.giftExchangeDate);
       })
       .catch((err) => console.log("Error: ", err));
     const userLoggedIn = localStorage.getItem("isLoggedIn");
