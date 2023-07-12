@@ -27,6 +27,24 @@ function GiftExchange() {
   const currentDate = new Date();
   const dates = eventData.map((event) => event.giftExchangeDate);
   console.log("dates: ", dates);
+  const [activeTab, setActiveTab] = useState(0);
+  const [upcomingEvents, setUpcomingEvents] = useState([]);
+  const [pastEvents, setPastEvents] = useState([]);
+
+  useEffect(() => {
+    const upcoming = eventData.filter((event) => {
+      const eventDate = new Date(event.giftExchangeDate);
+      return currentDate < eventDate;
+    });
+    console.log("upcoming: ", upcoming);
+    const past = eventData.filter((event) => {
+      const eventDate = new Date(event.giftExchangeDate);
+      return currentDate > eventDate;
+    });
+    console.log("past: ", past);
+    setUpcomingEvents(upcoming);
+    setPastEvents(past);
+  }, [eventData]);
 
   const comparisonResults = dates.map((date) => {
     const eventDate = new Date(date);
@@ -72,6 +90,10 @@ function GiftExchange() {
     navigate(`/eventcreate?userId=${userId}`);
   };
 
+  const handleTabActive = (index) => {
+    setActiveTab(index);
+  };
+
   return (
     <Box
       backgroundColor="#FFEAEA"
@@ -104,211 +126,255 @@ function GiftExchange() {
           gap: "10px",
         }}
       >
-        <Typography>Upcoming({afterEventDateCount})</Typography>
-        <Typography>Past({beforeEventDateCount})</Typography>
+        <Typography
+          isActive={activeTab === 0}
+          className={`tab ${activeTab === 0 ? "active" : ""}`}
+          onClick={() => handleTabActive(0)}
+          sx={{
+            "&:hover": {
+              cursor: "pointer",
+            },
+          }}
+        >
+          Upcoming({afterEventDateCount})
+        </Typography>
+        <Typography
+          isActive={activeTab === 1}
+          className={`tab ${activeTab === 1 ? "active" : ""}`}
+          onClick={() => handleTabActive(1)}
+          sx={{
+            "&:hover": {
+              cursor: "pointer",
+            },
+          }}
+        >
+          Past({beforeEventDateCount})
+        </Typography>
       </Box>
-      <Box
-        sx={{
-          display: "flex",
-          // flexWrap: 'wrap',
-          background: "#ffffff",
-          // marginY: '-12px',
-        }}
-      >
+      {activeTab === 0 && (
         <Box
           sx={{
             display: "flex",
-            flexWrap: "wrap",
-            gap: "20px",
-            marginLeft: "30px",
+            // flexWrap: 'wrap',
+            background: "#ffffff",
+            // marginY: '-12px',
           }}
         >
           <Box
             sx={{
-              width: 220,
-              height: "250px",
-              m: "1.5rem",
               display: "flex",
-              flexDirection: "column",
-              alignItems: "center",
-              justifyContent: "center",
-              gap: "30px",
-              border: "1px solid lightgrey",
-              "&:hover": {
-                backgroundColor: "#E64848",
-                color: "white",
-              },
-              borderRadius: "10px",
-              padding: "0 12px",
-              boxSizing: "border-box",
+              flexWrap: "wrap",
+              gap: "20px",
+              marginLeft: "30px",
             }}
-            onClick={handleClick}
           >
-            <AddCircleOutlineIcon
-              sx={{
-                fontSize: "3rem",
-              }}
-            />
-            <Typography>Create a new event</Typography>
-          </Box>
-          {eventData.map((cardData, i) => (
-            <Card
+            <Box
               sx={{
                 width: 220,
                 height: "250px",
                 m: "1.5rem",
                 display: "flex",
+                flexDirection: "column",
                 alignItems: "center",
                 justifyContent: "center",
+                gap: "30px",
+                border: "1px solid lightgrey",
+                "&:hover": {
+                  backgroundColor: "#E64848",
+                  color: "white",
+                },
+                borderRadius: "10px",
+                padding: "0 12px",
+                boxSizing: "border-box",
               }}
-              key={i}
-              onClick={() =>
-                navigate(
-                  `/eventview?eventId=${cardData.eventId}&userId=${userId}`
-                )
-              }
+              onClick={handleClick}
             >
-              <CardContent>
-                <Box
-                  sx={{
-                    height: "70%",
-                  }}
-                >
-                  <CardMedia
-                    component="img"
-                    // height="140"
-                    image={Santa}
-                    alt="Image Description"
+              <AddCircleOutlineIcon
+                sx={{
+                  fontSize: "3rem",
+                }}
+              />
+              <Typography>Create a new event</Typography>
+            </Box>
+            {upcomingEvents.map((cardData, i) => (
+              <Card
+                sx={{
+                  width: 220,
+                  height: "250px",
+                  m: "1.5rem",
+                  display: "flex",
+                  alignItems: "center",
+                  justifyContent: "center",
+                }}
+                key={i}
+                onClick={() =>
+                  navigate(
+                    `/eventview?eventId=${cardData.eventId}&userId=${userId}`
+                  )
+                }
+              >
+                <CardContent>
+                  <Box
                     sx={{
-                      height: "100%",
-                      width: "80%",
-                      marginLeft: "auto",
-                      marginRight: "auto",
-                      // marginTop: '10px'
+                      height: "70%",
                     }}
-                  />
-                </Box>
-                <Box
-                  // padding='10px 15px'
-                  sx={{
-                    borderTop: "1px solid #FFEAEA",
-                    height: "30%",
-                    width: "220px",
-                    background: "#FFEAEA",
-                    display: "flex",
-                    flexDirection: "column",
-                    padding: "20px 30px",
-                    "&:hover": {
-                      backgroundColor: "#C21010",
-                      color: "white",
-                    },
-                  }}
-                >
-                  <Typography
-                    sx={{
-                      fontSize: 16,
-                      opacity: 0.7,
-                      "&:hover": {
-                        opacity: 1,
-                      },
-                    }}
-                    variant="h6"
-                    fontWeight="bold"
                   >
-                    <CalendarMonthIcon
+                    <CardMedia
+                      component="img"
+                      // height="140"
+                      image={Santa}
+                      alt="Image Description"
                       sx={{
-                        fontSize: "20px",
+                        height: "100%",
+                        width: "80%",
+                        marginLeft: "auto",
+                        marginRight: "auto",
+                        // marginTop: '10px'
                       }}
                     />
-                    {cardData.giftExchangeDate}
-                  </Typography>
-                  <Typography variant="body2" fontWeight="bold">
-                    {cardData.eventName}
-                  </Typography>
-                </Box>
-              </CardContent>
-            </Card>
-          ))}
+                  </Box>
+                  <Box
+                    // padding='10px 15px'
+                    sx={{
+                      borderTop: "1px solid #FFEAEA",
+                      height: "30%",
+                      width: "220px",
+                      background: "#FFEAEA",
+                      display: "flex",
+                      flexDirection: "column",
+                      padding: "20px 30px",
+                      "&:hover": {
+                        backgroundColor: "#C21010",
+                        color: "white",
+                      },
+                    }}
+                  >
+                    <Typography
+                      sx={{
+                        fontSize: 16,
+                        opacity: 0.7,
+                        "&:hover": {
+                          opacity: 1,
+                        },
+                      }}
+                      variant="h6"
+                      fontWeight="bold"
+                    >
+                      <CalendarMonthIcon
+                        sx={{
+                          fontSize: "20px",
+                        }}
+                      />
+                      {cardData.giftExchangeDate}
+                    </Typography>
+                    <Typography variant="body2" fontWeight="bold">
+                      {cardData.eventName}
+                    </Typography>
+                  </Box>
+                </CardContent>
+              </Card>
+            ))}
+          </Box>
         </Box>
-      </Box>
-      {/* <Box sx={{
-      display: 'flex',
-      justifyContent:'space-between',
-      borderTop: '1px solid grey',
-      marginTop: '20px',
-    }}>
-      <Box sx={{
-        display: 'flex',
-        paddingTop: '10px',
-      }}
-      >
-        <CopyrightIcon 
+      )}
+      {activeTab === 1 && (
+        <Box
           sx={{
-            fontSize: '16px'
-          }} 
-        />
-        <Typography sx={{
-            fontSize: '13px'
-          }} 
-        >
-          GiftList. All Rights Reserved
-        </Typography>
-      </Box>
-      <Box>
-        <Button 
-          sx={{
-            textTransform: 'inherit',
-            color:'black',
-            '&:hover': {
-              cursor: 'pointer',
-              color: 'skyblue',
-              background: 'transparent'
-            },
+            display: "flex",
+            // flexWrap: 'wrap',
+            background: "#ffffff",
+            // marginY: '-12px',
           }}
         >
-          Privacy policy
-        </Button>
-        <Button
-          sx={{
-            textTransform: 'inherit',
-            color:'black',
-            '&:hover': {
-              cursor: 'pointer',
-              color: 'skyblue',
-              background: 'transparent'
-            },
-          }}
-        >
-          Terms of use
-        </Button>
-        <Button
-          sx={{
-            textTransform: 'inherit',
-            color:'black',
-            '&:hover': {
-              cursor: 'pointer',
-              color: 'skyblue',
-              background: 'transparent'
-            },
-          }}
-        >
-          Desclaimer
-        </Button>
-        <Button 
-          sx={{
-            textTransform: 'inherit',
-            color:'black',
-            '&:hover': {
-              cursor: 'pointer',
-              color: 'skyblue',
-              background: 'transparent'
-            },
-          }}
-        >
-          Contact Us
-        </Button>
-      </Box>
-    </Box> */}
+          <Box
+            sx={{
+              display: "flex",
+              flexWrap: "wrap",
+              gap: "20px",
+              marginLeft: "30px",
+            }}
+          >
+            {pastEvents.map((cardData, i) => (
+              <Card
+                sx={{
+                  width: 220,
+                  height: "250px",
+                  m: "1.5rem",
+                  display: "flex",
+                  alignItems: "center",
+                  justifyContent: "center",
+                }}
+                key={i}
+                onClick={() =>
+                  navigate(
+                    `/eventview?eventId=${cardData.eventId}&userId=${userId}`
+                  )
+                }
+              >
+                <CardContent>
+                  <Box
+                    sx={{
+                      height: "70%",
+                    }}
+                  >
+                    <CardMedia
+                      component="img"
+                      // height="140"
+                      image={Santa}
+                      alt="Image Description"
+                      sx={{
+                        height: "100%",
+                        width: "80%",
+                        marginLeft: "auto",
+                        marginRight: "auto",
+                        // marginTop: '10px'
+                      }}
+                    />
+                  </Box>
+                  <Box
+                    // padding='10px 15px'
+                    sx={{
+                      borderTop: "1px solid #FFEAEA",
+                      height: "30%",
+                      width: "220px",
+                      background: "#FFEAEA",
+                      display: "flex",
+                      flexDirection: "column",
+                      padding: "20px 30px",
+                      "&:hover": {
+                        backgroundColor: "#C21010",
+                        color: "white",
+                      },
+                    }}
+                  >
+                    <Typography
+                      sx={{
+                        fontSize: 16,
+                        opacity: 0.7,
+                        "&:hover": {
+                          opacity: 1,
+                        },
+                      }}
+                      variant="h6"
+                      fontWeight="bold"
+                    >
+                      <CalendarMonthIcon
+                        sx={{
+                          fontSize: "20px",
+                        }}
+                      />
+                      {cardData.giftExchangeDate}
+                    </Typography>
+                    <Typography variant="body2" fontWeight="bold">
+                      {cardData.eventName}
+                    </Typography>
+                  </Box>
+                </CardContent>
+              </Card>
+            ))}
+          </Box>
+        </Box>
+      )}
       <Footer />
     </Box>
   );
