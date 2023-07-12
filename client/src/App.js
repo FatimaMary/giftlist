@@ -4,7 +4,6 @@ import Login from "./scenes/login";
 import EventCreation from "./scenes/eventcreation";
 import Signup1 from "./scenes/Signup1";
 import Budget from "./scenes/budget";
-import GiftExchange from "./scenes/giftExchange";
 import Layout from "./scenes/layout";
 import Signup from "./scenes/signup";
 import WelcomePage from "./scenes/welcomepage";
@@ -17,6 +16,7 @@ import EditEvent from "./scenes/eventview/editEvent";
 import Login1 from "./scenes/login1";
 import { MyContext } from "./Components/MyContext";
 import Product from "./scenes/product";
+import SantaSurprise from "./scenes/santasurprise";
 
 function App() {
   const [isLoggedIn, setIsLoggedIn] = useState(false);
@@ -34,7 +34,7 @@ function App() {
           <Route path="/*" element={<Layout />}>
             <Route path="eventcreate" element={<EventCreation />} />
             <Route path="budget" element={<Budget />} />
-            <Route path="giftexchange" element={<GiftExchange />} />
+            <Route path="giftexchange" element={<SantaSurprise />} />
             <Route path="success" element={<Success />} />
             <Route path="eventview" element={<EventView />} />
             <Route path="eventview1" element={<EventView1 />} />
@@ -42,6 +42,7 @@ function App() {
             <Route path="invite" element={<Invite />} />
             <Route path="editevent" element={<EditEvent />} />
             <Route path="product" element={<Product />} />
+            {/* <Route path="giftexchange" /> */}
           </Route>
         </Routes>
       </MyContext.Provider>

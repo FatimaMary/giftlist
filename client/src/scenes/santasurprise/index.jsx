@@ -17,7 +17,7 @@ import CopyrightIcon from "@mui/icons-material/Copyright";
 import Footer from "../../Components/Footer";
 import { MyContext } from "../../Components/MyContext";
 
-function GiftExchange() {
+function SantaSurprise() {
   const [eventData, setEventData] = useState([]);
   // const [dates, setDates] = useState([]);
   const [searchParam] = useSearchParams();
@@ -380,4 +380,4 @@ function GiftExchange() {
   );
 }
 
-export default GiftExchange;
+export default SantaSurprise;
