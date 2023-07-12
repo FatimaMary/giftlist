@@ -28,13 +28,37 @@ function GiftExchange() {
   const dates = eventData.map((event) => event.giftExchangeDate);
   console.log("dates: ", dates);
 
+  const comparisonResults = dates.map((date) => {
+    const eventDate = new Date(date);
+    const isCurrentDateBeforeEventDate = currentDate < eventDate;
+    const isCurrentDateAfterEventDate = currentDate > eventDate;
+    const areDatesEqual = currentDate.getTime() === eventDate.getTime();
+    console.log("isCurrentDateBeforeEventDate: ", isCurrentDateBeforeEventDate);
+    console.log("isCurrentDateAfterEventDate: ", isCurrentDateAfterEventDate);
+
+    return {
+      date: eventDate.toDateString(),
+      isCurrentDateBeforeEventDate,
+      isCurrentDateAfterEventDate,
+      areDatesEqual,
+    };
+  });
+  console.log("comparision results: ", comparisonResults);
+
+  const afterEventDateCount = comparisonResults.filter(
+    (result) => result.isCurrentDateAfterEventDate
+  ).length;
+
+  const beforeEventDateCount = comparisonResults.filter(
+    (result) => result.isCurrentDateBeforeEventDate
+  ).length;
+
   useEffect(() => {
     axios
       .get(`http://localhost:2309/player/${userId}/event`)
       .then((response) => {
         console.log("dashboard response: ", response);
         setEventData(response.data);
-        // console.log("dates: ", response.data.giftExchangeDate);
       })
       .catch((err) => console.log("Error: ", err));
     const userLoggedIn = localStorage.getItem("isLoggedIn");
@@ -80,8 +104,8 @@ function GiftExchange() {
           gap: "10px",
         }}
       >
-        <Typography>Upcoming({eventData.length})</Typography>
-        <Typography>Past()</Typography>
+        <Typography>Upcoming({afterEventDateCount})</Typography>
+        <Typography>Past({beforeEventDateCount})</Typography>
       </Box>
       <Box
         sx={{
