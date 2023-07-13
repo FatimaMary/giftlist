@@ -48,8 +48,8 @@ function SantaSurprise() {
 
   const comparisonResults = dates.map((date) => {
     const eventDate = new Date(date);
-    const isCurrentDateBeforeEventDate = currentDate < eventDate;
-    const isCurrentDateAfterEventDate = currentDate > eventDate;
+    const isCurrentDateBeforeEventDate = currentDate > eventDate;
+    const isCurrentDateAfterEventDate = currentDate < eventDate;
     const areDatesEqual = currentDate.getTime() === eventDate.getTime();
     console.log("isCurrentDateBeforeEventDate: ", isCurrentDateBeforeEventDate);
     console.log("isCurrentDateAfterEventDate: ", isCurrentDateAfterEventDate);
