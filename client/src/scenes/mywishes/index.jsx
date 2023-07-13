@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import {
   Box,
   Typography,
@@ -8,8 +8,10 @@ import {
   ThemeProvider,
 } from "@mui/material";
 import AddCircleOutlineIcon from "@mui/icons-material/AddCircleOutline";
+import axios from "axios";
 
-function MyWishes() {
+function MyWishes({ eventId, userId }) {
+  const [productUrl, setProductUrl] = useState();
   const theme = createTheme({
     components: {
       MuiTextField: {
@@ -30,6 +32,17 @@ function MyWishes() {
       },
     },
   });
+
+  const handleAdd = () => {
+    axios.post("http://localhost:2309/product/add", {
+      productName: "",
+      productUrl: productUrl,
+      productPrice: "",
+      description: "",
+      eventId: eventId,
+      participantsId: "",
+    });
+  };
   return (
     <Box
       sx={{
@@ -73,6 +86,8 @@ function MyWishes() {
                 height: "44px",
               },
             }}
+            value={productUrl}
+            onChange={(e) => setProductUrl(e.target.value)}
           />
         </ThemeProvider>
         <Button
@@ -86,6 +101,7 @@ function MyWishes() {
             border: "1px solid #C21010",
             textTransform: "none",
           }}
+          onClick={handleAdd}
         >
           <AddCircleOutlineIcon /> Add
         </Button>
