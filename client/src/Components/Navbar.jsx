@@ -31,13 +31,6 @@ export const Navbar = () => {
             Sign up
           </li>
         </ul>
-        {/* <div className="menu-icon" onClick={handleToggle}>
-          {toggle ? (
-            <Icon icon={x} size={24} />
-          ) : (
-            <Icon icon={menu} size={24} />
-          )}
-        </div> */}
       </nav>
       <Outlet />
     </div>
@@ -45,14 +38,3 @@ export const Navbar = () => {
 };
 
 export default Navbar;
-
-// {toggle && (
-//   <ul className="dropdown">
-//     <li onClick={handleClick} className="dropdown-item">
-//       Login
-//     </li>
-//     <li onClick={() => navigate("/signup")} className="dropdown-item">
-//       Sign up
-//     </li>
-//   </ul>
-// )}
