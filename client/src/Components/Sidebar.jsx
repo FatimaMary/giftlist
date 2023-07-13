@@ -80,14 +80,6 @@ const Sidebar = ({
       text: "FAQ",
       icon: <HelpOutlineOutlinedIcon />,
     },
-    // {
-    //     text: "Logout",
-    //     icon: <LogoutOutlinedIcon/>,
-    //     action: () => {
-    //         handleLogout();
-    //         setIsLoggedIn(false);
-    //     },
-    // }
   ];
 
   useEffect(() => {
@@ -148,7 +140,6 @@ const Sidebar = ({
                 >
                   <ListItemIcon
                     sx={{
-                      // backgroundColor: active === item.text.toLowerCase() && item.icon ? '#FFEAEA' : "transparent",
                       color:
                         active === item.text.toLowerCase() && item.icon
                           ? "#E64848"
@@ -192,8 +183,6 @@ const Sidebar = ({
                       border: "2px solid #C21010",
                       margin: "0px 25px",
                       borderRadius: "10px",
-                      // fontWeight: 600,
-                      // fontSize:'16px',
                       "&: hover": {
                         background: "#C21010",
                         color: "#FFF",
@@ -222,8 +211,6 @@ const Sidebar = ({
                       border: "2px solid #C21010",
                       margin: "10px 25px",
                       borderRadius: "10px",
-                      // fontWeight: 600,
-                      // fontSize:'16px',
                       "&: hover": {
                         background: "#FFF",
                         color: "#C21010",
