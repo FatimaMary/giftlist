@@ -16,6 +16,7 @@ import Footer from "../../Components/Footer";
 import Participants from "../participants";
 import Invite from "../success/invite";
 import EditEvent from "./editEvent";
+import MyWishes from "../mywishes";
 
 function EventView() {
   const [eventDetails, setEventDetails] = useState({});
@@ -879,7 +880,11 @@ function EventView() {
         </Box>
       )}
       {activeTab === 2 && <Box>Messages</Box>}
-      {activeTab === 3 && <Box>My Wishes</Box>}
+      {activeTab === 3 && (
+        <Box>
+          <MyWishes />
+        </Box>
+      )}
       <Footer />
       <Invite
         open={invitePage}
