@@ -75,7 +75,18 @@ function MyWishes() {
             }}
           />
         </ThemeProvider>
-        <Button>
+        <Button
+          sx={{
+            background: "#C21010",
+            borderRadius: "7px",
+            fontSize: "15px",
+            lineHeight: "22px",
+            color: "#fff",
+            padding: "10px 20px",
+            border: "1px solid #C21010",
+            textTransform: "none",
+          }}
+        >
           <AddCircleOutlineIcon /> Add
         </Button>
       </Box>
