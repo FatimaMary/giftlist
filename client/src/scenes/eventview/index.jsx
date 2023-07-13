@@ -882,7 +882,7 @@ function EventView() {
       {activeTab === 2 && <Box>Messages</Box>}
       {activeTab === 3 && (
         <Box>
-          <MyWishes />
+          <MyWishes eventId={eventId} userId={playerUserId} />
         </Box>
       )}
       <Footer />
