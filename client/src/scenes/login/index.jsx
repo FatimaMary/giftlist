@@ -82,8 +82,7 @@ function Login() {
         loginData.password
       ).then(async (res) => {
         console.log(res);
-        // navigate(`/groupcreate?userId=${res.user.uid}`)
-        navigate(`/giftexchange?userId=${res.user.uid}`);
+        navigate(`/santasurprise?userId=${res.user.uid}`);
         setIsLoggedIn(true);
         localStorage.setItem("isLoggedIn", "true");
       });

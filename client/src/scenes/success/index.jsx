@@ -18,7 +18,7 @@ function Success() {
   const navigate = useNavigate();
 
   const handleClick = () => {
-    navigate(`/giftexchange?userId=${userId}`);
+    navigate(`/santasurprise?userId=${userId}`);
   };
 
   const moveToEventview = () => {
