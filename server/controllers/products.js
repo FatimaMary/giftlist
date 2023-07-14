@@ -20,7 +20,7 @@ export const postProduct = (req, res) => {
   newProduct
     .save()
     .then((data) => res.json(data))
-    .catch((err) => res.status(404).json("Error: ", err));
+    .catch((err) => res.status(400).json("Error: " + err));
 };
 
 export const getAllProducts = (req, res) => {
