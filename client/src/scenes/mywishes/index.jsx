@@ -12,7 +12,7 @@ import axios from "axios";
 
 function MyWishes({ eventId, userId }) {
   const [productUrl, setProductUrl] = useState();
-  const [participantsId, setParticipantsId] = useState([]);
+  const [participantsId, setParticipantsId] = useState(0);
   const theme = createTheme({
     components: {
       MuiTextField: {
@@ -38,20 +38,25 @@ function MyWishes({ eventId, userId }) {
     axios
       .get(`http://localhost:2309/player/id/${userId}?eventId=${eventId}`)
       .then((response) => {
-        console.log("ParticipantsId: ", response.data);
-        setParticipantsId(response.data);
+        console.log("ParticipantsId: ", response.data[0]);
+        setParticipantsId(response.data[0]);
       });
   }, []);
 
   const handleAdd = () => {
-    axios.post("http://localhost:2309/product/add", {
-      productName: "",
-      productUrl: productUrl,
-      productPrice: "",
-      description: "",
-      eventId: eventId,
-      participantsId: participantsId,
-    });
+    axios
+      .post("http://localhost:2309/product/add", {
+        productName: "",
+        productUrl: productUrl,
+        productPrice: "",
+        description: "",
+        eventId: eventId,
+        participantsId: participantsId,
+      })
+      .then((response) => {
+        console.log("Product Response: ", response.data);
+        setProductUrl("");
+      });
   };
   return (
     <Box
