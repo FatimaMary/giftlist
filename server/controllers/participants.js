@@ -184,11 +184,9 @@ export const getParticipantsIdByUserId = (req, res) => {
       const matchingParticipants = participants.filter((participant) => {
         return participant.eventId === eventIdFromUI;
       });
-
       const participantsIds = matchingParticipants.map((participant) => {
         return participant.participantsId;
       });
-
       res.json(participantsIds);
     })
     .catch((err) => res.status(400).json({ message: err.message }));
