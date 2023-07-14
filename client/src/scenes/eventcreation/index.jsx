@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import {
   Box,
   TextField,
@@ -24,6 +24,7 @@ function EventCreation() {
   const [rsvpDate, setRsvpDate] = useState();
   const [confirmation, setConfirmation] = useState();
   const [errors, setErrors] = useState({});
+  const [email, setEmail] = useState({});
   const [searchParam] = useSearchParams();
   const userId = searchParam.get("userId");
   const navigate = useNavigate();
@@ -48,6 +49,13 @@ function EventCreation() {
       },
     },
   });
+
+  useEffect(() => {
+    axios.get(`http://localhost:2309/user/email/${userId}`).then((response) => {
+      console.log(response.data);
+      setEmail(response.data.email);
+    });
+  }, []);
 
   const moveToNextStep = (e) => {
     e.preventDefault();
@@ -75,7 +83,21 @@ function EventCreation() {
         .then((response) => {
           console.log("post response: ", response);
           console.log("response data: ", response.data);
-          navigate(`/budget?eventId=${response.data.eventId}&userId=${userId}`);
+          if (response.data.confirmation === true) {
+            axios
+              .post("http://localhost:2309/player/post", {
+                participantsEmail: email,
+                participantsAcceptence: "yes",
+                eventId: response.data.eventId,
+                userId: userId,
+              })
+              .then((res) => {
+                console.log("Participants res: ", res.data);
+                navigate(
+                  `/budget?eventId=${response.data.eventId}&userId=${userId}`
+                );
+              });
+          }
         });
     }
   };
