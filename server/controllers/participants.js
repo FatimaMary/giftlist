@@ -177,4 +177,19 @@ export const getEventDetailsByUserId = async (req, res) => {
 
 export const getParticipantsIdByUserId = (req, res) => {
   const userId = req.params.userId;
+  const eventIdFromUI = req.query.eventId;
+
+  Participants.find({ userId: userId })
+    .then((participants) => {
+      const matchingParticipants = participants.filter((participant) => {
+        return participant.eventId === eventIdFromUI;
+      });
+
+      const participantsIds = matchingParticipants.map((participant) => {
+        return participant.participantsId;
+      });
+
+      res.json(participantsIds);
+    })
+    .catch((err) => res.status(400).json({ message: err.message }));
 };
