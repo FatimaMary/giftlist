@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import {
   Box,
   Typography,
@@ -12,6 +12,7 @@ import axios from "axios";
 
 function MyWishes({ eventId, userId }) {
   const [productUrl, setProductUrl] = useState();
+  const [participantsId, setParticipantsId] = useState([]);
   const theme = createTheme({
     components: {
       MuiTextField: {
@@ -33,6 +34,15 @@ function MyWishes({ eventId, userId }) {
     },
   });
 
+  useEffect(() => {
+    axios
+      .get(`http://localhost:2309/player/id/${userId}?eventId=${eventId}`)
+      .then((response) => {
+        console.log("ParticipantsId: ", response.data);
+        setParticipantsId(response.data);
+      });
+  }, []);
+
   const handleAdd = () => {
     axios.post("http://localhost:2309/product/add", {
       productName: "",
@@ -40,7 +50,7 @@ function MyWishes({ eventId, userId }) {
       productPrice: "",
       description: "",
       eventId: eventId,
-      participantsId: "",
+      participantsId: participantsId,
     });
   };
   return (
