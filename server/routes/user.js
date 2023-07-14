@@ -5,6 +5,7 @@ import {
   getUser,
   getUserByEmail,
   getUserNameByUserId,
+  getEmailByUserId,
 } from "../controllers/user.js";
 
 const router = express.Router();
@@ -14,5 +15,6 @@ router.get("/all", getUser);
 router.put("/:userId", updateUser);
 router.get("/:email", getUserByEmail);
 router.get("/get/:userId", getUserNameByUserId);
+router.get("/email/:userId", getEmailByUserId);
 
 export default router;
