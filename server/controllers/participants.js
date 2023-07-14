@@ -3,14 +3,16 @@ import Users from "../models/Users.js";
 import Events from "../models/Event.js";
 
 export const postParticipant = (req, res) => {
-  const participantsEmail = "";
+  const participantsEmail = req.body.participantsEmail || "";
   const participantsAcceptence = req.body.participantsAcceptence;
   const eventId = req.body.eventId;
+  const userId = req.body.userId || "";
 
   const newParticipant = new Participants({
     participantsEmail,
     participantsAcceptence,
     eventId,
+    userId,
   });
   newParticipant
     .save()
