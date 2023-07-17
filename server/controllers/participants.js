@@ -145,19 +145,20 @@ export const getEventDetailsByUserId = async (req, res) => {
     console.log("userId:", userId);
 
     const events = await Events.find({ userId }).exec();
-    const eventIds = events.map((event) => event.eventId);
+    const eventIds = new Set(events.map((event) => event.eventId));
 
     const participants = await Participants.find({ userId }).exec();
-    const participantEventIds = participants.map(
-      (participant) => participant.eventId
+    const participantEventIds = new Set(
+      participants.map((participant) => participant.eventId)
     );
 
-    const eventDetailsPromises = eventIds.map((eventId) =>
+    const eventDetailsPromises = Array.from(eventIds).map((eventId) =>
       Events.findOne({ eventId }).exec()
     );
-    const participantEventDetailsPromises = participantEventIds.map((eventId) =>
-      Events.findOne({ eventId }).exec()
-    );
+
+    const participantEventDetailsPromises = Array.from(participantEventIds)
+      .filter((eventId) => !eventIds.has(eventId))
+      .map((eventId) => Events.findOne({ eventId }).exec());
 
     const eventDetailsResults = await Promise.all(eventDetailsPromises);
     const participantEventDetailsResults = await Promise.all(
@@ -167,7 +168,9 @@ export const getEventDetailsByUserId = async (req, res) => {
     const mergedEventDetails = [
       ...events,
       ...participantEventDetailsResults,
+      // ...eventDetailsResults,
     ].filter((event) => event !== null);
+
     res.json(mergedEventDetails);
   } catch (err) {
     console.error("Error retrieving event details:", err);
