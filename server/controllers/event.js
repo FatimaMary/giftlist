@@ -81,6 +81,7 @@ export const getEventDetailsbyEventId = (req, res) => {
             userId: singleEvent.userId,
             drawNames: singleEvent.drawNames,
             drawnNames: singleEvent.drawnNames,
+            confirmation: singleEvent.confirmation,
           };
         });
         res.json(eventDetail[0]);
