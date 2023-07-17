@@ -73,7 +73,7 @@ function EditEvent({
       .delete(`http://localhost:2309/event/delete/${eventId}`)
       .then((response) => {
         console.log("delete response: ", response.data);
-        navigate(`/giftexchange?userId=${userId}`);
+        navigate(`/santasurprise?userId=${userId}`);
       });
   };
 
