@@ -74,3 +74,30 @@ export const getProductsByEventId = (req, res) => {
     })
     .catch((err) => res.status(400).json({ message: err.message }));
 };
+
+export const getWishlist = (req, res) => {
+  const participantsId = req.params.participantsId;
+  Products.find({ participantsId: participantsId }).then((products) => {
+    if (products.length === 0) {
+      res.status(200).json({ message: "No Products found" });
+    } else {
+      const eventIdArray = products.map((product) => {
+        return product.eventId;
+      });
+
+      const wishlistPromises = eventIdArray.map((eventId) =>
+        Products.find({ eventId: eventId }).exec()
+      );
+
+      Promise.all(wishlistPromises)
+        .then((wishlistResults) => {
+          const wishlistArray = wishlistResults
+            .flat()
+            .map((product) => product.productId);
+
+          res.json(wishlistArray);
+        })
+        .catch((err) => res.status(400).json({ message: err.message }));
+    }
+  });
+};
