@@ -97,6 +97,10 @@ function EventCreation() {
                   `/budget?eventId=${response.data.eventId}&userId=${userId}`
                 );
               });
+          } else {
+            navigate(
+              `/budget?eventId=${response.data.eventId}&userId=${userId}`
+            );
           }
         });
     }
