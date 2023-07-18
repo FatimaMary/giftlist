@@ -39,6 +39,7 @@ export const getProductsByParticipantsId = (req, res) => {
         const productDetails = products.map((product) => {
           return {
             productId: product.productId,
+            productUrl: product.productUrl,
             productName: product.productName,
             productPrice: product.productPrice,
             description: product.description,
