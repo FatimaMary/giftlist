@@ -269,32 +269,33 @@ function Participants() {
                   </Box>
                 </Box>
                 <Box>
-                  {productDetails.length !== 0 ? (
+                  {/* {productDetails.length === undefined ? (
                     <Button disabled>View Wishes</Button>
-                  ) : (
-                    <Button
-                      sx={{
-                        margin: "0 5px",
-                        background: "#C21010",
-                        fontSize: "13px",
-                        lineHeight: "22px",
-                        color: "#fff",
-                        padding: "14px 15px",
-                        display: "inline-block",
-                        border: "1px solid #C21010",
-                        fontWeight: 600,
-                        textTransform: "inherit",
-                        "&: hover": {
-                          cursor: "pointer",
-                          background: "#fff",
-                          color: "#C21010",
-                        },
-                        borderRadius: "7px",
-                      }}
-                    >
-                      View Wishes
-                    </Button>
-                  )}
+                  ) : ( */}
+                  <Button
+                    disabled={productDetails.length === undefined}
+                    sx={{
+                      margin: "0 5px",
+                      // background: "#C21010",
+                      fontSize: "13px",
+                      lineHeight: "22px",
+                      // color: "#fff",
+                      padding: "14px 15px",
+                      display: "inline-block",
+                      border: "1px solid #C21010",
+                      fontWeight: 600,
+                      textTransform: "inherit",
+                      "&: hover": {
+                        cursor: "pointer",
+                        background: "#fff",
+                        color: "#C21010",
+                      },
+                      borderRadius: "7px",
+                    }}
+                  >
+                    View Wishes
+                  </Button>
+                  {/* )} */}
                   <Button
                     sx={{
                       padding: "14px 15px",
