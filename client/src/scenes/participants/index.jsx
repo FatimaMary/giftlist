@@ -17,6 +17,7 @@ function Participants() {
   const [participantsData, setParticipantsData] = useState([]);
   const [unparticipantsData, setUnparticipantsData] = useState([]);
   const [activeTab, setActiveTab] = useState(0);
+  const [productDetails, setProductDetails] = useState([]);
 
   useEffect(() => {
     axios.get(`http://localhost:2309/player/${eventId}`).then((response) => {
@@ -28,6 +29,17 @@ function Participants() {
       );
       setAcceptence(acceptenceValues);
       console.log("acceptence: ", acceptenceValues);
+      const productDetailsValue = response.data.map((singleData) => {
+        axios
+          .get(`http://localhost:2309/product/all/${singleData.participantsId}`)
+          .then((res) => {
+            console.log("Product res: ", res.data);
+            console.log("Length: ", res.data.length);
+            setProductDetails(res.data);
+          });
+      });
+      // console.log("product Detail value: ", productDetailsValue);
+      // setProductDetails(productDetailsValue);
     });
   }, []);
   const trueCount = acceptence.filter((value) => value === true).length;
@@ -136,35 +148,6 @@ function Participants() {
                 Participating ({trueCount})
               </Typography>
             </Box>
-            {/* <Box 
-                sx = {{
-                    display: 'flex', 
-                    alignItems: 'center'
-                }}
-                isactive = {activeTab === 1}
-                className = {`tab ${activeTab === 1 ? 'click' : ''}`}
-                onClick={() => handleTabActive(1)}
-            >
-                <img 
-                    src={Clock} 
-                    style={{
-                        width: '18px', 
-                        height: '18px', 
-                        marginRight: '6px'
-                    }} 
-                />
-                <Typography 
-                  sx={{
-                    fontWeight: 600,
-                    opacity: 0.5,
-                    '&:hover': {
-                      cursor: 'pointer'
-                    }
-                  }}
-                >
-                  Awaiting Responses (0)
-                </Typography>
-            </Box> */}
             <Box
               sx={{
                 display: "flex",
@@ -286,28 +269,32 @@ function Participants() {
                   </Box>
                 </Box>
                 <Box>
-                  <Button
-                    sx={{
-                      margin: "0 5px",
-                      background: "#C21010",
-                      fontSize: "13px",
-                      lineHeight: "22px",
-                      color: "#fff",
-                      padding: "14px 15px",
-                      display: "inline-block",
-                      border: "1px solid #C21010",
-                      fontWeight: 600,
-                      textTransform: "inherit",
-                      "&: hover": {
-                        cursor: "pointer",
-                        background: "#fff",
-                        color: "#C21010",
-                      },
-                      borderRadius: "7px",
-                    }}
-                  >
-                    View Wishes
-                  </Button>
+                  {productDetails.length !== 0 ? (
+                    <Button disabled>View Wishes</Button>
+                  ) : (
+                    <Button
+                      sx={{
+                        margin: "0 5px",
+                        background: "#C21010",
+                        fontSize: "13px",
+                        lineHeight: "22px",
+                        color: "#fff",
+                        padding: "14px 15px",
+                        display: "inline-block",
+                        border: "1px solid #C21010",
+                        fontWeight: 600,
+                        textTransform: "inherit",
+                        "&: hover": {
+                          cursor: "pointer",
+                          background: "#fff",
+                          color: "#C21010",
+                        },
+                        borderRadius: "7px",
+                      }}
+                    >
+                      View Wishes
+                    </Button>
+                  )}
                   <Button
                     sx={{
                       padding: "14px 15px",
