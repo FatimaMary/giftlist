@@ -12,6 +12,7 @@ import {
 } from "@mui/material";
 import AddCircleOutlineIcon from "@mui/icons-material/AddCircleOutline";
 import axios from "axios";
+import Gift from "./gift.png";
 
 function MyWishes({ eventId, userId }) {
   const [productUrl, setProductUrl] = useState();
@@ -131,40 +132,56 @@ function MyWishes({ eventId, userId }) {
           <AddCircleOutlineIcon /> Add
         </Button>
       </Box>
-      <Box>
-        <Card
-          sx={{
-            width: 220,
-            height: "250px",
-            m: "1.5rem",
-            display: "flex",
-            alignItems: "center",
-            justifyContent: "center",
-          }}
-          // key={i}
-        >
-          <CardContent>
-            <Box
-              sx={{
-                height: "70%",
-              }}
-            >
-              <CardMedia
-                component="img"
-                // height="140"
-                // image={Santa}
-                alt="Image Description"
+      <Box
+        sx={{
+          display: "flex",
+          flexWrap: "wrap",
+        }}
+      >
+        {productDetails.map((singleDetail, i) => (
+          <Card
+            sx={{
+              width: 220,
+              height: "250px",
+              m: "1.5rem",
+              display: "flex",
+              alignItems: "center",
+              justifyContent: "center",
+            }}
+            key={i}
+          >
+            <CardContent>
+              <Box
                 sx={{
-                  height: "100%",
-                  width: "80%",
-                  marginLeft: "auto",
-                  marginRight: "auto",
-                  // marginTop: '10px'
+                  height: "60%",
+                  borderBottom: "1px solid grey",
                 }}
-              />
-            </Box>
-          </CardContent>
-        </Card>
+              >
+                <CardMedia
+                  component="img"
+                  // height="140"
+                  image={Gift}
+                  alt="Image Description"
+                  sx={{
+                    height: "125px",
+                    width: "100px",
+                    marginLeft: "auto",
+                    marginRight: "auto",
+                    // marginTop: '10px',
+                  }}
+                />
+              </Box>
+              <Box
+                sx={{
+                  fontSize: "12px",
+                  padding: "5px",
+                }}
+              >
+                {singleDetail.productUrl}
+              </Box>
+            </CardContent>
+          </Card>
+        ))}
       </Box>
     </Box>
   );
