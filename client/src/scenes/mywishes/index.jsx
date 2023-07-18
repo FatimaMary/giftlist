@@ -6,6 +6,9 @@ import {
   Button,
   createTheme,
   ThemeProvider,
+  Card,
+  CardContent,
+  CardMedia,
 } from "@mui/material";
 import AddCircleOutlineIcon from "@mui/icons-material/AddCircleOutline";
 import axios from "axios";
@@ -120,6 +123,41 @@ function MyWishes({ eventId, userId }) {
         >
           <AddCircleOutlineIcon /> Add
         </Button>
+      </Box>
+      <Box>
+        <Card
+          sx={{
+            width: 220,
+            height: "250px",
+            m: "1.5rem",
+            display: "flex",
+            alignItems: "center",
+            justifyContent: "center",
+          }}
+          // key={i}
+        >
+          <CardContent>
+            <Box
+              sx={{
+                height: "70%",
+              }}
+            >
+              <CardMedia
+                component="img"
+                // height="140"
+                // image={Santa}
+                alt="Image Description"
+                sx={{
+                  height: "100%",
+                  width: "80%",
+                  marginLeft: "auto",
+                  marginRight: "auto",
+                  // marginTop: '10px'
+                }}
+              />
+            </Box>
+          </CardContent>
+        </Card>
       </Box>
     </Box>
   );
