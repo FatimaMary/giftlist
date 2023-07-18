@@ -16,6 +16,7 @@ import axios from "axios";
 function MyWishes({ eventId, userId }) {
   const [productUrl, setProductUrl] = useState();
   const [participantsId, setParticipantsId] = useState(0);
+  const [productDetails, setProductDetails] = useState([]);
   const theme = createTheme({
     components: {
       MuiTextField: {
@@ -43,6 +44,12 @@ function MyWishes({ eventId, userId }) {
       .then((response) => {
         console.log("ParticipantsId: ", response.data[0]);
         setParticipantsId(response.data[0]);
+        axios
+          .get(`http://localhost:2309/product/all/${response.data[0]}`)
+          .then((res) => {
+            console.log("Product Details: ", res.data);
+            setProductDetails(res.data);
+          });
       });
   }, []);
 
