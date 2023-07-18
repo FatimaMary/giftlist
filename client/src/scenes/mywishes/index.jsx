@@ -136,12 +136,13 @@ function MyWishes({ eventId, userId }) {
         sx={{
           display: "flex",
           flexWrap: "wrap",
+          // width: "300px",
         }}
       >
         {productDetails.map((singleDetail, i) => (
           <Card
             sx={{
-              width: 220,
+              width: 280,
               height: "250px",
               m: "1.5rem",
               display: "flex",
@@ -173,11 +174,21 @@ function MyWishes({ eventId, userId }) {
               </Box>
               <Box
                 sx={{
-                  fontSize: "12px",
-                  padding: "5px",
+                  height: "40%",
+                  background: "#FFEAEA",
+                  display: "flex",
+                  alignItems: "center",
+                  justifyContent: "center",
+                  // textAlign: "center",
+                  p: "0.5rem",
+                  "&:hover": {
+                    backgroundColor: "#C21010",
+                    color: "white",
+                    cursor: "pointer",
+                  },
                 }}
               >
-                {singleDetail.productUrl}
+                <Typography>{singleDetail.productUrl}</Typography>
               </Box>
             </CardContent>
           </Card>
