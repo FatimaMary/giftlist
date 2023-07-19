@@ -19,6 +19,31 @@ function Participants() {
   const [activeTab, setActiveTab] = useState(0);
   const [productDetails, setProductDetails] = useState([]);
 
+  // useEffect(() => {
+  //   axios.get(`http://localhost:2309/player/${eventId}`).then((response) => {
+  //     console.log("Get participants response: ", response);
+  //     console.log("Get participants response data: ", response.data);
+  //     setParticipantsList(response.data);
+  //     const acceptenceValues = response.data.map(
+  //       (item) => item.participantsAcceptence
+  //     );
+  //     setAcceptence(acceptenceValues);
+  //     console.log("acceptence: ", acceptenceValues);
+  //     const productDetailsValue = response.data.map((singleData) => {
+  //       axios
+  //         .get(`http://localhost:2309/product/all/${singleData.participantsId}`)
+  //         .then((res) => {
+  //           console.log("Product res: ", res.data);
+  //           console.log("Length: ", res.data.length);
+  //           // setProductDetails(res.data);
+  //         });
+  //       // console.log("product Detail value: ", productDetailsValue);
+  //       // setProductDetails(productDetailsValue);
+  //     });
+  //     console.log("product Detail value: ", productDetailsValue);
+  //     setProductDetails(productDetailsValue);
+  //   });
+  // }, []);
   useEffect(() => {
     axios.get(`http://localhost:2309/player/${eventId}`).then((response) => {
       console.log("Get participants response: ", response);
@@ -29,19 +54,28 @@ function Participants() {
       );
       setAcceptence(acceptenceValues);
       console.log("acceptence: ", acceptenceValues);
-      const productDetailsValue = response.data.map((singleData) => {
-        axios
-          .get(`http://localhost:2309/product/all/${singleData.participantsId}`)
-          .then((res) => {
-            console.log("Product res: ", res.data);
-            console.log("Length: ", res.data.length);
-            setProductDetails(res.data);
-          });
-      });
-      // console.log("product Detail value: ", productDetailsValue);
-      // setProductDetails(productDetailsValue);
+
+      // Use Promise.all to wait for all the axios.get calls to resolve
+      const productDetailsPromises = response.data.map((singleData) =>
+        axios.get(
+          `http://localhost:2309/product/all/${singleData.participantsId}`
+        )
+      );
+
+      Promise.all(productDetailsPromises)
+        .then((results) => {
+          // results will be an array containing the resolved responses
+          console.log("Product responses: ", results);
+          const productDetailsValues = results.map((res) => res.data);
+          console.log("Product details values: ", productDetailsValues);
+          setProductDetails(productDetailsValues);
+        })
+        .catch((error) => {
+          console.error("Error fetching product details: ", error);
+        });
     });
   }, []);
+
   const trueCount = acceptence.filter((value) => value === true).length;
   const falseCount = acceptence.filter((value) => value === false).length;
 
@@ -273,13 +307,16 @@ function Participants() {
                     <Button disabled>View Wishes</Button>
                   ) : ( */}
                   <Button
-                    disabled={productDetails.length === undefined}
+                    disabled={
+                      !productDetails[index] ||
+                      productDetails[index].length === 0
+                    }
                     sx={{
                       margin: "0 5px",
-                      // background: "#C21010",
+                      background: "#C21010",
                       fontSize: "13px",
                       lineHeight: "22px",
-                      // color: "#fff",
+                      color: "#fff",
                       padding: "14px 15px",
                       display: "inline-block",
                       border: "1px solid #C21010",
@@ -291,6 +328,12 @@ function Participants() {
                         color: "#C21010",
                       },
                       borderRadius: "7px",
+                      "&: disabled": {
+                        background: "#fff",
+                        color: "grey",
+                        border: "1px solid grey",
+                        opacity: 0.5,
+                      },
                     }}
                   >
                     View Wishes
