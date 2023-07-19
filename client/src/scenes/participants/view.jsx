@@ -1,37 +1,62 @@
 import React, { useEffect, useState } from "react";
 import {
   Typography,
-  TextField,
-  Button,
   Dialog,
   DialogContent,
   DialogTitle,
   Box,
-  InputLabel,
-  createTheme,
-  ThemeProvider,
+  Card,
+  CardContent,
+  CardMedia,
 } from "@mui/material";
-import Delete from "./removeic.svg";
 import axios from "axios";
 import { useNavigate } from "react-router-dom";
+import Gift from "../mywishes/gift.png";
 
 function ViewWishes({ open, onClose, userId, eventId }) {
   const [productDetails, setProductDetails] = useState([]);
   const [participantsId, setParticipantsId] = useState(0);
+  const [dataFetched, setDataFetched] = useState(false);
+  // useEffect(() => {
+  //   axios
+  //     .get(`http://localhost:2309/player/id/${userId}?eventId=${eventId}`)
+  //     .then((response) => {
+  //       console.log("ParticipantsId: ", response.data[0]);
+  //       setParticipantsId(response.data[0]);
+  //       axios
+  //         .get(`http://localhost:2309/product/all/${response.data[0]}`)
+  //         .then((res) => {
+  //           console.log("Product Details: ", res.data);
+  //           setProductDetails(res.data);
+  //         });
+  //     });
+  // }, []);
+
   useEffect(() => {
     axios
       .get(`http://localhost:2309/player/id/${userId}?eventId=${eventId}`)
       .then((response) => {
         console.log("ParticipantsId: ", response.data[0]);
         setParticipantsId(response.data[0]);
-        axios
-          .get(`http://localhost:2309/product/all/${response.data[0]}`)
-          .then((res) => {
-            console.log("Product Details: ", res.data);
-            setProductDetails(res.data);
-          });
+        setDataFetched(true);
+      })
+      .catch((error) => {
+        console.error("Error fetching participants data: ", error);
       });
-  }, []);
+  }, [userId, eventId]);
+  useEffect(() => {
+    if (dataFetched && participantsId !== 0) {
+      axios
+        .get(`http://localhost:2309/product/all/${participantsId}`)
+        .then((res) => {
+          console.log("Product Details: ", res.data);
+          setProductDetails(res.data);
+        })
+        .catch((error) => {
+          console.error("Error fetching product details: ", error);
+        });
+    }
+  }, [participantsId, dataFetched]);
 
   return (
     <Dialog
@@ -40,7 +65,7 @@ function ViewWishes({ open, onClose, userId, eventId }) {
         display: "flex",
       }}
       open={open}
-      onClose={handleClose}
+      // onClose={handleClose}
     >
       <DialogContent
         sx={{
