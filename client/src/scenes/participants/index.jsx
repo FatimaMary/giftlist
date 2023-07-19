@@ -8,42 +8,20 @@ import Edit from "../eventview/editicblue.svg";
 import { useSearchParams } from "react-router-dom";
 import axios from "axios";
 import "../../App.css";
+import ViewWishes from "./view";
 
 function Participants() {
   const [searchParam] = useSearchParams();
   const eventId = searchParam.get("eventId");
+  const userId = searchParam.get("userId");
   const [acceptence, setAcceptence] = useState([]);
   const [participantsList, setParticipantsList] = useState([]);
   const [participantsData, setParticipantsData] = useState([]);
   const [unparticipantsData, setUnparticipantsData] = useState([]);
   const [activeTab, setActiveTab] = useState(0);
   const [productDetails, setProductDetails] = useState([]);
+  const [viewWishes, setViewWishes] = useState(false);
 
-  // useEffect(() => {
-  //   axios.get(`http://localhost:2309/player/${eventId}`).then((response) => {
-  //     console.log("Get participants response: ", response);
-  //     console.log("Get participants response data: ", response.data);
-  //     setParticipantsList(response.data);
-  //     const acceptenceValues = response.data.map(
-  //       (item) => item.participantsAcceptence
-  //     );
-  //     setAcceptence(acceptenceValues);
-  //     console.log("acceptence: ", acceptenceValues);
-  //     const productDetailsValue = response.data.map((singleData) => {
-  //       axios
-  //         .get(`http://localhost:2309/product/all/${singleData.participantsId}`)
-  //         .then((res) => {
-  //           console.log("Product res: ", res.data);
-  //           console.log("Length: ", res.data.length);
-  //           // setProductDetails(res.data);
-  //         });
-  //       // console.log("product Detail value: ", productDetailsValue);
-  //       // setProductDetails(productDetailsValue);
-  //     });
-  //     console.log("product Detail value: ", productDetailsValue);
-  //     setProductDetails(productDetailsValue);
-  //   });
-  // }, []);
   useEffect(() => {
     axios.get(`http://localhost:2309/player/${eventId}`).then((response) => {
       console.log("Get participants response: ", response);
@@ -303,9 +281,6 @@ function Participants() {
                   </Box>
                 </Box>
                 <Box>
-                  {/* {productDetails.length === undefined ? (
-                    <Button disabled>View Wishes</Button>
-                  ) : ( */}
                   <Button
                     disabled={
                       !productDetails[index] ||
@@ -335,10 +310,10 @@ function Participants() {
                         opacity: 0.5,
                       },
                     }}
+                    onClick={() => setViewWishes(true)}
                   >
                     View Wishes
                   </Button>
-                  {/* )} */}
                   <Button
                     sx={{
                       padding: "14px 15px",
@@ -510,6 +485,12 @@ function Participants() {
           </>
         )}
       </Box>
+      <ViewWishes
+        open={viewWishes}
+        onClose={setViewWishes(false)}
+        userId={userId}
+        eventId={eventId}
+      />
     </Box>
   );
 }
