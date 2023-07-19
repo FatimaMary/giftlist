@@ -33,22 +33,22 @@ export const getProductsByParticipantsId = (req, res) => {
   const participantsId = req.params.participantsId;
   Products.find({ participantsId: participantsId })
     .then((products) => {
-      if (products.length === 0) {
-        res.status(200).json({ message: "No Products Found" });
-      } else {
-        const productDetails = products.map((product) => {
-          return {
-            productId: product.productId,
-            productUrl: product.productUrl,
-            productName: product.productName,
-            productPrice: product.productPrice,
-            description: product.description,
-            eventId: product.eventId,
-            participantsId: product.participantsId,
-          };
-        });
-        res.json(productDetails);
-      }
+      // if (products.length === 0) {
+      //   res.status(200).json({ message: "No Products Found" });
+      // } else {
+      const productDetails = products.map((product) => {
+        return {
+          productId: product.productId,
+          productUrl: product.productUrl,
+          productName: product.productName,
+          productPrice: product.productPrice,
+          description: product.description,
+          eventId: product.eventId,
+          participantsId: product.participantsId,
+        };
+      });
+      res.json(productDetails);
+      // }
     })
     .catch((err) => res.status(400).json({ message: err.message }));
 };
