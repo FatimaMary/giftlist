@@ -12,7 +12,7 @@ import {
 import axios from "axios";
 import Gift from "../mywishes/gift.png";
 
-function ViewWishes({ open, onClose, participantsId }) {
+function ViewWishes({ open, onClose, participantsId, firstName, secondName }) {
   const [productDetails, setProductDetails] = useState([]);
   console.log("participants Id: ", participantsId);
   useEffect(() => {
