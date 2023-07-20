@@ -22,6 +22,8 @@ function Participants() {
   const [productDetails, setProductDetails] = useState([]);
   const [isViewWishesOpen, setIsViewWishesOpen] = useState(false);
   const [participantsId, setParticipantsId] = useState();
+  const [firstName, setFirstName] = useState();
+  const [secondName, setSecondName] = useState();
 
   useEffect(() => {
     axios.get(`http://localhost:2309/player/${eventId}`).then((response) => {
@@ -322,6 +324,8 @@ function Participants() {
                         participant.participantsId
                       );
                       setParticipantsId(participant.participantsId);
+                      setFirstName(participant.firstName);
+                      setSecondName(participant.secondName);
                     }}
                   >
                     View Wishes
@@ -481,6 +485,8 @@ function Participants() {
           onClose={() => setIsViewWishesOpen(false)}
           participantsId={participantsId}
           setIsViewWishesOpen={setIsViewWishesOpen}
+          firstName={firstName}
+          secondName={secondName}
         />
       )}
     </Box>
