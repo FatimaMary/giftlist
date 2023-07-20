@@ -20,7 +20,7 @@ function Participants() {
   const [unparticipantsData, setUnparticipantsData] = useState([]);
   const [activeTab, setActiveTab] = useState(0);
   const [productDetails, setProductDetails] = useState([]);
-  const [viewWishes, setViewWishes] = useState(false);
+  const [isViewWishesOpen, setIsViewWishesOpen] = useState(false);
 
   useEffect(() => {
     axios.get(`http://localhost:2309/player/${eventId}`).then((response) => {
@@ -310,7 +310,7 @@ function Participants() {
                         opacity: 0.5,
                       },
                     }}
-                    onClick={() => setViewWishes(true)}
+                    onClick={() => setIsViewWishesOpen(true)}
                   >
                     View Wishes
                   </Button>
@@ -485,12 +485,14 @@ function Participants() {
           </>
         )}
       </Box>
-      <ViewWishes
-        open={viewWishes}
-        onClose={setViewWishes(false)}
-        userId={userId}
-        eventId={eventId}
-      />
+      {isViewWishesOpen && (
+        <ViewWishes
+          open={isViewWishesOpen}
+          onClose={() => setIsViewWishesOpen(false)}
+          userId={userId}
+          eventId={eventId}
+        />
+      )}
     </Box>
   );
 }
