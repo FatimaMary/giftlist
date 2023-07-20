@@ -21,6 +21,7 @@ function Participants() {
   const [activeTab, setActiveTab] = useState(0);
   const [productDetails, setProductDetails] = useState([]);
   const [isViewWishesOpen, setIsViewWishesOpen] = useState(false);
+  const [participantsId, setParticipantsId] = useState();
 
   useEffect(() => {
     axios.get(`http://localhost:2309/player/${eventId}`).then((response) => {
@@ -74,10 +75,14 @@ function Participants() {
           const partcipantsDataResponse = await axios.get(
             `http://localhost:2309/user/${participant.participantsEmail}`
           );
-          return partcipantsDataResponse.data;
+          return {
+            ...partcipantsDataResponse.data,
+            participantsId: participant.participantsId,
+          };
         });
 
       const participantData = await Promise.all(participantDataPromises);
+      console.log("Participants data 1: ", participantData);
       setParticipantsData(participantData);
     };
 
@@ -310,7 +315,14 @@ function Participants() {
                         opacity: 0.5,
                       },
                     }}
-                    onClick={() => setIsViewWishesOpen(true)}
+                    onClick={() => {
+                      setIsViewWishesOpen(true);
+                      console.log(
+                        "Participants Id: ",
+                        participant.participantsId
+                      );
+                      setParticipantsId(participant.participantsId);
+                    }}
                   >
                     View Wishes
                   </Button>
@@ -429,28 +441,6 @@ function Participants() {
                   </Box>
                 </Box>
                 <Box>
-                  {/* <Button
-            sx={{
-              margin: '0 5px',
-              background: '#C21010',
-              fontSize: '15px',
-              lineHeight: '22px',
-              color: '#fff',
-              padding: '14px 30px',
-              display: 'inline-block',
-              border: '1px solid #C21010',
-              fontWeight: 600,
-              textTransform: 'inherit',
-              '&: hover' : {
-                cursor: 'pointer',
-                background: '#fff',
-                color: '#C21010',
-              },
-              borderRadius: '7px'
-            }}
-          >
-            View Wishes
-          </Button> */}
                   <Button
                     sx={{
                       padding: "14px 15px",
@@ -489,8 +479,8 @@ function Participants() {
         <ViewWishes
           open={isViewWishesOpen}
           onClose={() => setIsViewWishesOpen(false)}
-          userId={userId}
-          eventId={eventId}
+          participantsId={participantsId}
+          setIsViewWishesOpen={setIsViewWishesOpen}
         />
       )}
     </Box>
