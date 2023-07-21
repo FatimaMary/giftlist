@@ -31,6 +31,8 @@ function EventView() {
   const [drawnNames, setDrawnNames] = useState([]);
   const [isButtonDisabled, setIsButtonDisabled] = useState(false);
   const [receiver, setReceiver] = useState([]);
+  const [participantsId, setParticipantsId] = useState(0);
+  const [productDetails, setProductDetails] = useState([]);
 
   console.log("player user id: ", playerUserId);
 
@@ -69,6 +71,18 @@ function EventView() {
       console.log("Participants List: ", response.data);
       setPlayers(response.data);
     });
+    axios
+      .get(`http://localhost:2309/player/id/${playerUserId}?eventId=${eventId}`)
+      .then((response) => {
+        console.log("ParticipantsId: ", response.data[0]);
+        setParticipantsId(response.data[0]);
+        axios
+          .get(`http://localhost:2309/product/all/${response.data[0]}`)
+          .then((res) => {
+            console.log("Product Details: ", res.data);
+            setProductDetails(res.data);
+          });
+      });
   }, []);
 
   function stringAvatar(name) {
@@ -595,13 +609,23 @@ function EventView() {
                   marginBottom: "10px",
                 }}
               >
-                <CancelOutlinedIcon
-                  sx={{
-                    color: "red",
-                    width: "18px",
-                    height: "18px",
-                  }}
-                />
+                {productDetails.length === 0 ? (
+                  <CancelOutlinedIcon
+                    sx={{
+                      color: "red",
+                      width: "18px",
+                      height: "18px",
+                    }}
+                  />
+                ) : (
+                  <CheckCircleOutlineIcon
+                    sx={{
+                      color: "green",
+                      width: "18px",
+                      height: "18px",
+                    }}
+                  />
+                )}
                 Add to your wish list
               </Typography>
               <Typography
