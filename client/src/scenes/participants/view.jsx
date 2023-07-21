@@ -30,7 +30,7 @@ function ViewWishes({ open, onClose, participantsId, firstName, secondName }) {
   return (
     <Dialog
       sx={{
-        // margin: "0 261px",
+        margin: "0 261px",
         display: "flex",
         // width: "1080px",
         height: "500px",
@@ -44,16 +44,17 @@ function ViewWishes({ open, onClose, participantsId, firstName, secondName }) {
           boxShadow: "5px 5px 25px -5px rgba(32, 32, 36, .1)",
           borderRadius: "10px",
           padding: "24px 20px",
-          // display: "flex",
+          display: "flex",
           // flexDirection: "column",
           width: "80%",
-          // flexWrap: "wrap",
-          // justifyContent: "center",
+          flexWrap: "wrap",
+          justifyContent: "space-between",
           border: "1px solid #cad3dd",
-          overflowX: "auto",
+          // overflowX: "auto",
+          alignItems: "center",
         }}
       >
-        <Box
+        {/* <Box
           sx={{
             display: "flex",
             alignItems: "center",
@@ -64,62 +65,62 @@ function ViewWishes({ open, onClose, participantsId, firstName, secondName }) {
             width: "100%",
             // overflowX: "auto",
           }}
-        >
-          {productDetails.map((singleDetail, i) => (
-            <Card
-              sx={{
-                width: 280,
-                height: "250px",
-                m: "1.5rem",
-                display: "flex",
-                alignItems: "center",
-                justifyContent: "center",
-              }}
-              key={i}
-            >
-              <CardContent>
-                <Box
+        > */}
+        {productDetails.map((singleDetail, i) => (
+          <Card
+            sx={{
+              width: 280,
+              height: "250px",
+              m: "1.5rem",
+              display: "flex",
+              alignItems: "center",
+              justifyContent: "center",
+            }}
+            key={i}
+          >
+            <CardContent>
+              <Box
+                sx={{
+                  height: "60%",
+                  borderBottom: "1px solid grey",
+                }}
+              >
+                <CardMedia
+                  component="img"
+                  // height="140"
+                  image={Gift}
+                  alt="Image Description"
                   sx={{
-                    height: "60%",
-                    borderBottom: "1px solid grey",
+                    height: "125px",
+                    width: "100px",
+                    marginLeft: "auto",
+                    marginRight: "auto",
+                    // marginTop: '10px',
                   }}
-                >
-                  <CardMedia
-                    component="img"
-                    // height="140"
-                    image={Gift}
-                    alt="Image Description"
-                    sx={{
-                      height: "125px",
-                      width: "100px",
-                      marginLeft: "auto",
-                      marginRight: "auto",
-                      // marginTop: '10px',
-                    }}
-                  />
-                </Box>
-                <Box
-                  sx={{
-                    height: "40%",
-                    background: "#FFEAEA",
-                    display: "flex",
-                    alignItems: "center",
-                    justifyContent: "center",
-                    // textAlign: "center",
-                    p: "0.5rem",
-                    "&:hover": {
-                      backgroundColor: "#C21010",
-                      color: "white",
-                      cursor: "pointer",
-                    },
-                  }}
-                >
-                  <Typography>{singleDetail.productUrl}</Typography>
-                </Box>
-              </CardContent>
-            </Card>
-          ))}
-        </Box>
+                />
+              </Box>
+              <Box
+                sx={{
+                  height: "40%",
+                  background: "#FFEAEA",
+                  display: "flex",
+                  alignItems: "center",
+                  justifyContent: "center",
+                  // textAlign: "center",
+                  p: "0.5rem",
+                  "&:hover": {
+                    backgroundColor: "#C21010",
+                    color: "white",
+                    cursor: "pointer",
+                  },
+                }}
+              >
+                <Typography>{singleDetail.productUrl}</Typography>
+              </Box>
+            </CardContent>
+          </Card>
+        ))}
+        {/* </Box> */}
       </DialogContent>
     </Dialog>
   );
