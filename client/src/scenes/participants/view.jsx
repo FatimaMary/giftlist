@@ -50,7 +50,7 @@ function ViewWishes({ open, onClose, participantsId, firstName, secondName }) {
           flexWrap: "wrap",
           justifyContent: "space-between",
           border: "1px solid #cad3dd",
-          // overflowX: "auto",
+          // overflowY: "none",
           alignItems: "center",
         }}
       >
