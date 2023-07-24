@@ -17,6 +17,7 @@ import Participants from "../participants";
 import Invite from "../success/invite";
 import EditEvent from "./editEvent";
 import MyWishes from "../mywishes";
+import Messages from "../messages";
 
 function EventView() {
   const [eventDetails, setEventDetails] = useState({});
@@ -927,7 +928,11 @@ function EventView() {
           <Participants />
         </Box>
       )}
-      {activeTab === 2 && <Box>Messages</Box>}
+      {activeTab === 2 && (
+        <Box>
+          <Messages />
+        </Box>
+      )}
       {activeTab === 3 && (
         <Box>
           <MyWishes eventId={eventId} userId={playerUserId} />
