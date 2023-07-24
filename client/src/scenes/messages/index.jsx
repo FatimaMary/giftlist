@@ -1,5 +1,6 @@
 import React from "react";
 import {
+  Avatar,
   Box,
   Button,
   TextField,
@@ -30,6 +31,13 @@ function Messages() {
       },
     },
   });
+
+  function stringAvatar(name) {
+    return {
+      children: `${name.split(" ")[0][0]}`,
+    };
+  }
+
   return (
     <Box
       sx={{
@@ -97,7 +105,75 @@ function Messages() {
           </Button>
         </Box>
       </Box>
-      <Box></Box>
+      <Box
+        sx={{
+          display: "flex",
+          alignItems: "center",
+          justifyContent: "space-between",
+          padding: "20px 16px",
+          background: "#fff",
+          border: "1px solid #e8ecf1",
+          borderRadius: "9px",
+        }}
+      >
+        <Box
+          sx={{
+            display: "flex",
+            alignItems: "center",
+            maxWidth: "30%",
+            paddingRight: "20px",
+            flexWrap: "wrap",
+          }}
+        >
+          <Avatar
+            {...stringAvatar("Undefined")}
+            sx={{
+              width: "26px",
+              height: "26px",
+              background: "#C21010",
+              fontSize: "11px",
+              marginBottom: 0,
+              lineHeight: "18px",
+              display: "flex",
+              alignItems: "center",
+              justifyContent: "center",
+            }}
+          />
+          <Box
+            sx={{
+              display: "flex",
+              flexDirection: "column",
+              paddingLeft: "12px",
+            }}
+          >
+            <Typography
+              variant="h4"
+              sx={{
+                fontSize: "17px",
+                fontWeight: 600,
+                lineHeight: "22px",
+                color: "#101a34",
+                marginBottom: "4px",
+              }}
+            >
+              Sender Name
+            </Typography>
+            <Typography
+              variant="body1"
+              sx={{
+                fontWeight: 400,
+                fontSize: "13px",
+                lineHeight: "16px",
+                color: "#818694",
+              }}
+            >
+              Sender Email
+            </Typography>
+          </Box>
+        </Box>
+        <Box></Box>
+        <Box></Box>
+      </Box>
     </Box>
   );
 }
