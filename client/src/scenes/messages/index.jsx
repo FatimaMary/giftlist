@@ -1,8 +1,35 @@
 import React from "react";
-import { Box, Button, TextField, Typography } from "@mui/material";
+import {
+  Box,
+  Button,
+  TextField,
+  ThemeProvider,
+  Typography,
+  createTheme,
+} from "@mui/material";
 import MailOutlineIcon from "@mui/icons-material/MailOutline";
 
 function Messages() {
+  const theme = createTheme({
+    components: {
+      MuiTextField: {
+        styleOverrides: {
+          root: {
+            "& .MuiOutlinedInput-root": {
+              "& fieldset": {
+                borderColor: "#cad3dd",
+              },
+            },
+            "& .MuiOutlinedInput-root.Mui-focused": {
+              "& fieldset": {
+                borderColor: "#cad3dd",
+              },
+            },
+          },
+        },
+      },
+    },
+  });
   return (
     <Box
       sx={{
@@ -29,27 +56,48 @@ function Messages() {
         <Box
           sx={{
             marginBottom: "20px",
+            display: "flex",
+            justifyContent: "space-between",
           }}
         >
-          <TextField
-            placeholder="Enter your message text"
+          <ThemeProvider theme={theme}>
+            <TextField
+              placeholder="Enter your message text"
+              sx={{
+                "& .MuiOutlinedInput-root": {
+                  height: "46px",
+                  padding: "8px 15px",
+                  width: "800px",
+                },
+                background: "#fff",
+                borderRadius: "7px",
+                fontWeight: 400,
+                fontSize: "16px",
+                color: "#101a34",
+                border: "1px solid #cad3dd",
+              }}
+            />
+          </ThemeProvider>
+          <Button
+            variant="outlined"
             sx={{
+              width: "155px",
               height: "46px",
-              background: "#fff",
-              borderRadius: "7px",
-              padding: "8px 15px",
-              fontWeight: 400,
-              fontSize: "16px",
-              color: "#101a34",
-              border: "1px solid #cad3dd",
+              display: "flex",
+              alignItems: "center",
+              justifyContent: "center",
+              padding: "0 5px",
+              textTransform: "inherit",
+              color: "#fff",
+              background: "#C12020",
             }}
-          />
-          <Button>
+          >
             <MailOutlineIcon />
             Send message
           </Button>
         </Box>
       </Box>
+      <Box></Box>
     </Box>
   );
 }
