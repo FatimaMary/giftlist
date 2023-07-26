@@ -19,3 +19,26 @@ export const postMessage = (req, res) => {
     .then((data) => res.json(data))
     .catch((err) => res.status(400).json("Error: " + err));
 };
+
+export const getAllMessages = (req, res) => {
+  Messages.find()
+    .then((messages) => res.json(messages))
+    .catch((err) => res.status(400).json("Error: " + err));
+};
+
+export const getMessagesByEventId = (req, res) => {
+  const eventId = req.params.eventId;
+  Messages.find({ eventId: eventId })
+    .then((messages) => {
+      const messageDetails = messages.map((singleMessage) => {
+        return {
+          message: singleMessage.message,
+          userId: singleMessage.userId,
+          eventId: singleMessage.eventId,
+          participantsId: singleMessage.participantsId,
+        };
+      });
+      res.json(messageDetails);
+    })
+    .catch((err) => res.status(400).json("Error: " + err));
+};
