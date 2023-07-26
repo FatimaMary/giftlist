@@ -33,3 +33,14 @@ const messageSchema = new mongoose.Schema({
     required: true,
   },
 });
+
+messageSchema.plugin(autoIncrement.plugin, {
+  model: "GiftlistMessages",
+  field: messageId,
+  startId: 1,
+  incrementBy: 1,
+});
+
+const Messages = mongoose.model("GiftlistMessages", messageSchema);
+
+export default Messages;
