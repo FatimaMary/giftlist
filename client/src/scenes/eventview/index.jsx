@@ -149,73 +149,75 @@ function EventView() {
             >
               {eventDetails.eventName}
             </Typography>
-            <Box
-              sx={{
-                display: "flex",
-                flexWrap: "wrap",
-                justifyContent: "flex-end",
-              }}
-            >
-              <Button
+            {eventDetails.userId !== playerUserId ? null : (
+              <Box
                 sx={{
-                  marginRight: "12px",
-                  padding: "8px 15px",
-                  fontWeight: 600,
-                  fontSize: "13px",
-                  lineHeight: "18px",
-                  borderRadius: "5px",
                   display: "flex",
-                  alignItems: "center",
-                  background: "#C21010",
-                  color: "#fff",
-                  border: "1px solid #C21010",
-                  textTransform: "inherit",
-                  "&:hover": {
-                    color: "#C21010",
-                  },
+                  flexWrap: "wrap",
+                  justifyContent: "flex-end",
                 }}
-                onClick={() => setInvitePage(true)}
               >
-                <ShareOutlinedIcon
+                <Button
                   sx={{
-                    width: "16px",
-                    height: "16px",
-                    marginRight: "5px",
-                  }}
-                />
-                Invite
-              </Button>
-              <Button
-                sx={{
-                  marginRight: "12px",
-                  padding: "8px 15px",
-                  fontWeight: 600,
-                  fontSize: "13px",
-                  lineHeight: "18px",
-                  borderRadius: "5px",
-                  display: "flex",
-                  alignItems: "center",
-                  background: "#fafbfd",
-                  color: "#101a34",
-                  border: "1px solid #cad3dd",
-                  textTransform: "inherit",
-                  "&:hover": {
-                    color: "#C21010",
+                    marginRight: "12px",
+                    padding: "8px 15px",
+                    fontWeight: 600,
+                    fontSize: "13px",
+                    lineHeight: "18px",
+                    borderRadius: "5px",
+                    display: "flex",
+                    alignItems: "center",
+                    background: "#C21010",
+                    color: "#fff",
                     border: "1px solid #C21010",
-                  },
-                }}
-                onClick={() => setEditPage(true)}
-              >
-                <EditCalendarOutlinedIcon
-                  sx={{
-                    width: "16px",
-                    height: "16px",
-                    marginRight: "5px",
+                    textTransform: "inherit",
+                    "&:hover": {
+                      color: "#C21010",
+                    },
                   }}
-                />
-                Edit
-              </Button>
-            </Box>
+                  onClick={() => setInvitePage(true)}
+                >
+                  <ShareOutlinedIcon
+                    sx={{
+                      width: "16px",
+                      height: "16px",
+                      marginRight: "5px",
+                    }}
+                  />
+                  Invite
+                </Button>
+                <Button
+                  sx={{
+                    marginRight: "12px",
+                    padding: "8px 15px",
+                    fontWeight: 600,
+                    fontSize: "13px",
+                    lineHeight: "18px",
+                    borderRadius: "5px",
+                    display: "flex",
+                    alignItems: "center",
+                    background: "#fafbfd",
+                    color: "#101a34",
+                    border: "1px solid #cad3dd",
+                    textTransform: "inherit",
+                    "&:hover": {
+                      color: "#C21010",
+                      border: "1px solid #C21010",
+                    },
+                  }}
+                  onClick={() => setEditPage(true)}
+                >
+                  <EditCalendarOutlinedIcon
+                    sx={{
+                      width: "16px",
+                      height: "16px",
+                      marginRight: "5px",
+                    }}
+                  />
+                  Edit
+                </Button>
+              </Box>
+            )}
           </Box>
           <Box
             sx={{
