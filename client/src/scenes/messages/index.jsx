@@ -171,8 +171,28 @@ function Messages() {
             </Typography>
           </Box>
         </Box>
-        <Box></Box>
-        <Box></Box>
+        <Box
+          sx={{
+            borderRight: "1px solid #e8ecf1",
+            borderLeft: "1px solid #e8ecf1",
+            padding: "0 20px",
+            fontSize: "17px",
+            lineHeight: "140%",
+            color: "#5e6577",
+            flexBasis: "50%",
+            maxWidth: "50%",
+          }}
+        >
+          <Typography variant="body1">hi</Typography>
+        </Box>
+        <Box
+          sx={{
+            flexBasis: "20%",
+            maxWidth: "20%",
+            paddingLeft: "20px",
+            textAlign: "right",
+          }}
+        ></Box>
       </Box>
     </Box>
   );
