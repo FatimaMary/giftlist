@@ -9,6 +9,7 @@ import userRoutes from "./routes/user.js";
 import eventRoutes from "./routes/event.js";
 import participantsRoutes from "./routes/participants.js";
 import productsRoutes from "./routes/products.js";
+import messageRoutes from "./routes/messages.js";
 
 // CONFIGURATION
 dotenv.config();
@@ -26,6 +27,7 @@ app.use("/user", userRoutes);
 app.use("/event", eventRoutes);
 app.use("/player", participantsRoutes);
 app.use("/product", productsRoutes);
+app.use("/msg", messageRoutes);
 
 //MONGOOSE SETUP
 const PORT = process.env.PORT || 9000;
