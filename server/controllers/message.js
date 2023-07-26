@@ -1,6 +1,6 @@
 import Messages from "../models/Message.js";
 
-const postMessage = (req, res) => {
+export const postMessage = (req, res) => {
   const message = req.body.message;
   const userId = req.body.userId;
   const eventId = req.body.eventId;
