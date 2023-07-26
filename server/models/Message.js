@@ -1,5 +1,5 @@
 import mongoose from "mongoose";
-import { autoIncrement } from "mongoose-plugin-autoinc";
+import autoIncrement from "mongoose-plugin-autoinc";
 
 const messageSchema = new mongoose.Schema({
   messageId: {
@@ -20,7 +20,7 @@ const messageSchema = new mongoose.Schema({
   likes: {
     type: String,
   },
-  UserId: {
+  userId: {
     type: String,
     required: true,
   },
@@ -36,7 +36,7 @@ const messageSchema = new mongoose.Schema({
 
 messageSchema.plugin(autoIncrement.plugin, {
   model: "GiftlistMessages",
-  field: messageId,
+  field: "messageId",
   startId: 1,
   incrementBy: 1,
 });
