@@ -547,34 +547,36 @@ function EventView() {
                 justifyContent: "center",
               }}
             >
-              <Typography
-                sx={{
-                  display: "flex",
-                  gap: "5px",
-                  alignItems: "center",
-                  flexWrap: "wrap",
-                  marginBottom: "10px",
-                }}
-              >
-                {players.length <= 2 ? (
-                  <CancelOutlinedIcon
-                    sx={{
-                      color: "red",
-                      width: "18px",
-                      height: "18px",
-                    }}
-                  />
-                ) : (
-                  <CheckCircleOutlineIcon
-                    sx={{
-                      color: "green",
-                      width: "18px",
-                      height: "18px",
-                    }}
-                  />
-                )}
-                At least 3 participants joined
-              </Typography>
+              {eventDetails.userId !== playerUserId ? null : (
+                <Typography
+                  sx={{
+                    display: "flex",
+                    gap: "5px",
+                    alignItems: "center",
+                    flexWrap: "wrap",
+                    marginBottom: "10px",
+                  }}
+                >
+                  {players.length <= 2 ? (
+                    <CancelOutlinedIcon
+                      sx={{
+                        color: "red",
+                        width: "18px",
+                        height: "18px",
+                      }}
+                    />
+                  ) : (
+                    <CheckCircleOutlineIcon
+                      sx={{
+                        color: "green",
+                        width: "18px",
+                        height: "18px",
+                      }}
+                    />
+                  )}
+                  At least 3 participants joined
+                </Typography>
+              )}
               <Typography
                 sx={{
                   display: "flex",
