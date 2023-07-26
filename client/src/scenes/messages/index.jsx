@@ -9,6 +9,7 @@ import {
   createTheme,
 } from "@mui/material";
 import MailOutlineIcon from "@mui/icons-material/MailOutline";
+import FavoriteBorderIcon from "@mui/icons-material/FavoriteBorder";
 
 function Messages() {
   const theme = createTheme({
@@ -191,8 +192,42 @@ function Messages() {
             maxWidth: "20%",
             paddingLeft: "20px",
             textAlign: "right",
+            display: "flex",
           }}
-        ></Box>
+        >
+          <Box>
+            <Typography
+              variant="body1"
+              sx={{
+                fontSize: "13px",
+                lineHeight: "16px",
+                color: "#5e6577",
+                marginBottom: "7px",
+              }}
+            >
+              Date and time
+            </Typography>
+            <Typography
+              variant="body1"
+              sx={{
+                fontWeight: 600,
+                fontSize: "13px",
+                lineHeight: "18px",
+                color: "#101a34",
+                marginBottom: 0,
+              }}
+            >
+              Likes: 0
+            </Typography>
+          </Box>
+          <Button>
+            <FavoriteBorderIcon
+              sx={{
+                color: "green",
+              }}
+            />
+          </Button>
+        </Box>
       </Box>
     </Box>
   );
