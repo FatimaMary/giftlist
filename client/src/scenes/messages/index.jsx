@@ -123,129 +123,133 @@ function Messages({ eventId, userId }) {
           </Button>
         </Box>
       </Box>
-      <Box
-        sx={{
-          display: "flex",
-          alignItems: "center",
-          justifyContent: "space-between",
-          padding: "20px 16px",
-          background: "#fff",
-          border: "1px solid #e8ecf1",
-          borderRadius: "9px",
-        }}
-      >
+      {userDetails.map((singleDetail, i) => (
         <Box
           sx={{
             display: "flex",
             alignItems: "center",
-            maxWidth: "30%",
-            paddingRight: "20px",
-            flexWrap: "wrap",
+            justifyContent: "space-between",
+            padding: "20px 16px",
+            background: "#fff",
+            border: "1px solid #e8ecf1",
+            borderRadius: "9px",
           }}
+          key={i}
         >
-          <Avatar
-            {...stringAvatar("Undefined")}
-            sx={{
-              width: "26px",
-              height: "26px",
-              background: "#C21010",
-              fontSize: "11px",
-              marginBottom: 0,
-              lineHeight: "18px",
-              display: "flex",
-              alignItems: "center",
-              justifyContent: "center",
-            }}
-          />
           <Box
             sx={{
               display: "flex",
-              flexDirection: "column",
-              paddingLeft: "12px",
+              alignItems: "center",
+              maxWidth: "30%",
+              paddingRight: "20px",
+              flexWrap: "wrap",
             }}
           >
-            <Typography
-              variant="h4"
+            <Avatar
+              {...stringAvatar(`${singleDetail.firstName}`)}
               sx={{
-                fontSize: "17px",
-                fontWeight: 600,
-                lineHeight: "22px",
-                color: "#101a34",
-                marginBottom: "4px",
-              }}
-            >
-              {userDetails.firstName} {userDetails.secondName}
-            </Typography>
-            <Typography
-              variant="body1"
-              sx={{
-                fontWeight: 400,
-                fontSize: "13px",
-                lineHeight: "16px",
-                color: "#818694",
-              }}
-            >
-              {userDetails.email}
-            </Typography>
-          </Box>
-        </Box>
-        <Box
-          sx={{
-            borderRight: "1px solid #e8ecf1",
-            borderLeft: "1px solid #e8ecf1",
-            padding: "0 20px",
-            fontSize: "17px",
-            lineHeight: "140%",
-            color: "#5e6577",
-            flexBasis: "50%",
-            maxWidth: "50%",
-          }}
-        >
-          <Typography variant="body1">hi</Typography>
-        </Box>
-        <Box
-          sx={{
-            flexBasis: "20%",
-            maxWidth: "20%",
-            paddingLeft: "20px",
-            textAlign: "right",
-            display: "flex",
-          }}
-        >
-          <Box>
-            <Typography
-              variant="body1"
-              sx={{
-                fontSize: "13px",
-                lineHeight: "16px",
-                color: "#5e6577",
-                marginBottom: "7px",
-              }}
-            >
-              Date and time
-            </Typography>
-            <Typography
-              variant="body1"
-              sx={{
-                fontWeight: 600,
-                fontSize: "13px",
-                lineHeight: "18px",
-                color: "#101a34",
+                width: "26px",
+                height: "26px",
+                background: "#C21010",
+                fontSize: "11px",
                 marginBottom: 0,
-              }}
-            >
-              Likes: 0
-            </Typography>
-          </Box>
-          <Button>
-            <FavoriteBorderIcon
-              sx={{
-                color: "green",
+                lineHeight: "18px",
+                display: "flex",
+                alignItems: "center",
+                justifyContent: "center",
               }}
             />
-          </Button>
+            <Box
+              sx={{
+                display: "flex",
+                flexDirection: "column",
+                paddingLeft: "12px",
+              }}
+            >
+              <Typography
+                variant="h4"
+                sx={{
+                  fontSize: "17px",
+                  fontWeight: 600,
+                  lineHeight: "22px",
+                  color: "#101a34",
+                  marginBottom: "4px",
+                }}
+              >
+                {singleDetail.firstName} {singleDetail.secondName}
+              </Typography>
+              <Typography
+                variant="body1"
+                sx={{
+                  fontWeight: 400,
+                  fontSize: "13px",
+                  lineHeight: "16px",
+                  color: "#818694",
+                }}
+              >
+                {singleDetail.email}
+              </Typography>
+            </Box>
+          </Box>
+          <Box
+            sx={{
+              borderRight: "1px solid #e8ecf1",
+              borderLeft: "1px solid #e8ecf1",
+              padding: "0 20px",
+              fontSize: "17px",
+              lineHeight: "140%",
+              color: "#5e6577",
+              flexBasis: "50%",
+              maxWidth: "50%",
+            }}
+          >
+            <Typography variant="body1">{singleDetail.message}</Typography>
+          </Box>
+          <Box
+            sx={{
+              flexBasis: "20%",
+              maxWidth: "20%",
+              paddingLeft: "20px",
+              textAlign: "right",
+              display: "flex",
+            }}
+          >
+            <Box>
+              <Typography
+                variant="body1"
+                sx={{
+                  fontSize: "13px",
+                  lineHeight: "16px",
+                  color: "#5e6577",
+                  marginBottom: "7px",
+                }}
+              >
+                {/* {singleDetail.timeStamp} */}
+                time
+              </Typography>
+              <Typography
+                variant="body1"
+                sx={{
+                  fontWeight: 600,
+                  fontSize: "13px",
+                  lineHeight: "18px",
+                  color: "#101a34",
+                  marginBottom: 0,
+                }}
+              >
+                Likes: 0
+              </Typography>
+            </Box>
+            <Button>
+              <FavoriteBorderIcon
+                sx={{
+                  color: "green",
+                }}
+              />
+            </Button>
+          </Box>
         </Box>
-      </Box>
+      ))}
     </Box>
   );
 }
