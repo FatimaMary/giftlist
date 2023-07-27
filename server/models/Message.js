@@ -14,8 +14,8 @@ const messageSchema = new mongoose.Schema({
   Date: {
     type: String,
   },
-  time: {
-    type: String,
+  timeStamp: {
+    type: Date,
   },
   likes: {
     type: String,

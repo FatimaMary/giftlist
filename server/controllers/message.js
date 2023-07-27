@@ -36,6 +36,7 @@ export const getMessagesByEventId = (req, res) => {
           userId: singleMessage.userId,
           eventId: singleMessage.eventId,
           participantsId: singleMessage.participantsId,
+          timeStamp: singleMessage.timeStamp,
         };
       });
       res.json(messageDetails);
