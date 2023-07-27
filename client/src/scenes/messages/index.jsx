@@ -23,6 +23,10 @@ function Messages({ eventId, userId }) {
       setUserDetails(response.data);
     });
     console.log("user details: ", userDetails);
+    axios.get(`http://localhost:2309/msg/all/${eventId}`).then((response) => {
+      console.log("Messages response data: ", response.data);
+      setMessageDetails(response.data);
+    });
   }, []);
 
   const theme = createTheme({
@@ -170,7 +174,7 @@ function Messages({ eventId, userId }) {
                 marginBottom: "4px",
               }}
             >
-              Sender Name
+              {userDetails.firstName} {userDetails.secondName}
             </Typography>
             <Typography
               variant="body1"
@@ -181,7 +185,7 @@ function Messages({ eventId, userId }) {
                 color: "#818694",
               }}
             >
-              Sender Email
+              {userDetails.email}
             </Typography>
           </Box>
         </Box>
