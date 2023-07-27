@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import {
   Avatar,
   Box,
@@ -10,8 +10,21 @@ import {
 } from "@mui/material";
 import MailOutlineIcon from "@mui/icons-material/MailOutline";
 import FavoriteBorderIcon from "@mui/icons-material/FavoriteBorder";
+import axios from "axios";
 
-function Messages() {
+function Messages({ eventId, userId }) {
+  const [userDetails, setUserDetails] = useState({});
+  const [messageDetails, setMessageDetails] = useState([]);
+  console.log("user details1: ", userDetails);
+
+  useEffect(() => {
+    axios.get(`http://localhost:2309/user/get/${userId}`).then((response) => {
+      console.log("Message page user details: ", response.data);
+      setUserDetails(response.data);
+    });
+    console.log("user details: ", userDetails);
+  }, []);
+
   const theme = createTheme({
     components: {
       MuiTextField: {
