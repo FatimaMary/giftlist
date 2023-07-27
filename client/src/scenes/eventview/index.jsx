@@ -934,7 +934,7 @@ function EventView() {
       )}
       {activeTab === 2 && (
         <Box>
-          <Messages />
+          <Messages eventId={eventId} userId={playerUserId} />
         </Box>
       )}
       {activeTab === 3 && (
