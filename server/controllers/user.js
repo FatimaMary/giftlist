@@ -66,6 +66,7 @@ export const getUserNameByUserId = (req, res) => {
         const userDetails = {
           firstName: user.firstName,
           secondName: user.secondName,
+          email: user.email,
         };
         res.json(userDetails);
       } else {
