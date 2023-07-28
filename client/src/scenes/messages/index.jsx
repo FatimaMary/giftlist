@@ -18,14 +18,25 @@ function Messages({ eventId, userId }) {
   console.log("user details1: ", userDetails);
 
   useEffect(() => {
-    axios.get(`http://localhost:2309/user/get/${userId}`).then((response) => {
-      console.log("Message page user details: ", response.data);
-      setUserDetails(response.data);
-    });
+    // axios.get(`http://localhost:2309/user/get/${userId}`).then((response) => {
+    //   console.log("Message page user details: ", response.data);
+    //   setUserDetails(response.data);
+    // });
     console.log("user details: ", userDetails);
     axios.get(`http://localhost:2309/msg/all/${eventId}`).then((response) => {
       console.log("Messages response data: ", response.data);
       setMessageDetails(response.data);
+      const user = axios
+        .get(`http://localhost:2309/user/get/${response.data.userId}`)
+        .then((res) => {
+          console.log("Message page user details: ", res.data);
+          setUserDetails(res.data);
+          const joinData = [response.data];
+          joinData.push({
+            ...response.data,
+            user,
+          });
+        });
     });
   }, []);
 
@@ -123,7 +134,7 @@ function Messages({ eventId, userId }) {
           </Button>
         </Box>
       </Box>
-      {userDetails.map((singleDetail, i) => (
+      {messageDetails.map((singleDetail, i) => (
         <Box
           sx={{
             display: "flex",
@@ -224,8 +235,8 @@ function Messages({ eventId, userId }) {
                   marginBottom: "7px",
                 }}
               >
-                {/* {singleDetail.timeStamp} */}
-                time
+                {singleDetail.timeStamp}
+                {/* time */}
               </Typography>
               <Typography
                 variant="body1"
