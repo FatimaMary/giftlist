@@ -67,6 +67,15 @@ function MyWishes({ eventId, userId }) {
       .then((response) => {
         console.log("Product Response: ", response.data);
         setProductUrl("");
+        const newProductDetails = {
+          productUrl: productUrl,
+          eventId: eventId,
+          participantsId: participantsId,
+        };
+        setProductDetails((previousProductDetails) => [
+          ...previousProductDetails,
+          newProductDetails,
+        ]);
       });
   };
   return (
@@ -142,7 +151,7 @@ function MyWishes({ eventId, userId }) {
         {productDetails.map((singleDetail, i) => (
           <Card
             sx={{
-              width: 280,
+              width: 250,
               height: "250px",
               m: "1.5rem",
               display: "flex",
