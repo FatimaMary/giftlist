@@ -15,7 +15,6 @@ import Invite from "./scenes/success/invite";
 import EditEvent from "./scenes/eventview/editEvent";
 import Login1 from "./scenes/login1";
 import { MyContext } from "./Components/MyContext";
-import Product from "./scenes/product";
 import SantaSurprise from "./scenes/santasurprise";
 
 function App() {
@@ -41,8 +40,6 @@ function App() {
             <Route path="participants" element={<Participants />} />
             <Route path="invite" element={<Invite />} />
             <Route path="editevent" element={<EditEvent />} />
-            <Route path="product" element={<Product />} />
-            {/* <Route path="giftexchange" /> */}
           </Route>
         </Routes>
       </MyContext.Provider>
