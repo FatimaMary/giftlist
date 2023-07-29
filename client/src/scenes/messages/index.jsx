@@ -13,32 +13,36 @@ import FavoriteBorderIcon from "@mui/icons-material/FavoriteBorder";
 import axios from "axios";
 
 function Messages({ eventId, userId }) {
-  const [userDetails, setUserDetails] = useState({});
+  const [userDetails, setUserDetails] = useState([]);
   const [messageDetails, setMessageDetails] = useState([]);
-  console.log("user details1: ", userDetails);
 
   useEffect(() => {
-    // axios.get(`http://localhost:2309/user/get/${userId}`).then((response) => {
-    //   console.log("Message page user details: ", response.data);
-    //   setUserDetails(response.data);
-    // });
-    console.log("user details: ", userDetails);
-    axios.get(`http://localhost:2309/msg/all/${eventId}`).then((response) => {
-      console.log("Messages response data: ", response.data);
-      setMessageDetails(response.data);
-      const user = axios
-        .get(`http://localhost:2309/user/get/${response.data.userId}`)
-        .then((res) => {
-          console.log("Message page user details: ", res.data);
-          setUserDetails(res.data);
-          const joinData = [response.data];
-          joinData.push({
-            ...response.data,
-            user,
-          });
+    axios
+      .get(`http://localhost:2309/msg/all/${eventId}`)
+      .then((response) => {
+        const userPromises = response.data.map((message) => {
+          return axios.get(`http://localhost:2309/user/get/${message.userId}`);
         });
-    });
-  }, []);
+
+        Promise.all(userPromises)
+          .then((userResponses) => {
+            const users = userResponses.map((res) => res.data);
+            setUserDetails(users);
+            const joinData = response.data.map((message, index) => ({
+              ...message,
+              senderDetails: users[index],
+            }));
+            console.log("Message  response data: ", joinData);
+            setMessageDetails(joinData);
+          })
+          .catch((error) => {
+            console.error("Error fetching user details: ", error);
+          });
+      })
+      .catch((error) => {
+        console.error("Error fetching messages: ", error);
+      });
+  }, [eventId]);
 
   const theme = createTheme({
     components: {
@@ -157,7 +161,7 @@ function Messages({ eventId, userId }) {
             }}
           >
             <Avatar
-              {...stringAvatar(`${singleDetail.firstName}`)}
+              {...stringAvatar(`${singleDetail.senderDetails.firstName}`)}
               sx={{
                 width: "26px",
                 height: "26px",
@@ -187,7 +191,8 @@ function Messages({ eventId, userId }) {
                   marginBottom: "4px",
                 }}
               >
-                {singleDetail.firstName} {singleDetail.secondName}
+                {singleDetail.senderDetails.firstName}{" "}
+                {singleDetail.senderDetails.secondName}
               </Typography>
               <Typography
                 variant="body1"
@@ -198,7 +203,7 @@ function Messages({ eventId, userId }) {
                   color: "#818694",
                 }}
               >
-                {singleDetail.email}
+                {singleDetail.senderDetails.email}
               </Typography>
             </Box>
           </Box>
