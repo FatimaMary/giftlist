@@ -15,6 +15,17 @@ import axios from "axios";
 function Messages({ eventId, userId }) {
   const [userDetails, setUserDetails] = useState([]);
   const [messageDetails, setMessageDetails] = useState([]);
+  const [message, setMessage] = useState();
+  const [participantsId, setParticipantsId] = useState(0);
+
+  useEffect(() => {
+    axios
+      .get(`http://localhost:2309/player/id/${userId}?eventId=${eventId}`)
+      .then((response) => {
+        console.log("ParticipantsId: ", response.data[0]);
+        setParticipantsId(response.data[0]);
+      });
+  }, []);
 
   useEffect(() => {
     axios
@@ -71,6 +82,19 @@ function Messages({ eventId, userId }) {
     };
   }
 
+  const messageSend = () => {
+    axios
+      .post("http://localhost:2309/msg/add", {
+        message: message,
+        userId: userId,
+        eventId: eventId,
+        participantsId: participantsId,
+      })
+      .then((response) => {
+        console.log("Message send response: ", response.data);
+        setMessage("");
+      });
+  };
   return (
     <Box
       sx={{
@@ -117,6 +141,8 @@ function Messages({ eventId, userId }) {
                 color: "#101a34",
                 border: "1px solid #cad3dd",
               }}
+              value={message}
+              onChange={(e) => setMessage(e.target.value)}
             />
           </ThemeProvider>
           <Button
@@ -132,6 +158,7 @@ function Messages({ eventId, userId }) {
               color: "#fff",
               background: "#C12020",
             }}
+            onClick={messageSend}
           >
             <MailOutlineIcon />
             Send message
