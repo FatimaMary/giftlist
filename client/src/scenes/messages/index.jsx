@@ -93,8 +93,30 @@ function Messages({ eventId, userId }) {
       .then((response) => {
         console.log("Message send response: ", response.data);
         setMessage("");
+        axios
+          .get(`http://localhost:2309/user/get/${userId}`)
+          .then((senderResponse) => {
+            const newMessageDetail = {
+              ...response.data,
+              senderDetails: senderResponse.data,
+            };
+            setMessageDetails((prevMessageDetails) => [
+              ...prevMessageDetails,
+              newMessageDetail,
+            ]);
+          })
+          .catch((error) => {
+            console.error("Error fetching sender details: ", error);
+          });
+      })
+      .catch((error) => {
+        console.error("Error sending message: ", error);
       });
   };
+
+  const reversedMessageDetails = [...messageDetails].reverse();
+  console.log("Reversed message details: ", reversedMessageDetails);
+
   return (
     <Box
       sx={{
@@ -165,7 +187,7 @@ function Messages({ eventId, userId }) {
           </Button>
         </Box>
       </Box>
-      {messageDetails.map((singleDetail, i) => (
+      {reversedMessageDetails.reverse().map((singleDetail, i) => (
         <Box
           sx={{
             display: "flex",
