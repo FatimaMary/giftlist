@@ -29,6 +29,12 @@ function ViewWishes({ open, onClose, participantsId, firstName, secondName }) {
       });
   }, []);
 
+  const truncateText = (text, maxLength) => {
+    return text.length > maxLength
+      ? text.substring(0, maxLength) + "..."
+      : text;
+  };
+
   return (
     // <Box sx={{ width: "80%" }}>
     <Dialog
@@ -99,7 +105,10 @@ function ViewWishes({ open, onClose, participantsId, firstName, secondName }) {
                   },
                 }}
               >
-                <Typography>{singleDetail.productUrl}</Typography>
+                <Typography>
+                  {" "}
+                  {truncateText(singleDetail.productUrl, 65)}
+                </Typography>
               </Box>
             </CardContent>
           </Card>
