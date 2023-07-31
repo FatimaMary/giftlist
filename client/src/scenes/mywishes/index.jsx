@@ -173,7 +173,7 @@ function MyWishes({ eventId, userId }) {
             <CardContent>
               <Box
                 sx={{
-                  height: "60%",
+                  height: "150px",
                   borderBottom: "1px solid grey",
                 }}
               >
@@ -187,28 +187,25 @@ function MyWishes({ eventId, userId }) {
                     width: "100px",
                     marginLeft: "auto",
                     marginRight: "auto",
-                    // marginTop: '10px',
+                    marginTop: "30px",
                   }}
                 />
               </Box>
               <Box
                 sx={{
-                  height: "40%",
+                  height: "100px",
                   background: "#FFEAEA",
-                  display: "flex",
-                  alignItems: "center",
-                  justifyContent: "center",
-                  // textAlign: "center",
                   p: "0.5rem",
                   "&:hover": {
-                    backgroundColor: "#C21010",
-                    color: "white",
+                    textDecoration: "underline",
+                    color: "blue",
                     cursor: "pointer",
                   },
                 }}
               >
                 <Typography>
                   <a
+                    style={{ textDecoration: "none" }}
                     href={singleDetail.productUrl}
                     target="_blank"
                     rel="noopener noreferrer"
