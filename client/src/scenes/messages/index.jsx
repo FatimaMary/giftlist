@@ -187,7 +187,8 @@ function Messages({ eventId, userId }) {
           </Button>
         </Box>
       </Box>
-      {reversedMessageDetails.reverse().map((singleDetail, i) => (
+      {/* {messageDetails.reverse().map((singleDetail, i) => ( */}
+      {reversedMessageDetails.map((singleDetail, i) => (
         <Box
           sx={{
             display: "flex",
