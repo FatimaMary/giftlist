@@ -18,6 +18,14 @@ function MyWishes({ eventId, userId }) {
   const [productUrl, setProductUrl] = useState();
   const [participantsId, setParticipantsId] = useState(0);
   const [productDetails, setProductDetails] = useState([]);
+
+  const MAX_CHARACTERS = 20;
+
+  const truncateText = (text, maxLength) => {
+    return text.length > maxLength
+      ? text.substring(0, maxLength) + "..."
+      : text;
+  };
   const theme = createTheme({
     components: {
       MuiTextField: {
@@ -197,7 +205,9 @@ function MyWishes({ eventId, userId }) {
                   },
                 }}
               >
-                <Typography>{singleDetail.productUrl}</Typography>
+                <Typography>
+                  {truncateText(singleDetail.productUrl, 65)}
+                </Typography>
               </Box>
             </CardContent>
           </Card>
