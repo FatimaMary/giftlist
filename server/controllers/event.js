@@ -148,7 +148,7 @@ export const deleteEvent = (req, res) => {
     Messages.deleteMany({ eventId }),
     Products.deleteMany({ eventId }),
   ])
-    .then(([deletedEvent, deletedParticipants]) => {
+    .then(([deletedEvent]) => {
       if (!deletedEvent) {
         return res.status(404).json({ error: "Event not found" });
       }
