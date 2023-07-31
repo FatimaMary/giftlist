@@ -19,8 +19,6 @@ function MyWishes({ eventId, userId }) {
   const [participantsId, setParticipantsId] = useState(0);
   const [productDetails, setProductDetails] = useState([]);
 
-  const MAX_CHARACTERS = 20;
-
   const truncateText = (text, maxLength) => {
     return text.length > maxLength
       ? text.substring(0, maxLength) + "..."
