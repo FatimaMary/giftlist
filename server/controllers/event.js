@@ -1,6 +1,8 @@
 import Events from "../models/Event.js";
 import Users from "../models/Users.js";
 import Participants from "../models/Participants.js";
+import Messages from "../models/Message.js";
+import Products from "../models/Products.js";
 
 export const postEvent = (req, res) => {
   const eventName = req.body.eventName;
@@ -138,25 +140,13 @@ export const editEvent = (req, res) => {
     .catch((err) => res.status(400).json("Error: " + err));
 };
 
-// export const deleteEvent = (req, res) => {
-//   const eventId = req.params.eventId;
-//   Events.findOneAndDelete({ eventId: eventId })
-//     .then((deletedEvent) => {
-//       if (!deletedEvent) {
-//         return res.status(404).json({ error: "Event not found" });
-//       }
-//       return res.status(200).json({ message: "Event deleted successfully" });
-//     })
-//     .catch((err) => {
-//       return res.status(500).json({ error: "Failed to delete event" });
-//     });
-// };
-
 export const deleteEvent = (req, res) => {
   const eventId = req.params.eventId;
   Promise.all([
     Events.findOneAndDelete({ eventId }),
     Participants.deleteMany({ eventId }),
+    Messages.deleteMany({ eventId }),
+    Products.deleteMany({ eventId }),
   ])
     .then(([deletedEvent, deletedParticipants]) => {
       if (!deletedEvent) {
