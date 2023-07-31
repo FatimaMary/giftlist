@@ -35,6 +35,10 @@ function ViewWishes({ open, onClose, participantsId, firstName, secondName }) {
       : text;
   };
 
+  const handleProductClick = (url) => {
+    window.open(url, "_blank");
+  };
+
   return (
     // <Box sx={{ width: "80%" }}>
     <Dialog
@@ -71,7 +75,7 @@ function ViewWishes({ open, onClose, participantsId, firstName, secondName }) {
             <CardContent>
               <Box
                 sx={{
-                  height: "60%",
+                  height: "150px",
                   borderBottom: "1px solid grey",
                 }}
               >
@@ -91,23 +95,29 @@ function ViewWishes({ open, onClose, participantsId, firstName, secondName }) {
               </Box>
               <Box
                 sx={{
-                  height: "40%",
+                  height: "100px",
                   background: "#FFEAEA",
-                  display: "flex",
-                  alignItems: "center",
-                  justifyContent: "center",
-                  // textAlign: "center",
                   p: "0.5rem",
                   "&:hover": {
-                    backgroundColor: "#C21010",
-                    color: "white",
+                    color: "blue",
                     cursor: "pointer",
+                    textDecoration: "underline",
                   },
                 }}
               >
                 <Typography>
                   {" "}
-                  {truncateText(singleDetail.productUrl, 65)}
+                  <a
+                    style={{ textDecoration: "none" }}
+                    href={singleDetail.productUrl}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    onClick={() => handleProductClick(singleDetail.productUrl)}
+                  >
+                    <Typography>
+                      {truncateText(singleDetail.productUrl, 65)}
+                    </Typography>
+                  </a>
                 </Typography>
               </Box>
             </CardContent>
