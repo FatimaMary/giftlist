@@ -89,7 +89,7 @@ function ViewWishes({ open, onClose, participantsId, firstName, secondName }) {
                     width: "100px",
                     marginLeft: "auto",
                     marginRight: "auto",
-                    // marginTop: '10px',
+                    marginTop: "30px",
                   }}
                 />
               </Box>
