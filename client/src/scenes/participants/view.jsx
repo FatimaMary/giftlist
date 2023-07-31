@@ -114,12 +114,6 @@ function ViewWishes({ open, onClose, participantsId, firstName, secondName }) {
           </Card>
         ))}
       </DialogContent>
-      <DialogActions>
-        {/* <Button onClick={handleClose}>Disagree</Button>
-        <Button onClick={handleClose} autoFocus>
-          Agree
-        </Button> */}
-      </DialogActions>
     </Dialog>
     // </Box>
   );
