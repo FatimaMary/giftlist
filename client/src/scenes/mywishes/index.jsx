@@ -60,6 +60,10 @@ function MyWishes({ eventId, userId }) {
       });
   }, []);
 
+  const handleProductClick = (url) => {
+    window.open(url, "_blank");
+  };
+
   const handleAdd = () => {
     axios
       .post("http://localhost:2309/product/add", {
@@ -204,7 +208,16 @@ function MyWishes({ eventId, userId }) {
                 }}
               >
                 <Typography>
-                  {truncateText(singleDetail.productUrl, 65)}
+                  <a
+                    href={singleDetail.productUrl}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    onClick={() => handleProductClick(singleDetail.productUrl)}
+                  >
+                    <Typography>
+                      {truncateText(singleDetail.productUrl, 65)}
+                    </Typography>
+                  </a>
                 </Typography>
               </Box>
             </CardContent>
