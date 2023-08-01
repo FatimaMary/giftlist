@@ -17,6 +17,11 @@ function Messages({ eventId, userId }) {
   const [messageDetails, setMessageDetails] = useState([]);
   const [message, setMessage] = useState();
   const [participantsId, setParticipantsId] = useState(0);
+  const [isClicked, setIsClicked] = useState(false);
+
+  const handleButtonClick = () => {
+    setIsClicked(!isClicked);
+  };
 
   useEffect(() => {
     axios
@@ -327,8 +332,9 @@ function Messages({ eventId, userId }) {
             <Button>
               <FavoriteBorderIcon
                 sx={{
-                  color: "green",
+                  color: isClicked ? "red" : "green",
                 }}
+                onClick={handleButtonClick}
               />
             </Button>
           </Box>
