@@ -120,7 +120,7 @@ export const Navbar = () => {
           Signup
         </Typography>
       </Box>
-      {/* <Outlet /> */}
+      <Outlet />
     </Box>
   );
 };
