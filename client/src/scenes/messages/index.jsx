@@ -55,6 +55,25 @@ function Messages({ eventId, userId }) {
       });
   }, [eventId]);
 
+  const formatDate = (timeStamp) => {
+    const date = new Date(timeStamp);
+    const options = {
+      year: "numeric",
+      month: "short",
+      day: "numeric",
+    };
+    const formattedDate = date.toLocaleDateString(undefined, options);
+
+    const hours = date.getHours();
+    const minutes = date.getMinutes();
+    const ampm = hours >= 12 ? "PM" : "AM";
+    const formattedTime = `${hours % 12 || 12}:${minutes
+      .toString()
+      .padStart(2, "0")} ${ampm}`;
+
+    return `${formattedDate} ${formattedTime}`;
+  };
+
   const theme = createTheme({
     components: {
       MuiTextField: {
@@ -205,7 +224,7 @@ function Messages({ eventId, userId }) {
             sx={{
               display: "flex",
               alignItems: "center",
-              maxWidth: "30%",
+              maxWidth: "25%",
               paddingRight: "20px",
               flexWrap: "wrap",
             }}
@@ -266,7 +285,7 @@ function Messages({ eventId, userId }) {
               lineHeight: "140%",
               color: "#5e6577",
               flexBasis: "50%",
-              maxWidth: "50%",
+              maxWidth: "45%",
             }}
           >
             <Typography variant="body1">{singleDetail.message}</Typography>
@@ -274,13 +293,13 @@ function Messages({ eventId, userId }) {
           <Box
             sx={{
               flexBasis: "20%",
-              maxWidth: "20%",
+              maxWidth: "30%",
               paddingLeft: "20px",
               textAlign: "right",
               display: "flex",
             }}
           >
-            <Box>
+            <Box sx={{ width: "150px" }}>
               <Typography
                 variant="body1"
                 sx={{
@@ -290,8 +309,7 @@ function Messages({ eventId, userId }) {
                   marginBottom: "7px",
                 }}
               >
-                {singleDetail.timeStamp}
-                {/* time */}
+                {formatDate(singleDetail.timeStamp)}
               </Typography>
               <Typography
                 variant="body1"
