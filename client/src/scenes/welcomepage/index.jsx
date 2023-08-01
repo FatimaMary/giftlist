@@ -1,9 +1,17 @@
 import React from "react";
-import { Box, Button, Typography } from "@mui/material";
+import {
+  Box,
+  Button,
+  Typography,
+  useTheme,
+  useMediaQuery,
+} from "@mui/material";
 import Navbar from "../../Components/Navbar";
 import { useNavigate } from "react-router";
 
 function WelcomePage() {
+  const theme = useTheme();
+  const isSmallScreen = useMediaQuery(theme.breakpoints.down("sm"));
   const navigate = useNavigate();
 
   const handleClick = () => {
@@ -22,13 +30,7 @@ function WelcomePage() {
           gap: "20px",
           height: "90vh",
           width: "100vw",
-          padding: "0 20px",
-          "@media (min-width: 768px)": {
-            padding: "0 40px",
-          },
-          "@media (min-width: 1024px)": {
-            padding: "0 80px",
-          },
+          padding: isSmallScreen ? "40px 20px" : "0 20px",
         }}
         className="boxcomponent"
       >
@@ -36,11 +38,8 @@ function WelcomePage() {
           variant="h2"
           sx={{
             fontWeight: "bold",
-            fontSize: "5rem",
+            fontSize: isSmallScreen ? "2rem" : "5rem",
             color: "#C21010",
-            "@media (max-width: 768px)": {
-              fontSize: "3.5rem",
-            },
           }}
         >
           Gifting made easy
@@ -48,14 +47,10 @@ function WelcomePage() {
         <Typography
           variant="h6"
           sx={{
-            fontSize: "1.5rem",
-            width: "600px",
+            fontSize: isSmallScreen ? "1.2rem" : "1.5rem",
+            width: isSmallScreen ? "90%" : "600px",
             opacity: "0.5",
             color: "#C21010",
-            "@media (max-width: 768px)": {
-              fontSize: "1.2rem",
-              width: "90%",
-            },
           }}
         >
           GiftList is the easiest way to exchange gifts with friends and family
@@ -77,9 +72,7 @@ function WelcomePage() {
               color: "#C21010",
               border: "1px solid #C21010",
             },
-            "@media (max-width: 768px)": {
-              width: "80%",
-            },
+            width: isSmallScreen ? "80%" : "auto",
           }}
         >
           Create a gift note
