@@ -28,6 +28,7 @@ import FlexBetween from "./FlexBetween";
 import { FaChevronLeft } from "react-icons/fa";
 import { ChevronRightOutlined } from "@mui/icons-material";
 import { MyContext } from "./MyContext";
+import DensityMediumIcon from "@mui/icons-material/DensityMedium";
 
 const Sidebar = ({
   drawerWidth,
@@ -40,13 +41,17 @@ const Sidebar = ({
   const navigate = useNavigate();
   const { setIsLoggedIn, isLoggedIn } = useContext(MyContext);
   // const [isLoggedIn, setIsLoggedIn] = useState(false);
+  const [isDensityVisible, setIsDensityVisible] = useState(false);
 
   const handleLogout = () => {
     console.log("Logout Clicked");
     setIsLoggedIn(false);
     navigate("/");
   };
-
+  const handleChevronLeftClick = () => {
+    setIsDensityVisible(!isDensityVisible); // Toggle DensityMediumIcon visibility
+    setIsSidebarOpen(false); // Close the sidebar
+  };
   const navItems = [
     {
       text: "Home",
@@ -113,10 +118,20 @@ const Sidebar = ({
                   </Typography>
                 </Box>
                 {!isNonMobile && (
-                  <IconButton onClick={() => setIsSidebarOpen(!isSidebarOpen)}>
-                    <FaChevronLeft />
+                  <IconButton onClick={handleChevronLeftClick}>
+                    {/* Toggle the DensityMediumIcon visibility on ChevronLeft click */}
+                    {isDensityVisible ? (
+                      <DensityMediumIcon />
+                    ) : (
+                      <FaChevronLeft />
+                    )}
                   </IconButton>
                 )}
+                {/* {isNonMobile && (
+                  <IconButton onClick={() => setIsSidebarOpen(isSidebarOpen)}>
+                    <DensityMediumIcon />
+                  </IconButton>
+                )} */}
               </FlexBetween>
             </Box>
             <List>

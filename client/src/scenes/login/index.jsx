@@ -99,13 +99,15 @@ function Login() {
       <Navbar />
       <Box
         sx={{
-          backgroundColor: "#CFE8A9",
-          height: "85vh",
-          // width: '100vw',
-          display: "flex",
-          flexDirection: "column",
-          justifyContent: "center",
-          alignItems: "center",
+          "@media (min-width: 768px)": {
+            backgroundColor: "#CFE8A9",
+            height: "85vh",
+            // width: '100vw',
+            display: "flex",
+            flexDirection: "column",
+            justifyContent: "center",
+            alignItems: "center",
+          },
         }}
       >
         <Box
