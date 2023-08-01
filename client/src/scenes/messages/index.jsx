@@ -211,7 +211,6 @@ function Messages({ eventId, userId }) {
           </Button>
         </Box>
       </Box>
-      {/* {messageDetails.reverse().map((singleDetail, i) => ( */}
       {reversedMessageDetails.map((singleDetail, i) => (
         <Box
           sx={{
