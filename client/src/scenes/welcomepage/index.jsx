@@ -22,6 +22,7 @@ function WelcomePage() {
           gap: "20px",
           height: "90vh",
           width: "100vw",
+          padding: "0 20px",
           "@media (min-width: 768px)": {
             padding: "0 40px",
           },
