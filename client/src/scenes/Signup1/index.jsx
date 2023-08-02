@@ -7,6 +7,8 @@ import {
   Button,
   createTheme,
   ThemeProvider,
+  useTheme,
+  useMediaQuery,
 } from "@mui/material";
 import { useNavigate, useSearchParams } from "react-router-dom";
 import axios from "axios";
@@ -19,6 +21,8 @@ function Signup1() {
   const [searchParam] = useSearchParams();
   const userId = searchParam.get("userId");
   const navigate = useNavigate();
+  const themes = useTheme();
+  const isSmallScreen = useMediaQuery(themes.breakpoints.down("sm"));
 
   const theme = createTheme({
     components: {
