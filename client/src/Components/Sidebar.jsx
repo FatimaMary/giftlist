@@ -127,11 +127,6 @@ const Sidebar = ({
                     )}
                   </IconButton>
                 )}
-                {/* {isNonMobile && (
-                  <IconButton onClick={() => setIsSidebarOpen(isSidebarOpen)}>
-                    <DensityMediumIcon />
-                  </IconButton>
-                )} */}
               </FlexBetween>
             </Box>
             <List>
