@@ -18,7 +18,7 @@ const messageSchema = new mongoose.Schema({
     type: Date,
   },
   likes: {
-    type: String,
+    type: Boolean,
   },
   userId: {
     type: String,
