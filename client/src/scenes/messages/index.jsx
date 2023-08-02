@@ -203,6 +203,12 @@ function Messages({ eventId, userId }) {
               textTransform: "inherit",
               color: "#fff",
               background: "#C12020",
+              border: "2px solid #C21010",
+              "&:hover": {
+                background: "white",
+                color: "#C21010",
+                border: "2px solid #C21010",
+              },
             }}
             onClick={messageSend}
           >
