@@ -10,6 +10,7 @@ import {
   ListItemIcon,
   ListItemText,
   Typography,
+  useMediaQuery,
   useTheme,
 } from "@mui/material";
 import HomeOutlinedIcon from "@mui/icons-material/HomeOutlined";
@@ -40,18 +41,15 @@ const Sidebar = ({
   const [active, setActive] = useState("");
   const navigate = useNavigate();
   const { setIsLoggedIn, isLoggedIn } = useContext(MyContext);
-  // const [isLoggedIn, setIsLoggedIn] = useState(false);
-  const [isDensityVisible, setIsDensityVisible] = useState(false);
+  const [mobileOpen, setMobileOpen] = useState(false);
+  const isMobile = useMediaQuery("(max-width: 1000px)");
 
   const handleLogout = () => {
     console.log("Logout Clicked");
     setIsLoggedIn(false);
     navigate("/");
   };
-  const handleChevronLeftClick = () => {
-    setIsDensityVisible(!isDensityVisible); // Toggle DensityMediumIcon visibility
-    setIsSidebarOpen(false); // Close the sidebar
-  };
+
   const navItems = [
     {
       text: "Home",
@@ -91,6 +89,31 @@ const Sidebar = ({
     setActive(pathname.substring(1));
   }, [pathname]);
 
+  const handleOutsideClick = (event) => {
+    if (isMobileView) {
+      const drawerElement = document.querySelector(".MuiDrawer-root");
+      const menuIconElement = document.querySelector(
+        ".MuiIconButton-edgeStart"
+      );
+
+      if (
+        drawerElement &&
+        !drawerElement.contains(event.target) &&
+        menuIconElement &&
+        !menuIconElement.contains(event.target)
+      ) {
+        setMobileOpen(false);
+      }
+    }
+  };
+
+  const theme = useTheme();
+  const isMobileView = theme.breakpoints.down("sm");
+  const handleDrawerToggle = () => {
+    console.log("Menu icon clicked");
+    setMobileOpen(!mobileOpen);
+  };
+
   return (
     <Box component="nav">
       {isSidebarOpen && (
@@ -118,13 +141,8 @@ const Sidebar = ({
                   </Typography>
                 </Box>
                 {!isNonMobile && (
-                  <IconButton onClick={handleChevronLeftClick}>
-                    {/* Toggle the DensityMediumIcon visibility on ChevronLeft click */}
-                    {isDensityVisible ? (
-                      <DensityMediumIcon />
-                    ) : (
-                      <FaChevronLeft />
-                    )}
+                  <IconButton onClick={() => setIsSidebarOpen(!isSidebarOpen)}>
+                    <FaChevronLeft />
                   </IconButton>
                 )}
               </FlexBetween>
