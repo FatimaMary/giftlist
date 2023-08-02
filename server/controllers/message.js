@@ -43,3 +43,16 @@ export const getMessagesByEventId = (req, res) => {
     })
     .catch((err) => res.status(400).json("Error: " + err));
 };
+
+export const updateMessage = (req, res) => {
+  const messageId = req.params.messageId;
+  Messages.find({ messageId: messageId })
+    .then((message) => {
+      message.likes = req.body.likes;
+      message
+        .save()
+        .then(() => res.json("Message Updated"))
+        .catch((err) => res.status(400).json("Error: " + err));
+    })
+    .catch((err) => res.status(400).json("Error: " + err));
+};
