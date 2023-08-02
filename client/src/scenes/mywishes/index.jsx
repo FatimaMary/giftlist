@@ -90,6 +90,10 @@ function MyWishes({ eventId, userId }) {
         ]);
       });
   };
+
+  const reversedProductDetails = [...productDetails].reverse();
+  console.log("Reversed Product details: ", reversedProductDetails);
+
   return (
     <Box
       sx={{
@@ -160,7 +164,7 @@ function MyWishes({ eventId, userId }) {
           // width: "300px",
         }}
       >
-        {productDetails.map((singleDetail, i) => (
+        {reversedProductDetails.map((singleDetail, i) => (
           <Card
             sx={{
               width: 250,
