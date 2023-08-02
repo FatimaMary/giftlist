@@ -21,7 +21,6 @@ function WelcomePage() {
     <Box>
       <Navbar />
       <Box
-        // m='1.5rem 2.5rem'
         sx={{
           display: "flex",
           flexDirection: "column",
@@ -30,7 +29,7 @@ function WelcomePage() {
           gap: "20px",
           height: "90vh",
           width: "100vw",
-          padding: isSmallScreen ? "40px 20px" : "0 20px",
+          padding: isSmallScreen ? "20px 20px" : "0 20px",
         }}
         className="boxcomponent"
       >
