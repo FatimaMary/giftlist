@@ -8,8 +8,6 @@ import {
   Card,
   CardContent,
   CardMedia,
-  DialogContentText,
-  DialogActions,
 } from "@mui/material";
 import axios from "axios";
 import Gift from "../mywishes/gift.png";
@@ -42,7 +40,6 @@ function ViewWishes({ open, onClose, participantsId, firstName, secondName }) {
   };
 
   return (
-    // <Box sx={{ width: "80%" }}>
     <Dialog
       open={open}
       onClose={onClose}
@@ -54,7 +51,37 @@ function ViewWishes({ open, onClose, participantsId, firstName, secondName }) {
         },
       }}
     >
-      <DialogTitle id="alert-dialog-title">My Wishes</DialogTitle>
+      <DialogTitle
+        id="alert-dialog-title"
+        sx={{
+          display: "flex",
+          justifyContent: "space-between",
+          margin: "0 20px",
+        }}
+      >
+        <Typography
+          sx={{
+            fontWeight: 600,
+            fontSize: "20px",
+          }}
+          variant="h5"
+        >
+          My Wishes
+        </Typography>
+        <Typography
+          sx={{
+            fontWeight: 400,
+            fontSize: "20px",
+            "&:hover": {
+              cursor: "pointer",
+            },
+          }}
+          variant="h5"
+          onClick={onClose}
+        >
+          X
+        </Typography>
+      </DialogTitle>
       <DialogContent
         sx={{
           display: "flex",
@@ -83,7 +110,6 @@ function ViewWishes({ open, onClose, participantsId, firstName, secondName }) {
               >
                 <CardMedia
                   component="img"
-                  // height="140"
                   image={Gift}
                   alt="Image Description"
                   sx={{
@@ -132,7 +158,6 @@ function ViewWishes({ open, onClose, participantsId, firstName, secondName }) {
         ))}
       </DialogContent>
     </Dialog>
-    // </Box>
   );
 }
 
