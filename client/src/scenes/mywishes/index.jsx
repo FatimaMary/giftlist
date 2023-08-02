@@ -149,8 +149,12 @@ function MyWishes({ eventId, userId }) {
             lineHeight: "22px",
             color: "#fff",
             padding: "10px 20px",
-            border: "1px solid #C21010",
+            border: "2px solid #C21010",
             textTransform: "none",
+            "&:hover": {
+              background: "white",
+              color: "#C21010",
+            },
           }}
           onClick={handleAdd}
         >
