@@ -19,10 +19,12 @@ function MyWishes({ eventId, userId }) {
   const [participantsId, setParticipantsId] = useState(0);
   const [productDetails, setProductDetails] = useState([]);
 
-  const truncateText = (text, maxLength) => {
-    return text.length > maxLength
-      ? text.substring(0, maxLength) + "..."
-      : text;
+  const truncateText = (text, maxLength, startIndex) => {
+    if (text.length > maxLength) {
+      const truncatedText = text.substring(startIndex, startIndex + maxLength);
+      return startIndex > 0 ? truncatedText : truncatedText;
+    }
+    return text;
   };
   const theme = createTheme({
     components: {
@@ -196,23 +198,29 @@ function MyWishes({ eventId, userId }) {
                   height: "100px",
                   background: "#FFEAEA",
                   p: "0.5rem",
-                  "&:hover": {
-                    textDecoration: "underline",
-                    color: "blue",
-                    cursor: "pointer",
-                  },
                 }}
               >
                 <Typography>
+                  {truncateText(singleDetail.productUrl, 40, 22)}
+                </Typography>
+                <Typography
+                  sx={{
+                    "&:hover": {
+                      textDecoration: "underline",
+                      color: "blue",
+                      cursor: "pointer",
+                    },
+                  }}
+                >
                   <a
-                    style={{ textDecoration: "none" }}
+                    style={{ textDecoration: "none", color: "skyblue" }}
                     href={singleDetail.productUrl}
                     target="_blank"
                     rel="noopener noreferrer"
                     onClick={() => handleProductClick(singleDetail.productUrl)}
                   >
                     <Typography>
-                      {truncateText(singleDetail.productUrl, 65)}
+                      {truncateText(singleDetail.productUrl, 21, 0)}
                     </Typography>
                   </a>
                 </Typography>
