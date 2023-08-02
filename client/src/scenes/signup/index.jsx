@@ -9,6 +9,8 @@ import {
   Button,
   createTheme,
   ThemeProvider,
+  useTheme,
+  useMediaQuery,
 } from "@mui/material";
 import { createUserWithEmailAndPassword, updateProfile } from "firebase/auth";
 import { auth, db, storage } from "../../firebase";
@@ -28,6 +30,8 @@ function Signup() {
   const [err, setErr] = useState(false);
   const [loading, setLoading] = useState(false);
   const [userData, setUserData] = useState([]);
+  const themes = useTheme();
+  const isSmallScreen = useMediaQuery(themes.breakpoints.down("sm"));
 
   const theme = createTheme({
     components: {
@@ -133,7 +137,8 @@ function Signup() {
         sx={{
           backgroundColor: "#CFE8A9",
           height: "85vh",
-          // width: '100vw',
+          width: isSmallScreen ? "100%" : "100vw",
+          padding: isSmallScreen ? "20px" : "1.5rem 2.5rem",
           display: "flex",
           flexDirection: "column",
           justifyContent: "center",
@@ -145,12 +150,10 @@ function Signup() {
             display: "flex",
             flexDirection: "column",
             justifyContent: "center",
-            // alignItems: 'center',
             backgroundColor: "white",
-            // height: '600px',
             border: "1px solid #CFE8A9",
-            width: "500px",
             borderRadius: "10px",
+            width: isSmallScreen ? "100%" : "500px",
           }}
           color="#C21010"
           m="1.5rem 2.5rem"
@@ -187,7 +190,7 @@ function Signup() {
                     variant="outlined"
                     sx={{
                       ml: "1rem",
-                      width: "450px",
+                      width: isSmallScreen ? "80%" : "450px",
                       borderRadius: "10px",
                       "& .MuiOutlinedInput-root": {
                         height: "40px",
@@ -200,7 +203,6 @@ function Signup() {
                     error={!!errors.email}
                     helperText={errors.email}
                   />
-                  {/* {errors.email && <p className="error">{errors.email}</p>} */}
                 </ThemeProvider>
               </Box>
 
@@ -219,6 +221,7 @@ function Signup() {
                       "& .MuiOutlinedInput-root": {
                         height: "40px",
                       },
+                      width: isSmallScreen ? "80%" : "450px",
                     }}
                     type="password"
                     name="password"
@@ -242,7 +245,7 @@ function Signup() {
                   sx={{
                     border: "2px solid #C21010",
                     borderRadius: "20px",
-                    width: "450px",
+                    width: isSmallScreen ? "80%" : "450px",
                     fontSize: "1rem",
                     color: "white",
                     background: "#C21010",
