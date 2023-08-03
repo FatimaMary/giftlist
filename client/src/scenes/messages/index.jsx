@@ -7,6 +7,8 @@ import {
   ThemeProvider,
   Typography,
   createTheme,
+  useTheme,
+  useMediaQuery,
 } from "@mui/material";
 import MailOutlineIcon from "@mui/icons-material/MailOutline";
 import FavoriteBorderIcon from "@mui/icons-material/FavoriteBorder";
@@ -18,6 +20,8 @@ function Messages({ eventId, userId }) {
   const [message, setMessage] = useState();
   const [participantsId, setParticipantsId] = useState(0);
   const [isClicked, setIsClicked] = useState(false);
+  const themes = useTheme();
+  const isMobile = useMediaQuery(themes.breakpoints.down("sm"));
 
   const handleButtonClick = () => {
     setIsClicked(!isClicked);
@@ -177,15 +181,16 @@ function Messages({ eventId, userId }) {
               sx={{
                 "& .MuiOutlinedInput-root": {
                   height: "46px",
-                  padding: "8px 15px",
-                  width: "800px",
+                  padding: isMobile ? "4px 7px" : "8px 15px",
+                  width: isMobile ? "100%" : "800px",
+                  border: "1px solid #cad3dd",
                 },
                 background: "#fff",
                 borderRadius: "7px",
                 fontWeight: 400,
                 fontSize: "16px",
                 color: "#101a34",
-                border: "1px solid #cad3dd",
+                // border: "1px solid #cad3dd",
               }}
               value={message}
               onChange={(e) => setMessage(e.target.value)}
@@ -194,7 +199,7 @@ function Messages({ eventId, userId }) {
           <Button
             variant="outlined"
             sx={{
-              width: "155px",
+              width: isMobile ? "100px" : "155px",
               height: "46px",
               display: "flex",
               alignItems: "center",
@@ -213,7 +218,7 @@ function Messages({ eventId, userId }) {
             onClick={messageSend}
           >
             <MailOutlineIcon />
-            Send message
+            {isMobile ? "Send" : "Send message"}
           </Button>
         </Box>
       </Box>
@@ -227,9 +232,11 @@ function Messages({ eventId, userId }) {
             background: "#fff",
             border: "1px solid #e8ecf1",
             borderRadius: "9px",
+            // flexDirection: isMobile ? "column" : "row",
           }}
           key={i}
         >
+          {/* <Box sx={{ display: isMobile ? "flex" : "" }}> */}
           <Box
             sx={{
               display: "flex",
@@ -237,6 +244,7 @@ function Messages({ eventId, userId }) {
               maxWidth: "25%",
               paddingRight: "20px",
               flexWrap: "wrap",
+              // flexDirection: isMobile ? "column" : "row",
             }}
           >
             <Avatar
@@ -300,6 +308,7 @@ function Messages({ eventId, userId }) {
           >
             <Typography variant="body1">{singleDetail.message}</Typography>
           </Box>
+          {/* </Box> */}
           <Box
             sx={{
               flexBasis: "20%",
