@@ -3,20 +3,23 @@ import CopyrightIcon from "@mui/icons-material/Copyright";
 import {
   Box,
   Button,
-  TextField,
-  ThemeProvider,
   Typography,
-  createTheme,
+  useMediaQuery,
+  useTheme,
 } from "@mui/material";
 
 function Footer() {
+  const theme = useTheme();
+  const isMobile = useMediaQuery(theme.breakpoints.down("sm")); //
+
   return (
     <Box
       sx={{
         display: "flex",
-        justifyContent: "space-between",
+        justifyContent: isMobile ? "flex-start" : "space-between",
         borderTop: "1px solid grey",
         marginTop: "20px",
+        flexDirection: isMobile ? "column" : "row",
       }}
     >
       <Box
@@ -40,7 +43,14 @@ function Footer() {
           GiftList. All Rights Reserved
         </Typography>
       </Box>
-      <Box>
+      <Box
+        sx={{
+          display: isMobile ? "flex" : "",
+          flexDirection: isMobile ? "column" : "",
+          justifyContent: isMobile ? "flex-start" : "",
+          alignItems: isMobile ? "flex-start" : "",
+        }}
+      >
         <Button
           sx={{
             textTransform: "inherit",
