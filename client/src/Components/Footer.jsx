@@ -10,7 +10,7 @@ import {
 
 function Footer() {
   const theme = useTheme();
-  const isMobile = useMediaQuery(theme.breakpoints.down("sm")); //
+  const isMobile = useMediaQuery(theme.breakpoints.down("sm"));
 
   return (
     <Box
