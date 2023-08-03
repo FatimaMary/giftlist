@@ -131,18 +131,19 @@ function EventView() {
           flexDirection: isMobile ? "column" : "row",
         }}
       >
-        <Box>
+        <Box
+          sx={{
+            display: isMobile ? "flex" : "",
+            alignItems: isMobile ? "center" : "",
+            justifyContent: isMobile ? "center" : "",
+          }}
+        >
           <img
             src={Santa}
             alt="santa image"
             height={200}
             width={250}
-            className={isMobile ? "" : "starimage"}
-            style={{
-              display: isMobile ? "flex" : "",
-              alignItems: isMobile ? "center" : "",
-              justifyContent: isMobile ? "center" : "",
-            }}
+            style={{}}
           />
         </Box>
         <Box
