@@ -1,5 +1,11 @@
 import React, { useEffect, useState } from "react";
-import { Box, Typography, Button } from "@mui/material";
+import {
+  Box,
+  Typography,
+  Button,
+  useTheme,
+  useMediaQuery,
+} from "@mui/material";
 import Avatar from "@mui/material/Avatar";
 import Tick from "./tickic.svg";
 import Clock from "./clockic.svg";
@@ -24,6 +30,8 @@ function Participants() {
   const [participantsId, setParticipantsId] = useState();
   const [firstName, setFirstName] = useState();
   const [secondName, setSecondName] = useState();
+  const theme = useTheme();
+  const isMobile = useMediaQuery(theme.breakpoints.down("sm"));
 
   useEffect(() => {
     axios.get(`http://localhost:2309/player/${eventId}`).then((response) => {
@@ -115,9 +123,14 @@ function Participants() {
         padding: "15px 0",
         display: "flex",
         flexWrap: "wrap",
+        flexDirection: isMobile ? "column" : "row",
       }}
     >
-      <Box sx={{ width: "272px" }}>
+      <Box
+        sx={{
+          width: isMobile ? "100%" : "272px",
+        }}
+      >
         <Box
           sx={{
             padding: "24px 16px",
@@ -135,7 +148,7 @@ function Participants() {
               borderBottom: "1px solid #e8ecf1",
               gap: "10px",
               display: "flex",
-              flexDirection: "column",
+              flexDirection: isMobile ? "row" : "column",
             }}
           >
             <Box
@@ -228,10 +241,13 @@ function Participants() {
                   borderBottom: "1px solid #e8ecf1",
                   paddingBottom: "12px",
                   marginBottom: "12px",
-                  display: "flex",
-                  flexWrap: "wrap",
+                  display: isMobile ? "grid" : "flex",
+                  // flexWrap: "wrap",
                   alignItems: "center",
                   justifyContent: "space-between",
+                  gap: isMobile ? "10px" : 0,
+                  gridTemplateColumns: isMobile ? "auto auto " : "",
+                  columnGap: isMobile ? "100px" : 0,
                 }}
               >
                 <Box
@@ -287,7 +303,13 @@ function Participants() {
                     </Typography>
                   </Box>
                 </Box>
-                <Box>
+                <Box
+                  sx={{
+                    display: isMobile ? "flex" : "",
+                    justifyContent: isMobile ? "space-around" : "",
+                    alignItems: isMobile ? "space-around" : "",
+                  }}
+                >
                   <Button
                     disabled={
                       !productDetails[index] ||
@@ -299,8 +321,8 @@ function Participants() {
                       fontSize: "13px",
                       lineHeight: "22px",
                       color: "#fff",
-                      padding: "14px 15px",
-                      display: "inline-block",
+                      padding: isMobile ? "2px 5px" : "14px 15px",
+                      // display: "inline-block",
                       border: "1px solid #C21010",
                       fontWeight: 600,
                       textTransform: "inherit",
@@ -328,18 +350,18 @@ function Participants() {
                       setSecondName(participant.secondName);
                     }}
                   >
-                    View Wishes
+                    {isMobile ? "view" : "View Wishes"}
                   </Button>
                   <Button
                     sx={{
-                      padding: "14px 15px",
+                      padding: isMobile ? "" : "14px 15px",
                       fontSize: "13px",
-                      lineHeight: "18px",
+                      // lineHeight: "18px",
                       background: "#fafbfd",
                       borderRadius: "7px",
                       fontWeight: "7px",
                       color: "#C21010",
-                      display: "inline-block",
+                      // display: "inline-block",
                       // justifyContent: 'center',
                       border: "1px solid #C21010",
                       "&:hover": {
@@ -351,13 +373,13 @@ function Participants() {
                     <img
                       src={Edit}
                       style={{
-                        width: "17px",
-                        height: "17px",
+                        width: isMobile ? "13px" : "17px",
+                        height: isMobile ? "13px" : "17px",
                         marginRight: "5px",
                         filter: "hue-rotate(180deg)",
                       }}
                     />
-                    Edit RSVP
+                    {isMobile ? "" : "Edit RSVP"}
                   </Button>
                 </Box>
               </Box>
