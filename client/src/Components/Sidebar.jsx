@@ -49,6 +49,10 @@ const Sidebar = ({
     setIsLoggedIn(false);
     navigate("/");
   };
+  const handleMobileToggle = () => {
+    setMobileOpen(!mobileOpen);
+    setIsSidebarOpen(!isSidebarOpen);
+  };
 
   const navItems = [
     {
@@ -89,30 +93,8 @@ const Sidebar = ({
     setActive(pathname.substring(1));
   }, [pathname]);
 
-  const handleOutsideClick = (event) => {
-    if (isMobileView) {
-      const drawerElement = document.querySelector(".MuiDrawer-root");
-      const menuIconElement = document.querySelector(
-        ".MuiIconButton-edgeStart"
-      );
-
-      if (
-        drawerElement &&
-        !drawerElement.contains(event.target) &&
-        menuIconElement &&
-        !menuIconElement.contains(event.target)
-      ) {
-        setMobileOpen(false);
-      }
-    }
-  };
-
   const theme = useTheme();
   const isMobileView = theme.breakpoints.down("sm");
-  const handleDrawerToggle = () => {
-    console.log("Menu icon clicked");
-    setMobileOpen(!mobileOpen);
-  };
 
   return (
     <Box component="nav">
@@ -140,9 +122,14 @@ const Sidebar = ({
                     Giftnote
                   </Typography>
                 </Box>
-                {!isNonMobile && (
+                {/* {!isNonMobile && (
                   <IconButton onClick={() => setIsSidebarOpen(!isSidebarOpen)}>
                     <FaChevronLeft />
+                  </IconButton>
+                )} */}
+                {!isNonMobile && (
+                  <IconButton onClick={handleMobileToggle}>
+                    {mobileOpen ? <DensityMediumIcon /> : <FaChevronLeft />}
                   </IconButton>
                 )}
               </FlexBetween>
