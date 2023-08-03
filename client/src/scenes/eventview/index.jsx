@@ -42,7 +42,7 @@ function EventView() {
   const [productDetails, setProductDetails] = useState([]);
 
   const theme = useTheme();
-  const isMobile = useMediaQuery(theme.breakpoints.down("sm")); // Set breakpoint based on your needs
+  const isMobile = useMediaQuery(theme.breakpoints.down("sm")); //
 
   console.log("player user id: ", playerUserId);
 
