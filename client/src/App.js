@@ -14,13 +14,14 @@ import Participants from "./scenes/participants";
 import Invite from "./scenes/success/invite";
 import EditEvent from "./scenes/eventview/editEvent";
 import Login1 from "./scenes/login1";
-import { MyContext, UserAuthContextProvider } from "./Components/MyContext";
+import { MyContext } from "./Components/MyContext";
 import SantaSurprise from "./scenes/santasurprise";
 
 function App() {
+  const [isLoggedIn, setIsLoggedIn] = useState(false);
   return (
     <BrowserRouter>
-      <UserAuthContextProvider>
+      <MyContext.Provider value={{ isLoggedIn, setIsLoggedIn }}>
         <Routes>
           <Route path="/" element={<WelcomePage />} />
           <Route path="/signup" element={<Signup />} />
@@ -40,7 +41,7 @@ function App() {
             <Route path="editevent" element={<EditEvent />} />
           </Route>
         </Routes>
-      </UserAuthContextProvider>
+      </MyContext.Provider>
     </BrowserRouter>
   );
 }
