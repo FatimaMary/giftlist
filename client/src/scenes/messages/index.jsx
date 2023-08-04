@@ -21,7 +21,7 @@ function Messages({ eventId, userId }) {
   const [participantsId, setParticipantsId] = useState(0);
   const [isClicked, setIsClicked] = useState(false);
   const themes = useTheme();
-  const isMobile = useMediaQuery(themes.breakpoints.down("sm"));
+  const isSmallScreen = useMediaQuery(themes.breakpoints.down("sm"));
 
   const handleButtonClick = () => {
     setIsClicked(!isClicked);
@@ -181,8 +181,8 @@ function Messages({ eventId, userId }) {
               sx={{
                 "& .MuiOutlinedInput-root": {
                   height: "46px",
-                  padding: isMobile ? "4px 7px" : "8px 15px",
-                  width: isMobile ? "100%" : "800px",
+                  padding: isSmallScreen ? "4px 7px" : "8px 15px",
+                  width: isSmallScreen ? "100%" : "800px",
                   border: "1px solid #cad3dd",
                 },
                 background: "#fff",
@@ -199,7 +199,7 @@ function Messages({ eventId, userId }) {
           <Button
             variant="outlined"
             sx={{
-              width: isMobile ? "100px" : "155px",
+              width: isSmallScreen ? "100px" : "155px",
               height: "46px",
               display: "flex",
               alignItems: "center",
@@ -218,7 +218,7 @@ function Messages({ eventId, userId }) {
             onClick={messageSend}
           >
             <MailOutlineIcon />
-            {isMobile ? "Send" : "Send message"}
+            {isSmallScreen ? "Send" : "Send message"}
           </Button>
         </Box>
       </Box>
