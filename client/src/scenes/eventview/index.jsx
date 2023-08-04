@@ -1,11 +1,5 @@
 import React, { useEffect, useState } from "react";
-import {
-  Box,
-  Typography,
-  Button,
-  useTheme,
-  useMediaQuery,
-} from "@mui/material";
+import { Box, Typography, Button } from "@mui/material";
 import Santa from "../santasurprise/santa3.jpg";
 import Avatar from "@mui/material/Avatar";
 import ShareOutlinedIcon from "@mui/icons-material/ShareOutlined";
@@ -40,9 +34,6 @@ function EventView() {
   const [receiver, setReceiver] = useState([]);
   const [participantsId, setParticipantsId] = useState(0);
   const [productDetails, setProductDetails] = useState([]);
-
-  const theme = useTheme();
-  const isMobile = useMediaQuery(theme.breakpoints.down("sm")); //
 
   console.log("player user id: ", playerUserId);
 
@@ -114,36 +105,21 @@ function EventView() {
       });
   };
   return (
-    <Box
-      sx={{
-        display: "flex",
-        flexDirection: isMobile ? "column" : "row",
-        justifyContent: "space-between",
-        width: "100%",
-        padding: isMobile ? "30px 15px 33px 15px" : "50px 30px 33px 30px",
-      }}
-    >
+    <Box backgroundColor="#FFEAEA" width="100vw" p="50px 30px 33px 30px">
       <Box
         sx={{
           display: "flex",
-          justifyContent: isMobile ? "center" : "space-between",
-          maxWidth: isMobile ? "100%" : "800px",
-          flexDirection: isMobile ? "column" : "row",
+          justifyContent: "space-between",
+          width: "100%",
         }}
       >
-        <Box
-          sx={{
-            display: isMobile ? "flex" : "",
-            alignItems: isMobile ? "center" : "",
-            justifyContent: isMobile ? "center" : "",
-          }}
-        >
+        <Box>
           <img
             src={Santa}
             alt="santa image"
             height={200}
             width={250}
-            style={{}}
+            className="starimage"
           />
         </Box>
         <Box
@@ -158,7 +134,6 @@ function EventView() {
               alignItems: "center",
               justifyContent: "space-between",
               marginBottom: "15px",
-              flexDirection: isMobile ? "column" : "row",
             }}
           >
             <Typography
@@ -170,7 +145,6 @@ function EventView() {
                 maxWidth: "73%",
                 fontWeight: 600,
                 color: "#101a34",
-                marginBottom: isMobile ? "4px" : 0,
               }}
             >
               {eventDetails.eventName}
@@ -181,7 +155,6 @@ function EventView() {
                   display: "flex",
                   flexWrap: "wrap",
                   justifyContent: "flex-end",
-                  gap: isMobile ? "5px" : "0px",
                 }}
               >
                 <Button
@@ -250,9 +223,8 @@ function EventView() {
             sx={{
               display: "flex",
               justifyContent: "felx-start",
-              alignItems: isMobile ? "" : "center",
+              alignItems: "center",
               marginBottom: "22px",
-              flexDirection: isMobile ? "column" : "row",
             }}
           >
             <Typography
@@ -463,10 +435,10 @@ function EventView() {
           sx={{
             color: "#101a34",
             fontWeight: 600,
-            fontSize: isMobile ? "13px" : "17px",
+            fontSize: "17px",
             lineHeight: "22px",
             textAlign: "center",
-            marginRight: isMobile ? "10px" : "20px",
+            marginRight: "20px",
             padding: "0 0 6px",
             "&:hover": {
               cursor: "pointer",
@@ -482,10 +454,10 @@ function EventView() {
           sx={{
             color: "#101a34",
             fontWeight: 600,
-            fontSize: isMobile ? "13px" : "17px",
+            fontSize: "17px",
             lineHeight: "22px",
             textAlign: "center",
-            marginRight: isMobile ? "10px" : "20px",
+            marginRight: "20px",
             padding: "0 0 6px",
             "&:hover": {
               cursor: "pointer",
@@ -504,10 +476,10 @@ function EventView() {
           sx={{
             color: "#101a34",
             fontWeight: 600,
-            fontSize: isMobile ? "13px" : "17px",
+            fontSize: "17px",
             lineHeight: "22px",
             textAlign: "center",
-            marginRight: isMobile ? "10px" : "20px",
+            marginRight: "20px",
             padding: "0 0 6px",
             "&:hover": {
               cursor: "pointer",
@@ -523,10 +495,10 @@ function EventView() {
           sx={{
             color: "#101a34",
             fontWeight: 600,
-            fontSize: isMobile ? "13px" : "17px",
+            fontSize: "17px",
             lineHeight: "22px",
             textAlign: "center",
-            marginRight: isMobile ? "10px" : "20px",
+            marginRight: "20px",
             padding: "0 0 6px",
             "&:hover": {
               cursor: "pointer",
@@ -544,12 +516,11 @@ function EventView() {
             display: "flex",
             width: "100%",
             justifyContent: "space-between",
-            flexDirection: isMobile ? "column" : "row",
           }}
         >
           <Box
             sx={{
-              width: isMobile ? "100%" : "48%",
+              width: "48%",
               padding: "24px 16px",
               background: "#fff",
               border: "1px solid #e8ecf1",
@@ -684,7 +655,7 @@ function EventView() {
           </Box>
           <Box
             sx={{
-              width: isMobile ? "100%" : "50%",
+              width: "50%",
               padding: "24px 16px",
               background: "#fff",
               border: "1px solid #e8ecf1",
@@ -861,6 +832,7 @@ function EventView() {
                   sx={{
                     paddingBottom: "16px",
                     marginBottom: "16px",
+                    // borderBottom: '1px solid #e8ecf1',
                     display: "flex",
                     flexWrap: "wrap",
                     alignItems: "center",
