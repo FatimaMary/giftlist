@@ -241,13 +241,13 @@ function Participants() {
                   borderBottom: "1px solid #e8ecf1",
                   paddingBottom: "12px",
                   marginBottom: "12px",
-                  display: isMobile ? "grid" : "flex",
+                  // display: isMobile ? "grid" : "flex",
                   // flexWrap: "wrap",
                   alignItems: "center",
                   justifyContent: "space-between",
                   gap: isMobile ? "10px" : 0,
-                  gridTemplateColumns: isMobile ? "auto auto " : "",
-                  columnGap: isMobile ? "100px" : 0,
+                  // gridTemplateColumns: isMobile ? "auto auto " : "",
+                  // columnGap: isMobile ? "100px" : 0,
                 }}
               >
                 <Box
