@@ -1,5 +1,11 @@
 import React, { useEffect, useState } from "react";
-import { Box, Typography, Button } from "@mui/material";
+import {
+  Box,
+  Typography,
+  Button,
+  useTheme,
+  useMediaQuery,
+} from "@mui/material";
 import Santa from "../santasurprise/santa3.jpg";
 import Avatar from "@mui/material/Avatar";
 import ShareOutlinedIcon from "@mui/icons-material/ShareOutlined";
@@ -34,6 +40,8 @@ function EventView() {
   const [receiver, setReceiver] = useState([]);
   const [participantsId, setParticipantsId] = useState(0);
   const [productDetails, setProductDetails] = useState([]);
+  const theme = useTheme();
+  const isSmallScreen = useMediaQuery(theme.breakpoints.down("sm"));
 
   console.log("player user id: ", playerUserId);
 
@@ -111,6 +119,7 @@ function EventView() {
           display: "flex",
           justifyContent: "space-between",
           width: "100%",
+          flexDirection: isSmallScreen ? "column" : "row",
         }}
       >
         <Box>
@@ -118,8 +127,10 @@ function EventView() {
             src={Santa}
             alt="santa image"
             height={200}
-            width={250}
-            className="starimage"
+            width={isSmallScreen ? "100%" : "250"}
+            style={{
+              margin: isSmallScreen ? "auto auto" : "0",
+            }}
           />
         </Box>
         <Box
@@ -134,12 +145,13 @@ function EventView() {
               alignItems: "center",
               justifyContent: "space-between",
               marginBottom: "15px",
+              // flexDirection: isSmallScreen ? "column" : "row",
             }}
           >
             <Typography
               variant="h2"
               sx={{
-                fontSize: "28px",
+                fontSize: isSmallScreen ? "24px" : "28px",
                 lineHeight: "34px",
                 marginBottom: 0,
                 maxWidth: "73%",
@@ -177,14 +189,26 @@ function EventView() {
                   }}
                   onClick={() => setInvitePage(true)}
                 >
-                  <ShareOutlinedIcon
-                    sx={{
-                      width: "16px",
-                      height: "16px",
-                      marginRight: "5px",
-                    }}
-                  />
-                  Invite
+                  {isSmallScreen ? (
+                    <ShareOutlinedIcon
+                      sx={{
+                        width: "16px",
+                        height: "16px",
+                        marginRight: "5px",
+                      }}
+                    />
+                  ) : (
+                    <>
+                      <ShareOutlinedIcon
+                        sx={{
+                          width: "16px",
+                          height: "16px",
+                          marginRight: "5px",
+                        }}
+                      />
+                      Invite{" "}
+                    </>
+                  )}
                 </Button>
                 <Button
                   sx={{
@@ -207,14 +231,26 @@ function EventView() {
                   }}
                   onClick={() => setEditPage(true)}
                 >
-                  <EditCalendarOutlinedIcon
-                    sx={{
-                      width: "16px",
-                      height: "16px",
-                      marginRight: "5px",
-                    }}
-                  />
-                  Edit
+                  {isSmallScreen ? (
+                    <EditCalendarOutlinedIcon
+                      sx={{
+                        width: "16px",
+                        height: "16px",
+                        marginRight: "5px",
+                      }}
+                    />
+                  ) : (
+                    <>
+                      <EditCalendarOutlinedIcon
+                        sx={{
+                          width: "16px",
+                          height: "16px",
+                          marginRight: "5px",
+                        }}
+                      />
+                      Edit
+                    </>
+                  )}
                 </Button>
               </Box>
             )}
@@ -223,8 +259,9 @@ function EventView() {
             sx={{
               display: "flex",
               justifyContent: "felx-start",
-              alignItems: "center",
+              alignItems: isSmallScreen ? "flex-start" : "center",
               marginBottom: "22px",
+              flexDirection: isSmallScreen ? "column" : "row",
             }}
           >
             <Typography
@@ -234,7 +271,7 @@ function EventView() {
                 color: "#5e6577",
                 paddingRight: "15px",
                 marginRight: "15px",
-                borderRight: "1px solid #cad3dd",
+                borderRight: isSmallScreen ? "none" : "1px solid #cad3dd",
               }}
             >
               Exchange gifts by:{" "}
@@ -249,7 +286,7 @@ function EventView() {
                 color: "#5e6577",
                 paddingRight: "15px",
                 marginRight: "15px",
-                borderRight: "1px solid #cad3dd",
+                borderRight: isSmallScreen ? "none" : "1px solid #cad3dd",
               }}
             >
               RSVP by:{" "}
@@ -435,7 +472,7 @@ function EventView() {
           sx={{
             color: "#101a34",
             fontWeight: 600,
-            fontSize: "17px",
+            fontSize: isSmallScreen ? "13px" : "17px",
             lineHeight: "22px",
             textAlign: "center",
             marginRight: "20px",
@@ -454,7 +491,7 @@ function EventView() {
           sx={{
             color: "#101a34",
             fontWeight: 600,
-            fontSize: "17px",
+            fontSize: isSmallScreen ? "13px" : "17px",
             lineHeight: "22px",
             textAlign: "center",
             marginRight: "20px",
@@ -462,9 +499,6 @@ function EventView() {
             "&:hover": {
               cursor: "pointer",
             },
-            // '&.active' : {
-            //     borderBottom: '3px solid skyblue'
-            // }
           }}
           onClick={() => handleTabActive(1)}
         >
@@ -476,7 +510,7 @@ function EventView() {
           sx={{
             color: "#101a34",
             fontWeight: 600,
-            fontSize: "17px",
+            fontSize: isSmallScreen ? "13px" : "17px",
             lineHeight: "22px",
             textAlign: "center",
             marginRight: "20px",
@@ -495,7 +529,7 @@ function EventView() {
           sx={{
             color: "#101a34",
             fontWeight: 600,
-            fontSize: "17px",
+            fontSize: isSmallScreen ? "13px" : "17px",
             lineHeight: "22px",
             textAlign: "center",
             marginRight: "20px",
@@ -516,11 +550,13 @@ function EventView() {
             display: "flex",
             width: "100%",
             justifyContent: "space-between",
+            flexDirection: isSmallScreen ? "column" : "row",
+            gap: isSmallScreen ? "10px" : 0,
           }}
         >
           <Box
             sx={{
-              width: "48%",
+              width: isSmallScreen ? "100%" : "48%",
               padding: "24px 16px",
               background: "#fff",
               border: "1px solid #e8ecf1",
@@ -655,7 +691,7 @@ function EventView() {
           </Box>
           <Box
             sx={{
-              width: "50%",
+              width: isSmallScreen ? "100%" : "50%",
               padding: "24px 16px",
               background: "#fff",
               border: "1px solid #e8ecf1",
