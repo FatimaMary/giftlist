@@ -1,5 +1,11 @@
 import React, { useEffect, useState } from "react";
-import { Box, Typography, Button } from "@mui/material";
+import {
+  Box,
+  Typography,
+  Button,
+  useTheme,
+  useMediaQuery,
+} from "@mui/material";
 import Avatar from "@mui/material/Avatar";
 import Tick from "./tickic.svg";
 import Clock from "./clockic.svg";
@@ -24,6 +30,8 @@ function Participants() {
   const [participantsId, setParticipantsId] = useState();
   const [firstName, setFirstName] = useState();
   const [secondName, setSecondName] = useState();
+  const theme = useTheme();
+  const isSmallScreen = useMediaQuery(theme.breakpoints.down("sm"));
 
   useEffect(() => {
     axios.get(`http://localhost:2309/player/${eventId}`).then((response) => {
@@ -115,6 +123,7 @@ function Participants() {
         padding: "15px 0",
         display: "flex",
         flexWrap: "wrap",
+        flexDirection: isSmallScreen ? "column" : "row",
       }}
     >
       <Box sx={{ width: "272px" }}>
@@ -136,6 +145,7 @@ function Participants() {
               gap: "10px",
               display: "flex",
               flexDirection: "column",
+              width: isSmallScreen ? "100%" : "auto",
             }}
           >
             <Box
@@ -232,6 +242,8 @@ function Participants() {
                   flexWrap: "wrap",
                   alignItems: "center",
                   justifyContent: "space-between",
+                  flexDirection: isSmallScreen ? "column" : "row",
+                  width: isSmallScreen ? "100%" : "auto",
                 }}
               >
                 <Box
@@ -287,7 +299,14 @@ function Participants() {
                     </Typography>
                   </Box>
                 </Box>
-                <Box>
+                <Box
+                  sx={{
+                    display: isSmallScreen ? "flex" : "initial",
+                    width: isSmallScreen ? "100%" : "initial",
+                    justifyContent: isSmallScreen ? "flex-start" : "initial",
+                    alignItems: isSmallScreen ? "center" : "initial",
+                  }}
+                >
                   <Button
                     disabled={
                       !productDetails[index] ||
@@ -296,11 +315,11 @@ function Participants() {
                     sx={{
                       margin: "0 5px",
                       background: "#C21010",
-                      fontSize: "13px",
-                      lineHeight: "22px",
+                      fontSize: isSmallScreen ? "10px" : "13px",
+                      // lineHeight: "22px",
                       color: "#fff",
-                      padding: "14px 15px",
-                      display: "inline-block",
+                      padding: isSmallScreen ? "5px 7px" : "14px 15px",
+                      // display: "inline-block",
                       border: "1px solid #C21010",
                       fontWeight: 600,
                       textTransform: "inherit",
@@ -328,18 +347,18 @@ function Participants() {
                       setSecondName(participant.secondName);
                     }}
                   >
-                    View Wishes
+                    {isSmallScreen ? "view" : "View Wishes"}
                   </Button>
                   <Button
                     sx={{
-                      padding: "14px 15px",
-                      fontSize: "13px",
+                      padding: isSmallScreen ? "5px 7px" : "14px 15px",
+                      fontSize: isSmallScreen ? "10px" : "13px",
                       lineHeight: "18px",
                       background: "#fafbfd",
                       borderRadius: "7px",
                       fontWeight: "7px",
                       color: "#C21010",
-                      display: "inline-block",
+                      // display: "inline-block",
                       // justifyContent: 'center',
                       border: "1px solid #C21010",
                       "&:hover": {
@@ -348,16 +367,33 @@ function Participants() {
                       textTransform: "inherit",
                     }}
                   >
-                    <img
-                      src={Edit}
-                      style={{
-                        width: "17px",
-                        height: "17px",
-                        marginRight: "5px",
-                        filter: "hue-rotate(180deg)",
-                      }}
-                    />
-                    Edit RSVP
+                    {isSmallScreen ? (
+                      <>
+                        <img
+                          src={Edit}
+                          style={{
+                            width: "17px",
+                            height: "17px",
+                            marginRight: "5px",
+                            filter: "hue-rotate(180deg)",
+                          }}
+                        />
+                        Edit
+                      </>
+                    ) : (
+                      <>
+                        <img
+                          src={Edit}
+                          style={{
+                            width: "17px",
+                            height: "17px",
+                            marginRight: "5px",
+                            filter: "hue-rotate(180deg)",
+                          }}
+                        />
+                        Edit RSVP
+                      </>
+                    )}
                   </Button>
                 </Box>
               </Box>
