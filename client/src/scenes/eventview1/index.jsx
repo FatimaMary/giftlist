@@ -1,5 +1,11 @@
 import React, { useEffect, useState } from "react";
-import { Box, Typography, Button } from "@mui/material";
+import {
+  Box,
+  Typography,
+  Button,
+  useTheme,
+  useMediaQuery,
+} from "@mui/material";
 import Santa from "../santasurprise/santa3.jpg";
 import Avatar from "@mui/material/Avatar";
 import axios from "axios";
@@ -19,6 +25,8 @@ function EventView1() {
   const [searchParam] = useSearchParams();
   const eventId = searchParam.get("eventId");
   const navigate = useNavigate();
+  const theme = useTheme();
+  const isSmallScreen = useMediaQuery(theme.breakpoints.down("sm"));
 
   useEffect(() => {
     axios.get(`http://localhost:2309/event/get/${eventId}`).then((response) => {
@@ -80,6 +88,7 @@ function EventView1() {
           display: "flex",
           justifyContent: "space-between",
           width: "100%",
+          flexDirection: isSmallScreen ? "column" : "row",
         }}
       >
         <Box>
@@ -87,8 +96,10 @@ function EventView1() {
             src={Santa}
             alt="santa image"
             height={200}
-            width={250}
-            className="starimage"
+            width={isSmallScreen ? "100%" : "250"}
+            style={{
+              margin: isSmallScreen ? "auto auto" : "0",
+            }}
           />
         </Box>
         <Box
@@ -108,7 +119,7 @@ function EventView1() {
             <Typography
               variant="h2"
               sx={{
-                fontSize: "28px",
+                fontSize: isSmallScreen ? "24px" : "28px",
                 lineHeight: "34px",
                 marginBottom: 0,
                 maxWidth: "73%",
@@ -124,8 +135,9 @@ function EventView1() {
               display: "flex",
               justifyContent: "felx-start",
               alignItems: "center",
+              alignItems: isSmallScreen ? "flex-start" : "center",
               marginBottom: "22px",
-              // gap: '25px',
+              flexDirection: isSmallScreen ? "column" : "row",
             }}
           >
             <Typography
@@ -135,7 +147,7 @@ function EventView1() {
                 color: "#5e6577",
                 paddingRight: "15px",
                 marginRight: "15px",
-                borderRight: "1px solid #cad3dd",
+                borderRight: isSmallScreen ? "none" : "1px solid #cad3dd",
               }}
             >
               Exchange gifts by:{" "}
@@ -150,7 +162,7 @@ function EventView1() {
                 color: "#5e6577",
                 paddingRight: "15px",
                 marginRight: "15px",
-                borderRight: "1px solid #cad3dd",
+                borderRight: isSmallScreen ? "none" : "1px solid #cad3dd",
               }}
             >
               RSVP by:{" "}
@@ -260,7 +272,7 @@ function EventView1() {
           sx={{
             color: "#101a34",
             fontWeight: 600,
-            fontSize: "17px",
+            fontSize: isSmallScreen ? "13px" : "17px",
             lineHeight: "22px",
             textAlign: "center",
             marginRight: "20px",
@@ -268,7 +280,6 @@ function EventView1() {
             "&:hover": {
               cursor: "pointer",
             },
-            // borderBottom: '3px solid #C21010'
           }}
           onClick={() => handleTabActive(0)}
         >
@@ -280,7 +291,7 @@ function EventView1() {
           sx={{
             color: "#101a34",
             fontWeight: 600,
-            fontSize: "17px",
+            fontSize: isSmallScreen ? "13px" : "17px",
             lineHeight: "22px",
             textAlign: "center",
             marginRight: "20px",
@@ -310,7 +321,7 @@ function EventView1() {
               padding: "10px",
               fontSize: "1rem",
               color: "#0f7b9b",
-              background: "#e8ecf1",
+              background: "#fff",
               textTransform: "inherit",
               fontWeight: "bold",
               marginTop: "10px",
