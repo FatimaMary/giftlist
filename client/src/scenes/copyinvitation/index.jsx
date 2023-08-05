@@ -6,6 +6,8 @@ import {
   TextField,
   createTheme,
   ThemeProvider,
+  useTheme,
+  useMediaQuery,
 } from "@mui/material";
 import copy from "copy-to-clipboard";
 
@@ -18,6 +20,9 @@ function CopyInvitation({
 }) {
   const [copyText, setCopyText] = useState("");
   const textFieldRef = useRef(null);
+  const themes = useTheme();
+  const isSmallScreen = useMediaQuery(themes.breakpoints.down("sm"));
+
   const copyToClipboard = () => {
     copy(textFieldRef.current.defaultValue);
     setCopyText(textFieldRef.current.defaultValue);
@@ -45,12 +50,12 @@ function CopyInvitation({
   });
 
   return (
-    <Box>
+    <Box sx={{ width: isSmallScreen ? "100%" : "initial" }}>
       <ThemeProvider theme={theme}>
         <TextField
           id="outlined-multiline-static"
           multiline
-          rows={7}
+          rows={isSmallScreen ? "13" : "7"}
           inputRef={textFieldRef}
           defaultValue={`Hello,
           ${firstName} invited you to a group gift exchange: ${eventName}. Hurry! You have until ${rsvpDate} to RSVP.
@@ -66,7 +71,7 @@ function CopyInvitation({
           variant="outlined"
           sx={{
             border: "1px solid #C21010",
-            width: "200px",
+            width: isSmallScreen ? "50%" : "200px",
             borderRadius: "10px",
             textTransform: "inherit",
             marginBottom: "5px",

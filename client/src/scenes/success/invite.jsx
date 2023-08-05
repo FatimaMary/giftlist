@@ -21,7 +21,7 @@ function Invite({
   return (
     <Dialog
       sx={{
-        margin: isSmallScreen ? "10px" : "0 361px",
+        margin: isSmallScreen ? "0 50px" : "0 361px",
         display: "flex",
       }}
       onClose={handleClose}
