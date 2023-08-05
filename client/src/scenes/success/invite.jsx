@@ -1,5 +1,5 @@
 import React from "react";
-import { Box, Typography, Button, Dialog, DialogContent } from "@mui/material";
+import { Dialog, DialogContent, useTheme, useMediaQuery } from "@mui/material";
 import CopyInvitation from "../copyinvitation";
 
 function Invite({
@@ -15,10 +15,13 @@ function Invite({
   const handleClose = () => {
     onClose(invitePage);
   };
+  const theme = useTheme();
+  const isSmallScreen = useMediaQuery(theme.breakpoints.down("sm"));
+
   return (
     <Dialog
       sx={{
-        margin: "0 361px",
+        margin: isSmallScreen ? "10px" : "0 361px",
         display: "flex",
       }}
       onClose={handleClose}
@@ -29,10 +32,10 @@ function Invite({
           background: "#fff",
           boxShadow: "5px 5px 25px -5px rgba(32, 32, 36, .1)",
           borderRadius: "10px",
-          padding: "24px 20px",
+          padding: isSmallScreen ? "10px 7px" : "24px 20px",
           display: "flex",
           flexDirection: "column",
-          width: "500px",
+          width: isSmallScreen ? "100%" : "500px",
           justifyContent: "center",
         }}
       >
