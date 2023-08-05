@@ -226,136 +226,283 @@ function Messages({ eventId, userId }) {
           </Button>
         </Box>
       </Box>
-      {reversedMessageDetails.map((singleDetail, i) => (
-        <Box
-          sx={{
-            display: "flex",
-            alignItems: "center",
-            justifyContent: "space-between",
-            padding: "20px 16px",
-            background: "#fff",
-            border: "1px solid #e8ecf1",
-            borderRadius: "9px",
-            // flexDirection: isMobile ? "column" : "row",
-          }}
-          key={i}
-        >
-          <Box
-            sx={{
-              display: "flex",
-              alignItems: "center",
-              maxWidth: "25%",
-              paddingRight: "20px",
-              flexWrap: "wrap",
-              // flexDirection: isMobile ? "column" : "row",
-            }}
-          >
-            <Avatar
-              {...stringAvatar(`${singleDetail.senderDetails.firstName}`)}
+      {isSmallScreen ? (
+        <>
+          {reversedMessageDetails.map((singleDetail, i) => (
+            <Grid
+              container
+              alignItems="stretch"
               sx={{
-                width: "26px",
-                height: "26px",
-                background: "#C21010",
-                fontSize: "11px",
-                marginBottom: 0,
-                lineHeight: "18px",
-                display: "flex",
-                alignItems: "center",
-                justifyContent: "center",
+                padding: "20px 16px",
+                background: "#fff",
+                border: "1px solid #e8ecf1",
+                borderRadius: "9px",
+                marginBottom: "10px",
               }}
-            />
+              key={i}
+            >
+              {/* <Grid container spacing={2}> */}
+              <Grid item xs={6} md={6}>
+                <Box
+                  sx={{
+                    display: "flex",
+                    alignItems: "center",
+                    Width: "50%",
+                    paddingRight: "20px",
+                    // flexWrap: "wrap",
+                  }}
+                >
+                  <Avatar
+                    {...stringAvatar(`${singleDetail.senderDetails.firstName}`)}
+                    sx={{
+                      width: "20px",
+                      height: "20px",
+                      background: "#C21010",
+                      fontSize: "10px",
+                      marginBottom: 0,
+                      lineHeight: "18px",
+                      display: "flex",
+                      alignItems: "center",
+                      justifyContent: "center",
+                    }}
+                  />
+                  <Box
+                    sx={{
+                      display: "flex",
+                      flexDirection: "column",
+                      paddingLeft: "12px",
+                    }}
+                  >
+                    <Typography
+                      variant="h4"
+                      sx={{
+                        fontSize: "14px",
+                        fontWeight: 600,
+                        lineHeight: "22px",
+                        color: "#101a34",
+                        marginBottom: "4px",
+                      }}
+                    >
+                      {singleDetail.senderDetails.firstName}{" "}
+                      {singleDetail.senderDetails.secondName}
+                    </Typography>
+                    <Typography
+                      variant="body1"
+                      sx={{
+                        fontWeight: 400,
+                        fontSize: "13px",
+                        lineHeight: "16px",
+                        color: "#818694",
+                      }}
+                    >
+                      {singleDetail.senderDetails.email}
+                    </Typography>
+                  </Box>
+                </Box>
+              </Grid>
+
+              <Grid item xs={6} md={6}>
+                <Box
+                  sx={{
+                    flexBasis: "20%",
+                    maxWidth: "30%",
+                    paddingLeft: "20px",
+                    textAlign: "right",
+                    display: "flex",
+                  }}
+                >
+                  <Box sx={{ width: "150px" }}>
+                    <Typography
+                      variant="body1"
+                      sx={{
+                        fontSize: "13px",
+                        lineHeight: "16px",
+                        color: "#5e6577",
+                        marginBottom: "7px",
+                      }}
+                    >
+                      {formatDate(singleDetail.timeStamp)}
+                    </Typography>
+                    <Typography
+                      variant="body1"
+                      sx={{
+                        fontWeight: 600,
+                        fontSize: "13px",
+                        lineHeight: "18px",
+                        color: "#101a34",
+                        marginBottom: 0,
+                      }}
+                    >
+                      Likes: 0
+                    </Typography>
+                  </Box>
+                  <Button>
+                    <FavoriteBorderIcon
+                      sx={{
+                        color: isClicked ? "red" : "green",
+                      }}
+                      onClick={handleButtonClick}
+                    />
+                  </Button>
+                </Box>
+              </Grid>
+              {/* </Grid> */}
+
+              <Grid item xs={12} md={6}>
+                <Box
+                  sx={{
+                    borderRight: "1px solid #e8ecf1",
+                    borderLeft: "1px solid #e8ecf1",
+                    padding: "0 20px",
+                    fontSize: "17px",
+                    lineHeight: "140%",
+                    color: "#5e6577",
+                    flexBasis: "50%",
+                    maxWidth: "45%",
+                  }}
+                >
+                  <Typography variant="body1">
+                    {singleDetail.message}
+                  </Typography>
+                </Box>
+              </Grid>
+            </Grid>
+          ))}
+        </>
+      ) : (
+        <>
+          {reversedMessageDetails.map((singleDetail, i) => (
             <Box
               sx={{
                 display: "flex",
-                flexDirection: "column",
-                paddingLeft: "12px",
+                alignItems: "center",
+                justifyContent: "space-between",
+                padding: "20px 16px",
+                background: "#fff",
+                border: "1px solid #e8ecf1",
+                borderRadius: "9px",
+                // flexDirection: isMobile ? "column" : "row",
               }}
+              key={i}
             >
-              <Typography
-                variant="h4"
+              <Box
                 sx={{
+                  display: "flex",
+                  alignItems: "center",
+                  maxWidth: "25%",
+                  paddingRight: "20px",
+                  flexWrap: "wrap",
+                  // flexDirection: isMobile ? "column" : "row",
+                }}
+              >
+                <Avatar
+                  {...stringAvatar(`${singleDetail.senderDetails.firstName}`)}
+                  sx={{
+                    width: "26px",
+                    height: "26px",
+                    background: "#C21010",
+                    fontSize: "11px",
+                    marginBottom: 0,
+                    lineHeight: "18px",
+                    display: "flex",
+                    alignItems: "center",
+                    justifyContent: "center",
+                  }}
+                />
+                <Box
+                  sx={{
+                    display: "flex",
+                    flexDirection: "column",
+                    paddingLeft: "12px",
+                  }}
+                >
+                  <Typography
+                    variant="h4"
+                    sx={{
+                      fontSize: "17px",
+                      fontWeight: 600,
+                      lineHeight: "22px",
+                      color: "#101a34",
+                      marginBottom: "4px",
+                    }}
+                  >
+                    {singleDetail.senderDetails.firstName}{" "}
+                    {singleDetail.senderDetails.secondName}
+                  </Typography>
+                  <Typography
+                    variant="body1"
+                    sx={{
+                      fontWeight: 400,
+                      fontSize: "13px",
+                      lineHeight: "16px",
+                      color: "#818694",
+                    }}
+                  >
+                    {singleDetail.senderDetails.email}
+                  </Typography>
+                </Box>
+              </Box>
+              <Box
+                sx={{
+                  borderRight: "1px solid #e8ecf1",
+                  borderLeft: "1px solid #e8ecf1",
+                  padding: "0 20px",
                   fontSize: "17px",
-                  fontWeight: 600,
-                  lineHeight: "22px",
-                  color: "#101a34",
-                  marginBottom: "4px",
-                }}
-              >
-                {singleDetail.senderDetails.firstName}{" "}
-                {singleDetail.senderDetails.secondName}
-              </Typography>
-              <Typography
-                variant="body1"
-                sx={{
-                  fontWeight: 400,
-                  fontSize: "13px",
-                  lineHeight: "16px",
-                  color: "#818694",
-                }}
-              >
-                {singleDetail.senderDetails.email}
-              </Typography>
-            </Box>
-          </Box>
-          <Box
-            sx={{
-              borderRight: "1px solid #e8ecf1",
-              borderLeft: "1px solid #e8ecf1",
-              padding: "0 20px",
-              fontSize: "17px",
-              lineHeight: "140%",
-              color: "#5e6577",
-              flexBasis: "50%",
-              maxWidth: "45%",
-            }}
-          >
-            <Typography variant="body1">{singleDetail.message}</Typography>
-          </Box>
-          <Box
-            sx={{
-              flexBasis: "20%",
-              maxWidth: "30%",
-              paddingLeft: "20px",
-              textAlign: "right",
-              display: "flex",
-            }}
-          >
-            <Box sx={{ width: "150px" }}>
-              <Typography
-                variant="body1"
-                sx={{
-                  fontSize: "13px",
-                  lineHeight: "16px",
+                  lineHeight: "140%",
                   color: "#5e6577",
-                  marginBottom: "7px",
+                  flexBasis: "50%",
+                  maxWidth: "45%",
                 }}
               >
-                {formatDate(singleDetail.timeStamp)}
-              </Typography>
-              <Typography
-                variant="body1"
+                <Typography variant="body1">{singleDetail.message}</Typography>
+              </Box>
+              <Box
                 sx={{
-                  fontWeight: 600,
-                  fontSize: "13px",
-                  lineHeight: "18px",
-                  color: "#101a34",
-                  marginBottom: 0,
+                  flexBasis: "20%",
+                  maxWidth: "30%",
+                  paddingLeft: "20px",
+                  textAlign: "right",
+                  display: "flex",
                 }}
               >
-                Likes: 0
-              </Typography>
+                <Box sx={{ width: "150px" }}>
+                  <Typography
+                    variant="body1"
+                    sx={{
+                      fontSize: "13px",
+                      lineHeight: "16px",
+                      color: "#5e6577",
+                      marginBottom: "7px",
+                    }}
+                  >
+                    {formatDate(singleDetail.timeStamp)}
+                  </Typography>
+                  <Typography
+                    variant="body1"
+                    sx={{
+                      fontWeight: 600,
+                      fontSize: "13px",
+                      lineHeight: "18px",
+                      color: "#101a34",
+                      marginBottom: 0,
+                    }}
+                  >
+                    Likes: 0
+                  </Typography>
+                </Box>
+                <Button>
+                  <FavoriteBorderIcon
+                    sx={{
+                      color: isClicked ? "red" : "green",
+                    }}
+                    onClick={handleButtonClick}
+                  />
+                </Button>
+              </Box>
             </Box>
-            <Button>
-              <FavoriteBorderIcon
-                sx={{
-                  color: isClicked ? "red" : "green",
-                }}
-                onClick={handleButtonClick}
-              />
-            </Button>
-          </Box>
-        </Box>
-      ))}
+          ))}
+        </>
+      )}
     </Box>
   );
 }
