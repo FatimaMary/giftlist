@@ -6,6 +6,8 @@ import {
   Button,
   createTheme,
   ThemeProvider,
+  useTheme,
+  useMediaQuery,
 } from "@mui/material";
 import { Link, useNavigate, useSearchParams } from "react-router-dom";
 import { signInWithEmailAndPassword } from "firebase/auth";
@@ -25,6 +27,8 @@ function Login1() {
   const eventId = searchParam.get("eventId");
   const participantsId = searchParam.get("participantsId");
   const { isLoggedIn, setIsLoggedIn } = useContext(MyContext);
+  const themes = useTheme();
+  const isSmallScreen = useMediaQuery(themes.breakpoints.down("sm"));
 
   const handleChange = (e) => {
     setLoginData({
@@ -103,13 +107,14 @@ function Login1() {
       <Navbar />
       <Box
         sx={{
-          backgroundColor: "#CFE8A9",
+          backgroundColor: "#FFEAEA",
           height: "85vh",
-          // width: '100vw',
           display: "flex",
           flexDirection: "column",
           justifyContent: "center",
           alignItems: "center",
+          width: isSmallScreen ? "100%" : "100vw",
+          padding: isSmallScreen ? "20px" : "1.5rem 2.5rem",
         }}
       >
         <Box
@@ -117,11 +122,9 @@ function Login1() {
             display: "flex",
             flexDirection: "column",
             justifyContent: "center",
-            // alignItems: 'center',
             backgroundColor: "white",
-            // height: '600px',
             border: "1px solid #CFE8A9",
-            width: "500px",
+            width: isSmallScreen ? "100%" : "500px",
             borderRadius: "10px",
           }}
           color="black"
@@ -164,7 +167,7 @@ function Login1() {
                     variant="outlined"
                     sx={{
                       ml: "1rem",
-                      width: "450px",
+                      width: isSmallScreen ? "80%" : "450px",
                       borderRadius: "10px",
                       "& .MuiOutlinedInput-root": {
                         height: "40px",
@@ -196,7 +199,7 @@ function Login1() {
                     variant="outlined"
                     sx={{
                       ml: "1rem",
-                      width: "450px",
+                      width: isSmallScreen ? "80%" : "450px",
                       borderRadius: "10px",
                       "& .MuiOutlinedInput-root": {
                         height: "40px",
@@ -224,7 +227,7 @@ function Login1() {
                   sx={{
                     border: "2px solid #C21010",
                     borderRadius: "20px",
-                    width: "450px",
+                    width: isSmallScreen ? "80%" : "450px",
                     fontSize: "1rem",
                     color: "white",
                     background: "#C21010",

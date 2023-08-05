@@ -103,7 +103,7 @@ function Login() {
       <Navbar />
       <Box
         sx={{
-          backgroundColor: "#CFE8A9",
+          backgroundColor: "#FFEAEA",
           height: "85vh",
           display: "flex",
           flexDirection: "column",
