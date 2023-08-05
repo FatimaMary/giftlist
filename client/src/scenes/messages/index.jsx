@@ -9,6 +9,7 @@ import {
   createTheme,
   useTheme,
   useMediaQuery,
+  Grid,
 } from "@mui/material";
 import MailOutlineIcon from "@mui/icons-material/MailOutline";
 import FavoriteBorderIcon from "@mui/icons-material/FavoriteBorder";
@@ -173,6 +174,8 @@ function Messages({ eventId, userId }) {
             marginBottom: "20px",
             display: "flex",
             justifyContent: "space-between",
+            flexDirection: isSmallScreen ? "column" : "row",
+            gap: isSmallScreen ? "10px" : "initial",
           }}
         >
           <ThemeProvider theme={theme}>
@@ -180,7 +183,7 @@ function Messages({ eventId, userId }) {
               placeholder="Enter your message text"
               sx={{
                 "& .MuiOutlinedInput-root": {
-                  height: "46px",
+                  height: isSmallScreen ? "100px" : "46px",
                   padding: isSmallScreen ? "4px 7px" : "8px 15px",
                   width: isSmallScreen ? "100%" : "800px",
                   border: "1px solid #cad3dd",
@@ -199,7 +202,7 @@ function Messages({ eventId, userId }) {
           <Button
             variant="outlined"
             sx={{
-              width: isSmallScreen ? "100px" : "155px",
+              width: isSmallScreen ? "100%" : "155px",
               height: "46px",
               display: "flex",
               alignItems: "center",
@@ -209,6 +212,7 @@ function Messages({ eventId, userId }) {
               color: "#fff",
               background: "#C12020",
               border: "2px solid #C21010",
+              borderRadius: isSmallScreen ? "10px" : "5px",
               "&:hover": {
                 background: "white",
                 color: "#C21010",
@@ -236,7 +240,6 @@ function Messages({ eventId, userId }) {
           }}
           key={i}
         >
-          {/* <Box sx={{ display: isMobile ? "flex" : "" }}> */}
           <Box
             sx={{
               display: "flex",
@@ -308,7 +311,6 @@ function Messages({ eventId, userId }) {
           >
             <Typography variant="body1">{singleDetail.message}</Typography>
           </Box>
-          {/* </Box> */}
           <Box
             sx={{
               flexBasis: "20%",
