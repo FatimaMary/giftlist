@@ -6,6 +6,8 @@ import {
   Button,
   createTheme,
   ThemeProvider,
+  useTheme,
+  useMediaQuery,
 } from "@mui/material";
 import Radio from "@mui/material/Radio";
 import RadioGroup from "@mui/material/RadioGroup";
@@ -28,6 +30,8 @@ function EventCreation() {
   const [searchParam] = useSearchParams();
   const userId = searchParam.get("userId");
   const navigate = useNavigate();
+  const themes = useTheme();
+  const isSmallScreen = useMediaQuery(themes.breakpoints.down("sm"));
 
   const theme = createTheme({
     components: {
@@ -113,8 +117,8 @@ function EventCreation() {
   return (
     <Box
       backgroundColor="#FFFDE3"
-      width="100vw"
-      p="50px 30px 33px 30px"
+      width={isSmallScreen ? "100%" : "100vw"}
+      p={isSmallScreen ? "48px 10px 40px" : "50px 30px 33px 30px"}
       color="#C21010"
     >
       <Box
@@ -152,7 +156,7 @@ function EventCreation() {
       >
         <Box
           sx={{
-            maxWidth: "517px",
+            width: isSmallScreen ? "100%" : "517px",
             margin: "0 auto",
             padding: "48px 10px 16px",
           }}
@@ -239,9 +243,10 @@ function EventCreation() {
                 sx={{
                   display: "flex",
                   justifyContent: "space-between",
+                  flexDirection: isSmallScreen ? "column" : "row",
                 }}
               >
-                <Box width="50%">
+                <Box width={isSmallScreen ? "100%" : "50%"}>
                   <Typography
                     sx={{
                       fontFamily: "Poppins,sans-serif",
@@ -249,7 +254,6 @@ function EventCreation() {
                       fontSize: "13px",
                       lineHeight: "18px",
                       color: "#C21010",
-                      // marginBottom: '5px',
                       wordBreak: "break-all",
                     }}
                   >
@@ -279,7 +283,7 @@ function EventCreation() {
                     />
                   </ThemeProvider>
                 </Box>
-                <Box width="50%">
+                <Box width={isSmallScreen ? "100%" : "50%"}>
                   <Typography
                     sx={{
                       fontFamily: "Poppins,sans-serif",
