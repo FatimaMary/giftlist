@@ -233,7 +233,7 @@ function Messages({ eventId, userId }) {
               container
               alignItems="stretch"
               sx={{
-                padding: "20px 16px",
+                padding: "10px 5px",
                 background: "#fff",
                 border: "1px solid #e8ecf1",
                 borderRadius: "9px",
@@ -304,21 +304,25 @@ function Messages({ eventId, userId }) {
               <Grid item xs={6} md={6}>
                 <Box
                   sx={{
-                    flexBasis: "20%",
-                    maxWidth: "30%",
-                    paddingLeft: "20px",
-                    textAlign: "right",
+                    flexBasis: "45%",
                     display: "flex",
+                    maxWidth: "100%",
                   }}
                 >
-                  <Box sx={{ width: "150px" }}>
+                  <Box
+                    sx={{
+                      width: "90%",
+                      display: "flex",
+                      flexDirection: "column",
+                    }}
+                  >
                     <Typography
                       variant="body1"
                       sx={{
-                        fontSize: "13px",
+                        fontSize: "10px",
                         lineHeight: "16px",
                         color: "#5e6577",
-                        marginBottom: "7px",
+                        marginBottom: "3px",
                       }}
                     >
                       {formatDate(singleDetail.timeStamp)}
@@ -327,8 +331,8 @@ function Messages({ eventId, userId }) {
                       variant="body1"
                       sx={{
                         fontWeight: 600,
-                        fontSize: "13px",
-                        lineHeight: "18px",
+                        fontSize: "11px",
+                        lineHeight: "16px",
                         color: "#101a34",
                         marginBottom: 0,
                       }}
@@ -336,7 +340,12 @@ function Messages({ eventId, userId }) {
                       Likes: 0
                     </Typography>
                   </Box>
-                  <Button>
+                  <Button
+                    sx={{
+                      right: 0,
+                      top: "50%",
+                    }}
+                  >
                     <FavoriteBorderIcon
                       sx={{
                         color: isClicked ? "red" : "green",
@@ -346,19 +355,17 @@ function Messages({ eventId, userId }) {
                   </Button>
                 </Box>
               </Grid>
-              {/* </Grid> */}
-
-              <Grid item xs={12} md={6}>
+              <Grid item xs={12} md={12}>
                 <Box
                   sx={{
-                    borderRight: "1px solid #e8ecf1",
-                    borderLeft: "1px solid #e8ecf1",
-                    padding: "0 20px",
-                    fontSize: "17px",
-                    lineHeight: "140%",
+                    padding: "20px 5px",
+                    fontSize: "14px",
+                    lineHeight: "22px",
                     color: "#5e6577",
-                    flexBasis: "50%",
-                    maxWidth: "45%",
+                    flexBasis: "100%",
+                    maxWidth: "100%",
+                    marginTop: "20px",
+                    borderTop: "1px solid #e8ecf1",
                   }}
                 >
                   <Typography variant="body1">
