@@ -23,7 +23,6 @@ function MyWishes({ eventId, userId }) {
     const firstSlashIndex = text.indexOf("/");
     const secondSlashIndex = text.indexOf("/", firstSlashIndex + 1);
     const thirdSlashIndex = text.indexOf("/", secondSlashIndex + 1);
-    const fourthSlashIndex = text.indexOf("/", thirdSlashIndex + 1);
     const productLink = text.substring(thirdSlashIndex + 1);
     const productFullName = productLink.split("?")[0];
 
@@ -96,7 +95,6 @@ function MyWishes({ eventId, userId }) {
           productUrl: productUrl,
           eventId: eventId,
           participantsId: participantsId,
-          // productName: extractProductNameFromUrl(productUrl),
         };
         setProductDetails((previousProductDetails) => [
           ...previousProductDetails,
@@ -179,7 +177,6 @@ function MyWishes({ eventId, userId }) {
         sx={{
           display: "flex",
           flexWrap: "wrap",
-          // width: "300px",
         }}
       >
         {reversedProductDetails.map((singleDetail, i) => (
