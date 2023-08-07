@@ -19,15 +19,6 @@ function MyWishes({ eventId, userId }) {
   const [participantsId, setParticipantsId] = useState(0);
   const [productDetails, setProductDetails] = useState([]);
 
-  // const truncateText = (text, maxLength) => {
-  //   const Productlink = text.subString(text.lastIndexOf("/") + 1);
-  //   const productFullName = Productlink.split("?")[0];
-  //   if (productFullName.length > maxLength) {
-  //     const truncatedText = productFullName.substring(maxLength);
-  //     return truncatedText;
-  //   }
-  //   return productFullName;
-  // };
   const truncateText = (text, startIndex) => {
     const firstSlashIndex = text.indexOf("/");
     const secondSlashIndex = text.indexOf("/", firstSlashIndex + 1);
@@ -35,7 +26,7 @@ function MyWishes({ eventId, userId }) {
     const fourthSlashIndex = text.indexOf("/", thirdSlashIndex + 1);
     const productLink = text.substring(thirdSlashIndex + 1);
     const productFullName = productLink.split("?")[0];
-    // const maxLength = fourthSlashIndex;
+
     const maxLength = 45;
     console.log("max length", maxLength);
     if (productFullName.length > maxLength) {
@@ -86,18 +77,6 @@ function MyWishes({ eventId, userId }) {
 
   const handleProductClick = (url) => {
     window.open(url, "_blank");
-  };
-  const extractProductNameFromUrl = (url) => {
-    try {
-      const urlObject = new URL(url);
-      const pathname = urlObject.pathname;
-      const parts = pathname.split("/");
-      const productName = parts[parts.length - 1].split("?")[0];
-      return productName;
-    } catch (error) {
-      console.error("Error extracting product name from URL:", error);
-      return "";
-    }
   };
 
   const handleAdd = () => {
@@ -245,32 +224,14 @@ function MyWishes({ eventId, userId }) {
               >
                 <Typography
                   onClick={() => handleProductClick(singleDetail.productUrl)}
-                >
-                  {truncateText(singleDetail.productUrl, 0)}
-                  {/* {singleDetail.productName} */}
-                </Typography>
-                {/* <Typography
                   sx={{
-                    "&:hover": {
-                      textDecoration: "underline",
-                      color: "blue",
+                    "&: hover": {
                       cursor: "pointer",
                     },
                   }}
                 >
-                  <a
-                    style={{ textDecoration: "none", color: "skyblue" }}
-                    href={singleDetail.productUrl}
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    onClick={() => handleProductClick(singleDetail.productUrl)}
-                  >
-                    <Typography>
-                      {truncateText(singleDetail.productUrl, 0)}
-                      {/* {singleDetail.productName} 
-                    </Typography>
-                  </a>
-                </Typography> */}
+                  {truncateText(singleDetail.productUrl, 0)}
+                </Typography>
               </Box>
             </CardContent>
           </Card>
