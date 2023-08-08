@@ -23,10 +23,11 @@ function MyWishes({ eventId, userId }) {
     const firstSlashIndex = text.indexOf("/");
     const secondSlashIndex = text.indexOf("/", firstSlashIndex + 1);
     const thirdSlashIndex = text.indexOf("/", secondSlashIndex + 1);
+    const fourthSlashIndex = text.indexOf("/", thirdSlashIndex + 1);
     const productLink = text.substring(thirdSlashIndex + 1);
     const productFullName = productLink.split("?")[0].replace(/-/g, " ");
 
-    const maxLength = 45;
+    const maxLength = fourthSlashIndex - thirdSlashIndex - 1;
     console.log("max length", maxLength);
     if (productFullName.length > maxLength) {
       const truncatedText = productFullName.substring(
