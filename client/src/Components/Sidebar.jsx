@@ -29,7 +29,7 @@ import FlexBetween from "./FlexBetween";
 import { FaChevronLeft } from "react-icons/fa";
 import { ChevronRightOutlined } from "@mui/icons-material";
 import { MyContext } from "./MyContext";
-import DensityMediumIcon from "@mui/icons-material/DensityMedium";
+import MenuIcon from "@mui/icons-material/Menu";
 
 const Sidebar = ({
   drawerWidth,
@@ -41,7 +41,7 @@ const Sidebar = ({
   const [active, setActive] = useState("");
   const navigate = useNavigate();
   const { setIsLoggedIn, isLoggedIn } = useContext(MyContext);
-  const [mobileOpen, setMobileOpen] = useState(false);
+  const [open, setOpen] = useState(false);
   const isMobile = useMediaQuery("(max-width: 1000px)");
 
   const handleLogout = () => {
@@ -49,9 +49,8 @@ const Sidebar = ({
     setIsLoggedIn(false);
     navigate("/");
   };
-  const handleMobileToggle = () => {
-    setMobileOpen(!mobileOpen);
-    setIsSidebarOpen(!isSidebarOpen);
+  const handleDrawerOpen = () => {
+    setOpen(true);
   };
 
   const navItems = [
@@ -122,14 +121,20 @@ const Sidebar = ({
                     Giftnote
                   </Typography>
                 </Box>
-                {/* {!isNonMobile && (
+                {!isNonMobile && (
                   <IconButton onClick={() => setIsSidebarOpen(!isSidebarOpen)}>
                     <FaChevronLeft />
                   </IconButton>
-                )} */}
-                {!isNonMobile && (
-                  <IconButton onClick={handleMobileToggle}>
-                    {mobileOpen ? <DensityMediumIcon /> : <FaChevronLeft />}
+                )}
+                {isNonMobile && (
+                  <IconButton
+                    color="inherit"
+                    aria-label="open drawer"
+                    edge="end"
+                    onClick={handleDrawerOpen}
+                    sx={{ ...(open && { display: "none" }) }}
+                  >
+                    <MenuIcon />
                   </IconButton>
                 )}
               </FlexBetween>
