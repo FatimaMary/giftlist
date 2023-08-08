@@ -27,12 +27,24 @@ function ViewWishes({ open, onClose, participantsId, firstName, secondName }) {
       });
   }, []);
 
-  const truncateText = (text, maxLength, startIndex) => {
-    if (text.length > maxLength) {
-      const truncatedText = text.substring(startIndex, startIndex + maxLength);
-      return startIndex > 0 ? truncatedText : truncatedText;
+  const truncateText = (text, startIndex) => {
+    const firstSlashIndex = text.indexOf("/");
+    const secondSlashIndex = text.indexOf("/", firstSlashIndex + 1);
+    const thirdSlashIndex = text.indexOf("/", secondSlashIndex + 1);
+    const fourthSlashIndex = text.indexOf("/", thirdSlashIndex + 1);
+    const productLink = text.substring(thirdSlashIndex + 1);
+    const productFullName = productLink.split("?")[0].replace(/-/g, " ");
+
+    const maxLength = fourthSlashIndex - thirdSlashIndex - 1;
+    console.log("max length", maxLength);
+    if (productFullName.length > maxLength) {
+      const truncatedText = productFullName.substring(
+        startIndex,
+        startIndex + maxLength
+      );
+      return startIndex > 0 ? truncatedText + "..." : truncatedText + "...";
     }
-    return text;
+    return productFullName;
   };
 
   const handleProductClick = (url) => {
@@ -128,29 +140,15 @@ function ViewWishes({ open, onClose, participantsId, firstName, secondName }) {
                   p: "0.5rem",
                 }}
               >
-                <Typography>
-                  {truncateText(singleDetail.productUrl, 40, 22)}
-                </Typography>
                 <Typography
+                  onClick={() => handleProductClick(singleDetail.productUrl)}
                   sx={{
-                    "&:hover": {
-                      textDecoration: "underline",
-                      color: "blue",
+                    "&: hover": {
                       cursor: "pointer",
                     },
                   }}
                 >
-                  <a
-                    style={{ textDecoration: "none", color: "skyblue" }}
-                    href={singleDetail.productUrl}
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    onClick={() => handleProductClick(singleDetail.productUrl)}
-                  >
-                    <Typography>
-                      {truncateText(singleDetail.productUrl, 21, 0)}
-                    </Typography>
-                  </a>
+                  {truncateText(singleDetail.productUrl, 0)}
                 </Typography>
               </Box>
             </CardContent>
