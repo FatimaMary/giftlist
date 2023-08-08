@@ -49,8 +49,9 @@ const Sidebar = ({
     setIsLoggedIn(false);
     navigate("/");
   };
-  const handleDrawerOpen = () => {
-    setOpen(true);
+  const handleDrawerClose = () => {
+    // setOpen(true);
+    setIsSidebarOpen(!isSidebarOpen);
   };
 
   const navItems = [
@@ -96,11 +97,12 @@ const Sidebar = ({
   const isMobileView = theme.breakpoints.down("sm");
 
   return (
-    <Box component="nav">
-      {isSidebarOpen && (
+    <>
+      <Box component="nav">
+        {/* {isSidebarOpen && ( */}
         <Drawer
           open={isSidebarOpen}
-          onClose={() => setIsSidebarOpen(false)}
+          onClose={handleDrawerClose}
           variant="persistent"
           anchor="left"
           sx={{
@@ -122,19 +124,8 @@ const Sidebar = ({
                   </Typography>
                 </Box>
                 {!isNonMobile && (
-                  <IconButton onClick={() => setIsSidebarOpen(!isSidebarOpen)}>
+                  <IconButton onClick={handleDrawerClose}>
                     <FaChevronLeft />
-                  </IconButton>
-                )}
-                {isNonMobile && (
-                  <IconButton
-                    color="inherit"
-                    aria-label="open drawer"
-                    edge="end"
-                    onClick={handleDrawerOpen}
-                    sx={{ ...(open && { display: "none" }) }}
-                  >
-                    <MenuIcon />
                   </IconButton>
                 )}
               </FlexBetween>
@@ -252,8 +243,20 @@ const Sidebar = ({
             </List>
           </Box>
         </Drawer>
-      )}
-    </Box>
+        {/* )} */}
+        {!isSidebarOpen && (
+          <MenuIcon
+            sx={{
+              position: "absolute",
+              top: "1rem",
+              left: "1rem",
+              zIndex: 1,
+            }}
+            onClick={() => setIsSidebarOpen(true)}
+          />
+        )}
+      </Box>
+    </>
   );
 };
 
