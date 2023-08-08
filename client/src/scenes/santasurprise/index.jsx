@@ -1,25 +1,15 @@
 import React, { useContext, useEffect, useState } from "react";
-import {
-  Box,
-  TextField,
-  Typography,
-  Button,
-  CardContent,
-  Card,
-  CardMedia,
-} from "@mui/material";
+import { Box, Typography, CardContent, Card, CardMedia } from "@mui/material";
 import { useNavigate, useSearchParams } from "react-router-dom";
 import axios from "axios";
 import AddCircleOutlineIcon from "@mui/icons-material/AddCircleOutline";
 import Santa from "./santa3.jpg";
 import CalendarMonthIcon from "@mui/icons-material/CalendarMonth";
-import CopyrightIcon from "@mui/icons-material/Copyright";
 import Footer from "../../Components/Footer";
 import { MyContext } from "../../Components/MyContext";
 
 function SantaSurprise() {
   const [eventData, setEventData] = useState([]);
-  // const [dates, setDates] = useState([]);
   const [searchParam] = useSearchParams();
   const userId = searchParam.get("userId");
   const navigate = useNavigate();
@@ -100,6 +90,9 @@ function SantaSurprise() {
       width="100vw"
       p="50px 30px 33px 30px"
       height="100%"
+      sx={{
+        overflowY: "hidden",
+      }}
     >
       <Typography
         variant="h2"

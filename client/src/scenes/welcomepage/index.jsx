@@ -25,11 +25,11 @@ function WelcomePage() {
           display: "flex",
           flexDirection: "column",
           alignItems: "center",
-          justifyContent: "center",
+          justifyContent: isSmallScreen ? "flex-start" : "center",
           gap: "20px",
           height: "90vh",
           width: "100vw",
-          padding: isSmallScreen ? "20px 20px" : "0 20px",
+          padding: isSmallScreen ? "50px 20px" : "0 20px",
         }}
         className="boxcomponent"
       >

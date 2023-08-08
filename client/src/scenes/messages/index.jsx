@@ -286,17 +286,6 @@ function Messages({ eventId, userId }) {
                       {singleDetail.senderDetails.firstName}{" "}
                       {singleDetail.senderDetails.secondName}
                     </Typography>
-                    <Typography
-                      variant="body1"
-                      sx={{
-                        fontWeight: 400,
-                        fontSize: "13px",
-                        lineHeight: "16px",
-                        color: "#818694",
-                      }}
-                    >
-                      {singleDetail.senderDetails.email}
-                    </Typography>
                   </Box>
                 </Box>
               </Grid>
@@ -327,32 +316,7 @@ function Messages({ eventId, userId }) {
                     >
                       {formatDate(singleDetail.timeStamp)}
                     </Typography>
-                    <Typography
-                      variant="body1"
-                      sx={{
-                        fontWeight: 600,
-                        fontSize: "11px",
-                        lineHeight: "16px",
-                        color: "#101a34",
-                        marginBottom: 0,
-                      }}
-                    >
-                      Likes: 0
-                    </Typography>
                   </Box>
-                  <Button
-                    sx={{
-                      right: 0,
-                      top: "50%",
-                    }}
-                  >
-                    <FavoriteBorderIcon
-                      sx={{
-                        color: isClicked ? "red" : "green",
-                      }}
-                      onClick={handleButtonClick}
-                    />
-                  </Button>
                 </Box>
               </Grid>
               <Grid item xs={12} md={12}>
@@ -484,7 +448,7 @@ function Messages({ eventId, userId }) {
                   >
                     {formatDate(singleDetail.timeStamp)}
                   </Typography>
-                  <Typography
+                  {/* <Typography
                     variant="body1"
                     sx={{
                       fontWeight: 600,
@@ -495,16 +459,16 @@ function Messages({ eventId, userId }) {
                     }}
                   >
                     Likes: 0
-                  </Typography>
+                  </Typography> */}
                 </Box>
-                <Button>
+                {/* <Button>
                   <FavoriteBorderIcon
                     sx={{
                       color: isClicked ? "red" : "green",
                     }}
                     onClick={handleButtonClick}
                   />
-                </Button>
+                </Button> */}
               </Box>
             </Box>
           ))}
