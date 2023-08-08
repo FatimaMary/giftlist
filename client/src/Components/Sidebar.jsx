@@ -1,17 +1,13 @@
 import React, { useContext } from "react";
 import {
   Box,
-  Divider,
   Drawer,
   IconButton,
   List,
-  ListItem,
   ListItemButton,
   ListItemIcon,
   ListItemText,
   Typography,
-  useMediaQuery,
-  useTheme,
 } from "@mui/material";
 import HomeOutlinedIcon from "@mui/icons-material/HomeOutlined";
 import FormatListBulletedOutlinedIcon from "@mui/icons-material/FormatListBulletedOutlined";
@@ -22,12 +18,10 @@ import PersonOutlineOutlinedIcon from "@mui/icons-material/PersonOutlineOutlined
 import EditCalendarOutlinedIcon from "@mui/icons-material/EditCalendarOutlined";
 import HelpOutlineOutlinedIcon from "@mui/icons-material/HelpOutlineOutlined";
 import LogoutOutlinedIcon from "@mui/icons-material/LogoutOutlined";
-import Santahat from "../assets/icons8-santas-hat-32.png";
 import { useEffect, useState } from "react";
-import { useLocation, useNavigate } from "react-router-dom";
+import { useLocation, useNavigate, useSearchParams } from "react-router-dom";
 import FlexBetween from "./FlexBetween";
 import { FaChevronLeft } from "react-icons/fa";
-import { ChevronRightOutlined } from "@mui/icons-material";
 import { MyContext } from "./MyContext";
 import MenuIcon from "@mui/icons-material/Menu";
 
@@ -41,16 +35,10 @@ const Sidebar = ({
   const [active, setActive] = useState("");
   const navigate = useNavigate();
   const { setIsLoggedIn, isLoggedIn } = useContext(MyContext);
-  const [open, setOpen] = useState(false);
-  const isMobile = useMediaQuery("(max-width: 1000px)");
+  const [searchParam] = useSearchParams();
+  const userId = searchParam.get("userId");
 
-  const handleLogout = () => {
-    console.log("Logout Clicked");
-    setIsLoggedIn(false);
-    navigate("/");
-  };
   const handleDrawerClose = () => {
-    // setOpen(true);
     setIsSidebarOpen(!isSidebarOpen);
   };
 
@@ -58,34 +46,42 @@ const Sidebar = ({
     {
       text: "Home",
       icon: <HomeOutlinedIcon />,
+      link: `home?userId=${userId}`,
     },
     {
       text: "List",
       icon: <FormatListBulletedOutlinedIcon />,
+      link: `list?userId=${userId}`,
     },
     {
       text: "SantaSurprise",
       icon: <CardGiftcardOutlinedIcon />,
+      link: `santasurprise?userId=${userId}`,
     },
     {
       text: "Shop",
       icon: <LocalMallOutlinedIcon />,
+      link: `shop?userId=${userId}`,
     },
     {
       text: "Ecards",
       icon: <LocalPostOfficeOutlinedIcon />,
+      link: `ecards?userId=${userId}`,
     },
     {
       text: "Occations",
       icon: <PersonOutlineOutlinedIcon />,
+      link: `occations?userId=${userId}`,
     },
     {
       text: "My Gifts",
       icon: <EditCalendarOutlinedIcon />,
+      link: `mygifts?userId=${userId}`,
     },
     {
       text: "FAQ",
       icon: <HelpOutlineOutlinedIcon />,
+      link: `faq?userId=${userId}`,
     },
   ];
 
@@ -93,13 +89,9 @@ const Sidebar = ({
     setActive(pathname.substring(1));
   }, [pathname]);
 
-  const theme = useTheme();
-  const isMobileView = theme.breakpoints.down("sm");
-
   return (
     <>
       <Box component="nav">
-        {/* {isSidebarOpen && ( */}
         <Drawer
           open={isSidebarOpen}
           onClose={handleDrawerClose}
@@ -108,7 +100,6 @@ const Sidebar = ({
           sx={{
             width: drawerWidth,
             "& .MuiDrawer-paper": {
-              // color:
               boxSizing: "border-box",
               borderWidth: isNonMobile ? 0 : "2px",
               width: drawerWidth,
@@ -135,8 +126,9 @@ const Sidebar = ({
                 <ListItemButton
                   key={item.text}
                   onClick={() => {
-                    item.action && item.action();
-                    navigate(item.text.toLowerCase());
+                    // item.action && item.action();
+                    // navigate(item.text.toLowerCase());
+                    navigate(item.link);
                   }}
                   sx={{
                     backgroundColor:
@@ -243,7 +235,6 @@ const Sidebar = ({
             </List>
           </Box>
         </Drawer>
-        {/* )} */}
         {!isSidebarOpen && (
           <MenuIcon
             sx={{
@@ -251,6 +242,7 @@ const Sidebar = ({
               top: "1rem",
               left: "1rem",
               zIndex: 1,
+              color: "#C21010",
             }}
             onClick={() => setIsSidebarOpen(true)}
           />
