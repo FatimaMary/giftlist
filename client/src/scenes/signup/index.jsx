@@ -1,6 +1,5 @@
-import React, { useState, useEffect } from "react";
+import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
-import SignupValidation from "../../Components/SignupValidation";
 import {
   Box,
   Typography,
@@ -13,8 +12,7 @@ import {
   useMediaQuery,
 } from "@mui/material";
 import { createUserWithEmailAndPassword, updateProfile } from "firebase/auth";
-import { auth, db, storage } from "../../firebase";
-import { ref, uploadBytesResumable, getDownloadURL } from "firebase/storage";
+import { auth, db } from "../../firebase";
 import { doc, setDoc } from "firebase/firestore";
 import axios from "axios";
 import Navbar from "../../Components/Navbar";
