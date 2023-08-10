@@ -69,7 +69,7 @@ function EventView1() {
   };
 
   const handleSignup = () => {
-    navigate(`/signup?eventId=${eventId}`);
+    navigate(`/signup?eventId=${eventId}&participantsId=${participantsId}`);
   };
 
   const handleTabActive = (index) => {
