@@ -16,6 +16,7 @@ import EditEvent from "./scenes/eventview/editEvent";
 import Login1 from "./scenes/login1";
 import { MyContext } from "./Components/MyContext";
 import SantaSurprise from "./scenes/santasurprise";
+import Signup2 from "./scenes/signup2";
 
 function App() {
   const [isLoggedIn, setIsLoggedIn] = useState(false);
@@ -28,6 +29,7 @@ function App() {
           <Route path="/signup1" element={<Signup1 />} />
           <Route path="/login" element={<Login />} />
           <Route path="/login1" element={<Login1 />} />
+          <Route path="/signup2" element={<Signup2 />} />
           <Route path="/logout" element={<WelcomePage />} />
           <Route path="/*" element={<Layout />}>
             <Route path="eventcreate" element={<EventCreation />} />

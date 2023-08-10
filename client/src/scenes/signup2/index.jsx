@@ -1,41 +1,37 @@
-import React, { useState, useContext } from "react";
+import React, { useState } from "react";
+import { useNavigate, useSearchParams } from "react-router-dom";
 import {
   Box,
   Typography,
   TextField,
+  FormControl as Form,
   Button,
   createTheme,
   ThemeProvider,
   useTheme,
   useMediaQuery,
 } from "@mui/material";
-import { Link, useNavigate, useSearchParams } from "react-router-dom";
-import { signInWithEmailAndPassword } from "firebase/auth";
-import { auth } from "../../firebase";
-import Navbar from "../../Components/Navbar";
+import { createUserWithEmailAndPassword, updateProfile } from "firebase/auth";
+import { auth, db } from "../../firebase";
+import { doc, setDoc } from "firebase/firestore";
 import axios from "axios";
-import { MyContext } from "../../Components/MyContext";
+import Navbar from "../../Components/Navbar";
 
-function Login1() {
-  const navigate = useNavigate();
-  const [loginData, setLoginData] = useState({
+function Signup2() {
+  const [signupData, setSignupData] = useState({
     email: "",
     password: "",
   });
   const [errors, setErrors] = useState({});
-  const [searchParam] = useSearchParams();
-  const eventId = searchParam.get("eventId");
-  const participantsId = searchParam.get("participantsId");
-  const { isLoggedIn, setIsLoggedIn } = useContext(MyContext);
+  const [dataIsCorrect, setDataIsCorrect] = useState(false);
+  const navigate = useNavigate();
+  const [err, setErr] = useState(false);
+  const [loading, setLoading] = useState(false);
   const themes = useTheme();
   const isSmallScreen = useMediaQuery(themes.breakpoints.down("sm"));
-
-  const handleChange = (e) => {
-    setLoginData({
-      ...loginData,
-      [e.target.name]: e.target.value,
-    });
-  };
+  const [searchParam] = useSearchParams();
+  const participantsId = searchParam.get("participantsId");
+  const eventId = searchParam.get("eventId");
 
   const theme = createTheme({
     components: {
@@ -58,48 +54,88 @@ function Login1() {
     },
   });
 
-  const handleLogin = async (e) => {
+  const updateHandleChange = (e) => {
+    setSignupData({
+      ...signupData,
+      [e.target.name]: e.target.value,
+    });
+  };
+
+  const handleSubmit = async (e) => {
+    setLoading(true);
     e.preventDefault();
+    setDataIsCorrect(true);
+    console.log("button clicked");
     const validationErrors = {};
-    if (!loginData.email) {
+    if (!signupData.email) {
       validationErrors.email = "Email is required";
-    } else if (!/\S+@\S+\.\S+/.test(loginData.email)) {
+    } else if (!/\S+@\S+\.\S+/.test(signupData.email)) {
       validationErrors.email = "Email is invalid";
     }
 
-    if (!loginData.password) {
+    if (!signupData.password) {
       validationErrors.password = "Password is required";
-    } else if (loginData.password.length < 5) {
+    } else if (signupData.password.length < 5) {
       validationErrors.password = "Password must be more than 5 characters";
     }
 
     if (Object.keys(validationErrors).length > 0) {
       setErrors(validationErrors);
     } else {
-      signInWithEmailAndPassword(
+      createUserWithEmailAndPassword(
         auth,
-        loginData.email,
-        loginData.password
+        signupData.email,
+        signupData.password
       ).then(async (res) => {
-        console.log(res);
-        setIsLoggedIn(true);
-        axios
-          .put(`http://localhost:2309/player/${participantsId}`, {
-            participantsEmail: loginData.email,
-            userId: res.user.uid,
+        const user = res.user;
+        await updateProfile(user, {
+          displayName: signupData.name,
+        });
+        // create profile here
+        await setDoc(doc(db, "users", res.user.uid), {
+          uid: res.user.uid,
+          email: signupData.email,
+          password: signupData.password,
+        });
+        console.log("Register with firebase");
+
+        //Make the POST request to your API end point
+        fetch("http://localhost:2309/user/add", {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json",
+          },
+          body: JSON.stringify({
+            userId: user.uid,
+            email: signupData.email,
+            password: signupData.password,
+          }),
+        })
+          .then((response) => response.json())
+          .then((data) => {
+            console.log("data: ", data);
+            console.log("fetch id: ", data.userId);
+            axios
+              .put(`http://localhost:2309/player/${participantsId}`, {
+                participantsEmail: signupData.email,
+                userId: data.userId,
+              })
+              .then((response) => {
+                navigate(`/signup1?userId=${user.uid}`);
+                console.log("participants update response: ", response.data);
+              });
           })
-          .then((response) => {
-            console.log("participants update response: ", response.data);
-            navigate(`/eventview?eventId=${eventId}&userId=${res.user.uid}`);
-            setIsLoggedIn(true);
+          .catch((error) => {
+            console.log(error);
+            setErrors(error.message);
           });
       });
-      console.log("button clicked");
     }
   };
 
-  const handleSignup = () => {
-    navigate(`/signup2?participantsId=${participantsId}`);
+  const handleClick = () => {
+    console.log("Login Button Clicked");
+    navigate(`/login1?eventId=${eventId}&participantsId=${participantsId}`);
   };
 
   return (
@@ -107,14 +143,14 @@ function Login1() {
       <Navbar />
       <Box
         sx={{
-          backgroundColor: "#FFEAEA",
+          backgroundColor: "#CFE8A9",
           height: "85vh",
+          width: isSmallScreen ? "100%" : "100vw",
+          padding: isSmallScreen ? "20px" : "1.5rem 2.5rem",
           display: "flex",
           flexDirection: "column",
           justifyContent: "center",
           alignItems: "center",
-          width: isSmallScreen ? "100%" : "100vw",
-          padding: isSmallScreen ? "20px" : "1.5rem 2.5rem",
         }}
       >
         <Box
@@ -124,25 +160,27 @@ function Login1() {
             justifyContent: "center",
             backgroundColor: "white",
             border: "1px solid #CFE8A9",
-            width: isSmallScreen ? "100%" : "500px",
             borderRadius: "10px",
+            width: isSmallScreen ? "100%" : "500px",
           }}
-          color="black"
+          color="#C21010"
           m="1.5rem 2.5rem"
         >
           <Box mt={1.5} ml={2.5}>
+            <Typography variant="h5" fontWeight="bold" mb="15px">
+              Sign up for GiftList
+            </Typography>
             <Typography
-              variant="h5"
-              fontWeight="bold"
-              mb="15px"
+              variant="body1"
               sx={{
-                color: "#C21010",
+                opacity: "0.5",
+                fontSize: "1rem",
               }}
             >
-              Login to GiftList
+              It's quick and easy.
             </Typography>
           </Box>
-          <form onSubmit={handleLogin}>
+          <form onSubmit={handleSubmit}>
             <Box
               sx={{
                 display: "flex",
@@ -151,14 +189,7 @@ function Login1() {
               }}
             >
               <Box>
-                <Typography
-                  ml="1rem"
-                  mt="1.5rem"
-                  mb="0"
-                  sx={{
-                    color: "#C21010",
-                  }}
-                >
+                <Typography ml="1rem" mt="1.5rem" mb="0">
                   Email
                 </Typography>
                 <ThemeProvider theme={theme}>
@@ -175,52 +206,47 @@ function Login1() {
                     }}
                     type="email"
                     name="email"
-                    value={loginData.email}
-                    onChange={handleChange}
+                    value={signupData.email}
+                    onChange={updateHandleChange}
                     error={!!errors.email}
                     helperText={errors.email}
                   />
                 </ThemeProvider>
               </Box>
+
               <Box>
-                <Typography
-                  ml="1rem"
-                  mt="1.5rem"
-                  mb="0"
-                  sx={{
-                    color: "#C21010",
-                  }}
-                >
+                <Typography ml="1rem" mt="1.5rem" mb="0">
                   Password
                 </Typography>
                 <ThemeProvider theme={theme}>
                   <TextField
-                    placeholder="Enter your Password"
+                    placeholder="Create Password"
                     variant="outlined"
                     sx={{
                       ml: "1rem",
-                      width: isSmallScreen ? "80%" : "450px",
+                      width: "450px",
                       borderRadius: "10px",
                       "& .MuiOutlinedInput-root": {
                         height: "40px",
                       },
+                      width: isSmallScreen ? "80%" : "450px",
                     }}
                     type="password"
                     name="password"
-                    value={loginData.password}
-                    onChange={handleChange}
+                    value={signupData.password}
+                    onChange={updateHandleChange}
                     error={!!errors.password}
                     helperText={errors.password}
                   />
                 </ThemeProvider>
               </Box>
+              {/* {errors.password && <p className="error">{errors.password}</p>} */}
               <Box
                 sx={{
                   display: "flex",
                   justifyContent: "center",
                 }}
                 mb="15px"
-                mt="1rem"
               >
                 <Button
                   variant="contained"
@@ -234,15 +260,17 @@ function Login1() {
                     textTransform: "inherit",
                     fontWeight: "bold",
                     "&:hover": {
-                      backgroundColor: "#FFF",
+                      backgroundColor: "#fff",
                       color: "#C21010",
                       border: "1px solid #C21010",
                     },
+                    marginTop: "10px",
                   }}
                   type="submit"
                 >
                   Submit
                 </Button>
+                {err && <span>Something went wrong</span>}
               </Box>
             </Box>
           </form>
@@ -252,32 +280,16 @@ function Login1() {
               justifyContent: "center",
             }}
           >
-            <Button
-              sx={{
-                textTransform: "inherit",
-                fontSize: "1rem",
-                color: "red",
-              }}
-            >
-              Forgot Password?
-            </Button>
-          </Box>
-          <Box
-            sx={{
-              display: "flex",
-              justifyContent: "center",
-            }}
-          >
             <Typography>
-              Need to create an account?
+              Already have an account?
               <Button
                 sx={{
                   textTransform: "inherit",
                   fontSize: "1rem",
                 }}
-                onClick={handleSignup}
+                onClick={handleClick}
               >
-                Sign up
+                Login
               </Button>
             </Typography>
           </Box>
@@ -287,4 +299,4 @@ function Login1() {
   );
 }
 
-export default Login1;
+export default Signup2;
