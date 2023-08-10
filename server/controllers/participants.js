@@ -194,3 +194,17 @@ export const getParticipantsIdByUserId = (req, res) => {
     })
     .catch((err) => res.status(400).json({ message: err.message }));
 };
+
+export const deleteParticipants = (req, res) => {
+  const participantsId = req.params.participantsId;
+  Participants.findOneAndDelete({ participantsId: participantsId })
+    .then((deletedParticipant) => {
+      if (!deletedParticipant) {
+        return res.status(404).json({ error: "Participant not found" });
+      }
+      return res
+        .status(200)
+        .json({ message: "Participant deleted successfully" });
+    })
+    .catch((err) => res.status(400).json({ message: err.message }));
+};
