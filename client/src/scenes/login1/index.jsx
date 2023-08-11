@@ -102,6 +102,10 @@ function Login1() {
     navigate(`/signup2?participantsId=${participantsId}`);
   };
 
+  const handleClickPassword = () => {
+    navigate("/reset");
+  };
+
   return (
     <Box>
       <Navbar />
@@ -258,6 +262,7 @@ function Login1() {
                 fontSize: "1rem",
                 color: "red",
               }}
+              onClick={handleClickPassword}
             >
               Forgot Password?
             </Button>
