@@ -45,6 +45,11 @@ function EventView() {
 
   console.log("player user id: ", playerUserId);
 
+  const handleEventEdit = (editedEventData) => {
+    setEventDetails(editedEventData);
+    setEditPage(false);
+  };
+
   useEffect(() => {
     axios.get(`http://localhost:2309/event/get/${eventId}`).then((response) => {
       console.log("Get response: ", response);
@@ -992,6 +997,7 @@ function EventView() {
         open={editPage}
         onClose={() => setEditPage(false)}
         eventId={eventId}
+        onEdit={handleEventEdit}
       />
     </Box>
   );

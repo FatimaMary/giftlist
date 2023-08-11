@@ -134,7 +134,7 @@ export const editEvent = (req, res) => {
       event.details = req.body.details;
       event
         .save()
-        .then(() => res.json("Event Updated"))
+        .then((data) => res.json(data))
         .catch((err) => res.status(400).json("Error: " + err));
     })
     .catch((err) => res.status(400).json("Error: " + err));

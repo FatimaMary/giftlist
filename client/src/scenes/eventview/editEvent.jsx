@@ -17,7 +17,7 @@ import Delete from "./removeic.svg";
 import axios from "axios";
 import { useNavigate } from "react-router-dom";
 
-function EditEvent({ open, onClose, editPage, eventId }) {
+function EditEvent({ open, onClose, editPage, eventId, onEdit }) {
   const [eventName, setEventName] = useState();
   const [giftExchangeDate, setGiftExchangeDate] = useState();
   const [rsvpDate, setRsvpDate] = useState();
@@ -56,9 +56,10 @@ function EditEvent({ open, onClose, editPage, eventId }) {
         details: details,
       })
       .then((response) => {
-        console.log(response.data);
+        console.log("Edited data: ", response.data);
         onClose(editPage);
-        navigate(`/eventview?eventId=${eventId}`);
+        // navigate(`/eventview?eventId=${eventId}`);
+        onEdit(response.data);
       });
   };
 
