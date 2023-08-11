@@ -17,12 +17,16 @@ import Login1 from "./scenes/login1";
 import { MyContext } from "./Components/MyContext";
 import SantaSurprise from "./scenes/santasurprise";
 import Signup2 from "./scenes/signup2";
+import ForgotPassword from "./Components/ResetPassword";
+import { sendPasswordResetEmail } from "firebase/auth";
 
 function App() {
   const [isLoggedIn, setIsLoggedIn] = useState(false);
   return (
     <BrowserRouter>
-      <MyContext.Provider value={{ isLoggedIn, setIsLoggedIn }}>
+      <MyContext.Provider
+        value={{ isLoggedIn, setIsLoggedIn, sendPasswordResetEmail }}
+      >
         <Routes>
           <Route path="/" element={<WelcomePage />} />
           <Route path="/signup" element={<Signup />} />
@@ -30,6 +34,7 @@ function App() {
           <Route path="/login" element={<Login />} />
           <Route path="/login1" element={<Login1 />} />
           <Route path="/signup2" element={<Signup2 />} />
+          <Route path="/reset" element={<ForgotPassword />} />
           <Route path="/logout" element={<WelcomePage />} />
           <Route path="/*" element={<Layout />}>
             <Route path="eventcreate" element={<EventCreation />} />

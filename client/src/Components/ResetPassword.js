@@ -1,15 +1,17 @@
-import React, { useState } from "react";
-import { Box, Typography, TextField } from "@mui/material";
+import React, { useContext, useState } from "react";
+import { Box, Typography, TextField, Button } from "@mui/material";
 import { auth } from "../firebase";
+import { MyContext } from "./MyContext";
 
 function ForgotPassword() {
   const [email, setEmail] = useState("");
   const [resetError, setResetError] = useState(null);
   const [resetSuccess, setResetSuccess] = useState(false);
+  const { sendPasswordResetEmail } = useContext(MyContext);
 
   const handleForgotPassword = async () => {
     try {
-      await auth.sendPasswordResetEmail(email);
+      await sendPasswordResetEmail(auth, email);
       setResetError(null);
       setResetSuccess(true);
     } catch (error) {

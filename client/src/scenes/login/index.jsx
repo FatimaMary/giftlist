@@ -98,6 +98,10 @@ function Login() {
     navigate("/signup");
   };
 
+  const handleClickPassword = () => {
+    navigate("/reset");
+  };
+
   return (
     <Box>
       <Navbar />
@@ -254,6 +258,7 @@ function Login() {
                 fontSize: "1rem",
                 color: "red",
               }}
+              onClick={handleClickPassword}
             >
               Forgot Password?
             </Button>
