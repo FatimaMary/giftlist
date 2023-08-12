@@ -63,82 +63,6 @@ export const updateParticipant = (req, res) => {
     .catch((err) => res.status(400).json("Error: " + err));
 };
 
-// export const getDrawnNames = async (req, res) => {
-//   const eventId = req.params.eventId;
-//   try {
-//     const events = await Events.find({ eventId: eventId });
-//     if (events.length === 0) {
-//       return res.status(404).json({ message: "There are no event details" });
-//     }
-
-//     // const eventDetail = events.map((singleEvent) => singleEvent.userId);
-
-//     // const users = await Users.find({ userId: { $in: eventDetail } });
-//     // if (users.length === 0) {
-//     //   return res.status(404).json({ message: "No user found" });
-//     // }
-
-//     // const userDetail = users.map((user) => {
-//     //   return user.firstName;
-//     // });
-//     // console.log("userDetail: ", userDetail);
-
-//     const participants = await Participants.find({ eventId: eventId });
-
-//     const participantEmails = participants.map((participant) => {
-//       return participant.participantsEmail;
-//     });
-
-//     const usersWithEmail = await Users.find({
-//       email: { $in: participantEmails },
-//     });
-
-//     const participantsEmailsList = participants.map((participant) => {
-//       const user = usersWithEmail.find(
-//         (user) => user.email === participant.participantsEmail
-//       );
-
-//       return {
-//         // participantEmail: participant.participantsEmail,
-//         userName: user ? user.firstName + user.secondName : "Unknown",
-//       };
-//     });
-
-//     function shuffleArray(array) {
-//       for (let i = array.length - 1; i > 0; i--) {
-//         const j = Math.floor(Math.random() * (i + 1));
-//         [array[i], array[j]] = [array[j], array[i]];
-//       }
-//     }
-//     const names = participantsEmailsList.map(
-//       (participant) => participant.userName
-//     );
-//     const renames = names.push(`${userDetail}`);
-//     shuffleArray(renames);
-
-//     const pairings = names.map((giver, index) => ({
-//       giver,
-//       receiver: names[(index + 1) % names.length],
-//     }));
-
-//     const event = await Events.findOne({ eventId: eventId });
-//     if (!event) {
-//       return res.status(404).json({ message: "Event not found" });
-//     }
-//     event.drawNames = true;
-//     event.drawnNames = pairings;
-
-//     const savedEvent = await event.save();
-//     console.log("Parings saved: ", savedEvent.drawnNames);
-
-//     res.json(savedEvent.drawnNames);
-//   } catch (error) {
-//     res
-//       .status(500)
-//       .json({ error: "An error occurred while fetching participants." });
-//   }
-// };
-
 export const getDrawnNames = async (req, res) => {
   const eventId = req.params.eventId;
   try {
@@ -167,9 +91,6 @@ export const getDrawnNames = async (req, res) => {
         (user) => user.email === participant.participantsEmail
       );
 
-      // return {
-      //   userName: user ? user.firstName + " " + user.secondName : "Unknown",
-      // };
       let userName = "Unknown";
       if (user) {
         userName = user.firstName;
@@ -177,7 +98,6 @@ export const getDrawnNames = async (req, res) => {
           userName += " " + user.secondName;
         }
       }
-
       return {
         userName,
       };
