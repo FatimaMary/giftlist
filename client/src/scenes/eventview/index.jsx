@@ -42,12 +42,15 @@ function EventView() {
   const [productDetails, setProductDetails] = useState([]);
   const theme = useTheme();
   const isSmallScreen = useMediaQuery(theme.breakpoints.down("sm"));
+  const [rsvpDate, setRsvpDate] = useState(false);
 
   console.log("player user id: ", playerUserId);
 
   const handleEventEdit = (editedEventData) => {
     setEventDetails(editedEventData);
     setEditPage(false);
+    const editedRsvpDate = new Date(editedEventData.rsvpDate);
+    setRsvpDate(editedRsvpDate);
   };
 
   const handleProductAdded = () => {
@@ -61,10 +64,21 @@ function EventView() {
   };
 
   useEffect(() => {
+    const currentDate = new Date();
     axios.get(`http://localhost:2309/event/get/${eventId}`).then((response) => {
       console.log("Get response: ", response);
       console.log("Get response data: ", response.data);
       setEventDetails(response.data);
+      if (response.data.rsvpDate && currentDate) {
+        const rsvpDate = new Date(response.data.rsvpDate);
+        const isRSVPDatePassed = currentDate > rsvpDate;
+        setRsvpDate(isRSVPDatePassed);
+        console.log("rsvp passed: ", isRSVPDatePassed);
+      }
+      // const rsvpDate = new Date(response.data.rsvpDate);
+      // const isRSVPDatePassed = currentDate > rsvpDate;
+      // setRsvpDate(isRSVPDatePassed);
+      // console.log("rsvp passed: ", isRSVPDatePassed);
       setIsButtonDisabled(response.data.drawNames);
       if (response.data.drawNames === true) {
         axios
@@ -124,8 +138,12 @@ function EventView() {
       .then((response) => {
         console.log("drawn names response: ", response.data);
         setDrawnNames(response.data);
+        setIsButtonDisabled(true);
       });
   };
+
+  const isDrawButtonVisible = rsvpDate && players.length >= 3;
+  console.log("Draw button state: ", isDrawButtonVisible);
   return (
     <Box backgroundColor="#FFEAEA" width="100vw" p="50px 30px 33px 30px">
       <Box
@@ -182,36 +200,35 @@ function EventView() {
                   justifyContent: "flex-end",
                 }}
               >
-                <Button
-                  sx={{
-                    marginRight: "12px",
-                    padding: "8px 15px",
-                    fontWeight: 600,
-                    fontSize: "13px",
-                    lineHeight: "18px",
-                    borderRadius: "5px",
-                    display: "flex",
-                    alignItems: "center",
-                    background: "#C21010",
-                    color: "#fff",
-                    border: "1px solid #C21010",
-                    textTransform: "inherit",
-                    "&:hover": {
-                      color: "#C21010",
-                    },
-                  }}
-                  onClick={() => setInvitePage(true)}
-                >
-                  {isSmallScreen ? (
-                    <ShareOutlinedIcon
-                      sx={{
-                        width: "16px",
-                        height: "16px",
-                        marginRight: "5px",
-                      }}
-                    />
-                  ) : (
-                    <>
+                {rsvpDate ? (
+                  <Button
+                    sx={{
+                      marginRight: "12px",
+                      padding: "8px 15px",
+                      fontWeight: 600,
+                      fontSize: "13px",
+                      lineHeight: "18px",
+                      borderRadius: "5px",
+                      display: "flex",
+                      alignItems: "center",
+                      background: "#C21010",
+                      color: "#fff",
+                      border: "1px solid #C21010",
+                      textTransform: "inherit",
+                      "&:hover": {
+                        color: "#C21010",
+                      },
+                      "&: disabled": {
+                        color: "black",
+                        border: "1px solid black",
+                        background: "none",
+                        opacity: 0.5,
+                      },
+                    }}
+                    onClick={() => setInvitePage(true)}
+                    disabled
+                  >
+                    {isSmallScreen ? (
                       <ShareOutlinedIcon
                         sx={{
                           width: "16px",
@@ -219,10 +236,62 @@ function EventView() {
                           marginRight: "5px",
                         }}
                       />
-                      Invite{" "}
-                    </>
-                  )}
-                </Button>
+                    ) : (
+                      <>
+                        <ShareOutlinedIcon
+                          sx={{
+                            width: "16px",
+                            height: "16px",
+                            marginRight: "5px",
+                          }}
+                        />
+                        Invite{" "}
+                      </>
+                    )}
+                  </Button>
+                ) : (
+                  <Button
+                    sx={{
+                      marginRight: "12px",
+                      padding: "8px 15px",
+                      fontWeight: 600,
+                      fontSize: "13px",
+                      lineHeight: "18px",
+                      borderRadius: "5px",
+                      display: "flex",
+                      alignItems: "center",
+                      background: "#C21010",
+                      color: "#fff",
+                      border: "1px solid #C21010",
+                      textTransform: "inherit",
+                      "&:hover": {
+                        color: "#C21010",
+                      },
+                    }}
+                    onClick={() => setInvitePage(true)}
+                  >
+                    {isSmallScreen ? (
+                      <ShareOutlinedIcon
+                        sx={{
+                          width: "16px",
+                          height: "16px",
+                          marginRight: "5px",
+                        }}
+                      />
+                    ) : (
+                      <>
+                        <ShareOutlinedIcon
+                          sx={{
+                            width: "16px",
+                            height: "16px",
+                            marginRight: "5px",
+                          }}
+                        />
+                        Invite{" "}
+                      </>
+                    )}
+                  </Button>
+                )}
                 <Button
                   sx={{
                     marginRight: "12px",
@@ -378,7 +447,7 @@ function EventView() {
             <Box>
               {eventDetails.userId !== playerUserId ? null : (
                 <>
-                  {players.length <= 2 ? (
+                  {!isDrawButtonVisible ? (
                     <>
                       <Button
                         sx={{
@@ -397,7 +466,7 @@ function EventView() {
                           "&:hover": {
                             color: "#C21010",
                           },
-                          "&: disabled": {
+                          "&:disabled": {
                             color: "black",
                             border: "1px solid black",
                             background: "none",
@@ -406,6 +475,7 @@ function EventView() {
                         }}
                         onClick={handleDrawNames}
                         disabled
+                        // onEdit={handleEventEdit}
                       >
                         Draw Names
                       </Button>{" "}
