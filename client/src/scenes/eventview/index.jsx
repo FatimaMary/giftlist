@@ -47,10 +47,11 @@ function EventView() {
   console.log("player user id: ", playerUserId);
 
   const handleEventEdit = (editedEventData) => {
-    setEventDetails(editedEventData);
-    setEditPage(false);
+    console.log("Edited event Data: ", editedEventData);
     const editedRsvpDate = new Date(editedEventData.rsvpDate);
     setRsvpDate(editedRsvpDate);
+    setEventDetails(editedEventData);
+    setEditPage(false);
   };
 
   const handleProductAdded = () => {
@@ -75,10 +76,6 @@ function EventView() {
         setRsvpDate(isRSVPDatePassed);
         console.log("rsvp passed: ", isRSVPDatePassed);
       }
-      // const rsvpDate = new Date(response.data.rsvpDate);
-      // const isRSVPDatePassed = currentDate > rsvpDate;
-      // setRsvpDate(isRSVPDatePassed);
-      // console.log("rsvp passed: ", isRSVPDatePassed);
       setIsButtonDisabled(response.data.drawNames);
       if (response.data.drawNames === true) {
         axios
@@ -86,7 +83,8 @@ function EventView() {
           .then((res) => {
             console.log("User Name by userId: ", res.data);
             const filteredNames = response.data.drawnNames.filter(
-              (name) => name.giver === res.data.firstName
+              (name) =>
+                name.giver === res.data.firstName + " " + res.data.secondName
             );
             console.log("filtered Names: ", filteredNames);
             if (filteredNames.length > 0) {
