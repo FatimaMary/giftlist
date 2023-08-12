@@ -22,10 +22,15 @@ import { sendPasswordResetEmail } from "firebase/auth";
 
 function App() {
   const [isLoggedIn, setIsLoggedIn] = useState(false);
+
   return (
     <BrowserRouter>
       <MyContext.Provider
-        value={{ isLoggedIn, setIsLoggedIn, sendPasswordResetEmail }}
+        value={{
+          isLoggedIn,
+          setIsLoggedIn,
+          sendPasswordResetEmail,
+        }}
       >
         <Routes>
           <Route path="/" element={<WelcomePage />} />

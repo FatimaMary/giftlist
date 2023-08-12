@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React, { useContext, useEffect, useState } from "react";
 import {
   Box,
   Typography,
@@ -14,7 +14,7 @@ import AddCircleOutlineIcon from "@mui/icons-material/AddCircleOutline";
 import axios from "axios";
 import Gift from "./gift.png";
 
-function MyWishes({ eventId, userId }) {
+function MyWishes({ eventId, userId, onProductAdded }) {
   const [productUrl, setProductUrl] = useState();
   const [participantsId, setParticipantsId] = useState(0);
   const [productDetails, setProductDetails] = useState([]);
@@ -101,6 +101,7 @@ function MyWishes({ eventId, userId }) {
           ...previousProductDetails,
           newProductDetails,
         ]);
+        onProductAdded();
       });
   };
 
@@ -201,7 +202,6 @@ function MyWishes({ eventId, userId }) {
               >
                 <CardMedia
                   component="img"
-                  // height="140"
                   image={Gift}
                   alt="Image Description"
                   sx={{

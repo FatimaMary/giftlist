@@ -11,7 +11,7 @@ import Avatar from "@mui/material/Avatar";
 import ShareOutlinedIcon from "@mui/icons-material/ShareOutlined";
 import EditCalendarOutlinedIcon from "@mui/icons-material/EditCalendarOutlined";
 import axios from "axios";
-import { useNavigate, useSearchParams } from "react-router-dom";
+import { useSearchParams } from "react-router-dom";
 import CheckCircleOutlineIcon from "@mui/icons-material/CheckCircleOutline";
 import CancelOutlinedIcon from "@mui/icons-material/CancelOutlined";
 import Mail from "./mail12.svg";
@@ -50,13 +50,22 @@ function EventView() {
     setEditPage(false);
   };
 
+  const handleProductAdded = () => {
+    // Fetch the updated product details and update the state
+    axios
+      .get(`http://localhost:2309/product/all/${participantsId}`)
+      .then((res) => {
+        console.log("Updated Product Details: ", res.data);
+        setProductDetails(res.data);
+      });
+  };
+
   useEffect(() => {
     axios.get(`http://localhost:2309/event/get/${eventId}`).then((response) => {
       console.log("Get response: ", response);
       console.log("Get response data: ", response.data);
       setEventDetails(response.data);
       setIsButtonDisabled(response.data.drawNames);
-      // console.log("Event Details value: ", eventDetails);
       if (response.data.drawNames === true) {
         axios
           .get(`http://localhost:2309/user/get/${playerUserId}`)
@@ -150,7 +159,6 @@ function EventView() {
               alignItems: "center",
               justifyContent: "space-between",
               marginBottom: "15px",
-              // flexDirection: isSmallScreen ? "column" : "row",
             }}
           >
             <Typography
@@ -339,8 +347,6 @@ function EventView() {
               />
               <Box
                 sx={{
-                  // flexBasis: 'calc(100% - 48px)',
-                  // maxWidth: 'calc(100% - 48px)',
                   paddingLeft: "12px",
                 }}
               >
@@ -722,7 +728,6 @@ function EventView() {
                   lineHeight: "18px",
                   color: "#5e6577",
                   display: "flex",
-                  // gap: '5px'
                 }}
               >
                 <img
@@ -732,7 +737,6 @@ function EventView() {
                 <Box>
                   <Typography
                     sx={{
-                      // marginBottom: '2px',
                       fontWeight: 600,
                       fontSize: "13px",
                       color: "#101a34",
@@ -800,7 +804,6 @@ function EventView() {
                       width: "17px",
                       height: "17px",
                       marginRight: "5px",
-                      // background: '#C21010',
                       filter: "hue-rotate(180deg)",
                     }}
                   />
@@ -873,7 +876,6 @@ function EventView() {
                   sx={{
                     paddingBottom: "16px",
                     marginBottom: "16px",
-                    // borderBottom: '1px solid #e8ecf1',
                     display: "flex",
                     flexWrap: "wrap",
                     alignItems: "center",
@@ -980,7 +982,11 @@ function EventView() {
       )}
       {activeTab === 3 && (
         <Box>
-          <MyWishes eventId={eventId} userId={playerUserId} />
+          <MyWishes
+            eventId={eventId}
+            userId={playerUserId}
+            onProductAdded={handleProductAdded}
+          />
         </Box>
       )}
       <Footer />
