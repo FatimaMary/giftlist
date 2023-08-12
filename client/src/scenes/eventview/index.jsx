@@ -43,6 +43,8 @@ function EventView() {
   const theme = useTheme();
   const isSmallScreen = useMediaQuery(theme.breakpoints.down("sm"));
   const [rsvpDate, setRsvpDate] = useState(false);
+  const currentDate = new Date();
+  const [giver, setGiver] = useState([]);
 
   console.log("player user id: ", playerUserId);
 
@@ -65,7 +67,7 @@ function EventView() {
   };
 
   useEffect(() => {
-    const currentDate = new Date();
+    // const currentDate = new Date();
     axios.get(`http://localhost:2309/event/get/${eventId}`).then((response) => {
       console.log("Get response: ", response);
       console.log("Get response data: ", response.data);
@@ -748,24 +750,6 @@ function EventView() {
                 )}
                 Add to your wish list
               </Typography>
-              <Typography
-                sx={{
-                  display: "flex",
-                  gap: "5px",
-                  alignItems: "center",
-                  flexWrap: "wrap",
-                  marginBottom: "10px",
-                }}
-              >
-                <CancelOutlinedIcon
-                  sx={{
-                    color: "red",
-                    width: "18px",
-                    height: "18px",
-                  }}
-                />
-                Update your gift delivery perference
-              </Typography>
             </Box>
           </Box>
           <Box
@@ -837,46 +821,6 @@ function EventView() {
                     </>
                   )}
                 </Box>
-              </Box>
-              <Box
-                sx={{
-                  flexBasis: "125px",
-                  maxWidth: "125px",
-                }}
-              >
-                <Button
-                  sx={{
-                    marginBottom: 0,
-                    color: "#C21010",
-                    background: "#fafbfd",
-                    border: "1px solid #cad3dd",
-                    padding: "8px 12px",
-                    fontWeight: 600,
-                    fontSize: "12px",
-                    lineHeight: "18px",
-                    borderRadius: "5px",
-                    display: "flex",
-                    alignItems: "center",
-                    justifyContent: "center",
-                    marginLeft: "auto",
-                    whiteSpace: "nowrap",
-                    "&:hover": {
-                      cursor: "pointer",
-                    },
-                    textTransform: "inherit",
-                  }}
-                >
-                  <img
-                    src={Edit}
-                    style={{
-                      width: "17px",
-                      height: "17px",
-                      marginRight: "5px",
-                      filter: "hue-rotate(180deg)",
-                    }}
-                  />
-                  Edit RSVP
-                </Button>
               </Box>
             </Box>
             {eventDetails.confirmation === true ? (
@@ -989,46 +933,6 @@ function EventView() {
                         {eventDetails.giftExchangeDate}
                       </Typography>
                     </Box>
-                  </Box>
-                  <Box
-                    sx={{
-                      flexBasis: "125px",
-                      maxWidth: "125px",
-                    }}
-                  >
-                    <Button
-                      sx={{
-                        marginBottom: 0,
-                        color: "#C21010",
-                        background: "#fafbfd",
-                        border: "1px solid #cad3dd",
-                        padding: "8px 12px",
-                        fontWeight: 600,
-                        fontSize: "12px",
-                        lineHeight: "18px",
-                        borderRadius: "5px",
-                        display: "flex",
-                        alignItems: "center",
-                        justifyContent: "center",
-                        marginLeft: "auto",
-                        whiteSpace: "nowrap",
-                        "&:hover": {
-                          cursor: "pointer",
-                        },
-                        textTransform: "inherit",
-                      }}
-                    >
-                      <img
-                        src={Edit}
-                        style={{
-                          width: "17px",
-                          height: "17px",
-                          marginRight: "5px",
-                          filter: "hue-rotate(180deg)",
-                        }}
-                      />
-                      Gift Delivery
-                    </Button>
                   </Box>
                 </Box>{" "}
               </>

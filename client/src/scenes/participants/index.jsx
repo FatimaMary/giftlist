@@ -227,6 +227,7 @@ function Participants() {
                 marginBottom: "16px",
                 fontWeight: 600,
                 color: "#101a34",
+                marginTop: isSmallScreen ? "20px" : 0,
               }}
             >
               Partcipating
@@ -239,16 +240,19 @@ function Participants() {
                   paddingBottom: "12px",
                   marginBottom: "12px",
                   display: "flex",
-                  flexWrap: "wrap",
+                  // flexWrap: "wrap",
                   alignItems: "center",
-                  justifyContent: "space-between",
-                  flexDirection: isSmallScreen ? "column" : "row",
+                  justifyContent: isSmallScreen
+                    ? "space-between"
+                    : "space-between",
+                  flexDirection: "row",
                   width: isSmallScreen ? "100%" : "auto",
                 }}
               >
                 <Box
                   sx={{
                     display: "flex",
+                    // maxWidth: isSmallScreen ? "75%" : "initial",
                   }}
                 >
                   <Box>
@@ -299,14 +303,7 @@ function Participants() {
                     </Typography>
                   </Box>
                 </Box>
-                <Box
-                  sx={{
-                    display: isSmallScreen ? "flex" : "initial",
-                    width: isSmallScreen ? "100%" : "initial",
-                    justifyContent: isSmallScreen ? "flex-start" : "initial",
-                    alignItems: isSmallScreen ? "center" : "initial",
-                  }}
-                >
+                <>
                   <Button
                     disabled={
                       !productDetails[index] ||
@@ -349,53 +346,7 @@ function Participants() {
                   >
                     {isSmallScreen ? "view" : "View Wishes"}
                   </Button>
-                  <Button
-                    sx={{
-                      padding: isSmallScreen ? "5px 7px" : "14px 15px",
-                      fontSize: isSmallScreen ? "10px" : "13px",
-                      lineHeight: "18px",
-                      background: "#fafbfd",
-                      borderRadius: "7px",
-                      fontWeight: "7px",
-                      color: "#C21010",
-                      // display: "inline-block",
-                      // justifyContent: 'center',
-                      border: "1px solid #C21010",
-                      "&:hover": {
-                        cursor: "pointer",
-                      },
-                      textTransform: "inherit",
-                    }}
-                  >
-                    {isSmallScreen ? (
-                      <>
-                        <img
-                          src={Edit}
-                          style={{
-                            width: "17px",
-                            height: "17px",
-                            marginRight: "5px",
-                            filter: "hue-rotate(180deg)",
-                          }}
-                        />
-                        Edit
-                      </>
-                    ) : (
-                      <>
-                        <img
-                          src={Edit}
-                          style={{
-                            width: "17px",
-                            height: "17px",
-                            marginRight: "5px",
-                            filter: "hue-rotate(180deg)",
-                          }}
-                        />
-                        Edit RSVP
-                      </>
-                    )}
-                  </Button>
-                </Box>
+                </>
               </Box>
             ))}{" "}
           </>
