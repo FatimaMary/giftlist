@@ -45,6 +45,7 @@ function EventView() {
   const [rsvpDate, setRsvpDate] = useState(false);
   const currentDate = new Date();
   const [giver, setGiver] = useState([]);
+  const [Status, setStatus] = useState(false);
 
   console.log("player user id: ", playerUserId);
 
@@ -138,7 +139,7 @@ function EventView() {
       .then((response) => {
         console.log("drawn names response: ", response.data);
         setDrawnNames(response.data);
-        setIsButtonDisabled(true);
+        setStatus(true);
       });
   };
 
@@ -703,7 +704,7 @@ function EventView() {
                   marginBottom: "10px",
                 }}
               >
-                {!isButtonDisabled ? (
+                {Status === false ? (
                   <CancelOutlinedIcon
                     sx={{
                       color: "red",
