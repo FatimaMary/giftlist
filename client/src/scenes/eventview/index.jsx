@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React, { useContext, useEffect, useState } from "react";
 import {
   Box,
   Typography,
@@ -24,6 +24,7 @@ import Invite from "../success/invite";
 import EditEvent from "./editEvent";
 import MyWishes from "../mywishes";
 import Messages from "../messages";
+import { MyContext } from "../../Components/MyContext";
 
 function EventView() {
   const [eventDetails, setEventDetails] = useState({});
@@ -45,7 +46,7 @@ function EventView() {
   const [rsvpDate, setRsvpDate] = useState(false);
   const currentDate = new Date();
   const [giver, setGiver] = useState([]);
-  const [Status, setStatus] = useState(false);
+  const { drawStatus, setDrawStatus } = useContext(MyContext);
 
   console.log("player user id: ", playerUserId);
 
@@ -87,7 +88,9 @@ function EventView() {
             console.log("User Name by userId: ", res.data);
             const filteredNames = response.data.drawnNames.filter(
               (name) =>
-                name.giver === res.data.firstName + " " + res.data.secondName
+                name.giver ===
+                res.data.firstName +
+                  (res.data.secondName ? " " + res.data.secondName : "")
             );
             console.log("filtered Names: ", filteredNames);
             if (filteredNames.length > 0) {
@@ -123,6 +126,40 @@ function EventView() {
       });
   }, []);
 
+  useEffect(() => {
+    axios.get(`http://localhost:2309/event/get/${eventId}`).then((response) => {
+      console.log("Get response: ", response);
+      console.log("Get response data: ", response.data);
+      setEventDetails(response.data);
+      if (response.data.rsvpDate && currentDate) {
+        const rsvpDate = new Date(response.data.rsvpDate);
+        const isRSVPDatePassed = currentDate > rsvpDate;
+        setRsvpDate(isRSVPDatePassed);
+        console.log("rsvp passed: ", isRSVPDatePassed);
+      }
+      setIsButtonDisabled(response.data.drawNames);
+      if (response.data.drawNames === true) {
+        axios
+          .get(`http://localhost:2309/user/get/${playerUserId}`)
+          .then((res) => {
+            console.log("User Name by userId: ", res.data);
+            const filteredNames = response.data.drawnNames.filter(
+              (name) =>
+                name.giver ===
+                res.data.firstName +
+                  (res.data.secondName ? " " + res.data.secondName : "")
+            );
+            console.log("filtered Names: ", filteredNames);
+            if (filteredNames.length > 0) {
+              console.log("Receiver: ", filteredNames[0].receiver);
+              const receiverName = filteredNames[0].receiver;
+              setReceiver(receiverName);
+            }
+          });
+      }
+    });
+  }, [drawStatus]);
+
   function stringAvatar(name) {
     return {
       children: `${name.split(" ")[0][0]}`,
@@ -139,7 +176,7 @@ function EventView() {
       .then((response) => {
         console.log("drawn names response: ", response.data);
         setDrawnNames(response.data);
-        setStatus(true);
+        setDrawStatus(true);
       });
   };
 
@@ -293,37 +330,36 @@ function EventView() {
                     )}
                   </Button>
                 )}
-                <Button
-                  sx={{
-                    marginRight: "12px",
-                    padding: "8px 15px",
-                    fontWeight: 600,
-                    fontSize: "13px",
-                    lineHeight: "18px",
-                    borderRadius: "5px",
-                    display: "flex",
-                    alignItems: "center",
-                    background: "#fafbfd",
-                    color: "#101a34",
-                    border: "1px solid #cad3dd",
-                    textTransform: "inherit",
-                    "&:hover": {
-                      color: "#C21010",
-                      border: "1px solid #C21010",
-                    },
-                  }}
-                  onClick={() => setEditPage(true)}
-                >
-                  {isSmallScreen ? (
-                    <EditCalendarOutlinedIcon
-                      sx={{
-                        width: "16px",
-                        height: "16px",
-                        marginRight: "5px",
-                      }}
-                    />
-                  ) : (
-                    <>
+                {rsvpDate ? (
+                  <Button
+                    sx={{
+                      marginRight: "12px",
+                      padding: "8px 15px",
+                      fontWeight: 600,
+                      fontSize: "13px",
+                      lineHeight: "18px",
+                      borderRadius: "5px",
+                      display: "flex",
+                      alignItems: "center",
+                      background: "#fafbfd",
+                      color: "#101a34",
+                      border: "1px solid #cad3dd",
+                      textTransform: "inherit",
+                      "&:hover": {
+                        color: "#C21010",
+                        border: "1px solid #C21010",
+                      },
+                      "&: disabled": {
+                        color: "black",
+                        border: "1px solid black",
+                        background: "none",
+                        opacity: 0.5,
+                      },
+                    }}
+                    onClick={() => setEditPage(true)}
+                    disabled
+                  >
+                    {isSmallScreen ? (
                       <EditCalendarOutlinedIcon
                         sx={{
                           width: "16px",
@@ -331,10 +367,63 @@ function EventView() {
                           marginRight: "5px",
                         }}
                       />
-                      Edit
-                    </>
-                  )}
-                </Button>
+                    ) : (
+                      <>
+                        <EditCalendarOutlinedIcon
+                          sx={{
+                            width: "16px",
+                            height: "16px",
+                            marginRight: "5px",
+                          }}
+                        />
+                        Edit
+                      </>
+                    )}
+                  </Button>
+                ) : (
+                  <Button
+                    sx={{
+                      marginRight: "12px",
+                      padding: "8px 15px",
+                      fontWeight: 600,
+                      fontSize: "13px",
+                      lineHeight: "18px",
+                      borderRadius: "5px",
+                      display: "flex",
+                      alignItems: "center",
+                      background: "#fafbfd",
+                      color: "#101a34",
+                      border: "1px solid #cad3dd",
+                      textTransform: "inherit",
+                      "&:hover": {
+                        color: "#C21010",
+                        border: "1px solid #C21010",
+                      },
+                    }}
+                    onClick={() => setEditPage(true)}
+                  >
+                    {isSmallScreen ? (
+                      <EditCalendarOutlinedIcon
+                        sx={{
+                          width: "16px",
+                          height: "16px",
+                          marginRight: "5px",
+                        }}
+                      />
+                    ) : (
+                      <>
+                        <EditCalendarOutlinedIcon
+                          sx={{
+                            width: "16px",
+                            height: "16px",
+                            marginRight: "5px",
+                          }}
+                        />
+                        Edit
+                      </>
+                    )}
+                  </Button>
+                )}
               </Box>
             )}
           </Box>
@@ -476,7 +565,6 @@ function EventView() {
                         }}
                         onClick={handleDrawNames}
                         disabled
-                        // onEdit={handleEventEdit}
                       >
                         Draw Names
                       </Button>{" "}
@@ -704,7 +792,7 @@ function EventView() {
                   marginBottom: "10px",
                 }}
               >
-                {Status === false ? (
+                {drawStatus === false ? (
                   <CancelOutlinedIcon
                     sx={{
                       color: "red",

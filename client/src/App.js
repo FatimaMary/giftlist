@@ -22,6 +22,7 @@ import { sendPasswordResetEmail } from "firebase/auth";
 
 function App() {
   const [isLoggedIn, setIsLoggedIn] = useState(false);
+  const [drawStatus, setDrawStatus] = useState(false);
 
   return (
     <BrowserRouter>
@@ -30,6 +31,8 @@ function App() {
           isLoggedIn,
           setIsLoggedIn,
           sendPasswordResetEmail,
+          drawStatus,
+          setDrawStatus,
         }}
       >
         <Routes>
