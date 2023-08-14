@@ -43,46 +43,46 @@ const Sidebar = ({
   };
 
   const navItems = [
-    {
-      text: "Home",
-      icon: <HomeOutlinedIcon />,
-      link: `home?userId=${userId}`,
-    },
-    {
-      text: "List",
-      icon: <FormatListBulletedOutlinedIcon />,
-      link: `list?userId=${userId}`,
-    },
+    // {
+    //   text: "Home",
+    //   icon: <HomeOutlinedIcon />,
+    //   link: `home?userId=${userId}`,
+    // },
+    // {
+    //   text: "List",
+    //   icon: <FormatListBulletedOutlinedIcon />,
+    //   link: `list?userId=${userId}`,
+    // },
     {
       text: "SantaSurprise",
       icon: <CardGiftcardOutlinedIcon />,
       link: `santasurprise?userId=${userId}`,
     },
-    {
-      text: "Shop",
-      icon: <LocalMallOutlinedIcon />,
-      link: `shop?userId=${userId}`,
-    },
-    {
-      text: "Ecards",
-      icon: <LocalPostOfficeOutlinedIcon />,
-      link: `ecards?userId=${userId}`,
-    },
-    {
-      text: "Occations",
-      icon: <PersonOutlineOutlinedIcon />,
-      link: `occations?userId=${userId}`,
-    },
+    // {
+    //   text: "Shop",
+    //   icon: <LocalMallOutlinedIcon />,
+    //   link: `shop?userId=${userId}`,
+    // },
+    // {
+    //   text: "Ecards",
+    //   icon: <LocalPostOfficeOutlinedIcon />,
+    //   link: `ecards?userId=${userId}`,
+    // },
+    // {
+    //   text: "Occations",
+    //   icon: <PersonOutlineOutlinedIcon />,
+    //   link: `occations?userId=${userId}`,
+    // },
     {
       text: "My Gifts",
       icon: <EditCalendarOutlinedIcon />,
       link: `mygifts?userId=${userId}`,
     },
-    {
-      text: "FAQ",
-      icon: <HelpOutlineOutlinedIcon />,
-      link: `faq?userId=${userId}`,
-    },
+    // {
+    //   text: "FAQ",
+    //   icon: <HelpOutlineOutlinedIcon />,
+    //   link: `faq?userId=${userId}`,
+    // },
   ];
 
   useEffect(() => {
