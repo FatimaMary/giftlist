@@ -47,6 +47,7 @@ function EventView() {
   const currentDate = new Date();
   const [giver, setGiver] = useState([]);
   const { drawStatus, setDrawStatus } = useContext(MyContext);
+  const [eventDatePassed, setEventDatePassed] = useState(false);
 
   console.log("player user id: ", playerUserId);
 
@@ -80,23 +81,41 @@ function EventView() {
         setRsvpDate(isRSVPDatePassed);
         console.log("rsvp passed: ", isRSVPDatePassed);
       }
+      if (response.data.giftExchangeDate && currentDate) {
+        const eventDate = new Date(response.data.giftExchangeDate);
+        const isEventDatePassed = currentDate > eventDate;
+        setEventDatePassed(isEventDatePassed);
+        console.log("Event Date Passed: ", isEventDatePassed);
+      }
       setIsButtonDisabled(response.data.drawNames);
       if (response.data.drawNames === true) {
         axios
           .get(`http://localhost:2309/user/get/${playerUserId}`)
           .then((res) => {
             console.log("User Name by userId: ", res.data);
-            const filteredNames = response.data.drawnNames.filter(
-              (name) =>
-                name.giver ===
-                res.data.firstName +
-                  (res.data.secondName ? " " + res.data.secondName : "")
+            const userFullName =
+              res.data.firstName +
+              (res.data.secondName ? " " + res.data.secondName : "");
+
+            // Filter drawnNames to find receiver and giver names
+            const receiverFilteredNames = response.data.drawnNames.filter(
+              (name) => name.giver === userFullName
             );
-            console.log("filtered Names: ", filteredNames);
-            if (filteredNames.length > 0) {
-              console.log("Receiver: ", filteredNames[0].receiver);
-              const receiverName = filteredNames[0].receiver;
+            const giverFilteredNames = response.data.drawnNames.filter(
+              (name) => name.receiver === userFullName
+            );
+
+            // Update state if names are found
+            if (receiverFilteredNames.length > 0) {
+              console.log("Receiver: ", receiverFilteredNames[0].receiver);
+              const receiverName = receiverFilteredNames[0].receiver;
               setReceiver(receiverName);
+            }
+
+            if (giverFilteredNames.length > 0) {
+              console.log("Giver: ", giverFilteredNames[0].giver);
+              const giverName = giverFilteredNames[0].giver;
+              setGiver(giverName);
             }
           });
       }
@@ -131,12 +150,6 @@ function EventView() {
       console.log("Get response: ", response);
       console.log("Get response data: ", response.data);
       setEventDetails(response.data);
-      if (response.data.rsvpDate && currentDate) {
-        const rsvpDate = new Date(response.data.rsvpDate);
-        const isRSVPDatePassed = currentDate > rsvpDate;
-        setRsvpDate(isRSVPDatePassed);
-        console.log("rsvp passed: ", isRSVPDatePassed);
-      }
       setIsButtonDisabled(response.data.drawNames);
       if (response.data.drawNames === true) {
         axios
@@ -1011,16 +1024,20 @@ function EventView() {
                       >
                         Your gift giver:
                       </Typography>
-                      <Typography
-                        sx={{
-                          marginBottom: 0,
-                          fontSize: "13px",
-                        }}
-                      >
-                        Your gift giver will be revealed after the gift exchange
-                        date set by the event organizer on{" "}
-                        {eventDetails.giftExchangeDate}
-                      </Typography>
+                      {!eventDatePassed ? (
+                        <>{giver}</>
+                      ) : (
+                        <Typography
+                          sx={{
+                            marginBottom: 0,
+                            fontSize: "13px",
+                          }}
+                        >
+                          Your gift giver will be revealed after the gift
+                          exchange date set by the event organizer on{" "}
+                          {eventDetails.giftExchangeDate}
+                        </Typography>
+                      )}
                     </Box>
                   </Box>
                 </Box>{" "}
