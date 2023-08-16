@@ -809,18 +809,18 @@ function EventView() {
               >
                 {eventDetails.userId !== playerUserId ? (
                   <>
-                    {eventDetails.drawStatus === false ? (
-                      <CancelOutlinedIcon
+                    {eventDetails.drawStatus ? (
+                      <CheckCircleOutlineIcon
                         sx={{
-                          color: "red",
+                          color: "green",
                           width: "18px",
                           height: "18px",
                         }}
                       />
                     ) : (
-                      <CheckCircleOutlineIcon
+                      <CancelOutlinedIcon
                         sx={{
-                          color: "green",
+                          color: "red",
                           width: "18px",
                           height: "18px",
                         }}
