@@ -363,6 +363,8 @@ function EventCreation() {
                     width: "100%",
                     gap: "10px",
                     marginLeft: "10px",
+                    flexDirection: isSmallScreen ? "column" : "row",
+                    alignItems: isSmallScreen ? "center" : "initial",
                   }}
                   row
                   aria-labelledby="demo-row-radio-buttons-group-label"

@@ -774,6 +774,7 @@ function EventView() {
                     alignItems: "center",
                     flexWrap: "wrap",
                     marginBottom: "10px",
+                    fontSize: isSmallScreen ? "12px" : "initial",
                   }}
                 >
                   {players.length <= 2 ? (
@@ -803,6 +804,7 @@ function EventView() {
                   alignItems: "center",
                   flexWrap: "wrap",
                   marginBottom: "10px",
+                  fontSize: isSmallScreen ? "12px" : "initial",
                 }}
               >
                 {eventDetails.userId !== playerUserId ? (
@@ -856,6 +858,7 @@ function EventView() {
                   alignItems: "center",
                   flexWrap: "wrap",
                   marginBottom: "10px",
+                  fontSize: isSmallScreen ? "12px" : "initial",
                 }}
               >
                 {productDetails.length === 0 ? (
@@ -965,8 +968,8 @@ function EventView() {
                 >
                   <Box
                     sx={{
-                      flexBasis: "calc(100% - 134px)",
-                      maxWidth: "calc(100% - 134px)",
+                      // flexBasis: "calc(100% - 134px)",
+                      // maxWidth: "calc(100% - 134px)",
                       fontSize: "13px",
                       lineHeight: "18px",
                       color: "#5e6577",
