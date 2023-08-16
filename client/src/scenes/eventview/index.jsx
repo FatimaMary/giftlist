@@ -24,7 +24,7 @@ import Invite from "../success/invite";
 import EditEvent from "./editEvent";
 import MyWishes from "../mywishes";
 import Messages from "../messages";
-import { MyContext } from "../../Components/MyContext";
+import { MyContext, useDrawStatus } from "../../Components/MyContext";
 
 function EventView() {
   const [eventDetails, setEventDetails] = useState({});
@@ -46,9 +46,9 @@ function EventView() {
   const [rsvpDate, setRsvpDate] = useState(false);
   const currentDate = new Date();
   const [giver, setGiver] = useState([]);
-  const { drawStatus, setDrawStatus } = useContext(MyContext);
+  // const { drawStatus, setDrawStatus } = useContext(MyContext);
   const [eventDatePassed, setEventDatePassed] = useState(false);
-
+  const { drawStatus, setDrawStatus } = useDrawStatus();
   console.log("player user id: ", playerUserId);
 
   const handleEventEdit = (editedEventData) => {
@@ -805,22 +805,47 @@ function EventView() {
                   marginBottom: "10px",
                 }}
               >
-                {drawStatus === false ? (
-                  <CancelOutlinedIcon
-                    sx={{
-                      color: "red",
-                      width: "18px",
-                      height: "18px",
-                    }}
-                  />
+                {eventDetails.userId !== playerUserId ? (
+                  <>
+                    {eventDetails.drawStatus === false ? (
+                      <CancelOutlinedIcon
+                        sx={{
+                          color: "red",
+                          width: "18px",
+                          height: "18px",
+                        }}
+                      />
+                    ) : (
+                      <CheckCircleOutlineIcon
+                        sx={{
+                          color: "green",
+                          width: "18px",
+                          height: "18px",
+                        }}
+                      />
+                    )}{" "}
+                  </>
                 ) : (
-                  <CheckCircleOutlineIcon
-                    sx={{
-                      color: "green",
-                      width: "18px",
-                      height: "18px",
-                    }}
-                  />
+                  <>
+                    {" "}
+                    {drawStatus === false ? (
+                      <CancelOutlinedIcon
+                        sx={{
+                          color: "red",
+                          width: "18px",
+                          height: "18px",
+                        }}
+                      />
+                    ) : (
+                      <CheckCircleOutlineIcon
+                        sx={{
+                          color: "green",
+                          width: "18px",
+                          height: "18px",
+                        }}
+                      />
+                    )}
+                  </>
                 )}
                 Name to be drawn by the organizer
               </Typography>
@@ -1024,7 +1049,7 @@ function EventView() {
                       >
                         Your gift giver:
                       </Typography>
-                      {!eventDatePassed ? (
+                      {eventDatePassed ? (
                         <>{giver}</>
                       ) : (
                         <Typography
