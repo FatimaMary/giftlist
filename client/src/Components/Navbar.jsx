@@ -1,8 +1,5 @@
-import React, { useState } from "react";
+import React from "react";
 import { Outlet, useNavigate } from "react-router-dom";
-import { Icon } from "react-icons-kit";
-import { menu } from "react-icons-kit/feather/menu";
-import { x } from "react-icons-kit/feather/x";
 import "../App.css";
 import { Box, Typography } from "@mui/material";
 
