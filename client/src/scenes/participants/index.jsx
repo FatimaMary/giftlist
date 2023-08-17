@@ -17,10 +17,8 @@ function Participants() {
   const [searchParam] = useSearchParams();
   const eventId = searchParam.get("eventId");
   const userId = searchParam.get("userId");
-  const [acceptence, setAcceptence] = useState([]);
   const [participantsList, setParticipantsList] = useState([]);
   const [participantsData, setParticipantsData] = useState([]);
-  const [unparticipantsData, setUnparticipantsData] = useState([]);
   const [activeTab, setActiveTab] = useState(0);
   const [productDetails, setProductDetails] = useState([]);
   const [isViewWishesOpen, setIsViewWishesOpen] = useState(false);
@@ -29,19 +27,14 @@ function Participants() {
   const [secondName, setSecondName] = useState();
   const theme = useTheme();
   const isSmallScreen = useMediaQuery(theme.breakpoints.down("sm"));
+  const [count, setCount] = useState(0);
 
   useEffect(() => {
     axios.get(`http://localhost:2309/player/${eventId}`).then((response) => {
       console.log("Get participants response: ", response);
       console.log("Get participants response data: ", response.data);
       setParticipantsList(response.data);
-      const acceptenceValues = response.data.map(
-        (item) => item.participantsAcceptence
-      );
-      setAcceptence(acceptenceValues);
-      console.log("acceptence: ", acceptenceValues);
-
-      // Use Promise.all to wait for all the axios.get calls to resolve
+      setCount(response.data.length);
       const productDetailsPromises = response.data.map((singleData) =>
         axios.get(
           `http://localhost:2309/product/all/${singleData.participantsId}`
@@ -62,9 +55,6 @@ function Participants() {
     });
   }, []);
 
-  const trueCount = acceptence.filter((value) => value === true).length;
-  // const falseCount = acceptence.filter((value) => value === false).length;
-
   function stringAvatar(name) {
     return {
       children: `${name.split(" ")[0][0]}`,
@@ -76,9 +66,8 @@ function Participants() {
 
   useEffect(() => {
     const fetchParticipantData = async () => {
-      const participantDataPromises = participantsList
-        .filter((participant) => participant.participantsAcceptence === true)
-        .map(async (participant) => {
+      const participantDataPromises = participantsList.map(
+        async (participant) => {
           const partcipantsDataResponse = await axios.get(
             `http://localhost:2309/user/${participant.participantsEmail}`
           );
@@ -86,33 +75,17 @@ function Participants() {
             ...partcipantsDataResponse.data,
             participantsId: participant.participantsId,
           };
-        });
+        }
+      );
 
       const participantData = await Promise.all(participantDataPromises);
       console.log("Participants data 1: ", participantData);
       setParticipantsData(participantData);
+      setCount(participantData.length);
     };
 
     fetchParticipantData();
   }, [participantsList]);
-
-  // useEffect(() => {
-  //   const fetchUnParticipantsData = async () => {
-  //     const unparticipantDataPromises = participantsList
-  //       .filter(
-  //         (unparticipant) => unparticipant.participantsAcceptence === false
-  //       )
-  //       .map(async (unparticipant) => {
-  //         const unparticipantDataResponse = await axios.get(
-  //           `http://localhost:2309/user/${unparticipant.participantsEmail}`
-  //         );
-  //         return unparticipantDataResponse.data;
-  //       });
-  //     const unparticipantData = await Promise.all(unparticipantDataPromises);
-  //     setUnparticipantsData(unparticipantData);
-  //   };
-  //   fetchUnParticipantsData();
-  // }, [participantsList]);
 
   return (
     <Box
@@ -171,38 +144,9 @@ function Participants() {
                 }}
                 className={`tab ${activeTab === 0 ? "click" : ""}`}
               >
-                Participating ({trueCount})
+                Participating ({count})
               </Typography>
             </Box>
-            {/* <Box
-              sx={{
-                display: "flex",
-                alignItems: "center",
-              }}
-              isactive={activeTab === 2}
-              onClick={() => handleTabActive(2)}
-            >
-              <img
-                src={Cross}
-                style={{
-                  width: "18px",
-                  height: "18px",
-                  marginRight: "6px",
-                }}
-              />
-              <Typography
-                sx={{
-                  fontWeight: 600,
-                  opacity: 0.5,
-                  "&:hover": {
-                    cursor: "pointer",
-                  },
-                }}
-                className={`tab ${activeTab === 2 ? "click" : ""}`}
-              >
-                Not Participating ({falseCount})
-              </Typography>
-            </Box> */}
           </Box>
           <Typography>You are participating</Typography>
         </Box>
