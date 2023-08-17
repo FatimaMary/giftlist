@@ -111,7 +111,7 @@ function EventCreation() {
   };
 
   const handleClick = () => {
-    navigate(`/giftexchange?userId=${userId}`);
+    navigate(`/santasurprise?userId=${userId}`);
   };
 
   return (
@@ -143,7 +143,7 @@ function EventCreation() {
             fontSize: "1rem",
           }}
         >
-          Gift exchange
+          Santa Surprise
         </Button>
       </Box>
       <Box
