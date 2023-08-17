@@ -20,6 +20,7 @@ function SantaSurprise() {
   const [activeTab, setActiveTab] = useState(0);
   const [upcomingEvents, setUpcomingEvents] = useState([]);
   const [pastEvents, setPastEvents] = useState([]);
+  const [userName, setUserName] = useState();
 
   useEffect(() => {
     const upcoming = eventData.filter((event) => {
@@ -73,6 +74,14 @@ function SantaSurprise() {
     if (userLoggedIn === "true") {
       setIsLoggedIn(true);
     }
+    axios.get(`http://localhost:2309/user/get/${userId}`).then((res) => {
+      console.log("User Name by userId: ", res.data);
+      const userFullName =
+        res.data.firstName +
+        (res.data.secondName ? " " + res.data.secondName : "");
+      console.log("user Name: ", userFullName);
+      setUserName(userFullName);
+    });
   }, []);
 
   const handleClick = () => {
@@ -93,6 +102,27 @@ function SantaSurprise() {
         overflowY: "hidden",
       }}
     >
+      <Box
+        sx={{
+          display: "flex",
+          justifyContent: "flex-end",
+        }}
+      >
+        <Typography
+          variant="h3"
+          sx={{
+            fontWeight: 600,
+            fontSize: "25px",
+            // lineHeight: "34px",
+            color: "#C21010",
+            // marginBottom: "16px",
+            wordBreak: "break-word",
+          }}
+        >
+          {" "}
+          Welcome {userName}!
+        </Typography>
+      </Box>
       <Typography
         variant="h2"
         sx={{
@@ -104,7 +134,7 @@ function SantaSurprise() {
           wordBreak: "break-word",
         }}
       >
-        Gift exchange
+        Santa Surprise
       </Typography>
       <Box
         sx={{
