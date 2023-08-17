@@ -72,7 +72,6 @@ function SantaSurprise() {
     const userLoggedIn = localStorage.getItem("isLoggedIn");
     if (userLoggedIn === "true") {
       setIsLoggedIn(true);
-      // navigate(`/giftexchange?userId=${res.user.uid}`); // or any other protected route
     }
   }, []);
 

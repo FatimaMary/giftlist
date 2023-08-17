@@ -49,6 +49,7 @@ function EventView() {
   const [eventDatePassed, setEventDatePassed] = useState(false);
   const { drawStatus, setDrawStatus } = useDrawStatus();
   console.log("player user id: ", playerUserId);
+  const { setIsLoggedIn } = useContext(MyContext);
 
   const handleEventEdit = (editedEventData) => {
     console.log("Edited event Data: ", editedEventData);
@@ -71,7 +72,10 @@ function EventView() {
   };
 
   useEffect(() => {
-    // const currentDate = new Date();
+    const userLoggedIn = localStorage.getItem("isLoggedIn");
+    if (userLoggedIn === "true") {
+      setIsLoggedIn(true);
+    }
     axios.get(`http://localhost:2309/event/get/${eventId}`).then((response) => {
       console.log("Get response: ", response);
       console.log("Get response data: ", response.data);
