@@ -38,6 +38,8 @@ const Sidebar = ({
   const [searchParam] = useSearchParams();
   const userId = searchParam.get("userId");
 
+  console.log("is Logged in: ", isLoggedIn);
+
   const handleDrawerClose = () => {
     setIsSidebarOpen(!isSidebarOpen);
   };
@@ -155,25 +157,7 @@ const Sidebar = ({
                     <ListItemText primary={item.text} />
                   </ListItemButton>
                 ))}
-                {isLoggedIn ? (
-                  <ListItemButton
-                    key="logout"
-                    onClick={() => {
-                      setIsLoggedIn(false);
-                      navigate("/");
-                    }}
-                    sx={{
-                      backgroundColor:
-                        active === "logout" ? "#FFEAEA" : "transparent",
-                      color: active === "logout" ? "#E64848" : "black",
-                    }}
-                  >
-                    <ListItemIcon>
-                      <LogoutOutlinedIcon />
-                    </ListItemIcon>
-                    <ListItemText primary="Logout" />
-                  </ListItemButton>
-                ) : (
+                {!isLoggedIn ? (
                   <>
                     <ListItemButton
                       key="login"
@@ -232,6 +216,24 @@ const Sidebar = ({
                       />
                     </ListItemButton>
                   </>
+                ) : (
+                  <ListItemButton
+                    key="logout"
+                    onClick={() => {
+                      setIsLoggedIn(false);
+                      navigate("/");
+                    }}
+                    sx={{
+                      backgroundColor:
+                        active === "logout" ? "#FFEAEA" : "transparent",
+                      color: active === "logout" ? "#E64848" : "black",
+                    }}
+                  >
+                    <ListItemIcon>
+                      <LogoutOutlinedIcon />
+                    </ListItemIcon>
+                    <ListItemText primary="Logout" />
+                  </ListItemButton>
                 )}
               </List>
             </Box>

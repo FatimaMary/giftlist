@@ -46,7 +46,6 @@ function EventView() {
   const [rsvpDate, setRsvpDate] = useState(false);
   const currentDate = new Date();
   const [giver, setGiver] = useState([]);
-  // const { drawStatus, setDrawStatus } = useContext(MyContext);
   const [eventDatePassed, setEventDatePassed] = useState(false);
   const { drawStatus, setDrawStatus } = useDrawStatus();
   console.log("player user id: ", playerUserId);
@@ -54,7 +53,9 @@ function EventView() {
   const handleEventEdit = (editedEventData) => {
     console.log("Edited event Data: ", editedEventData);
     const editedRsvpDate = new Date(editedEventData.rsvpDate);
-    setRsvpDate(editedRsvpDate);
+    const isRSVPDatePassed = currentDate > editedRsvpDate;
+    console.log("edited Rsvp Date passed: ", isRSVPDatePassed);
+    setRsvpDate(isRSVPDatePassed);
     setEventDetails(editedEventData);
     setEditPage(false);
   };
@@ -369,7 +370,7 @@ function EventView() {
                         opacity: 0.5,
                       },
                     }}
-                    onClick={() => setEditPage(true)}
+                    // onClick={() => setEditPage(true)}
                     disabled
                   >
                     {isSmallScreen ? (

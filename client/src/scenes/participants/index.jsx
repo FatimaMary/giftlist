@@ -8,9 +8,6 @@ import {
 } from "@mui/material";
 import Avatar from "@mui/material/Avatar";
 import Tick from "./tickic.svg";
-import Clock from "./clockic.svg";
-import Cross from "./crossic2.svg";
-import Edit from "../eventview/editicblue.svg";
 import { useSearchParams } from "react-router-dom";
 import axios from "axios";
 import "../../App.css";
@@ -66,7 +63,7 @@ function Participants() {
   }, []);
 
   const trueCount = acceptence.filter((value) => value === true).length;
-  const falseCount = acceptence.filter((value) => value === false).length;
+  // const falseCount = acceptence.filter((value) => value === false).length;
 
   function stringAvatar(name) {
     return {
@@ -99,23 +96,23 @@ function Participants() {
     fetchParticipantData();
   }, [participantsList]);
 
-  useEffect(() => {
-    const fetchUnParticipantsData = async () => {
-      const unparticipantDataPromises = participantsList
-        .filter(
-          (unparticipant) => unparticipant.participantsAcceptence === false
-        )
-        .map(async (unparticipant) => {
-          const unparticipantDataResponse = await axios.get(
-            `http://localhost:2309/user/${unparticipant.participantsEmail}`
-          );
-          return unparticipantDataResponse.data;
-        });
-      const unparticipantData = await Promise.all(unparticipantDataPromises);
-      setUnparticipantsData(unparticipantData);
-    };
-    fetchUnParticipantsData();
-  }, [participantsList]);
+  // useEffect(() => {
+  //   const fetchUnParticipantsData = async () => {
+  //     const unparticipantDataPromises = participantsList
+  //       .filter(
+  //         (unparticipant) => unparticipant.participantsAcceptence === false
+  //       )
+  //       .map(async (unparticipant) => {
+  //         const unparticipantDataResponse = await axios.get(
+  //           `http://localhost:2309/user/${unparticipant.participantsEmail}`
+  //         );
+  //         return unparticipantDataResponse.data;
+  //       });
+  //     const unparticipantData = await Promise.all(unparticipantDataPromises);
+  //     setUnparticipantsData(unparticipantData);
+  //   };
+  //   fetchUnParticipantsData();
+  // }, [participantsList]);
 
   return (
     <Box
@@ -177,7 +174,7 @@ function Participants() {
                 Participating ({trueCount})
               </Typography>
             </Box>
-            <Box
+            {/* <Box
               sx={{
                 display: "flex",
                 alignItems: "center",
@@ -205,7 +202,7 @@ function Participants() {
               >
                 Not Participating ({falseCount})
               </Typography>
-            </Box>
+            </Box> */}
           </Box>
           <Typography>You are participating</Typography>
         </Box>
@@ -351,7 +348,7 @@ function Participants() {
             ))}{" "}
           </>
         )}
-        {activeTab === 2 && (
+        {/* {activeTab === 2 && (
           <>
             <Typography
               variant="h2"
@@ -464,7 +461,7 @@ function Participants() {
               </Box>
             ))}{" "}
           </>
-        )}
+        )} */}
       </Box>
       {isViewWishesOpen && (
         <ViewWishes
