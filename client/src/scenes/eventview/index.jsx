@@ -47,7 +47,8 @@ function EventView() {
   const currentDate = new Date();
   const [giver, setGiver] = useState([]);
   const [eventDatePassed, setEventDatePassed] = useState(false);
-  const { drawStatus, setDrawStatus } = useDrawStatus();
+  const { getDrawStatus, setDrawStatus } = useDrawStatus();
+  const drawStatus = getDrawStatus(eventId);
   console.log("player user id: ", playerUserId);
   const { setIsLoggedIn } = useContext(MyContext);
 
@@ -194,12 +195,12 @@ function EventView() {
       .then((response) => {
         console.log("drawn names response: ", response.data);
         setDrawnNames(response.data);
-        setDrawStatus(true);
+        setDrawStatus(eventId, !drawStatus);
       });
   };
 
   const isDrawButtonVisible = rsvpDate && players.length >= 3;
-  console.log("Draw button state: ", isDrawButtonVisible);
+  console.log("isButton is visibile: ", isDrawButtonVisible);
   return (
     <Box backgroundColor="#FFEAEA" width="100vw" p="50px 30px 33px 30px">
       <Box
@@ -581,8 +582,8 @@ function EventView() {
                             opacity: 0.5,
                           },
                         }}
-                        onClick={handleDrawNames}
                         disabled
+                        onClick={handleDrawNames}
                       >
                         Draw Names
                       </Button>{" "}
@@ -606,7 +607,7 @@ function EventView() {
                           "&:hover": {
                             color: "#C21010",
                           },
-                          "&: disabled": {
+                          "&:disabled": {
                             color: "black",
                             border: "1px solid black",
                             background: "none",
@@ -814,18 +815,18 @@ function EventView() {
               >
                 {eventDetails.userId !== playerUserId ? (
                   <>
-                    {eventDetails.drawStatus ? (
-                      <CheckCircleOutlineIcon
+                    {!eventDetails.drawNames ? (
+                      <CancelOutlinedIcon
                         sx={{
-                          color: "green",
+                          color: "red",
                           width: "18px",
                           height: "18px",
                         }}
                       />
                     ) : (
-                      <CancelOutlinedIcon
+                      <CheckCircleOutlineIcon
                         sx={{
-                          color: "red",
+                          color: "green",
                           width: "18px",
                           height: "18px",
                         }}
