@@ -33,12 +33,17 @@ function Participants() {
     axios.get(`http://localhost:2309/player/${eventId}`).then((response) => {
       console.log("Get participants response: ", response);
       console.log("Get participants response data: ", response.data);
-      setParticipantsList(response.data);
-      setCount(response.data.length);
-      const productDetailsPromises = response.data.map((singleData) =>
-        axios.get(
-          `http://localhost:2309/product/all/${singleData.participantsId}`
-        )
+      const filteredParticipantsList = response.data.filter((participant) =>
+        participant.participantsEmail.includes("@gmail.com")
+      );
+      console.log("Filtered Participants List: ", filteredParticipantsList);
+      setParticipantsList(filteredParticipantsList);
+      setCount(filteredParticipantsList.length);
+      const productDetailsPromises = filteredParticipantsList.map(
+        (singleData) =>
+          axios.get(
+            `http://localhost:2309/product/all/${singleData.participantsId}`
+          )
       );
 
       Promise.all(productDetailsPromises)
@@ -66,8 +71,9 @@ function Participants() {
 
   useEffect(() => {
     const fetchParticipantData = async () => {
-      const participantDataPromises = participantsList.map(
-        async (participant) => {
+      const participantDataPromises = participantsList
+        .filter((participant) => participant.participantsEmail.includes("@"))
+        .map(async (participant) => {
           const partcipantsDataResponse = await axios.get(
             `http://localhost:2309/user/${participant.participantsEmail}`
           );
@@ -75,8 +81,7 @@ function Participants() {
             ...partcipantsDataResponse.data,
             participantsId: participant.participantsId,
           };
-        }
-      );
+        });
 
       const participantData = await Promise.all(participantDataPromises);
       console.log("Participants data 1: ", participantData);
