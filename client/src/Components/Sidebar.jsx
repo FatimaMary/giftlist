@@ -48,7 +48,7 @@ const Sidebar = ({
     {
       text: "SantaSurprise",
       icon: <CardGiftcardOutlinedIcon />,
-      link: `santasurprise?userId=${userId}`,
+      link: isLoggedIn ? `santasurprise?userId=${userId}` : "/login",
     },
     {
       text: "My Gifts",
