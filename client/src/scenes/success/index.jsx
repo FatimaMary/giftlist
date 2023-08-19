@@ -35,7 +35,11 @@ function Success() {
     axios
       .get(`http://localhost:2309/event/user/${eventId}`)
       .then((response) => {
-        setUser(response.data);
+        const userFullName =
+          response.data.firstName +
+          (response.data.secondName ? " " + response.data.secondName : "");
+
+        setUser(userFullName);
       });
   }, []);
 
@@ -172,7 +176,7 @@ function Success() {
             {show ? (
               <CopyInvitation
                 eventName={eventDetails.eventName}
-                firstName={user.firstName}
+                firstName={user}
                 rsvpDate={eventDetails.rsvpDate}
                 eventId={eventId}
                 setInvitePage={setInvitePage}
