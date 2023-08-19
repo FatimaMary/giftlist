@@ -71,7 +71,11 @@ export const getDrawnNames = async (req, res) => {
       return res.status(404).json({ message: "Event not found" });
     }
 
-    const participants = await Participants.find({ eventId: eventId });
+    const participants = await Participants.find({
+      eventId: eventId,
+      participantsEmail: { $ne: "" }, // Filter out participants with empty emails
+    });
+
     if (participants.length === 0) {
       return res
         .status(404)
