@@ -52,8 +52,8 @@ function WelcomePage() {
             color: "#C21010",
           }}
         >
-          GiftList is the easiest way to exchange gifts with friends and family
-          for birthdays, holidays, and more!
+          Giftjunction is the easiest way to exchange gifts with friends and
+          family for birthdays, holidays, and more!
         </Typography>
         <Button
           variant="contained"
@@ -74,7 +74,7 @@ function WelcomePage() {
             width: isSmallScreen ? "80%" : "auto",
           }}
         >
-          Create a gift note
+          Create a gift junction
         </Button>
       </Box>
     </Box>
