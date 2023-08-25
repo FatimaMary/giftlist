@@ -91,16 +91,16 @@ const Sidebar = ({
           }}
         >
           <Box width="100%">
-            <Box m="1.5rem 2rem 2rem 3rem">
+            <Box m="1.5rem 1rem 2rem 1rem">
               <FlexBetween>
                 <Box display="flex" alignItems="center" gap="0.3rem">
                   <Typography
                     variant="h4"
                     fontWeight="bold"
                     color="#C21010"
-                    fontSize={30}
+                    fontSize={isNonMobile ? "30px" : "20px"}
                   >
-                    Giftjunction
+                    Gift Junction
                   </Typography>
                 </Box>
                 {!isNonMobile && (
