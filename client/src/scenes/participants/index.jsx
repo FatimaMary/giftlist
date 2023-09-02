@@ -30,34 +30,36 @@ function Participants() {
   const [count, setCount] = useState(0);
 
   useEffect(() => {
-    axios.get(`http://localhost:2309/player/${eventId}`).then((response) => {
-      console.log("Get participants response: ", response);
-      console.log("Get participants response data: ", response.data);
-      const filteredParticipantsList = response.data.filter((participant) =>
-        participant.participantsEmail.includes("@gmail.com")
-      );
-      console.log("Filtered Participants List: ", filteredParticipantsList);
-      setParticipantsList(filteredParticipantsList);
-      setCount(filteredParticipantsList.length);
-      const productDetailsPromises = filteredParticipantsList.map(
-        (singleData) =>
-          axios.get(
-            `http://localhost:2309/product/all/${singleData.participantsId}`
-          )
-      );
+    axios
+      .get(`${process.env.REACT_APP_BASE_URL}/player/${eventId}`)
+      .then((response) => {
+        console.log("Get participants response: ", response);
+        console.log("Get participants response data: ", response.data);
+        const filteredParticipantsList = response.data.filter((participant) =>
+          participant.participantsEmail.includes("@gmail.com")
+        );
+        console.log("Filtered Participants List: ", filteredParticipantsList);
+        setParticipantsList(filteredParticipantsList);
+        setCount(filteredParticipantsList.length);
+        const productDetailsPromises = filteredParticipantsList.map(
+          (singleData) =>
+            axios.get(
+              `${process.env.REACT_APP_BASE_URL}/product/all/${singleData.participantsId}`
+            )
+        );
 
-      Promise.all(productDetailsPromises)
-        .then((results) => {
-          // results will be an array containing the resolved responses
-          console.log("Product responses: ", results);
-          const productDetailsValues = results.map((res) => res.data);
-          console.log("Product details values: ", productDetailsValues);
-          setProductDetails(productDetailsValues);
-        })
-        .catch((error) => {
-          console.error("Error fetching product details: ", error);
-        });
-    });
+        Promise.all(productDetailsPromises)
+          .then((results) => {
+            // results will be an array containing the resolved responses
+            console.log("Product responses: ", results);
+            const productDetailsValues = results.map((res) => res.data);
+            console.log("Product details values: ", productDetailsValues);
+            setProductDetails(productDetailsValues);
+          })
+          .catch((error) => {
+            console.error("Error fetching product details: ", error);
+          });
+      });
   }, []);
 
   function stringAvatar(name) {
@@ -75,7 +77,7 @@ function Participants() {
         .filter((participant) => participant.participantsEmail.includes("@"))
         .map(async (participant) => {
           const partcipantsDataResponse = await axios.get(
-            `http://localhost:2309/user/${participant.participantsEmail}`
+            `${process.env.REACT_APP_BASE_URL}/user/${participant.participantsEmail}`
           );
           return {
             ...partcipantsDataResponse.data,

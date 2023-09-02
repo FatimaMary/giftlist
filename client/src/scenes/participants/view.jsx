@@ -17,7 +17,7 @@ function ViewWishes({ open, onClose, participantsId, firstName, secondName }) {
   console.log("participants Id: ", participantsId);
   useEffect(() => {
     axios
-      .get(`http://localhost:2309/product/all/${participantsId}`)
+      .get(`${process.env.REACT_APP_BASE_URL}/product/all/${participantsId}`)
       .then((res) => {
         console.log("Product Details: ", res.data);
         setProductDetails(res.data);

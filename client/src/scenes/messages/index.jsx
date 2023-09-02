@@ -30,7 +30,9 @@ function Messages({ eventId, userId }) {
 
   useEffect(() => {
     axios
-      .get(`http://localhost:2309/player/id/${userId}?eventId=${eventId}`)
+      .get(
+        `${process.env.REACT_APP_BASE_URL}/player/id/${userId}?eventId=${eventId}`
+      )
       .then((response) => {
         console.log("ParticipantsId: ", response.data[0]);
         setParticipantsId(response.data[0]);
@@ -39,10 +41,12 @@ function Messages({ eventId, userId }) {
 
   useEffect(() => {
     axios
-      .get(`http://localhost:2309/msg/all/${eventId}`)
+      .get(`${process.env.REACT_APP_BASE_URL}/msg/all/${eventId}`)
       .then((response) => {
         const userPromises = response.data.map((message) => {
-          return axios.get(`http://localhost:2309/user/get/${message.userId}`);
+          return axios.get(
+            `${process.env.REACT_APP_BASE_URL}/user/get/${message.userId}`
+          );
         });
 
         Promise.all(userPromises)
@@ -113,7 +117,7 @@ function Messages({ eventId, userId }) {
 
   const messageSend = () => {
     axios
-      .post("http://localhost:2309/msg/add", {
+      .post(`${process.env.REACT_APP_BASE_URL}/msg/add`, {
         message: message,
         userId: userId,
         eventId: eventId,
@@ -123,7 +127,7 @@ function Messages({ eventId, userId }) {
         console.log("Message send response: ", response.data);
         setMessage("");
         axios
-          .get(`http://localhost:2309/user/get/${userId}`)
+          .get(`${process.env.REACT_APP_BASE_URL}/user/get/${userId}`)
           .then((senderResponse) => {
             const newMessageDetail = {
               ...response.data,
@@ -448,27 +452,7 @@ function Messages({ eventId, userId }) {
                   >
                     {formatDate(singleDetail.timeStamp)}
                   </Typography>
-                  {/* <Typography
-                    variant="body1"
-                    sx={{
-                      fontWeight: 600,
-                      fontSize: "13px",
-                      lineHeight: "18px",
-                      color: "#101a34",
-                      marginBottom: 0,
-                    }}
-                  >
-                    Likes: 0
-                  </Typography> */}
                 </Box>
-                {/* <Button>
-                  <FavoriteBorderIcon
-                    sx={{
-                      color: isClicked ? "red" : "green",
-                    }}
-                    onClick={handleButtonClick}
-                  />
-                </Button> */}
               </Box>
             </Box>
           ))}

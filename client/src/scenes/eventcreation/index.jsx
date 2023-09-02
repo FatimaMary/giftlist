@@ -55,10 +55,12 @@ function EventCreation() {
   });
 
   useEffect(() => {
-    axios.get(`http://localhost:2309/user/email/${userId}`).then((response) => {
-      console.log(response.data);
-      setEmail(response.data.email);
-    });
+    axios
+      .get(`${process.env.REACT_APP_BASE_URL}/user/email/${userId}`)
+      .then((response) => {
+        console.log(response.data);
+        setEmail(response.data.email);
+      });
   }, []);
 
   const moveToNextStep = (e) => {
@@ -77,7 +79,7 @@ function EventCreation() {
       setErrors(validationErrors);
     } else {
       axios
-        .post("http://localhost:2309/event/add", {
+        .post(`${process.env.REACT_APP_BASE_URL}/event/add`, {
           eventName: eventName,
           giftExchangeDate: giftExchangeDate,
           rsvpDate: rsvpDate,
@@ -89,7 +91,7 @@ function EventCreation() {
           console.log("response data: ", response.data);
           if (response.data.confirmation === true) {
             axios
-              .post("http://localhost:2309/player/post", {
+              .post(`${process.env.REACT_APP_BASE_URL}/player/post`, {
                 participantsEmail: email,
                 participantsAcceptence: "yes",
                 eventId: response.data.eventId,

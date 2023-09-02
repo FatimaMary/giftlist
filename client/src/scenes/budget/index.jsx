@@ -45,7 +45,7 @@ function Budget() {
   const handleSubmit = (e) => {
     e.preventDefault();
     axios
-      .put(`http://localhost:2309/event/${eventId}`, {
+      .put(`${process.env.REACT_APP_BASE_URL}/event/${eventId}`, {
         budget: budget,
         details: details,
       })

@@ -29,13 +29,15 @@ function EventView1() {
   const isSmallScreen = useMediaQuery(theme.breakpoints.down("sm"));
 
   useEffect(() => {
-    axios.get(`http://localhost:2309/event/get/${eventId}`).then((response) => {
-      console.log("Get response: ", response);
-      console.log("Get response data: ", response.data);
-      setEventDetails(response.data);
-    });
     axios
-      .get(`http://localhost:2309/event/user/${eventId}`)
+      .get(`${process.env.REACT_APP_BASE_URL}/event/get/${eventId}`)
+      .then((response) => {
+        console.log("Get response: ", response);
+        console.log("Get response data: ", response.data);
+        setEventDetails(response.data);
+      });
+    axios
+      .get(`${process.env.REACT_APP_BASE_URL}/event/user/${eventId}`)
       .then((response) => {
         console.log("User Name get response: ", response);
         console.log("user name get response data: ", response.data);
@@ -53,7 +55,7 @@ function EventView1() {
     setShow(true);
     setYes("yes");
     axios
-      .post("http://localhost:2309/player/post", {
+      .post(`${process.env.REACT_APP_BASE_URL}/player/post`, {
         participantsAcceptence: "yes",
         eventId: eventId,
       })

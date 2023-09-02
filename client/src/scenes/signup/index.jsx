@@ -98,7 +98,7 @@ function Signup() {
         console.log("Register with firebase");
 
         //Make the POST request to your API end point
-        fetch("http://localhost:2309/user/add", {
+        fetch(`${process.env.REACT_APP_BASE_URL}/user/add`, {
           method: "POST",
           headers: {
             "Content-Type": "application/json",

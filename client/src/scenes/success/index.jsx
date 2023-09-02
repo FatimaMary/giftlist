@@ -29,11 +29,13 @@ function Success() {
     setShow(true);
   };
   useEffect(() => {
-    axios.get(`http://localhost:2309/event/get/${eventId}`).then((response) => {
-      setEventDetails(response.data);
-    });
     axios
-      .get(`http://localhost:2309/event/user/${eventId}`)
+      .get(`${process.env.REACT_APP_BASE_URL}/event/get/${eventId}`)
+      .then((response) => {
+        setEventDetails(response.data);
+      });
+    axios
+      .get(`${process.env.REACT_APP_BASE_URL}/event/user/${eventId}`)
       .then((response) => {
         const userFullName =
           response.data.firstName +

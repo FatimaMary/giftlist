@@ -64,7 +64,7 @@ function SantaSurprise() {
 
   useEffect(() => {
     axios
-      .get(`http://localhost:2309/player/${userId}/event`)
+      .get(`${process.env.REACT_APP_BASE_URL}/player/${userId}/event`)
       .then((response) => {
         console.log("dashboard response: ", response);
         setEventData(response.data);
@@ -74,14 +74,16 @@ function SantaSurprise() {
     if (userLoggedIn === "true") {
       setIsLoggedIn(true);
     }
-    axios.get(`http://localhost:2309/user/get/${userId}`).then((res) => {
-      console.log("User Name by userId: ", res.data);
-      const userFullName =
-        res.data.firstName +
-        (res.data.secondName ? " " + res.data.secondName : "");
-      console.log("user Name: ", userFullName);
-      setUserName(userFullName);
-    });
+    axios
+      .get(`${process.env.REACT_APP_BASE_URL}/user/get/${userId}`)
+      .then((res) => {
+        console.log("User Name by userId: ", res.data);
+        const userFullName =
+          res.data.firstName +
+          (res.data.secondName ? " " + res.data.secondName : "");
+        console.log("user Name: ", userFullName);
+        setUserName(userFullName);
+      });
   }, []);
 
   const handleClick = () => {

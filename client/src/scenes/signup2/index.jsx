@@ -100,7 +100,7 @@ function Signup2() {
         console.log("Register with firebase");
 
         //Make the POST request to your API end point
-        fetch("http://localhost:2309/user/add", {
+        fetch(`${process.env.REACT_APP_BASE_URL}/user/add`, {
           method: "POST",
           headers: {
             "Content-Type": "application/json",
@@ -116,10 +116,13 @@ function Signup2() {
             console.log("data: ", data);
             console.log("fetch id: ", data.userId);
             axios
-              .put(`http://localhost:2309/player/${participantsId}`, {
-                participantsEmail: signupData.email,
-                userId: data.userId,
-              })
+              .put(
+                `${process.env.REACT_APP_BASE_URL}/player/${participantsId}`,
+                {
+                  participantsEmail: signupData.email,
+                  userId: data.userId,
+                }
+              )
               .then((response) => {
                 navigate(`/signup1?userId=${user.uid}`);
                 console.log("participants update response: ", response.data);

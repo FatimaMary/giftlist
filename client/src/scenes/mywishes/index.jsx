@@ -62,12 +62,16 @@ function MyWishes({ eventId, userId, onProductAdded }) {
 
   useEffect(() => {
     axios
-      .get(`http://localhost:2309/player/id/${userId}?eventId=${eventId}`)
+      .get(
+        `${process.env.REACT_APP_BASE_URL}/player/id/${userId}?eventId=${eventId}`
+      )
       .then((response) => {
         console.log("ParticipantsId: ", response.data[0]);
         setParticipantsId(response.data[0]);
         axios
-          .get(`http://localhost:2309/product/all/${response.data[0]}`)
+          .get(
+            `${process.env.REACT_APP_BASE_URL}/product/all/${response.data[0]}`
+          )
           .then((res) => {
             console.log("Product Details: ", res.data);
             setProductDetails(res.data);
@@ -81,7 +85,7 @@ function MyWishes({ eventId, userId, onProductAdded }) {
 
   const handleAdd = () => {
     axios
-      .post("http://localhost:2309/product/add", {
+      .post(`${process.env.REACT_APP_BASE_URL}/product/add`, {
         productName: "",
         productUrl: productUrl,
         productPrice: "",

@@ -33,22 +33,24 @@ function EditEvent({ open, onClose, editPage, eventId, onEdit }) {
   };
 
   useEffect(() => {
-    axios.get(`http://localhost:2309/event/get/${eventId}`).then((response) => {
-      console.log("Get response: ", response);
-      console.log("Get response data: ", response.data);
-      setEventName(response.data.eventName);
-      setGiftExchangeDate(response.data.giftExchangeDate);
-      setRsvpDate(response.data.rsvpDate);
-      setBudget(response.data.budget);
-      setDetails(response.data.details);
-      setUserId(response.data.userId);
-    });
+    axios
+      .get(`${process.env.REACT_APP_BASE_URL}/event/get/${eventId}`)
+      .then((response) => {
+        console.log("Get response: ", response);
+        console.log("Get response data: ", response.data);
+        setEventName(response.data.eventName);
+        setGiftExchangeDate(response.data.giftExchangeDate);
+        setRsvpDate(response.data.rsvpDate);
+        setBudget(response.data.budget);
+        setDetails(response.data.details);
+        setUserId(response.data.userId);
+      });
   }, []);
 
   const handleSubmit = (e) => {
     e.preventDefault();
     axios
-      .put(`http://localhost:2309/event/edit/${eventId}`, {
+      .put(`${process.env.REACT_APP_BASE_URL}/event/edit/${eventId}`, {
         eventName: eventName,
         giftExchangeDate: giftExchangeDate,
         rsvpDate: rsvpDate,
@@ -65,7 +67,7 @@ function EditEvent({ open, onClose, editPage, eventId, onEdit }) {
 
   const handleDelete = () => {
     axios
-      .delete(`http://localhost:2309/event/delete/${eventId}`)
+      .delete(`${process.env.REACT_APP_BASE_URL}/event/delete/${eventId}`)
       .then((response) => {
         console.log("delete response: ", response.data);
         navigate(`/santasurprise?userId=${userId}`);
