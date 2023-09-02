@@ -34,7 +34,7 @@ export const Navbar = () => {
           fontSize: "2rem",
         }}
       >
-        <b>GIFT</b>NOTE
+        <b>GIFT </b>JUNCTION
       </Typography>
       <Box
         sx={{
