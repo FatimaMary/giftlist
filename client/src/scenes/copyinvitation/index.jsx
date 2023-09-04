@@ -61,7 +61,7 @@ function CopyInvitation({
           ${firstName} invited you to a group gift exchange: ${eventName}. Hurry! You have until ${rsvpDate} to RSVP.
           
           Click on the link to join  
-          http://localhost:3000/eventview1?eventId=${eventId}`}
+          ${process.env.REACT_APP_BASE_URL}/eventview1?eventId=${eventId}`}
           sx={{ width: "100%", border: "none" }}
         />
       </ThemeProvider>
