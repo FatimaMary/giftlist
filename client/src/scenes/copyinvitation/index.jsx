@@ -61,7 +61,7 @@ function CopyInvitation({
           ${firstName} invited you to a group gift exchange: ${eventName}. Hurry! You have until ${rsvpDate} to RSVP.
           
           Click on the link to join  
-          ${process.env.REACT_APP_BASE_URL}/eventview1?eventId=${eventId}`}
+          https://main.d2ox3js0flnzdp.amplifyapp.com/eventview1?eventId=${eventId}`}
           sx={{ width: "100%", border: "none" }}
         />
       </ThemeProvider>
