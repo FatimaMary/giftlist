@@ -48,7 +48,7 @@ function Signup1() {
   const handleSubmit = (e) => {
     e.preventDefault();
     axios
-      .put(`http://localhost:2309/user/${userId}`, {
+      .put(`${process.env.REACT_APP_BASE_URL}/user/${userId}`, {
         firstName: firstName,
         secondName: secondName,
         birthDay: birthDay,

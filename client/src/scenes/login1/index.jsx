@@ -84,7 +84,7 @@ function Login1() {
         console.log(res);
         setIsLoggedIn(true);
         axios
-          .put(`http://localhost:2309/player/${participantsId}`, {
+          .put(`${process.env.REACT_APP_BASE_URL}/player/${participantsId}`, {
             participantsEmail: loginData.email,
             userId: res.user.uid,
           })
