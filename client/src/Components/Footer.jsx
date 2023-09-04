@@ -40,7 +40,7 @@ function Footer() {
             color: "#C21010",
           }}
         >
-          GiftList. All Rights Reserved
+          Gift Junction. All Rights Reserved
         </Typography>
       </Box>
       <Box
