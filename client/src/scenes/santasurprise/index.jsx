@@ -309,6 +309,7 @@ function SantaSurprise() {
               fontWeight: 600,
               fontSize: "20px",
               color: "#C21010",
+              background: "#ffffff",
             }}
           >
             No past events found.
