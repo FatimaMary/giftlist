@@ -154,6 +154,7 @@ function Messages({ eventId, userId }) {
     <Box
       sx={{
         padding: "15px 0",
+        minHeight: "100vh",
       }}
     >
       <Box

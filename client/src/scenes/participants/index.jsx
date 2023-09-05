@@ -101,6 +101,7 @@ function Participants() {
         display: "flex",
         flexWrap: "wrap",
         flexDirection: isSmallScreen ? "column" : "row",
+        minHeight: "100vh",
       }}
     >
       <Box sx={{ width: "272px" }}>

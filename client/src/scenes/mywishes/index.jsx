@@ -117,6 +117,7 @@ function MyWishes({ eventId, userId, onProductAdded }) {
       sx={{
         padding: "15px 0",
         marginBottom: "20px",
+        minHeight: "100vh",
       }}
     >
       <Typography
