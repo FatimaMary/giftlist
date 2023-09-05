@@ -301,104 +301,117 @@ function SantaSurprise() {
           </Box>
         </Box>
       )}
-      {activeTab === 1 && (
-        <Box
-          sx={{
-            display: "flex",
-            // flexWrap: 'wrap',
-            background: "#ffffff",
-            // marginY: '-12px',
-          }}
-        >
+      {activeTab === 1 ? (
+        pastEvents.length === 0 ? (
+          <Typography
+            variant="body2"
+            sx={{
+              fontWeight: 600,
+              fontSize: "20px",
+              color: "#C21010",
+            }}
+          >
+            No past events found.
+          </Typography>
+        ) : (
           <Box
             sx={{
               display: "flex",
-              flexWrap: "wrap",
-              gap: "20px",
-              marginLeft: "30px",
+              // flexWrap: 'wrap',
+              background: "#ffffff",
+              // marginY: '-12px',
             }}
           >
-            {pastEvents.map((cardData, i) => (
-              <Card
-                sx={{
-                  width: 220,
-                  height: "250px",
-                  m: "1.5rem",
-                  display: "flex",
-                  alignItems: "center",
-                  justifyContent: "center",
-                }}
-                key={i}
-                onClick={() =>
-                  navigate(
-                    `/eventview?eventId=${cardData.eventId}&userId=${userId}`
-                  )
-                }
-              >
-                <CardContent>
-                  <Box
-                    sx={{
-                      height: "70%",
-                    }}
-                  >
-                    <CardMedia
-                      component="img"
-                      // height="140"
-                      image={Santa}
-                      alt="Image Description"
+            <Box
+              sx={{
+                display: "flex",
+                flexWrap: "wrap",
+                gap: "20px",
+                marginLeft: "30px",
+              }}
+            >
+              {pastEvents.map((cardData, i) => (
+                <Card
+                  sx={{
+                    width: 220,
+                    height: "250px",
+                    m: "1.5rem",
+                    display: "flex",
+                    alignItems: "center",
+                    justifyContent: "center",
+                  }}
+                  key={i}
+                  onClick={() =>
+                    navigate(
+                      `/eventview?eventId=${cardData.eventId}&userId=${userId}`
+                    )
+                  }
+                >
+                  <CardContent>
+                    <Box
                       sx={{
-                        height: "100%",
-                        width: "80%",
-                        marginLeft: "auto",
-                        marginRight: "auto",
-                        // marginTop: '10px'
+                        height: "70%",
                       }}
-                    />
-                  </Box>
-                  <Box
-                    // padding='10px 15px'
-                    sx={{
-                      borderTop: "1px solid #FFEAEA",
-                      height: "30%",
-                      width: "220px",
-                      background: "#FFEAEA",
-                      display: "flex",
-                      flexDirection: "column",
-                      padding: "20px 30px",
-                      "&:hover": {
-                        backgroundColor: "#C21010",
-                        color: "white",
-                      },
-                    }}
-                  >
-                    <Typography
-                      sx={{
-                        fontSize: 16,
-                        opacity: 0.7,
-                        "&:hover": {
-                          opacity: 1,
-                        },
-                      }}
-                      variant="h6"
-                      fontWeight="bold"
                     >
-                      <CalendarMonthIcon
+                      <CardMedia
+                        component="img"
+                        // height="140"
+                        image={Santa}
+                        alt="Image Description"
                         sx={{
-                          fontSize: "20px",
+                          height: "100%",
+                          width: "80%",
+                          marginLeft: "auto",
+                          marginRight: "auto",
+                          // marginTop: '10px'
                         }}
                       />
-                      {cardData.giftExchangeDate}
-                    </Typography>
-                    <Typography variant="body2" fontWeight="bold">
-                      {cardData.eventName}
-                    </Typography>
-                  </Box>
-                </CardContent>
-              </Card>
-            ))}
+                    </Box>
+                    <Box
+                      // padding='10px 15px'
+                      sx={{
+                        borderTop: "1px solid #FFEAEA",
+                        height: "30%",
+                        width: "220px",
+                        background: "#FFEAEA",
+                        display: "flex",
+                        flexDirection: "column",
+                        padding: "20px 30px",
+                        "&:hover": {
+                          backgroundColor: "#C21010",
+                          color: "white",
+                        },
+                      }}
+                    >
+                      <Typography
+                        sx={{
+                          fontSize: 16,
+                          opacity: 0.7,
+                          "&:hover": {
+                            opacity: 1,
+                          },
+                        }}
+                        variant="h6"
+                        fontWeight="bold"
+                      >
+                        <CalendarMonthIcon
+                          sx={{
+                            fontSize: "20px",
+                          }}
+                        />
+                        {cardData.giftExchangeDate}
+                      </Typography>
+                      <Typography variant="body2" fontWeight="bold">
+                        {cardData.eventName}
+                      </Typography>
+                    </Box>
+                  </CardContent>
+                </Card>
+              ))}
+            </Box>
           </Box>
-        </Box>
-      )}
+        )
+      ) : null}
       <Footer />
     </Box>
   );
