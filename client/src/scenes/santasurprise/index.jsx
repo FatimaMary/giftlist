@@ -204,7 +204,7 @@ function SantaSurprise() {
           >
             <Box
               sx={{
-                width: isSmallScreen ? "270px" : 220,
+                width: 220,
                 height: isSmallScreen ? "150px" : "250px",
                 m: "1.5rem",
                 display: "flex",
