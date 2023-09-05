@@ -310,7 +310,8 @@ function SantaSurprise() {
               fontSize: "16px",
               color: "#C21010",
               background: "#ffffff",
-              height: "500px",
+              height: "265px",
+              padding: "30px 20px",
             }}
           >
             No past events found.
