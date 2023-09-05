@@ -306,12 +306,15 @@ function SantaSurprise() {
           <Typography
             variant="body2"
             sx={{
-              fontWeight: 600,
+              fontWeight: 400,
               fontSize: "16px",
               color: "#C21010",
               background: "#ffffff",
               height: "265px",
               padding: "30px 20px",
+              display: "flex",
+              alignItems: "center",
+              justifyContent: "center",
             }}
           >
             No past events found.
