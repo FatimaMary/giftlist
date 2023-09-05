@@ -307,9 +307,10 @@ function SantaSurprise() {
             variant="body2"
             sx={{
               fontWeight: 600,
-              fontSize: "20px",
+              fontSize: "16px",
               color: "#C21010",
               background: "#ffffff",
+              height: "500px",
             }}
           >
             No past events found.
