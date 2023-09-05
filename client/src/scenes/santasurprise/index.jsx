@@ -1,5 +1,13 @@
 import React, { useContext, useEffect, useState } from "react";
-import { Box, Typography, CardContent, Card, CardMedia } from "@mui/material";
+import {
+  Box,
+  Typography,
+  CardContent,
+  Card,
+  CardMedia,
+  useTheme,
+  useMediaQuery,
+} from "@mui/material";
 import { useNavigate, useSearchParams } from "react-router-dom";
 import axios from "axios";
 import AddCircleOutlineIcon from "@mui/icons-material/AddCircleOutline";
@@ -21,6 +29,8 @@ function SantaSurprise() {
   const [upcomingEvents, setUpcomingEvents] = useState([]);
   const [pastEvents, setPastEvents] = useState([]);
   const [userName, setUserName] = useState();
+  const theme = useTheme();
+  const isSmallScreen = useMediaQuery(theme.breakpoints.down("sm"));
 
   useEffect(() => {
     const upcoming = eventData.filter((event) => {
@@ -189,7 +199,7 @@ function SantaSurprise() {
               display: "flex",
               flexWrap: "wrap",
               gap: "20px",
-              marginLeft: "30px",
+              padding: "20px",
             }}
           >
             <Box
