@@ -186,59 +186,83 @@ function MyWishes({ eventId, userId, onProductAdded }) {
           flexWrap: "wrap",
         }}
       >
-        {reversedProductDetails.map((singleDetail, i) => (
-          <Card
+        {reversedProductDetails.length === 0 ? (
+          <Typography
+            variant="body2"
             sx={{
-              width: 250,
-              height: "250px",
-              m: "1.5rem",
+              fontWeight: 400,
+              fontSize: "16px",
+              color: "#C21010",
+              background: "#ffffff",
+              height: "80vh",
+              padding: "30px 20px",
               display: "flex",
-              alignItems: "center",
-              justifyContent: "center",
+              width: "100%",
+              margin: "20px",
             }}
-            key={i}
           >
-            <CardContent>
-              <Box
+            Add items to your wish list to help your gift giver find the perfect
+            gift.
+          </Typography>
+        ) : (
+          <>
+            {reversedProductDetails.map((singleDetail, i) => (
+              <Card
                 sx={{
-                  height: "150px",
-                  borderBottom: "1px solid grey",
+                  width: 250,
+                  height: "250px",
+                  m: "1.5rem",
+                  display: "flex",
+                  alignItems: "center",
+                  justifyContent: "center",
                 }}
+                key={i}
               >
-                <CardMedia
-                  component="img"
-                  image={Gift}
-                  alt="Image Description"
-                  sx={{
-                    height: "125px",
-                    width: "100px",
-                    marginLeft: "auto",
-                    marginRight: "auto",
-                    marginTop: "30px",
-                  }}
-                />
-              </Box>
-              <Box
-                sx={{
-                  height: "100px",
-                  background: "#FFEAEA",
-                  p: "0.5rem",
-                }}
-              >
-                <Typography
-                  onClick={() => handleProductClick(singleDetail.productUrl)}
-                  sx={{
-                    "&: hover": {
-                      cursor: "pointer",
-                    },
-                  }}
-                >
-                  {truncateText(singleDetail.productUrl, 0)}
-                </Typography>
-              </Box>
-            </CardContent>
-          </Card>
-        ))}
+                <CardContent>
+                  <Box
+                    sx={{
+                      height: "150px",
+                      borderBottom: "1px solid grey",
+                    }}
+                  >
+                    <CardMedia
+                      component="img"
+                      image={Gift}
+                      alt="Image Description"
+                      sx={{
+                        height: "125px",
+                        width: "100px",
+                        marginLeft: "auto",
+                        marginRight: "auto",
+                        marginTop: "30px",
+                      }}
+                    />
+                  </Box>
+                  <Box
+                    sx={{
+                      height: "100px",
+                      background: "#FFEAEA",
+                      p: "0.5rem",
+                    }}
+                  >
+                    <Typography
+                      onClick={() =>
+                        handleProductClick(singleDetail.productUrl)
+                      }
+                      sx={{
+                        "&: hover": {
+                          cursor: "pointer",
+                        },
+                      }}
+                    >
+                      {truncateText(singleDetail.productUrl, 0)}
+                    </Typography>
+                  </Box>
+                </CardContent>
+              </Card>
+            ))}{" "}
+          </>
+        )}
       </Box>
     </Box>
   );

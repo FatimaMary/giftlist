@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useContext, useState } from "react";
 import {
   Box,
   Typography,
@@ -13,6 +13,7 @@ import {
 import { useNavigate, useSearchParams } from "react-router-dom";
 import axios from "axios";
 import Navbar from "../../Components/Navbar";
+import { MyContext } from "../../Components/MyContext";
 
 function Signup1() {
   const [firstName, setFirstName] = useState();
@@ -24,6 +25,7 @@ function Signup1() {
   const themes = useTheme();
   const isSmallScreen = useMediaQuery(themes.breakpoints.down("sm"));
   const [errors, setErrors] = useState({});
+  const { isLoggedIn, setIsLoggedIn } = useContext(MyContext);
 
   const theme = createTheme({
     components: {
@@ -46,29 +48,12 @@ function Signup1() {
     },
   });
 
-  // const handleSubmit = (e) => {
-  //   e.preventDefault();
-  //   axios
-  //     .put(`${process.env.REACT_APP_BASE_URL}/user/${userId}`, {
-  //       firstName: firstName,
-  //       secondName: secondName,
-  //       birthDay: birthDay,
-  //     })
-  //     .then((response) => {
-  //       console.log("update response: ", response);
-  //       console.log("update response data: ", response.data);
-  //       navigate(`/santasurprise?userId=${userId}`);
-  //     });
-  // };
   const handleSubmit = (e) => {
     e.preventDefault();
     const validationErrors = {};
     if (!firstName) {
       validationErrors.firstName = "First Name is required";
     }
-    // if (!secondName.trim()) {
-    //   validationErrors.secondName = "Last Name is required";
-    // }
     if (!birthDay) {
       validationErrors.birthDay = "BirthDay is required";
     }
@@ -84,6 +69,8 @@ function Signup1() {
           console.log("update response: ", response);
           console.log("update response data: ", response.data);
           navigate(`/santasurprise?userId=${userId}`);
+          setIsLoggedIn(true);
+          localStorage.setItem("isLoggedIn", "true");
         });
     } else {
       setErrors(validationErrors);

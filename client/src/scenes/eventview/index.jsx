@@ -212,7 +212,12 @@ function EventView() {
   const isDrawButtonVisible = rsvpDate && players.length >= 3;
   console.log("isButton is visibile: ", isDrawButtonVisible);
   return (
-    <Box backgroundColor="#FFEAEA" width="100vw" p="50px 30px 33px 30px">
+    <Box
+      backgroundColor="#FFEAEA"
+      width="100vw"
+      p="50px 30px 33px 30px"
+      minHeight="100vh"
+    >
       <Box
         sx={{
           display: "flex",
@@ -1111,7 +1116,7 @@ function EventView() {
           />
         </Box>
       )}
-      <Footer />
+      <Footer sx={{ marginTop: "auto" }} />
       <Invite
         open={invitePage}
         onClose={() => setInvitePage(false)}
