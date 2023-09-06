@@ -1,13 +1,10 @@
-@import url('https://fonts.googleapis.com/css2?family=Montserrat&display=swap');
-@import url('https://fonts.googleapis.com/css2?family=Nunito&family=PT+Sans&display=swap');
-@import url('https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,400;0,500;0,600;0,700;1,400;1,600&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@200;300;400;500;600;700;800;900&display=swap');
 
 
 *{
   margin: 0;
   padding: 0;
   box-sizing: border-box;
-  font-family: 'Poppins';
   letter-spacing: 0.01em;
 }
 
@@ -15,6 +12,7 @@ body {
   background-position: center;
   background-repeat: no-repeat;
   background-size: cover;
+  font-family: "Poppins", sans-serif;
 }
 
 .container{
