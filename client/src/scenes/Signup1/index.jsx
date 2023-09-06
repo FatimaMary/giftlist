@@ -23,6 +23,7 @@ function Signup1() {
   const navigate = useNavigate();
   const themes = useTheme();
   const isSmallScreen = useMediaQuery(themes.breakpoints.down("sm"));
+  const [errors, setErrors] = useState({});
 
   const theme = createTheme({
     components: {
@@ -45,19 +46,48 @@ function Signup1() {
     },
   });
 
+  // const handleSubmit = (e) => {
+  //   e.preventDefault();
+  //   axios
+  //     .put(`${process.env.REACT_APP_BASE_URL}/user/${userId}`, {
+  //       firstName: firstName,
+  //       secondName: secondName,
+  //       birthDay: birthDay,
+  //     })
+  //     .then((response) => {
+  //       console.log("update response: ", response);
+  //       console.log("update response data: ", response.data);
+  //       navigate(`/santasurprise?userId=${userId}`);
+  //     });
+  // };
   const handleSubmit = (e) => {
     e.preventDefault();
-    axios
-      .put(`${process.env.REACT_APP_BASE_URL}/user/${userId}`, {
-        firstName: firstName,
-        secondName: secondName,
-        birthDay: birthDay,
-      })
-      .then((response) => {
-        console.log("update response: ", response);
-        console.log("update response data: ", response.data);
-        navigate(`/santasurprise?userId=${userId}`);
-      });
+    const validationErrors = {};
+    if (!firstName) {
+      validationErrors.firstName = "First Name is required";
+    }
+    // if (!secondName.trim()) {
+    //   validationErrors.secondName = "Last Name is required";
+    // }
+    if (!birthDay) {
+      validationErrors.birthDay = "BirthDay is required";
+    }
+
+    if (Object.keys(validationErrors).length === 0) {
+      axios
+        .put(`${process.env.REACT_APP_BASE_URL}/user/${userId}`, {
+          firstName: firstName,
+          secondName: secondName,
+          birthDay: birthDay,
+        })
+        .then((response) => {
+          console.log("update response: ", response);
+          console.log("update response data: ", response.data);
+          navigate(`/santasurprise?userId=${userId}`);
+        });
+    } else {
+      setErrors(validationErrors);
+    }
   };
 
   const handleClick = () => {
@@ -71,7 +101,6 @@ function Signup1() {
         sx={{
           backgroundColor: "#CFE8A9",
           height: "85vh",
-          // width: '100vw',
           display: "flex",
           flexDirection: "column",
           justifyContent: "center",
@@ -87,18 +116,11 @@ function Signup1() {
             justifyContent: "center",
             alignItems: "center",
             backgroundColor: "white",
-            // height: '400px',
             border: "1px solid grey",
             width: "350px",
             borderRadius: "10px",
           }}
         >
-          {/* <Box 
-            sx={{
-                display: 'flex',
-                justifyContent: 'space-around',
-              }}
-          > */}
           <Box m="1.5rem">
             <Typography>First Name</Typography>
             <ThemeProvider theme={theme}>
@@ -113,6 +135,8 @@ function Signup1() {
                 value={firstName}
                 type="text"
                 onChange={(e) => setFirstName(e.target.value)}
+                error={!!errors.firstName}
+                helperText={errors.firstName}
               />
             </ThemeProvider>
           </Box>
@@ -133,7 +157,6 @@ function Signup1() {
               />
             </ThemeProvider>
           </Box>
-          {/* </Box> */}
           <Box m="1.5rem">
             <Typography>BirthDay</Typography>
             <ThemeProvider theme={theme}>
@@ -147,6 +170,8 @@ function Signup1() {
                 }}
                 value={birthDay}
                 onChange={(e) => setBirthDay(e.target.value)}
+                error={!!errors.birthDay}
+                helperText={errors.birthDay}
               />
             </ThemeProvider>
           </Box>

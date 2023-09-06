@@ -190,7 +190,7 @@ function Participants() {
                   marginBottom: "12px",
                   display: "flex",
                   // flexWrap: "wrap",
-                  alignItems: "center",
+                  // alignItems: "center",
                   justifyContent: isSmallScreen
                     ? "space-between"
                     : "space-between",
