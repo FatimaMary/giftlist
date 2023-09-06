@@ -34,7 +34,7 @@ export const Navbar = () => {
           fontSize: "2rem",
         }}
       >
-        <b>GIFT </b>JUNCTION
+        <b>SANTA </b>SURPRISE
       </Typography>
       <Box
         sx={{

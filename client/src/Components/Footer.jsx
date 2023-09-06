@@ -40,7 +40,7 @@ function Footer() {
             color: "#C21010",
           }}
         >
-          Gift Junction. All Rights Reserved
+          Santa Surprise. All Rights Reserved
         </Typography>
       </Box>
       <Box

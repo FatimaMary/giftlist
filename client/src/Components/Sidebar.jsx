@@ -98,9 +98,9 @@ const Sidebar = ({
                     variant="h4"
                     fontWeight="bold"
                     color="#C21010"
-                    fontSize={isNonMobile ? "30px" : "20px"}
+                    fontSize={isNonMobile ? "27px" : "20px"}
                   >
-                    Gift Junction
+                    Santa Surprise
                   </Typography>
                 </Box>
                 {!isNonMobile && (

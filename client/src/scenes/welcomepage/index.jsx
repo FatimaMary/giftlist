@@ -52,7 +52,7 @@ function WelcomePage() {
             color: "#C21010",
           }}
         >
-          Giftjunction is the easiest way to exchange gifts with friends and
+          Santa Surprise is the easiest way to exchange gifts with friends and
           family for birthdays, holidays, and more!
         </Typography>
         <Button
@@ -74,7 +74,7 @@ function WelcomePage() {
             width: isSmallScreen ? "80%" : "auto",
           }}
         >
-          Create a gift junction
+          Create a Santa Surprise
         </Button>
       </Box>
     </Box>
