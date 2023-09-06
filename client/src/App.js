@@ -15,10 +15,11 @@ import Invite from "./scenes/success/invite";
 import EditEvent from "./scenes/eventview/editEvent";
 import Login1 from "./scenes/login1";
 import { MyContext, DrawStatusProvider } from "./Components/MyContext";
-import SantaSurprise from "./scenes/santasurprise";
+import Home from "./scenes/home";
 import Signup2 from "./scenes/signup2";
 import ForgotPassword from "./Components/ResetPassword";
 import { sendPasswordResetEmail } from "firebase/auth";
+import "./App.css";
 
 function App() {
   const [isLoggedIn, setIsLoggedIn] = useState(false);
@@ -48,7 +49,7 @@ function App() {
             <Route path="/*" element={<Layout />}>
               <Route path="eventcreate" element={<EventCreation />} />
               <Route path="budget" element={<Budget />} />
-              <Route path="santasurprise" element={<SantaSurprise />} />
+              <Route path="home" element={<Home />} />
               <Route path="success" element={<Success />} />
               <Route path="eventview" element={<EventView />} />
               <Route path="eventview1" element={<EventView1 />} />

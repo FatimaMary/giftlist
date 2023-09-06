@@ -262,10 +262,8 @@ function Participants() {
                       margin: "0 5px",
                       background: "#C21010",
                       fontSize: isSmallScreen ? "10px" : "13px",
-                      // lineHeight: "22px",
                       color: "#fff",
                       padding: isSmallScreen ? "5px 7px" : "14px 15px",
-                      // display: "inline-block",
                       border: "1px solid #C21010",
                       fontWeight: 600,
                       textTransform: "inherit",
@@ -300,120 +298,6 @@ function Participants() {
             ))}{" "}
           </>
         )}
-        {/* {activeTab === 2 && (
-          <>
-            <Typography
-              variant="h2"
-              sx={{
-                fontSize: "20px",
-                lineHeight: "24px",
-                marginBottom: "16px",
-                fontWeight: 600,
-                color: "#101a34",
-              }}
-            >
-              Not Partcipating
-            </Typography>
-            {unparticipantsData.map((unparticipant, index) => (
-              <Box
-                key={index}
-                sx={{
-                  borderBottom: "1px solid #e8ecf1",
-                  paddingBottom: "12px",
-                  marginBottom: "12px",
-                  display: "flex",
-                  flexWrap: "wrap",
-                  alignItems: "center",
-                  justifyContent: "space-between",
-                }}
-              >
-                <Box
-                  sx={{
-                    display: "flex",
-                  }}
-                >
-                  <Box>
-                    <Avatar
-                      {...stringAvatar(`${unparticipant.firstName}`)}
-                      sx={{
-                        width: "26px",
-                        height: "26px",
-                        background: "#C21010",
-                        fontSize: "11px",
-                        marginBottom: 0,
-                        lineHeight: "18px",
-                        display: "flex",
-                        alignItems: "center",
-                        justifyContent: "center",
-                      }}
-                    />
-                  </Box>
-                  <Box
-                    sx={{
-                      paddingLeft: "8px",
-                      flexBasis: "calc(100% - 26px)",
-                      maxWidth: "calc(100% - 26px)",
-                    }}
-                  >
-                    <Typography
-                      variant="h4"
-                      sx={{
-                        fontWeight: 600,
-                        fontSize: "13px",
-                        lineHeight: "18px",
-                        color: "#101a34",
-                        marginBottom: 0,
-                      }}
-                    >
-                      {unparticipant.firstName}{" "}
-                      {unparticipant.secondName ? unparticipant.secondName : ""}
-                    </Typography>
-                    <Typography
-                      variant="body1"
-                      sx={{
-                        fontSize: "11px",
-                        lineHeight: "18px",
-                        color: "#818694",
-                      }}
-                    >
-                      {unparticipant.email}
-                    </Typography>
-                  </Box>
-                </Box>
-                <Box>
-                  <Button
-                    sx={{
-                      padding: "14px 15px",
-                      fontSize: "13px",
-                      lineHeight: "18px",
-                      background: "#fafbfd",
-                      borderRadius: "7px",
-                      fontWeight: "7px",
-                      color: "#C21010",
-                      display: "flex",
-                      border: "1px solid #C21010",
-                      "&:hover": {
-                        cursor: "pointer",
-                      },
-                      textTransform: "inherit",
-                    }}
-                  >
-                    <img
-                      src={Edit}
-                      style={{
-                        width: "17px",
-                        height: "17px",
-                        marginRight: "5px",
-                        filter: "hue-rotate(180deg)",
-                      }}
-                    />
-                    Edit RSVP
-                  </Button>
-                </Box>
-              </Box>
-            ))}{" "}
-          </>
-        )} */}
       </Box>
       {isViewWishesOpen && (
         <ViewWishes

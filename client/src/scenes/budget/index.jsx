@@ -10,7 +10,7 @@ import {
 import axios from "axios";
 import { useSearchParams, useNavigate } from "react-router-dom";
 import ArrowCircleLeftOutlinedIcon from "@mui/icons-material/ArrowCircleLeftOutlined";
-import Gift from "./gift.png";
+import Gift from "../mywishes/gift.png";
 import Footer from "../../Components/Footer";
 
 function Budget() {
@@ -61,7 +61,7 @@ function Budget() {
   };
 
   return (
-    <Box backgroundColor="#FFFDE3" width="100vw" p="50px 30px 33px 30px">
+    <Box backgroundColor="#FFEAEA" width="100vw" p="50px 30px 33px 30px">
       <Box
         sx={{
           display: "flex",

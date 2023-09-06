@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-import { Box, Typography, Button, createTheme } from "@mui/material";
+import { Box, Typography, Button } from "@mui/material";
 import { useNavigate, useSearchParams } from "react-router-dom";
 import Light from "./bow.png";
 import ArrowCircleLeftOutlinedIcon from "@mui/icons-material/ArrowCircleLeftOutlined";
@@ -18,7 +18,7 @@ function Success() {
   const navigate = useNavigate();
 
   const handleClick = () => {
-    navigate(`/santasurprise?userId=${userId}`);
+    navigate(`/home?userId=${userId}`);
   };
 
   const moveToEventview = () => {
@@ -69,7 +69,7 @@ function Success() {
             fontSize: "1rem",
           }}
         >
-          Gift exchange
+          Santa Surprise
         </Button>
       </Box>
       <Box
@@ -111,7 +111,7 @@ function Success() {
                 margin: "0 0 10px",
               }}
             >
-              Gift exchanges need at least 3 participants
+              Santa Surprises need at least 3 participants
             </Typography>
           </Box>
           <Box>
@@ -136,7 +136,7 @@ function Success() {
                 marginBottom: "20px",
               }}
             >
-              View Gift exchange
+              View Santa Surprise
             </Button>
           </Box>
           <Box>

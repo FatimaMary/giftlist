@@ -68,7 +68,7 @@ function Signup1() {
         .then((response) => {
           console.log("update response: ", response);
           console.log("update response data: ", response.data);
-          navigate(`/santasurprise?userId=${userId}`);
+          navigate(`/home?userId=${userId}`);
           setIsLoggedIn(true);
           localStorage.setItem("isLoggedIn", "true");
         });

@@ -6,7 +6,7 @@ import {
   useTheme,
   useMediaQuery,
 } from "@mui/material";
-import Santa from "../santasurprise/santa3.jpg";
+import Santa from "../home/santa3.jpg";
 import Avatar from "@mui/material/Avatar";
 import ShareOutlinedIcon from "@mui/icons-material/ShareOutlined";
 import EditCalendarOutlinedIcon from "@mui/icons-material/EditCalendarOutlined";
@@ -15,7 +15,6 @@ import { useSearchParams } from "react-router-dom";
 import CheckCircleOutlineIcon from "@mui/icons-material/CheckCircleOutline";
 import CancelOutlinedIcon from "@mui/icons-material/CancelOutlined";
 import Mail from "./mail12.svg";
-import Edit from "./editicblue.svg";
 import Gift from "./gift12.svg";
 import Santa1 from "./santa12.svg";
 import Footer from "../../Components/Footer";

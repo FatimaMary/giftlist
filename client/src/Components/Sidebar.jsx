@@ -9,14 +9,8 @@ import {
   ListItemText,
   Typography,
 } from "@mui/material";
-import HomeOutlinedIcon from "@mui/icons-material/HomeOutlined";
-import FormatListBulletedOutlinedIcon from "@mui/icons-material/FormatListBulletedOutlined";
-import LocalMallOutlinedIcon from "@mui/icons-material/LocalMallOutlined";
-import LocalPostOfficeOutlinedIcon from "@mui/icons-material/LocalPostOfficeOutlined";
 import CardGiftcardOutlinedIcon from "@mui/icons-material/CardGiftcardOutlined";
-import PersonOutlineOutlinedIcon from "@mui/icons-material/PersonOutlineOutlined";
 import EditCalendarOutlinedIcon from "@mui/icons-material/EditCalendarOutlined";
-import HelpOutlineOutlinedIcon from "@mui/icons-material/HelpOutlineOutlined";
 import LogoutOutlinedIcon from "@mui/icons-material/LogoutOutlined";
 import { useEffect, useState } from "react";
 import { useLocation, useNavigate, useSearchParams } from "react-router-dom";
@@ -46,14 +40,14 @@ const Sidebar = ({
 
   const navItems = [
     {
-      text: "SantaSurprise",
+      text: "Home",
       icon: <CardGiftcardOutlinedIcon />,
-      link: isLoggedIn ? `santasurprise?userId=${userId}` : "/login",
+      link: isLoggedIn ? `home?userId=${userId}` : "/login",
     },
     {
       text: "My Gifts",
       icon: <EditCalendarOutlinedIcon />,
-      link: `mygifts?userId=${userId}`,
+      link: isLoggedIn ? `mygifts?userId=${userId}` : "/login",
     },
   ];
 

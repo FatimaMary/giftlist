@@ -146,7 +146,7 @@ function Signup2() {
       <Navbar />
       <Box
         sx={{
-          backgroundColor: "#CFE8A9",
+          backgroundColor: "#FFEAEA",
           height: "85vh",
           width: isSmallScreen ? "100%" : "100vw",
           padding: isSmallScreen ? "20px" : "1.5rem 2.5rem",
@@ -171,7 +171,7 @@ function Signup2() {
         >
           <Box mt={1.5} ml={2.5}>
             <Typography variant="h5" fontWeight="bold" mb="15px">
-              Sign up for GiftList
+              Sign up for Santa Surprise
             </Typography>
             <Typography
               variant="body1"
@@ -243,7 +243,6 @@ function Signup2() {
                   />
                 </ThemeProvider>
               </Box>
-              {/* {errors.password && <p className="error">{errors.password}</p>} */}
               <Box
                 sx={{
                   display: "flex",

@@ -59,7 +59,6 @@ function Login() {
     const userLoggedIn = localStorage.getItem("isLoggedIn");
     if (userLoggedIn === "true") {
       setIsLoggedIn(true);
-      // navigate(`/giftexchange?userId=${res.user.uid}`); // or any other protected route
     }
   }, []);
   const handleLogin = async (e) => {
@@ -86,7 +85,7 @@ function Login() {
         loginData.password
       ).then(async (res) => {
         console.log(res);
-        navigate(`/santasurprise?userId=${res.user.uid}`);
+        navigate(`/home?userId=${res.user.uid}`);
         setIsLoggedIn(true);
         localStorage.setItem("isLoggedIn", "true");
       });
@@ -139,7 +138,7 @@ function Login() {
                 color: "#C21010",
               }}
             >
-              Login to GiftList
+              Login to Santa Surprise
             </Typography>
           </Box>
           <form onSubmit={handleLogin}>

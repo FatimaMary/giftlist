@@ -9,7 +9,7 @@ import {
   useTheme,
   useMediaQuery,
 } from "@mui/material";
-import { Link, useNavigate, useSearchParams } from "react-router-dom";
+import { useNavigate, useSearchParams } from "react-router-dom";
 import { signInWithEmailAndPassword } from "firebase/auth";
 import { auth } from "../../firebase";
 import Navbar from "../../Components/Navbar";
@@ -143,7 +143,7 @@ function Login1() {
                 color: "#C21010",
               }}
             >
-              Login to GiftList
+              Login to Santa surprise
             </Typography>
           </Box>
           <form onSubmit={handleLogin}>

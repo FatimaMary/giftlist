@@ -16,7 +16,7 @@ import CalendarMonthIcon from "@mui/icons-material/CalendarMonth";
 import Footer from "../../Components/Footer";
 import { MyContext } from "../../Components/MyContext";
 
-function SantaSurprise() {
+function Home() {
   const [eventData, setEventData] = useState([]);
   const [searchParam] = useSearchParams();
   const userId = searchParam.get("userId");
@@ -434,4 +434,4 @@ function SantaSurprise() {
   );
 }
 
-export default SantaSurprise;
+export default Home;

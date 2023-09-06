@@ -113,12 +113,12 @@ function EventCreation() {
   };
 
   const handleClick = () => {
-    navigate(`/santasurprise?userId=${userId}`);
+    navigate(`/home?userId=${userId}`);
   };
 
   return (
     <Box
-      backgroundColor="#FFFDE3"
+      backgroundColor="#FFEAEA"
       width={isSmallScreen ? "100%" : "100vw"}
       p={isSmallScreen ? "48px 10px 40px" : "50px 30px 33px 30px"}
       color="#C21010"
@@ -145,7 +145,7 @@ function EventCreation() {
             fontSize: "1rem",
           }}
         >
-          Santa Surprise
+          Home
         </Button>
       </Box>
       <Box

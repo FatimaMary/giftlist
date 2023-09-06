@@ -12,7 +12,6 @@ import {
   Grid,
 } from "@mui/material";
 import MailOutlineIcon from "@mui/icons-material/MailOutline";
-import FavoriteBorderIcon from "@mui/icons-material/FavoriteBorder";
 import axios from "axios";
 
 function Messages({ eventId, userId }) {
@@ -198,7 +197,6 @@ function Messages({ eventId, userId }) {
                 fontWeight: 400,
                 fontSize: "16px",
                 color: "#101a34",
-                // border: "1px solid #cad3dd",
               }}
               value={message}
               onChange={(e) => setMessage(e.target.value)}
@@ -246,7 +244,6 @@ function Messages({ eventId, userId }) {
               }}
               key={i}
             >
-              {/* <Grid container spacing={2}> */}
               <Grid item xs={6} md={6}>
                 <Box
                   sx={{
@@ -254,7 +251,6 @@ function Messages({ eventId, userId }) {
                     alignItems: "center",
                     Width: "50%",
                     paddingRight: "20px",
-                    // flexWrap: "wrap",
                   }}
                 >
                   <Avatar
@@ -294,7 +290,6 @@ function Messages({ eventId, userId }) {
                   </Box>
                 </Box>
               </Grid>
-
               <Grid item xs={6} md={6}>
                 <Box
                   sx={{
@@ -357,7 +352,6 @@ function Messages({ eventId, userId }) {
                 background: "#fff",
                 border: "1px solid #e8ecf1",
                 borderRadius: "9px",
-                // flexDirection: isMobile ? "column" : "row",
               }}
               key={i}
             >
@@ -368,7 +362,6 @@ function Messages({ eventId, userId }) {
                   maxWidth: "25%",
                   paddingRight: "20px",
                   flexWrap: "wrap",
-                  // flexDirection: isMobile ? "column" : "row",
                 }}
               >
                 <Avatar

@@ -5,7 +5,6 @@ import {
   Button,
   Dialog,
   DialogContent,
-  DialogTitle,
   Box,
   InputLabel,
   createTheme,
@@ -60,7 +59,6 @@ function EditEvent({ open, onClose, editPage, eventId, onEdit }) {
       .then((response) => {
         console.log("Edited data: ", response.data);
         onClose(editPage);
-        // navigate(`/eventview?eventId=${eventId}`);
         onEdit(response.data);
       });
   };
@@ -70,7 +68,7 @@ function EditEvent({ open, onClose, editPage, eventId, onEdit }) {
       .delete(`${process.env.REACT_APP_BASE_URL}/event/delete/${eventId}`)
       .then((response) => {
         console.log("delete response: ", response.data);
-        navigate(`/santasurprise?userId=${userId}`);
+        navigate(`/home?userId=${userId}`);
       });
   };
 

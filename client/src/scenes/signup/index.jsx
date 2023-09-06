@@ -14,7 +14,6 @@ import {
 import { createUserWithEmailAndPassword, updateProfile } from "firebase/auth";
 import { auth, db } from "../../firebase";
 import { doc, setDoc } from "firebase/firestore";
-import axios from "axios";
 import Navbar from "../../Components/Navbar";
 
 function Signup() {
@@ -27,7 +26,6 @@ function Signup() {
   const navigate = useNavigate();
   const [err, setErr] = useState(false);
   const [loading, setLoading] = useState(false);
-  const [userData, setUserData] = useState([]);
   const themes = useTheme();
   const isSmallScreen = useMediaQuery(themes.breakpoints.down("sm"));
 
@@ -133,7 +131,7 @@ function Signup() {
       <Navbar />
       <Box
         sx={{
-          backgroundColor: "#CFE8A9",
+          backgroundColor: "#FFEAEA",
           height: "85vh",
           width: isSmallScreen ? "100%" : "100vw",
           padding: isSmallScreen ? "20px" : "1.5rem 2.5rem",
@@ -158,7 +156,7 @@ function Signup() {
         >
           <Box mt={1.5} ml={2.5}>
             <Typography variant="h5" fontWeight="bold" mb="15px">
-              Sign up for GiftList
+              Sign up for Santa Surprise
             </Typography>
             <Typography
               variant="body1"
@@ -230,7 +228,6 @@ function Signup() {
                   />
                 </ThemeProvider>
               </Box>
-              {/* {errors.password && <p className="error">{errors.password}</p>} */}
               <Box
                 sx={{
                   display: "flex",
