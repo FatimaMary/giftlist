@@ -671,7 +671,7 @@ function EventView() {
       >
         <Typography
           isActive={activeTab === 0}
-          className={`tab ${activeTab === 0 ? "active" : ""}`}
+          className={`tab ${activeTab === 0 ? "active" : "notactive"}`}
           sx={{
             color: "#101a34",
             fontWeight: 600,
@@ -690,7 +690,7 @@ function EventView() {
         </Typography>
         <Typography
           isActive={activeTab === 1}
-          className={`tab ${activeTab === 1 ? "active" : ""}`}
+          className={`tab ${activeTab === 1 ? "active" : "notactive"}`}
           sx={{
             color: "#101a34",
             fontWeight: 600,
@@ -709,7 +709,7 @@ function EventView() {
         </Typography>
         <Typography
           isActive={activeTab === 2}
-          className={`tab ${activeTab === 2 ? "active" : ""}`}
+          className={`tab ${activeTab === 2 ? "active" : "notactive"}`}
           sx={{
             color: "#101a34",
             fontWeight: 600,
@@ -728,7 +728,7 @@ function EventView() {
         </Typography>
         <Typography
           isActive={activeTab === 3}
-          className={`tab ${activeTab === 3 ? "active" : ""}`}
+          className={`tab ${activeTab === 3 ? "active" : "notactive"}`}
           sx={{
             color: "#101a34",
             fontWeight: 600,

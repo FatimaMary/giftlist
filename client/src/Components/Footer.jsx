@@ -18,7 +18,7 @@ function Footer() {
         display: "flex",
         justifyContent: isMobile ? "flex-start" : "space-between",
         borderTop: "1px solid grey",
-        marginTop: "20px",
+        marginTop: "200px",
         flexDirection: isMobile ? "column" : "row",
       }}
     >

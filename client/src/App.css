@@ -54,9 +54,15 @@ body {
 
 .tab.active {
   border-bottom: 3px solid #C21010;
+  font-weight: 600;
 }
 
 .tab.click {
   opacity: 1;
+  font-weight: 600;
+}
+
+.tab.notactive {
+  opacity: 0.5;
   font-weight: 600;
 }

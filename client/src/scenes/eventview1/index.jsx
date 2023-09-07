@@ -84,7 +84,12 @@ function EventView1() {
   };
 
   return (
-    <Box backgroundColor="#FFEAEA" width="100vw" p="50px 30px 33px 30px">
+    <Box
+      backgroundColor="#FFEAEA"
+      width="100vw"
+      p="50px 30px 33px 30px"
+      minHeight="100vh"
+    >
       <Box
         sx={{
           display: "flex",
@@ -270,7 +275,7 @@ function EventView1() {
       >
         <Typography
           isActive={activeTab === 0}
-          className={`tab ${activeTab === 0 ? "active" : ""}`}
+          className={`tab ${activeTab === 0 ? "active" : "notactive"}`}
           sx={{
             color: "#101a34",
             fontWeight: 600,
@@ -289,7 +294,7 @@ function EventView1() {
         </Typography>
         <Typography
           isActive={activeTab === 1}
-          className={`tab ${activeTab === 1 ? "active" : ""}`}
+          className={`tab ${activeTab === 1 ? "active" : "notactive"}`}
           sx={{
             color: "#101a34",
             fontWeight: 600,

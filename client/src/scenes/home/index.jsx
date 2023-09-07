@@ -15,6 +15,7 @@ import Santa from "./santa3.jpg";
 import CalendarMonthIcon from "@mui/icons-material/CalendarMonth";
 import Footer from "../../Components/Footer";
 import { MyContext } from "../../Components/MyContext";
+import "../../App.css";
 
 function Home() {
   const [eventData, setEventData] = useState([]);
@@ -163,24 +164,28 @@ function Home() {
         >
           <Typography
             isActive={activeTab === 0}
-            className={`tab ${activeTab === 0 ? "active" : ""}`}
+            className={`tab ${activeTab === 0 ? "active" : "notactive"}`}
             onClick={() => handleTabActive(0)}
             sx={{
               "&:hover": {
                 cursor: "pointer",
               },
+              color: "#101a34",
+              fontSize: "17px",
             }}
+            variant="body2"
           >
             Upcoming({afterEventDateCount})
           </Typography>
           <Typography
             isActive={activeTab === 1}
-            className={`tab ${activeTab === 1 ? "active" : ""}`}
+            className={`tab ${activeTab === 1 ? "active" : "notactive"}`}
             onClick={() => handleTabActive(1)}
             sx={{
               "&:hover": {
                 cursor: "pointer",
               },
+              color: "#101a34",
             }}
           >
             Past({beforeEventDateCount})
@@ -192,6 +197,7 @@ function Home() {
               display: "flex",
               background: "#ffffff",
               minHeight: "80vh",
+              borderRadius: "0 0 15px 15px",
             }}
           >
             <Box
@@ -205,7 +211,7 @@ function Home() {
               <Box
                 sx={{
                   width: 220,
-                  height: isSmallScreen ? "150px" : "250px",
+                  height: isSmallScreen ? "150px" : "230px",
                   m: "1.5rem",
                   display: "flex",
                   flexDirection: "column",
@@ -234,7 +240,7 @@ function Home() {
                 <Card
                   sx={{
                     width: 220,
-                    height: "250px",
+                    height: isSmallScreen ? "150px" : "230px",
                     m: "1.5rem",
                     display: "flex",
                     alignItems: "center",
@@ -333,9 +339,8 @@ function Home() {
             <Box
               sx={{
                 display: "flex",
-                // flexWrap: 'wrap',
                 background: "#ffffff",
-                // marginY: '-12px',
+                borderRadius: "0 0 15px 15px",
               }}
             >
               <Box
