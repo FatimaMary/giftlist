@@ -17,11 +17,13 @@ function CopyInvitation({
   eventName,
   eventId,
   setInvitePage,
+  secondName,
 }) {
   const [copyText, setCopyText] = useState("");
   const textFieldRef = useRef(null);
   const themes = useTheme();
   const isSmallScreen = useMediaQuery(themes.breakpoints.down("sm"));
+  const userName = `${firstName} ${secondName ? secondName : ""}`;
 
   const copyToClipboard = () => {
     copy(textFieldRef.current.defaultValue);
@@ -50,7 +52,14 @@ function CopyInvitation({
   });
 
   return (
-    <Box sx={{ width: isSmallScreen ? "100%" : "initial" }}>
+    <Box
+      sx={{
+        width: isSmallScreen ? "100%" : "initial",
+        minWidth: "600px",
+        overflow: "hidden", // Add this line
+        whiteSpace: "pre-wrap",
+      }}
+    >
       <ThemeProvider theme={theme}>
         <TextField
           id="outlined-multiline-static"
@@ -58,11 +67,11 @@ function CopyInvitation({
           rows={isSmallScreen ? "13" : "7"}
           inputRef={textFieldRef}
           defaultValue={`Hello,
-          ${firstName} invited you to a group gift exchange: ${eventName}. Hurry! You have until ${rsvpDate} to RSVP.
-          
+          ${userName} invited you to the Santa Surprise Game: ${eventName}. 
+          Hurry! You have until ${rsvpDate} to RSVP.
           Click on the link to join  
           https://main.d2ox3js0flnzdp.amplifyapp.com/eventview1?eventId=${eventId}`}
-          sx={{ width: "100%", border: "none" }}
+          sx={{ width: "100%", border: "none", minWidth: "none" }}
         />
       </ThemeProvider>
       <Box sx={{ display: "flex", justifyContent: "center" }}>

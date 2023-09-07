@@ -767,13 +767,14 @@ function EventView() {
             }}
           >
             <Typography
-              variant="h3"
+              variant="h5"
               sx={{
                 fontSize: "20px",
                 lineHeight: "25px",
                 paddingBottom: "16px",
                 marginBottom: "16px",
                 borderBottom: "1px solid #e8ecf1",
+                fontWeight: "bold",
               }}
             >
               Your gift exchange checklist
@@ -1121,6 +1122,7 @@ function EventView() {
         onClose={() => setInvitePage(false)}
         setInvitePage={setInvitePage}
         firstName={name.firstName}
+        secondName={name.secondName}
         rsvpDate={eventDetails.rsvpDate}
         eventName={eventDetails.eventName}
         eventId={eventId}

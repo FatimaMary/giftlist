@@ -109,8 +109,6 @@ const Sidebar = ({
                 <ListItemButton
                   key={item.text}
                   onClick={() => {
-                    // item.action && item.action();
-                    // navigate(item.text.toLowerCase());
                     navigate(item.link);
                   }}
                   sx={{
@@ -120,7 +118,7 @@ const Sidebar = ({
                         : "transparent",
                     color:
                       active === item.text.toLowerCase() && item.icon
-                        ? "#E64848"
+                        ? "#C21010"
                         : "black",
                   }}
                 >
@@ -128,13 +126,19 @@ const Sidebar = ({
                     sx={{
                       color:
                         active === item.text.toLowerCase() && item.icon
-                          ? "#E64848"
+                          ? "#C21010"
                           : "black",
+                      fontWeight: "bold",
                     }}
                   >
                     {item.icon}
                   </ListItemIcon>
-                  <ListItemText primary={item.text} />
+                  <ListItemText
+                    primary={item.text}
+                    sx={{
+                      fontWeight: "bold",
+                    }}
+                  />
                 </ListItemButton>
               ))}
               {!isLoggedIn ? (

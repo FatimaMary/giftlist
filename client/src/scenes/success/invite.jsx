@@ -8,6 +8,7 @@ function Invite({
   invitePage,
   setInvitePage,
   firstName,
+  secondName,
   eventName,
   rsvpDate,
   eventId,
@@ -45,6 +46,7 @@ function Invite({
           eventId={eventId}
           eventName={eventName}
           rsvpDate={rsvpDate}
+          secondName={secondName}
         />
       </DialogContent>
     </Dialog>
