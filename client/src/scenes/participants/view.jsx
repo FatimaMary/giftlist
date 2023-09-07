@@ -15,6 +15,7 @@ import Gift from "../mywishes/gift.png";
 function ViewWishes({ open, onClose, participantsId, firstName, secondName }) {
   const [productDetails, setProductDetails] = useState([]);
   console.log("participants Id: ", participantsId);
+  const userName = `${firstName} ${secondName ? secondName : ""}`;
   useEffect(() => {
     axios
       .get(`${process.env.REACT_APP_BASE_URL}/product/all/${participantsId}`)
@@ -68,17 +69,25 @@ function ViewWishes({ open, onClose, participantsId, firstName, secondName }) {
         sx={{
           display: "flex",
           justifyContent: "space-between",
-          margin: "0 20px",
+          margin: "0 10px",
         }}
       >
         <Typography
           sx={{
             fontWeight: 600,
             fontSize: "20px",
+            color: "#C21010",
           }}
           variant="h5"
         >
-          My Wishes
+          {userName} Wishes{" "}
+          <span
+            style={{
+              opacity: 0.5,
+            }}
+          >
+            ({productDetails.length})
+          </span>
         </Typography>
         <Typography
           sx={{
@@ -99,24 +108,25 @@ function ViewWishes({ open, onClose, participantsId, firstName, secondName }) {
           display: "flex",
           flexWrap: "wrap",
           maxWidth: "1080px",
+          gap: "30px",
         }}
       >
         {productDetails.map((singleDetail, i) => (
           <Card
             sx={{
-              width: 250,
-              height: "250px",
-              m: "1.5rem",
+              width: 220,
+              height: "230px",
               display: "flex",
               alignItems: "center",
               justifyContent: "center",
+              border: "2px solid #e8ecf1",
             }}
             key={i}
           >
             <CardContent>
               <Box
                 sx={{
-                  height: "150px",
+                  height: "60%",
                   borderBottom: "1px solid grey",
                 }}
               >
@@ -129,15 +139,22 @@ function ViewWishes({ open, onClose, participantsId, firstName, secondName }) {
                     width: "100px",
                     marginLeft: "auto",
                     marginRight: "auto",
-                    marginTop: "30px",
+                    marginTop: "10px",
                   }}
                 />
               </Box>
               <Box
                 sx={{
-                  height: "100px",
+                  height: "40%",
+                  width: "220px",
                   background: "#FFEAEA",
-                  p: "0.5rem",
+                  display: "flex",
+                  flexDirection: "column",
+                  padding: "10px 15px",
+                  "&:hover": {
+                    backgroundColor: "#C21010",
+                    color: "white",
+                  },
                 }}
               >
                 <Typography
