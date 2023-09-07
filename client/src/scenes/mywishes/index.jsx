@@ -184,6 +184,7 @@ function MyWishes({ eventId, userId, onProductAdded }) {
         sx={{
           display: "flex",
           flexWrap: "wrap",
+          flexDirection: "row",
         }}
       >
         {reversedProductDetails.length === 0 ? (
@@ -198,70 +199,107 @@ function MyWishes({ eventId, userId, onProductAdded }) {
               padding: "30px 20px",
               display: "flex",
               width: "100%",
-              margin: "20px",
+              marginTop: "20px",
+              borderRadius: "10px",
             }}
           >
             Add items to your wish list to help your gift giver find the perfect
             gift.
           </Typography>
         ) : (
-          <>
-            {reversedProductDetails.map((singleDetail, i) => (
-              <Card
-                sx={{
-                  width: 250,
-                  height: "250px",
-                  m: "1.5rem",
-                  display: "flex",
-                  alignItems: "center",
-                  justifyContent: "center",
+          <Box
+            sx={{
+              background: "#ffffff",
+              padding: "30px 20px",
+              marginTop: "20px",
+              borderRadius: "10px",
+              width: "100%",
+            }}
+          >
+            <Typography
+              variant="h3"
+              sx={{
+                color: "#c21010",
+                fontSize: "22px",
+                lineHeight: "26px",
+                fontWeight: 600,
+                margin: "0 0 20px",
+              }}
+            >
+              My Wishes
+              <span
+                style={{
+                  opacity: 0.5,
                 }}
-                key={i}
               >
-                <CardContent>
-                  <Box
-                    sx={{
-                      height: "150px",
-                      borderBottom: "1px solid grey",
-                    }}
-                  >
-                    <CardMedia
-                      component="img"
-                      image={Gift}
-                      alt="Image Description"
+                ({reversedProductDetails.length})
+              </span>
+            </Typography>
+            <Box sx={{ display: "flex", flexWrap: "wrap", gap: "20px" }}>
+              {reversedProductDetails.map((singleDetail, i) => (
+                <Card
+                  sx={{
+                    width: 220,
+                    height: "230px",
+                    display: "flex",
+                    alignItems: "center",
+                    justifyContent: "center",
+                    border: "2px solid #e8ecf1",
+                  }}
+                  key={i}
+                >
+                  <CardContent>
+                    <Box
                       sx={{
-                        height: "125px",
-                        width: "100px",
-                        marginLeft: "auto",
-                        marginRight: "auto",
-                        marginTop: "30px",
+                        height: "60%",
+                        borderBottom: "1px solid grey",
                       }}
-                    />
-                  </Box>
-                  <Box
-                    sx={{
-                      height: "100px",
-                      background: "#FFEAEA",
-                      p: "0.5rem",
-                    }}
-                  >
-                    <Typography
-                      onClick={() =>
-                        handleProductClick(singleDetail.productUrl)
-                      }
+                    >
+                      <CardMedia
+                        component="img"
+                        image={Gift}
+                        alt="Image Description"
+                        sx={{
+                          height: "125px",
+                          width: "100px",
+                          marginLeft: "auto",
+                          marginRight: "auto",
+                          marginTop: "10px",
+                        }}
+                      />
+                    </Box>
+                    <Box
                       sx={{
-                        "&: hover": {
-                          cursor: "pointer",
+                        height: "40%",
+                        width: "220px",
+                        background: "#FFEAEA",
+                        display: "flex",
+                        flexDirection: "column",
+                        padding: "10px 15px",
+                        "&:hover": {
+                          backgroundColor: "#C21010",
+                          color: "white",
                         },
                       }}
                     >
-                      {truncateText(singleDetail.productUrl, 0)}
-                    </Typography>
-                  </Box>
-                </CardContent>
-              </Card>
-            ))}{" "}
-          </>
+                      <Typography
+                        onClick={() =>
+                          handleProductClick(singleDetail.productUrl)
+                        }
+                        sx={{
+                          "&: hover": {
+                            cursor: "pointer",
+                          },
+                        }}
+                      >
+                        {truncateText(singleDetail.productUrl, 0)}
+                      </Typography>
+                    </Box>
+                  </CardContent>
+                </Card>
+              ))}{" "}
+            </Box>
+          </Box>
         )}
       </Box>
     </Box>
