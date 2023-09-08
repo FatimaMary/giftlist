@@ -6,7 +6,7 @@ import {
   useTheme,
   useMediaQuery,
 } from "@mui/material";
-import Santa from "../home/santa3.jpg";
+import Santa from "../home/Santa.png";
 import Avatar from "@mui/material/Avatar";
 import ShareOutlinedIcon from "@mui/icons-material/ShareOutlined";
 import EditCalendarOutlinedIcon from "@mui/icons-material/EditCalendarOutlined";

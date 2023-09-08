@@ -11,7 +11,7 @@ import {
 import { useNavigate, useSearchParams } from "react-router-dom";
 import axios from "axios";
 import AddCircleOutlineIcon from "@mui/icons-material/AddCircleOutline";
-import Santa from "./santa3.jpg";
+import Santa from "./Santa.png";
 import CalendarMonthIcon from "@mui/icons-material/CalendarMonth";
 import Footer from "../../Components/Footer";
 import { MyContext } from "../../Components/MyContext";
