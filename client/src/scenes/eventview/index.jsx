@@ -245,9 +245,10 @@ function EventView() {
           <Box
             sx={{
               display: "flex",
-              alignItems: "center",
+              alignItems: isSmallScreen ? "flex-start" : "center",
               justifyContent: "space-between",
               marginBottom: "15px",
+              flexDirection: isSmallScreen ? "column" : "row",
             }}
           >
             <Typography
