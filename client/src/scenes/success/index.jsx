@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React, { useContext, useEffect, useState } from "react";
 import { Box, Typography, Button } from "@mui/material";
 import { useNavigate, useSearchParams } from "react-router-dom";
 import Light from "./bow.png";
@@ -6,6 +6,7 @@ import ArrowCircleLeftOutlinedIcon from "@mui/icons-material/ArrowCircleLeftOutl
 import Footer from "../../Components/Footer";
 import CopyInvitation from "../copyinvitation";
 import axios from "axios";
+import { MyContext } from "../../Components/MyContext";
 
 function Success() {
   const [show, setShow] = useState(false);
@@ -16,6 +17,7 @@ function Success() {
   const eventId = searchParam.get("eventId");
   const [invitePage, setInvitePage] = useState(true);
   const navigate = useNavigate();
+  const { setIsLoggedIn } = useContext(MyContext);
 
   const handleClick = () => {
     navigate(`/home?userId=${userId}`);
@@ -29,6 +31,10 @@ function Success() {
     setShow(true);
   };
   useEffect(() => {
+    const userLoggedIn = localStorage.getItem("isLoggedIn");
+    if (userLoggedIn === "true") {
+      setIsLoggedIn(true);
+    }
     axios
       .get(`${process.env.REACT_APP_BASE_URL}/event/get/${eventId}`)
       .then((response) => {
@@ -147,7 +153,7 @@ function Success() {
             </Button>
           </Box>
           <Box>
-            <Button
+            {/* <Button
               onClick={moveToInvitepage}
               variant="contained"
               sx={{
@@ -168,7 +174,7 @@ function Success() {
               }}
             >
               Copy Invitation
-            </Button>
+            </Button> */}
           </Box>
           <Box
             sx={{
@@ -182,15 +188,13 @@ function Success() {
               marginTop: "10px",
             }}
           >
-            {show ? (
-              <CopyInvitation
-                eventName={eventDetails.eventName}
-                firstName={user}
-                rsvpDate={eventDetails.rsvpDate}
-                eventId={eventId}
-                setInvitePage={setInvitePage}
-              />
-            ) : null}
+            <CopyInvitation
+              eventName={eventDetails.eventName}
+              firstName={user}
+              rsvpDate={eventDetails.rsvpDate}
+              eventId={eventId}
+              setInvitePage={setInvitePage}
+            />
           </Box>
         </Box>
         <Box

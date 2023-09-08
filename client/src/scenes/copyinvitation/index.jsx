@@ -24,10 +24,12 @@ function CopyInvitation({
   const themes = useTheme();
   const isSmallScreen = useMediaQuery(themes.breakpoints.down("sm"));
   const userName = `${firstName} ${secondName ? secondName : ""}`;
+  const [show, setShow] = useState(true);
 
   const copyToClipboard = () => {
     copy(textFieldRef.current.defaultValue);
     setCopyText(textFieldRef.current.defaultValue);
+    setShow(false);
     setInvitePage(false);
   };
   const theme = createTheme({
@@ -37,12 +39,12 @@ function CopyInvitation({
           root: {
             "& .MuiOutlinedInput-root": {
               "& fieldset": {
-                border: "1px solid grey",
+                border: "2px solid #C21010",
               },
             },
             "& .MuiOutlinedInput-root.Mui-focused": {
               "& fieldset": {
-                borderColor: "1px solid grey",
+                borderColor: "2px solid #C21010",
               },
             },
           },
@@ -55,7 +57,7 @@ function CopyInvitation({
     <Box
       sx={{
         width: isSmallScreen ? "100%" : "initial",
-        minWidth: "600px",
+        maxWidth: "517px",
         overflow: "hidden", // Add this line
         whiteSpace: "pre-wrap",
       }}
@@ -68,30 +70,49 @@ function CopyInvitation({
           inputRef={textFieldRef}
           defaultValue={`Hello,
           ${userName} invited you to the Santa Surprise Game: ${eventName}. 
-          Hurry! You have until ${rsvpDate} to RSVP.
           Click on the link to join  
           https://main.d2ox3js0flnzdp.amplifyapp.com/eventview1?eventId=${eventId}`}
-          sx={{ width: "100%", border: "none", minWidth: "none" }}
+          sx={{ width: "100%", minWidth: "none" }}
         />
       </ThemeProvider>
       <Box sx={{ display: "flex", justifyContent: "center" }}>
-        <Button
-          onClick={copyToClipboard}
-          variant="outlined"
-          sx={{
-            border: "1px solid #C21010",
-            width: isSmallScreen ? "50%" : "200px",
-            borderRadius: "10px",
-            textTransform: "inherit",
-            marginBottom: "5px",
-            color: "#C21010",
-            background: "#fff",
-            fontWeight: "bold",
-            marginTop: "5px",
-          }}
-        >
-          Copy
-        </Button>
+        {show ? (
+          <Button
+            onClick={copyToClipboard}
+            variant="outlined"
+            sx={{
+              border: "1px solid #C21010",
+              width: isSmallScreen ? "50%" : "200px",
+              borderRadius: "10px",
+              textTransform: "inherit",
+              marginBottom: "5px",
+              color: "#C21010",
+              background: "#fff",
+              fontWeight: "bold",
+              marginTop: "5px",
+            }}
+          >
+            Copy
+          </Button>
+        ) : (
+          <Button
+            onClick={copyToClipboard}
+            variant="outlined"
+            sx={{
+              border: "1px solid #C21010",
+              width: isSmallScreen ? "50%" : "200px",
+              borderRadius: "10px",
+              textTransform: "inherit",
+              marginBottom: "5px",
+              color: "#C21010",
+              background: "#fff",
+              fontWeight: "bold",
+              marginTop: "5px",
+            }}
+          >
+            Invitation Copied
+          </Button>
+        )}
       </Box>
     </Box>
   );
