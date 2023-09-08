@@ -102,7 +102,14 @@ function Success() {
               width={125}
               className="starimage"
             />
-            <Typography variant="h4" color="#C21010">
+            <Typography
+              variant="h4"
+              color="#C21010"
+              sx={{
+                fontWeight: 600,
+                fontSize: "30px",
+              }}
+            >
               Your event has been created!
             </Typography>
             <Typography
@@ -194,9 +201,7 @@ function Success() {
             borderBottom: "5px solid #C21010",
             paddingBottom: "20px",
           }}
-        >
-          <Typography>Success</Typography>
-        </Box>
+        ></Box>
       </Box>
       <Footer />
     </Box>

@@ -185,6 +185,9 @@ function EventCreation() {
               variant="h4"
               sx={{
                 margin: "0 0 20px",
+                fontWeight: 600,
+                fontSize: "30px",
+                lineHeight: "28px",
               }}
             >
               Let's get started
@@ -203,7 +206,6 @@ function EventCreation() {
                   fontSize: "13px",
                   lineHeight: "18px",
                   color: "#C21010",
-                  // marginBottom: '5px',
                   wordBreak: "break-all",
                 }}
               >

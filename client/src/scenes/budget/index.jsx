@@ -134,6 +134,8 @@ function Budget() {
               sx={{
                 margin: "0 0 20px",
                 color: "#C21010",
+                fontWeight: 600,
+                fontSize: "30px",
               }}
             >
               Gift exchange rules
@@ -179,9 +181,6 @@ function Budget() {
                   error={!!errors.budget}
                   helperText={errors.budget}
                 />
-                {/* {budgetError && (
-                  <Typography sx={{ color: "red" }}>{budgetError}</Typography>
-                )} */}
               </ThemeProvider>
             </Box>
             <Box
