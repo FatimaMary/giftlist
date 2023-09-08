@@ -245,6 +245,7 @@ function Home() {
                     display: "flex",
                     alignItems: "center",
                     justifyContent: "center",
+                    borderRadius: "10px",
                   }}
                   key={i}
                   onClick={() =>
@@ -261,28 +262,25 @@ function Home() {
                     >
                       <CardMedia
                         component="img"
-                        // height="140"
                         image={Santa}
                         alt="Image Description"
                         sx={{
-                          height: "100%",
-                          width: "80%",
+                          height: isSmallScreen ? "30%" : "100%",
+                          width: isSmallScreen ? "50%" : "80%",
                           marginLeft: "auto",
                           marginRight: "auto",
-                          // marginTop: '10px'
                         }}
                       />
                     </Box>
                     <Box
-                      // padding='10px 15px'
                       sx={{
                         borderTop: "1px solid #FFEAEA",
-                        height: "30%",
+                        height: "20%",
                         width: "220px",
                         background: "#FFEAEA",
                         display: "flex",
                         flexDirection: "column",
-                        padding: "20px 30px",
+                        padding: isSmallScreen ? "5px 20px" : "20px 30px",
                         "&:hover": {
                           backgroundColor: "#C21010",
                           color: "white",
@@ -355,11 +353,12 @@ function Home() {
                   <Card
                     sx={{
                       width: 220,
-                      height: "250px",
+                      height: isSmallScreen ? "150px" : "230px",
                       m: "1.5rem",
                       display: "flex",
                       alignItems: "center",
                       justifyContent: "center",
+                      borderRadius: "10px",
                     }}
                     key={i}
                     onClick={() =>
@@ -376,20 +375,17 @@ function Home() {
                       >
                         <CardMedia
                           component="img"
-                          // height="140"
                           image={Santa}
                           alt="Image Description"
                           sx={{
-                            height: "100%",
-                            width: "80%",
+                            height: isSmallScreen ? "30%" : "100%",
+                            width: isSmallScreen ? "50%" : "80%",
                             marginLeft: "auto",
                             marginRight: "auto",
-                            // marginTop: '10px'
                           }}
                         />
                       </Box>
                       <Box
-                        // padding='10px 15px'
                         sx={{
                           borderTop: "1px solid #FFEAEA",
                           height: "30%",
@@ -397,7 +393,7 @@ function Home() {
                           background: "#FFEAEA",
                           display: "flex",
                           flexDirection: "column",
-                          padding: "20px 30px",
+                          padding: isSmallScreen ? "5px 20px" : "20px 30px",
                           "&:hover": {
                             backgroundColor: "#C21010",
                             color: "white",
