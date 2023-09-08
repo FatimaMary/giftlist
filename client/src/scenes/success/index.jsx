@@ -1,5 +1,11 @@
 import React, { useContext, useEffect, useState } from "react";
-import { Box, Typography, Button } from "@mui/material";
+import {
+  Box,
+  Typography,
+  Button,
+  useTheme,
+  useMediaQuery,
+} from "@mui/material";
 import { useNavigate, useSearchParams } from "react-router-dom";
 import Light from "./bow.png";
 import ArrowCircleLeftOutlinedIcon from "@mui/icons-material/ArrowCircleLeftOutlined";
@@ -18,6 +24,8 @@ function Success() {
   const [invitePage, setInvitePage] = useState(true);
   const navigate = useNavigate();
   const { setIsLoggedIn } = useContext(MyContext);
+  const theme = useTheme();
+  const isSmallScreen = useMediaQuery(theme.breakpoints.down("sm"));
 
   const handleClick = () => {
     navigate(`/home?userId=${userId}`);
@@ -27,9 +35,6 @@ function Success() {
     navigate(`/eventview?eventId=${eventId}&userId=${userId}`);
   };
 
-  const moveToInvitepage = () => {
-    setShow(true);
-  };
   useEffect(() => {
     const userLoggedIn = localStorage.getItem("isLoggedIn");
     if (userLoggedIn === "true") {
@@ -113,7 +118,7 @@ function Success() {
               color="#C21010"
               sx={{
                 fontWeight: 600,
-                fontSize: "30px",
+                fontSize: isSmallScreen ? "20px" : "30px",
               }}
             >
               Your event has been created!
@@ -152,33 +157,9 @@ function Success() {
               View Santa Surprise
             </Button>
           </Box>
-          <Box>
-            {/* <Button
-              onClick={moveToInvitepage}
-              variant="contained"
-              sx={{
-                border: "1px solid #C21010",
-                borderRadius: "10px",
-                width: "100%",
-                fontSize: "1rem",
-                color: "#C21010",
-                background: "#fff",
-                textTransform: "inherit",
-                fontWeight: "bold",
-                "&:hover": {
-                  backgroundColor: "#C21010",
-                  color: "white",
-                  border: "1px solid #C21010",
-                },
-                marginTop: "10px",
-              }}
-            >
-              Copy Invitation
-            </Button> */}
-          </Box>
+          <Box></Box>
           <Box
             sx={{
-              // border: '1px solid grey',
               borderRadius: "10px",
               width: "100%",
               fontSize: "1rem",

@@ -162,7 +162,7 @@ function Signup2() {
             flexDirection: "column",
             justifyContent: "center",
             backgroundColor: "white",
-            border: "1px solid #CFE8A9",
+            border: "1px solid #C21010",
             borderRadius: "10px",
             width: isSmallScreen ? "100%" : "500px",
           }}

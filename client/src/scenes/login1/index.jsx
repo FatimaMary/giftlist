@@ -127,7 +127,7 @@ function Login1() {
             flexDirection: "column",
             justifyContent: "center",
             backgroundColor: "white",
-            border: "1px solid #CFE8A9",
+            border: "1px solid #C21010",
             width: isSmallScreen ? "100%" : "500px",
             borderRadius: "10px",
           }}
