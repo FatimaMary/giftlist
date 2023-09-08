@@ -20,7 +20,7 @@ function Budget() {
   const eventId = searchParam.get("eventId");
   const userId = searchParam.get("userId");
   const navigate = useNavigate();
-  const [budgetError, setBudgetError] = useState({});
+  const [errors, setErrors] = useState({});
 
   const theme = createTheme({
     components: {
@@ -45,16 +45,16 @@ function Budget() {
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    const validateBudget = {};
+    const validateErrors = {};
     if (!budget) {
-      setBudgetError("Budget is required.");
+      validateErrors.budget = "Budget is required";
     }
-    // } else if (isNaN(parseFloat(budget)) || parseFloat(budget) <= 0) {
-    //   setBudgetError("Budget must be a positive number.");
-    // } else {
-    //   setBudgetError("");
-    // }
-    if (Object.keys(validateBudget).length === 0) {
+    if (isNaN(parseFloat(budget)) || parseFloat(budget) <= 0) {
+      validateErrors.budget = "Budget must be a positive number.";
+    }
+    if (Object.keys(validateErrors).length > 0) {
+      setErrors(validateErrors);
+    } else {
       axios
         .put(`${process.env.REACT_APP_BASE_URL}/event/${eventId}`, {
           budget: budget,
@@ -65,8 +65,6 @@ function Budget() {
           console.log("update data: ", response.data);
           navigate(`/success?userId=${userId}&eventId=${eventId}`);
         });
-    } else {
-      setBudgetError(validateBudget);
     }
   };
 
@@ -178,9 +176,12 @@ function Budget() {
                   }}
                   value={budget}
                   onChange={(e) => setBudget(e.target.value)}
-                  error={!!budgetError.budget}
-                  helperText={budgetError.budget}
+                  error={!!errors.budget}
+                  helperText={errors.budget}
                 />
+                {/* {budgetError && (
+                  <Typography sx={{ color: "red" }}>{budgetError}</Typography>
+                )} */}
               </ThemeProvider>
             </Box>
             <Box
