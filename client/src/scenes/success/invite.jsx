@@ -1,5 +1,13 @@
 import React from "react";
-import { Dialog, DialogContent, useTheme, useMediaQuery } from "@mui/material";
+import {
+  Dialog,
+  DialogContent,
+  useTheme,
+  useMediaQuery,
+  DialogTitle,
+  Typography,
+  Button,
+} from "@mui/material";
 import CopyInvitation from "../copyinvitation";
 
 function Invite({
@@ -25,9 +33,24 @@ function Invite({
         margin: isSmallScreen ? "0 50px" : "0 361px",
         display: "flex",
       }}
-      onClose={handleClose}
       open={open}
     >
+      <DialogTitle
+        sx={{
+          display: "flex",
+          justifyContent: "space-between",
+        }}
+      >
+        <Typography variant="h6" sx={{ color: "#C21010" }}>
+          Invite More People
+        </Typography>
+        <Button
+          sx={{ color: "black", fontSize: "16px", marginRight: "-7px" }}
+          onClick={handleClose}
+        >
+          X
+        </Button>
+      </DialogTitle>
       <DialogContent
         sx={{
           background: "#fff",
