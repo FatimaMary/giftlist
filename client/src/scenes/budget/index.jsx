@@ -6,6 +6,8 @@ import {
   ThemeProvider,
   Typography,
   createTheme,
+  useTheme,
+  useMediaQuery,
 } from "@mui/material";
 import axios from "axios";
 import { useSearchParams, useNavigate } from "react-router-dom";
@@ -21,6 +23,8 @@ function Budget() {
   const userId = searchParam.get("userId");
   const navigate = useNavigate();
   const [errors, setErrors] = useState({});
+  const themes = useTheme();
+  const isSmallScreen = useMediaQuery(themes.breakpoints.down("sm"));
 
   const theme = createTheme({
     components: {
@@ -135,7 +139,7 @@ function Budget() {
                 margin: "0 0 20px",
                 color: "#C21010",
                 fontWeight: 600,
-                fontSize: "30px",
+                fontSize: isSmallScreen ? "20px" : "30px",
               }}
             >
               Gift exchange rules
