@@ -170,15 +170,21 @@ function Success() {
               marginTop: "10px",
             }}
           >
-            <CopyInvitation
-              eventName={eventDetails.eventName}
-              firstName={user}
-              rsvpDate={eventDetails.rsvpDate}
-              eventId={eventId}
-              setInvitePage={setInvitePage}
-              giftExchangeDate={eventDetails.giftExchangeDate}
-              budget={eventDetails.budget}
-            />
+            {eventDetails.eventName &&
+            eventDetails.giftExchangeDate &&
+            eventDetails.budget ? (
+              <CopyInvitation
+                eventName={eventDetails.eventName}
+                firstName={user}
+                rsvpDate={eventDetails.rsvpDate}
+                eventId={eventId}
+                setInvitePage={setInvitePage}
+                giftExchangeDate={eventDetails.giftExchangeDate}
+                budget={eventDetails.budget}
+              />
+            ) : (
+              <div>Loading event details...</div>
+            )}
           </Box>
         </Box>
         <Box
