@@ -1127,6 +1127,8 @@ function EventView() {
         rsvpDate={eventDetails.rsvpDate}
         eventName={eventDetails.eventName}
         eventId={eventId}
+        giftExchangeDate={eventDetails.giftExchangeDate}
+        budget={eventDetails.budget}
       />
       <EditEvent
         open={editPage}

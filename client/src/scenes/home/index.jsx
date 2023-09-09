@@ -278,20 +278,21 @@ function Home() {
               sx={{
                 display: "flex",
                 flexWrap: "wrap",
-                gap: "20px",
-                padding: "20px",
+                gap: isSmallScreen ? "10px" : "20px",
+                padding: isSmallScreen ? "10px" : "20px",
+                flexDirection: isSmallScreen ? "column" : "initial",
               }}
             >
               <Box
                 sx={{
-                  width: 220,
-                  height: isSmallScreen ? "150px" : "230px",
+                  width: isSmallScreen ? "80%" : 220,
+                  height: isSmallScreen ? "120px" : "230px",
                   m: "1.5rem",
                   display: "flex",
                   flexDirection: "column",
                   alignItems: "center",
                   justifyContent: "center",
-                  gap: "30px",
+                  gap: isSmallScreen ? "10px" : "30px",
                   border: "1px solid lightgrey",
                   "&:hover": {
                     backgroundColor: "#E64848",
@@ -305,7 +306,7 @@ function Home() {
               >
                 <AddCircleOutlineIcon
                   sx={{
-                    fontSize: "3rem",
+                    fontSize: isSmallScreen ? "1.5rem" : "3rem",
                   }}
                 />
                 <Typography>Create a new event</Typography>
@@ -313,8 +314,8 @@ function Home() {
               {upcomingEvents.map((cardData, i) => (
                 <Card
                   sx={{
-                    width: 220,
-                    height: isSmallScreen ? "150px" : "230px",
+                    width: isSmallScreen ? "80%" : 220,
+                    height: isSmallScreen ? "140px" : "230px",
                     m: "1.5rem",
                     display: "flex",
                     alignItems: "center",

@@ -20,6 +20,8 @@ function Invite({
   eventName,
   rsvpDate,
   eventId,
+  giftExchangeDate,
+  budget,
 }) {
   const handleClose = () => {
     onClose(invitePage);
@@ -70,6 +72,8 @@ function Invite({
           eventName={eventName}
           rsvpDate={rsvpDate}
           secondName={secondName}
+          giftExchangeDate={giftExchangeDate}
+          budget={budget}
         />
       </DialogContent>
     </Dialog>

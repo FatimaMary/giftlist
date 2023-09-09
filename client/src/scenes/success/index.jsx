@@ -43,6 +43,7 @@ function Success() {
     axios
       .get(`${process.env.REACT_APP_BASE_URL}/event/get/${eventId}`)
       .then((response) => {
+        console.log("Success Event Details: ", response.data);
         setEventDetails(response.data);
       });
     axios
@@ -175,6 +176,8 @@ function Success() {
               rsvpDate={eventDetails.rsvpDate}
               eventId={eventId}
               setInvitePage={setInvitePage}
+              giftExchangeDate={eventDetails.giftExchangeDate}
+              budget={eventDetails.budget}
             />
           </Box>
         </Box>

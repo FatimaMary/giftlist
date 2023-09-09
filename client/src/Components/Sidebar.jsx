@@ -19,6 +19,34 @@ import { FaChevronLeft } from "react-icons/fa";
 import { MyContext } from "./MyContext";
 import MenuIcon from "@mui/icons-material/Menu";
 
+const MobileMenu = ({ handleDrawerClose }) => (
+  <Box
+    sx={{
+      display: "flex",
+      alignItems: "center",
+      justifyContent: "space-between",
+      marginBottom: "1rem",
+      position: "fixed",
+      top: "1rem",
+      left: "1rem",
+      zIndex: 7000,
+      color: "#C21010",
+    }}
+  >
+    <MenuIcon
+      sx={{
+        color: "#C21010",
+        fontSize: "1.5rem",
+        cursor: "pointer",
+      }}
+      onClick={handleDrawerClose}
+    />
+    <Typography variant="h4" fontWeight="bold" color="#C21010" fontSize="20px">
+      Santa Surprise
+    </Typography>
+  </Box>
+);
+
 const Sidebar = ({
   drawerWidth,
   isSidebarOpen,
@@ -58,7 +86,7 @@ const Sidebar = ({
   return (
     <>
       <Box component="nav">
-        {!isNonMobile && (
+        {/* {!isNonMobile && (
           <MenuIcon
             sx={{
               position: "fixed",
@@ -69,7 +97,8 @@ const Sidebar = ({
             }}
             onClick={handleDrawerClose}
           />
-        )}
+        )} */}
+        {!isNonMobile && <MobileMenu handleDrawerClose={handleDrawerClose} />}
         <Drawer
           open={isNonMobile ? isSidebarOpen : !isSidebarOpen}
           onClose={handleDrawerClose}
@@ -84,143 +113,151 @@ const Sidebar = ({
             },
           }}
         >
-          <Box width="100%">
-            <Box m="1.5rem 1rem 2rem 1rem">
-              <FlexBetween>
-                <Box display="flex" alignItems="center" gap="0.3rem">
-                  <Typography
-                    variant="h4"
-                    fontWeight="bold"
-                    color="#C21010"
-                    fontSize={isNonMobile ? "27px" : "20px"}
-                  >
-                    Santa Surprise
-                  </Typography>
-                </Box>
-                {!isNonMobile && (
-                  <IconButton onClick={handleDrawerClose}>
-                    <FaChevronLeft />
-                  </IconButton>
-                )}
-              </FlexBetween>
-            </Box>
-            <List>
-              {navItems.map((item) => (
-                <ListItemButton
-                  key={item.text}
-                  onClick={() => {
-                    navigate(item.link);
-                  }}
-                  sx={{
-                    backgroundColor:
-                      active === item.text.toLowerCase() && item.icon
-                        ? "#FFEAEA"
-                        : "transparent",
-                    color:
-                      active === item.text.toLowerCase() && item.icon
-                        ? "#C21010"
-                        : "black",
-                  }}
-                >
-                  <ListItemIcon
+          <div
+            style={{
+              height: "100%",
+              overflowY: "hidden",
+              position: "relative",
+            }}
+          >
+            <Box width="100%">
+              <Box m="1.5rem 1rem 2rem 1rem">
+                <FlexBetween>
+                  <Box display="flex" alignItems="center" gap="0.3rem">
+                    <Typography
+                      variant="h4"
+                      fontWeight="bold"
+                      color="#C21010"
+                      fontSize={isNonMobile ? "27px" : "20px"}
+                    >
+                      Santa Surprise
+                    </Typography>
+                  </Box>
+                  {!isNonMobile && (
+                    <IconButton onClick={handleDrawerClose}>
+                      <FaChevronLeft />
+                    </IconButton>
+                  )}
+                </FlexBetween>
+              </Box>
+              <List>
+                {navItems.map((item) => (
+                  <ListItemButton
+                    key={item.text}
+                    onClick={() => {
+                      navigate(item.link);
+                    }}
                     sx={{
+                      backgroundColor:
+                        active === item.text.toLowerCase() && item.icon
+                          ? "#FFEAEA"
+                          : "transparent",
                       color:
                         active === item.text.toLowerCase() && item.icon
                           ? "#C21010"
                           : "black",
-                      fontWeight: "bold",
                     }}
                   >
-                    {item.icon}
-                  </ListItemIcon>
-                  <ListItemText
-                    primary={item.text}
-                    sx={{
-                      fontWeight: "bold",
-                    }}
-                  />
-                </ListItemButton>
-              ))}
-              {!isLoggedIn ? (
-                <>
-                  <ListItemButton
-                    key="login"
-                    onClick={() => {
-                      navigate("/login");
-                    }}
-                    sx={{
-                      backgroundColor: "transparent",
-                      color: "#C21010",
-                      padding: "5px 5px",
-                      border: "2px solid #C21010",
-                      margin: "0px 25px",
-                      borderRadius: "10px",
-                      "&: hover": {
-                        background: "#C21010",
-                        color: "#FFF",
-                      },
-                    }}
-                  >
-                    <ListItemText
-                      primary="Login"
+                    <ListItemIcon
                       sx={{
-                        display: "flex",
-                        justifyContent: "center",
+                        color:
+                          active === item.text.toLowerCase() && item.icon
+                            ? "#C21010"
+                            : "black",
                         fontWeight: "bold",
-                        fontSize: "16px",
+                      }}
+                    >
+                      {item.icon}
+                    </ListItemIcon>
+                    <ListItemText
+                      primary={item.text}
+                      sx={{
+                        fontWeight: "bold",
                       }}
                     />
                   </ListItemButton>
-                  <ListItemButton
-                    key="signup"
-                    onClick={() => {
-                      navigate("/signup");
-                    }}
-                    sx={{
-                      backgroundColor: "#C21010",
-                      color: "#FFF",
-                      padding: "5px 5px",
-                      border: "2px solid #C21010",
-                      margin: "10px 25px",
-                      borderRadius: "10px",
-                      "&: hover": {
-                        background: "#FFF",
+                ))}
+                {!isLoggedIn ? (
+                  <>
+                    <ListItemButton
+                      key="login"
+                      onClick={() => {
+                        navigate("/login");
+                      }}
+                      sx={{
+                        backgroundColor: "transparent",
                         color: "#C21010",
-                      },
+                        padding: "5px 5px",
+                        border: "2px solid #C21010",
+                        margin: "0px 25px",
+                        borderRadius: "10px",
+                        "&: hover": {
+                          background: "#C21010",
+                          color: "#FFF",
+                        },
+                      }}
+                    >
+                      <ListItemText
+                        primary="Login"
+                        sx={{
+                          display: "flex",
+                          justifyContent: "center",
+                          fontWeight: "bold",
+                          fontSize: "16px",
+                        }}
+                      />
+                    </ListItemButton>
+                    <ListItemButton
+                      key="signup"
+                      onClick={() => {
+                        navigate("/signup");
+                      }}
+                      sx={{
+                        backgroundColor: "#C21010",
+                        color: "#FFF",
+                        padding: "5px 5px",
+                        border: "2px solid #C21010",
+                        margin: "10px 25px",
+                        borderRadius: "10px",
+                        "&: hover": {
+                          background: "#FFF",
+                          color: "#C21010",
+                        },
+                      }}
+                    >
+                      <ListItemText
+                        primary="Sign Up"
+                        sx={{
+                          display: "flex",
+                          justifyContent: "center",
+                          fontWeight: "bold",
+                          fontSize: "16px",
+                        }}
+                      />
+                    </ListItemButton>
+                  </>
+                ) : (
+                  <ListItemButton
+                    key="logout"
+                    onClick={() => {
+                      setIsLoggedIn(false);
+                      navigate("/");
+                    }}
+                    sx={{
+                      backgroundColor:
+                        active === "logout" ? "#FFEAEA" : "transparent",
+                      color: active === "logout" ? "#E64848" : "black",
                     }}
                   >
-                    <ListItemText
-                      primary="Sign Up"
-                      sx={{
-                        display: "flex",
-                        justifyContent: "center",
-                        fontWeight: "bold",
-                        fontSize: "16px",
-                      }}
-                    />
+                    <ListItemIcon>
+                      <LogoutOutlinedIcon />
+                    </ListItemIcon>
+                    <ListItemText primary="Logout" />
                   </ListItemButton>
-                </>
-              ) : (
-                <ListItemButton
-                  key="logout"
-                  onClick={() => {
-                    setIsLoggedIn(false);
-                    navigate("/");
-                  }}
-                  sx={{
-                    backgroundColor:
-                      active === "logout" ? "#FFEAEA" : "transparent",
-                    color: active === "logout" ? "#E64848" : "black",
-                  }}
-                >
-                  <ListItemIcon>
-                    <LogoutOutlinedIcon />
-                  </ListItemIcon>
-                  <ListItemText primary="Logout" />
-                </ListItemButton>
-              )}
-            </List>
-          </Box>
+                )}
+              </List>
+            </Box>
+          </div>
         </Drawer>
       </Box>
     </>
