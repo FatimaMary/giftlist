@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useContext, useEffect, useState } from "react";
 import {
   Box,
   Button,
@@ -14,6 +14,7 @@ import { useSearchParams, useNavigate } from "react-router-dom";
 import ArrowCircleLeftOutlinedIcon from "@mui/icons-material/ArrowCircleLeftOutlined";
 import Gift from "../mywishes/gift.png";
 import Footer from "../../Components/Footer";
+import { MyContext } from "../../Components/MyContext";
 
 function Budget() {
   const [budget, setBudget] = useState();
@@ -25,6 +26,7 @@ function Budget() {
   const [errors, setErrors] = useState({});
   const themes = useTheme();
   const isSmallScreen = useMediaQuery(themes.breakpoints.down("sm"));
+  const { setIsLoggedIn } = useContext(MyContext);
 
   const theme = createTheme({
     components: {
@@ -46,6 +48,13 @@ function Budget() {
       },
     },
   });
+
+  useEffect(() => {
+    const userLoggedIn = localStorage.getItem("isLoggedIn");
+    if (userLoggedIn === "true") {
+      setIsLoggedIn(true);
+    }
+  }, []);
 
   const handleSubmit = (e) => {
     e.preventDefault();

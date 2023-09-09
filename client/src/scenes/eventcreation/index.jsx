@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React, { useContext, useEffect, useState } from "react";
 import {
   Box,
   TextField,
@@ -19,6 +19,9 @@ import { useNavigate, useSearchParams } from "react-router-dom";
 import ArrowCircleLeftOutlinedIcon from "@mui/icons-material/ArrowCircleLeftOutlined";
 import Star from "./star1.png";
 import Footer from "../../Components/Footer";
+import { DemoContainer, DemoItem } from "@mui/x-date-pickers/internals/demo";
+import { DateCalendar } from "@mui/x-date-pickers/DateCalendar";
+import { MyContext } from "../../Components/MyContext";
 
 function EventCreation() {
   const [eventName, setEventName] = useState();
@@ -32,6 +35,7 @@ function EventCreation() {
   const navigate = useNavigate();
   const themes = useTheme();
   const isSmallScreen = useMediaQuery(themes.breakpoints.down("sm"));
+  const { setIsLoggedIn } = useContext(MyContext);
 
   const theme = createTheme({
     components: {
@@ -55,6 +59,10 @@ function EventCreation() {
   });
 
   useEffect(() => {
+    const userLoggedIn = localStorage.getItem("isLoggedIn");
+    if (userLoggedIn === "true") {
+      setIsLoggedIn(true);
+    }
     axios
       .get(`${process.env.REACT_APP_BASE_URL}/user/email/${userId}`)
       .then((response) => {
@@ -285,6 +293,9 @@ function EventCreation() {
                       error={!!errors.giftExchangeDate}
                       helperText={errors.giftExchangeDate}
                     />
+                    {/* <DemoItem label={'"day"'}>
+                      <DateCalendar views={["day"]} />
+                    </DemoItem> */}
                   </ThemeProvider>
                 </Box>
                 <Box width={isSmallScreen ? "100%" : "50%"}>
