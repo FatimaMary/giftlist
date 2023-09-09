@@ -32,6 +32,7 @@ function Home() {
   const [userName, setUserName] = useState();
   const theme = useTheme();
   const isSmallScreen = useMediaQuery(theme.breakpoints.down("sm"));
+  const [isHovered, setIsHovered] = useState(false);
 
   useEffect(() => {
     const upcoming = eventData.filter((event) => {
@@ -105,6 +106,21 @@ function Home() {
     setActiveTab(index);
   };
 
+  const handleMouseEnter = () => {
+    setIsHovered(true);
+  };
+
+  const handleMouseLeave = () => {
+    setIsHovered(false);
+  };
+
+  const getAvatarContent = () => {
+    if (typeof userName === "string" && userName.length > 0) {
+      return userName.charAt(0);
+    }
+    return "";
+  };
+
   return (
     <Box
       backgroundColor="#FFEAEA"
@@ -116,7 +132,7 @@ function Home() {
       }}
     >
       <>
-        <Box
+        {/* <Box
           sx={{
             display: "flex",
             justifyContent: "flex-end",
@@ -136,12 +152,70 @@ function Home() {
             {" "}
             Welcome {userName}!
           </Typography>
+        </Box> */}
+        <Box
+          sx={{
+            display: "flex",
+            justifyContent: "flex-end",
+          }}
+        >
+          {/* Display name avatar on mobile view */}
+          <Typography
+            variant="h3"
+            sx={{
+              fontWeight: 600,
+              fontSize: "25px",
+              color: "#C21010",
+              wordBreak: "break-word",
+              display: { xs: "none", md: "block" }, // Hide on mobile, show on larger screens
+            }}
+          >
+            Welcome {userName}!
+          </Typography>
+
+          {/* Display name avatar for mobile view */}
+          <Box
+            sx={{
+              display: { xs: "flex", md: "none" },
+              backgroundColor: "#C21010",
+              width: "30px",
+              height: "30px",
+              borderRadius: "50%",
+              alignItems: "center",
+              justifyContent: "center",
+              color: "white",
+              fontWeight: 600,
+              fontSize: "18px",
+            }}
+            onMouseEnter={handleMouseEnter}
+            onMouseLeave={handleMouseLeave}
+          >
+            {getAvatarContent()}
+            {isHovered && (
+              <Box
+                sx={{
+                  position: "absolute",
+                  backgroundColor: "rgba(0, 0, 0, 0.7)",
+                  color: "white",
+                  borderRadius: "4px",
+                  padding: "4px 8px",
+                  fontSize: "14px",
+                  top: "50%",
+                  left: "50%",
+                  transform: "translate(-50%, -50%)",
+                  zIndex: 1,
+                }}
+              >
+                {userName}
+              </Box>
+            )}
+          </Box>
         </Box>
         <Typography
           variant="h2"
           sx={{
             fontWeight: 600,
-            fontSize: "32px",
+            fontSize: isSmallScreen ? "25px" : "32px",
             lineHeight: "34px",
             color: "#C21010",
             marginBottom: "16px",
