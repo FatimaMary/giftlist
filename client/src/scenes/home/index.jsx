@@ -132,34 +132,12 @@ function Home() {
       }}
     >
       <>
-        {/* <Box
-          sx={{
-            display: "flex",
-            justifyContent: "flex-end",
-          }}
-        >
-          <Typography
-            variant="h3"
-            sx={{
-              fontWeight: 600,
-              fontSize: "25px",
-              // lineHeight: "34px",
-              color: "#C21010",
-              // marginBottom: "16px",
-              wordBreak: "break-word",
-            }}
-          >
-            {" "}
-            Welcome {userName}!
-          </Typography>
-        </Box> */}
         <Box
           sx={{
             display: "flex",
             justifyContent: "flex-end",
           }}
         >
-          {/* Display name avatar on mobile view */}
           <Typography
             variant="h3"
             sx={{
@@ -167,13 +145,12 @@ function Home() {
               fontSize: "25px",
               color: "#C21010",
               wordBreak: "break-word",
-              display: { xs: "none", md: "block" }, // Hide on mobile, show on larger screens
+              display: { xs: "none", md: "block" },
+              marginBottom: "10px",
             }}
           >
             Welcome {userName}!
           </Typography>
-
-          {/* Display name avatar for mobile view */}
           <Box
             sx={{
               display: { xs: "flex", md: "none" },
@@ -186,6 +163,7 @@ function Home() {
               color: "white",
               fontWeight: 600,
               fontSize: "18px",
+              marginBottom: "10px",
             }}
             onMouseEnter={handleMouseEnter}
             onMouseLeave={handleMouseLeave}
@@ -211,7 +189,7 @@ function Home() {
             )}
           </Box>
         </Box>
-        <Typography
+        {/* <Typography
           variant="h2"
           sx={{
             fontWeight: 600,
@@ -223,7 +201,7 @@ function Home() {
           }}
         >
           Santa Surprise
-        </Typography>
+        </Typography> */}
         <Box
           sx={{
             display: "flex",
@@ -285,9 +263,10 @@ function Home() {
             >
               <Box
                 sx={{
-                  width: isSmallScreen ? "80%" : 220,
+                  width: isSmallScreen ? "90%" : 220,
                   height: isSmallScreen ? "120px" : "230px",
-                  m: "1.5rem",
+                  m: isSmallScreen ? ".5rem" : "1.5rem",
+                  // m: "1.5rem",
                   display: "flex",
                   flexDirection: "column",
                   alignItems: "center",
@@ -312,10 +291,86 @@ function Home() {
                 <Typography>Create a new event</Typography>
               </Box>
               {upcomingEvents.map((cardData, i) => (
+                // <Card
+                //   sx={{
+                //     width: isSmallScreen ? "90%" : 220,
+                //     height: isSmallScreen ? "200px" : "230px",
+                //     m: isSmallScreen ? ".5rem" : "1.5rem",
+                //     display: "flex",
+                //     alignItems: "center",
+                //     justifyContent: "center",
+                //     borderRadius: "10px",
+                //     flexDirection: isSmallScreen ? "column" : "initial",
+                //   }}
+                //   key={i}
+                //   onClick={() =>
+                //     navigate(
+                //       `/eventview?eventId=${cardData.eventId}&userId=${userId}`
+                //     )
+                //   }
+                // >
+                //   <CardContent>
+                //     <Box
+                //       sx={{
+                //         height: "70%",
+                //       }}
+                //     >
+                //       <CardMedia
+                //         component="img"
+                //         image={Santa}
+                //         alt="Image Description"
+                //         sx={{
+                //           height: isSmallScreen ? "70%" : "100%",
+                //           width: isSmallScreen ? "60%" : "80%",
+                //           marginLeft: "auto",
+                //           marginRight: "auto",
+                //         }}
+                //       />
+                //     </Box>
+                //     <Box
+                //       sx={{
+                //         border: "2px solid green",
+                //         // borderTop: "1px solid #FFEAEA",
+                //         height: "50%",
+                //         width: "250px",
+                //         background: "#FFEAEA",
+                //         display: "flex",
+                //         flexDirection: "column",
+                //         padding: isSmallScreen ? "10px 20px" : "20px 30px",
+                //         "&:hover": {
+                //           backgroundColor: "#C21010",
+                //           color: "white",
+                //         },
+                //       }}
+                //     >
+                //       <Typography
+                //         sx={{
+                //           fontSize: 16,
+                //           opacity: 0.7,
+                //           "&:hover": {
+                //             opacity: 1,
+                //           },
+                //         }}
+                //         variant="h6"
+                //         fontWeight="bold"
+                //       >
+                //         <CalendarMonthIcon
+                //           sx={{
+                //             fontSize: "20px",
+                //           }}
+                //         />
+                //         {cardData.giftExchangeDate}
+                //       </Typography>
+                //       <Typography variant="body2" fontWeight="bold">
+                //         {cardData.eventName}
+                //       </Typography>
+                //     </Box>
+                //   </CardContent>
+                // </Card>
                 <Card
                   sx={{
-                    width: isSmallScreen ? "80%" : 220,
-                    height: isSmallScreen ? "140px" : "230px",
+                    width: 220,
+                    height: isSmallScreen ? "180px" : "230px",
                     m: "1.5rem",
                     display: "flex",
                     alignItems: "center",
@@ -340,8 +395,8 @@ function Home() {
                         image={Santa}
                         alt="Image Description"
                         sx={{
-                          height: isSmallScreen ? "30%" : "100%",
-                          width: isSmallScreen ? "50%" : "80%",
+                          height: isSmallScreen ? "70%" : "100%",
+                          width: isSmallScreen ? "60%" : "80%",
                           marginLeft: "auto",
                           marginRight: "auto",
                         }}
@@ -350,12 +405,12 @@ function Home() {
                     <Box
                       sx={{
                         borderTop: "1px solid #FFEAEA",
-                        height: "20%",
+                        height: "50%",
                         width: "220px",
                         background: "#FFEAEA",
                         display: "flex",
                         flexDirection: "column",
-                        padding: isSmallScreen ? "5px 20px" : "20px 30px",
+                        padding: isSmallScreen ? "10px 20px" : "20px 30px",
                         "&:hover": {
                           backgroundColor: "#C21010",
                           color: "white",
@@ -420,15 +475,15 @@ function Home() {
                 sx={{
                   display: "flex",
                   flexWrap: "wrap",
-                  gap: "20px",
-                  marginLeft: "30px",
+                  gap: isSmallScreen ? "10px" : "20px",
+                  marginLeft: isSmallScreen ? "0px" : "30px",
                 }}
               >
                 {pastEvents.map((cardData, i) => (
                   <Card
                     sx={{
                       width: 220,
-                      height: isSmallScreen ? "150px" : "230px",
+                      height: isSmallScreen ? "180px" : "230px",
                       m: "1.5rem",
                       display: "flex",
                       alignItems: "center",
@@ -453,8 +508,8 @@ function Home() {
                           image={Santa}
                           alt="Image Description"
                           sx={{
-                            height: isSmallScreen ? "30%" : "100%",
-                            width: isSmallScreen ? "50%" : "80%",
+                            height: isSmallScreen ? "70%" : "100%",
+                            width: isSmallScreen ? "60%" : "80%",
                             marginLeft: "auto",
                             marginRight: "auto",
                           }}
@@ -463,12 +518,12 @@ function Home() {
                       <Box
                         sx={{
                           borderTop: "1px solid #FFEAEA",
-                          height: "30%",
+                          height: "50%",
                           width: "220px",
                           background: "#FFEAEA",
                           display: "flex",
                           flexDirection: "column",
-                          padding: isSmallScreen ? "5px 20px" : "20px 30px",
+                          padding: isSmallScreen ? "10px 20px" : "20px 30px",
                           "&:hover": {
                             backgroundColor: "#C21010",
                             color: "white",
