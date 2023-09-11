@@ -86,19 +86,9 @@ const Sidebar = ({
   return (
     <>
       <Box component="nav">
-        {/* {!isNonMobile && (
-          <MenuIcon
-            sx={{
-              position: "fixed",
-              top: "1rem",
-              left: "1rem",
-              zIndex: 1,
-              color: "#C21010",
-            }}
-            onClick={handleDrawerClose}
-          />
-        )} */}
-        {!isNonMobile && <MobileMenu handleDrawerClose={handleDrawerClose} />}
+        {!isNonMobile && isSidebarOpen ? (
+          <MobileMenu handleDrawerClose={handleDrawerClose} />
+        ) : null}
         <Drawer
           open={isNonMobile ? isSidebarOpen : !isSidebarOpen}
           onClose={handleDrawerClose}
