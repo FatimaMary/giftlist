@@ -164,6 +164,7 @@ function Home() {
               fontWeight: 600,
               fontSize: "18px",
               marginBottom: "10px",
+              marginTop: "10px",
             }}
             onMouseEnter={handleMouseEnter}
             onMouseLeave={handleMouseLeave}

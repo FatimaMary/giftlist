@@ -24,13 +24,14 @@ const MobileMenu = ({ handleDrawerClose }) => (
     sx={{
       display: "flex",
       alignItems: "center",
-      justifyContent: "space-between",
+      gap: "50px",
       marginBottom: "1rem",
       position: "fixed",
-      top: "1rem",
-      left: "1rem",
-      zIndex: 7000,
+      zIndex: 5000,
       color: "#C21010",
+      background: "white",
+      width: "100vw",
+      height: "50px",
     }}
   >
     <MenuIcon
@@ -38,6 +39,7 @@ const MobileMenu = ({ handleDrawerClose }) => (
         color: "#C21010",
         fontSize: "1.5rem",
         cursor: "pointer",
+        marginLeft: "15px",
       }}
       onClick={handleDrawerClose}
     />
