@@ -247,6 +247,7 @@ function EditEvent({ open, onClose, editPage, eventId, onEdit }) {
                           height: "44px",
                         },
                         width: "100%",
+                        marginBottom: "5px",
                       }}
                       value={giftExchangeDate}
                       onChange={(e) => setGiftExchangeDate(e.target.value)}
