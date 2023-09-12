@@ -33,7 +33,7 @@ function Invite({
   return (
     <Dialog
       sx={{
-        margin: isSmallScreen ? "0 50px" : "0 361px",
+        margin: isSmallScreen ? "2px" : "0 361px",
         display: "flex",
       }}
       open={open}
