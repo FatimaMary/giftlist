@@ -61,8 +61,8 @@ function CopyInvitation({
     <Box
       sx={{
         width: isSmallScreen ? "100%" : "initial",
-        maxWidth: "517px",
-        overflow: "hidden", // Add this line
+        maxWidth: "600px",
+        overflow: "hidden",
         whiteSpace: "pre-wrap",
       }}
     >
@@ -70,7 +70,7 @@ function CopyInvitation({
         <TextField
           id="outlined-multiline-static"
           multiline
-          rows={isSmallScreen ? "13" : "7"}
+          rows={isSmallScreen ? "12" : "7"}
           inputRef={textFieldRef}
           defaultValue={`We're going to draw names for ${eventName}! Make a wish list and draw a name so that everyone has time to buy a gift.
 Date of the gift exchange: ${giftExchangeDate}

@@ -7,6 +7,7 @@ import {
   DialogTitle,
   Typography,
   Button,
+  Box,
 } from "@mui/material";
 import CopyInvitation from "../copyinvitation";
 
@@ -58,10 +59,10 @@ function Invite({
           background: "#fff",
           boxShadow: "5px 5px 25px -5px rgba(32, 32, 36, .1)",
           borderRadius: "10px",
-          padding: isSmallScreen ? "10px 7px" : "24px 20px",
+          padding: isSmallScreen ? "10px 7px" : "24px 30px",
           display: "flex",
           flexDirection: "column",
-          width: isSmallScreen ? "100%" : "500px",
+          width: isSmallScreen ? "100%" : "600px",
           justifyContent: "center",
         }}
       >
