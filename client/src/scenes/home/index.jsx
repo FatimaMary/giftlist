@@ -263,9 +263,9 @@ function Home() {
             >
               <Box
                 sx={{
-                  width: isSmallScreen ? "90%" : 220,
+                  width: isSmallScreen ? "250px" : 220,
                   height: isSmallScreen ? "120px" : "230px",
-                  m: isSmallScreen ? ".5rem" : "1.5rem",
+                  m: isSmallScreen ? "1rem" : "1.5rem",
                   // m: "1.5rem",
                   display: "flex",
                   flexDirection: "column",
@@ -293,9 +293,10 @@ function Home() {
               {upcomingEvents.map((cardData, i) => (
                 <Card
                   sx={{
-                    width: isSmallScreen ? "90%" : 220,
-                    height: isSmallScreen ? "180px" : "230px",
-                    m: isSmallScreen ? ".5rem" : "1.5rem",
+                    // width: isSmallScreen ? "90%" : 220,
+                    width: isSmallScreen ? "250px" : 220,
+                    height: isSmallScreen ? "160px" : "230px",
+                    m: isSmallScreen ? "1rem" : "1.5rem",
                     display: "flex",
                     alignItems: "center",
                     justifyContent: "center",
@@ -312,7 +313,7 @@ function Home() {
                   <CardContent>
                     <Box
                       sx={{
-                        height: "70%",
+                        height: "60%",
                       }}
                     >
                       <CardMedia
@@ -321,7 +322,7 @@ function Home() {
                         alt="Image Description"
                         sx={{
                           height: isSmallScreen ? "100%" : "100%",
-                          width: isSmallScreen ? "60%" : "80%",
+                          width: isSmallScreen ? "50%" : "80%",
                           marginLeft: "auto",
                           marginRight: "auto",
                         }}
@@ -329,14 +330,13 @@ function Home() {
                     </Box>
                     <Box
                       sx={{
-                        // border: "2px solid green",
                         borderTop: "1px solid #FFEAEA",
-                        height: "30%",
+                        height: "40%",
                         width: "250px",
                         background: "#FFEAEA",
                         display: "flex",
                         flexDirection: "column",
-                        padding: isSmallScreen ? "5px 10px" : "20px 30px",
+                        padding: isSmallScreen ? "10px 20px" : "20px 30px",
                         "&:hover": {
                           backgroundColor: "#C21010",
                           color: "white",
@@ -367,80 +367,6 @@ function Home() {
                     </Box>
                   </CardContent>
                 </Card>
-                // <Card
-                //   sx={{
-                //     width: 220,
-                //     height: isSmallScreen ? "180px" : "230px",
-                //     m: "1.5rem",
-                //     display: "flex",
-                //     alignItems: "center",
-                //     justifyContent: "center",
-                //     borderRadius: "10px",
-                //   }}
-                //   key={i}
-                //   onClick={() =>
-                //     navigate(
-                //       `/eventview?eventId=${cardData.eventId}&userId=${userId}`
-                //     )
-                //   }
-                // >
-                //   <CardContent>
-                //     <Box
-                //       sx={{
-                //         height: "70%",
-                //       }}
-                //     >
-                //       <CardMedia
-                //         component="img"
-                //         image={Santa}
-                //         alt="Image Description"
-                //         sx={{
-                //           height: isSmallScreen ? "70%" : "100%",
-                //           width: isSmallScreen ? "60%" : "80%",
-                //           marginLeft: "auto",
-                //           marginRight: "auto",
-                //         }}
-                //       />
-                //     </Box>
-                //     <Box
-                //       sx={{
-                //         borderTop: "1px solid #FFEAEA",
-                //         height: "50%",
-                //         width: "220px",
-                //         background: "#FFEAEA",
-                //         display: "flex",
-                //         flexDirection: "column",
-                //         padding: isSmallScreen ? "10px 20px" : "20px 30px",
-                //         "&:hover": {
-                //           backgroundColor: "#C21010",
-                //           color: "white",
-                //         },
-                //       }}
-                //     >
-                //       <Typography
-                //         sx={{
-                //           fontSize: 16,
-                //           opacity: 0.7,
-                //           "&:hover": {
-                //             opacity: 1,
-                //           },
-                //         }}
-                //         variant="h6"
-                //         fontWeight="bold"
-                //       >
-                //         <CalendarMonthIcon
-                //           sx={{
-                //             fontSize: "20px",
-                //           }}
-                //         />
-                //         {cardData.giftExchangeDate}
-                //       </Typography>
-                //       <Typography variant="body2" fontWeight="bold">
-                //         {cardData.eventName}
-                //       </Typography>
-                //     </Box>
-                //   </CardContent>
-                // </Card>
               ))}
             </Box>
           </Box>
@@ -479,7 +405,7 @@ function Home() {
                   marginLeft: isSmallScreen ? "0px" : "30px",
                 }}
               >
-                {pastEvents.map((cardData, i) => (
+                {/* {pastEvents.map((cardData, i) => (
                   <Card
                     sx={{
                       width: 220,
@@ -524,6 +450,84 @@ function Home() {
                           display: "flex",
                           flexDirection: "column",
                           padding: isSmallScreen ? "10px 5px" : "20px 30px",
+                          "&:hover": {
+                            backgroundColor: "#C21010",
+                            color: "white",
+                          },
+                        }}
+                      >
+                        <Typography
+                          sx={{
+                            fontSize: 16,
+                            opacity: 0.7,
+                            "&:hover": {
+                              opacity: 1,
+                            },
+                          }}
+                          variant="h6"
+                          fontWeight="bold"
+                        >
+                          <CalendarMonthIcon
+                            sx={{
+                              fontSize: "20px",
+                            }}
+                          />
+                          {cardData.giftExchangeDate}
+                        </Typography>
+                        <Typography variant="body2" fontWeight="bold">
+                          {cardData.eventName}
+                        </Typography>
+                      </Box>
+                    </CardContent>
+                  </Card>
+                ))} */}
+                {pastEvents.map((cardData, i) => (
+                  <Card
+                    sx={{
+                      // width: isSmallScreen ? "90%" : 220,
+                      width: isSmallScreen ? "250px" : 220,
+                      height: isSmallScreen ? "160px" : "230px",
+                      m: isSmallScreen ? "1rem 1.5rem" : "1.5rem",
+                      display: "flex",
+                      alignItems: "center",
+                      justifyContent: "center",
+                      borderRadius: "10px",
+                      flexDirection: isSmallScreen ? "column" : "initial",
+                    }}
+                    key={i}
+                    onClick={() =>
+                      navigate(
+                        `/eventview?eventId=${cardData.eventId}&userId=${userId}`
+                      )
+                    }
+                  >
+                    <CardContent>
+                      <Box
+                        sx={{
+                          height: "60%",
+                        }}
+                      >
+                        <CardMedia
+                          component="img"
+                          image={Santa}
+                          alt="Image Description"
+                          sx={{
+                            height: isSmallScreen ? "100%" : "100%",
+                            width: isSmallScreen ? "50%" : "80%",
+                            marginLeft: "auto",
+                            marginRight: "auto",
+                          }}
+                        />
+                      </Box>
+                      <Box
+                        sx={{
+                          borderTop: "1px solid #FFEAEA",
+                          height: "40%",
+                          width: "250px",
+                          background: "#FFEAEA",
+                          display: "flex",
+                          flexDirection: "column",
+                          padding: isSmallScreen ? "10px 20px" : "20px 30px",
                           "&:hover": {
                             backgroundColor: "#C21010",
                             color: "white",
