@@ -168,6 +168,7 @@ function Budget() {
                   lineHeight: "18px",
                   color: "#C21010",
                   wordBreak: "break-all",
+                  marginLeft: "15px",
                 }}
               >
                 Spending limit per gift
@@ -187,7 +188,7 @@ function Budget() {
                     "& .MuiOutlinedInput-root": {
                       height: "44px",
                     },
-                    marginLeft: "-13px",
+                    marginLeft: "0px",
                   }}
                   value={budget}
                   onChange={(e) => setBudget(e.target.value)}
@@ -209,6 +210,7 @@ function Budget() {
                   lineHeight: "18px",
                   color: "#C21010",
                   wordBreak: "break-all",
+                  marginLeft: "15px",
                 }}
               >
                 Other details(Optional)
@@ -219,21 +221,28 @@ function Budget() {
                   multiline
                   rows={4}
                   sx={{
-                    width: "100%",
+                    width: isSmallScreen ? "90%" : "95%",
+                    marginLeft: "15px",
                   }}
                   value={details}
                   onChange={(e) => setdetails(e.target.value)}
                 />
               </ThemeProvider>
             </Box>
-            <Box>
+            <Box
+              sx={{
+                display: "flex",
+                alignItems: "center",
+                justifyContent: "center",
+              }}
+            >
               <Button
                 variant="contained"
                 onClick={handleSubmit}
                 sx={{
                   border: "2px solid #C21010",
                   borderRadius: "10px",
-                  width: "100%",
+                  width: isSmallScreen ? "45%" : "50%",
                   fontSize: "1rem",
                   color: "white",
                   background: "#C21010",
