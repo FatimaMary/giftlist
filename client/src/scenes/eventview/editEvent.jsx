@@ -107,7 +107,7 @@ function EditEvent({ open, onClose, editPage, eventId, onEdit }) {
           background: "#fff",
           boxShadow: "5px 5px 25px -5px rgba(32, 32, 36, .1)",
           borderRadius: "10px",
-          padding: isSmallScreen ? "10px 7px" : "24px 20px",
+          padding: isSmallScreen ? "10px 15px" : "24px 20px",
           display: "flex",
           flexDirection: "column",
           width: isSmallScreen ? "100%" : "500px",
@@ -218,12 +218,13 @@ function EditEvent({ open, onClose, editPage, eventId, onEdit }) {
                   flexWrap: "wrap",
                   justifyContent: "space-between",
                   width: "100%",
+                  flexDirection: isSmallScreen ? "column" : "initial",
                 }}
               >
                 <Box
                   p="0 4px"
                   sx={{
-                    width: "50%",
+                    width: isSmallScreen ? "90%" : "50%",
                   }}
                 >
                   <InputLabel
@@ -255,7 +256,7 @@ function EditEvent({ open, onClose, editPage, eventId, onEdit }) {
                 <Box
                   p="0 4px"
                   sx={{
-                    width: "50%",
+                    width: isSmallScreen ? "90%" : "50%",
                   }}
                 >
                   <InputLabel
@@ -379,7 +380,7 @@ function EditEvent({ open, onClose, editPage, eventId, onEdit }) {
                   padding: "14px 30px",
                   border: "1px solid #C21010",
                   fontWeight: 600,
-                  width: "100%",
+                  width: isSmallScreen ? "90%" : "100%",
                   textTransform: "none",
                   "&: hover": {
                     color: "#C21010",
