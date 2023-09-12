@@ -215,6 +215,7 @@ function EventCreation() {
                   lineHeight: "18px",
                   color: "#C21010",
                   wordBreak: "break-all",
+                  marginLeft: "5px",
                 }}
               >
                 Event Name
@@ -234,7 +235,7 @@ function EventCreation() {
                     "& .MuiOutlinedInput-root": {
                       height: "44px",
                     },
-                    marginLeft: "-13px",
+                    marginLeft: "-12px",
                   }}
                   type="text"
                   value={eventName}
@@ -267,6 +268,7 @@ function EventCreation() {
                       lineHeight: "18px",
                       color: "#C21010",
                       wordBreak: "break-all",
+                      marginLeft: "5px",
                     }}
                   >
                     Gift exchange date:
@@ -286,7 +288,7 @@ function EventCreation() {
                         "& .MuiOutlinedInput-root": {
                           height: "44px",
                         },
-                        marginLeft: "-13px",
+                        marginLeft: "-12px",
                       }}
                       value={giftExchangeDate}
                       onChange={(e) => setGiftExchangeDate(e.target.value)}
@@ -306,7 +308,7 @@ function EventCreation() {
                       fontSize: "13px",
                       lineHeight: "18px",
                       color: "#C21010",
-                      // marginBottom: '5px',
+                      marginLeft: "5px",
                       wordBreak: "break-all",
                     }}
                   >
@@ -327,7 +329,7 @@ function EventCreation() {
                         "& .MuiOutlinedInput-root": {
                           height: "44px",
                         },
-                        marginLeft: "-13px",
+                        marginLeft: "-12px",
                       }}
                       value={rsvpDate}
                       onChange={(e) => setRsvpDate(e.target.value)}
@@ -343,9 +345,8 @@ function EventCreation() {
                     fontSize: "13px",
                     lineHeight: "18px",
                     color: "#5e6577",
-                    marginBottom: 0,
-                    marginTop: "6px",
                     color: "#C21010",
+                    margin: "6px 0px 0px 5px",
                   }}
                 >
                   Names will be drawn the day after the RSVP deadline
@@ -368,6 +369,7 @@ function EventCreation() {
                     color: "#C21010",
                     marginBottom: "5px",
                     wordBreak: "break-all",
+                    marginLeft: "5px",
                   }}
                 >
                   Are you participating?
@@ -378,7 +380,7 @@ function EventCreation() {
                     width: "100%",
                     gap: "10px",
                     marginLeft: "10px",
-                    flexDirection: isSmallScreen ? "column" : "row",
+                    // flexDirection: isSmallScreen ? "column" : "row",
                     alignItems: isSmallScreen ? "center" : "initial",
                   }}
                   row
@@ -397,7 +399,7 @@ function EventCreation() {
                     }
                     label="Yes"
                     sx={{
-                      width: "225px",
+                      width: isSmallScreen ? "155px" : "225px",
                       border: "1px solid #cad3dd",
                       borderRadius: "7px",
                       fontSize: "0.8rem",
@@ -405,6 +407,7 @@ function EventCreation() {
                       display: "flex",
                       alignItems: "center",
                       justifyContent: "center",
+                      marginLeft: "-6px",
                     }}
                   />
                   <FormControlLabel
@@ -417,7 +420,7 @@ function EventCreation() {
                     }
                     label="No"
                     sx={{
-                      width: "225px",
+                      width: isSmallScreen ? "155px" : "225px",
                       border: "1px solid #cad3dd",
                       borderRadius: "7px",
                       textAlign: "center",
@@ -426,19 +429,26 @@ function EventCreation() {
                       display: "flex",
                       alignItems: "center",
                       justifyContent: "center",
+                      marginLeft: "-6px",
                     }}
                   />
                 </RadioGroup>
               </FormControl>
             </Box>
-            <Box>
+            <Box
+              sx={{
+                display: "flex",
+                alignItems: "center",
+                justifyContent: "center",
+              }}
+            >
               <Button
                 onClick={moveToNextStep}
                 variant="contained"
                 sx={{
                   border: "2px solid #C21010",
                   borderRadius: "10px",
-                  width: "100%",
+                  width: isSmallScreen ? "45%" : "50%",
                   fontSize: "1rem",
                   color: "#FFF",
                   background: "#C21010",
@@ -450,6 +460,7 @@ function EventCreation() {
                     border: "1px solid #C21010",
                   },
                   marginTop: "10px",
+                  marginLeft: "5px",
                 }}
               >
                 Next step
