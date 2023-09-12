@@ -382,6 +382,7 @@ function EventCreation() {
                     marginLeft: "10px",
                     // flexDirection: isSmallScreen ? "column" : "row",
                     alignItems: isSmallScreen ? "center" : "initial",
+                    padding: "8px",
                   }}
                   row
                   aria-labelledby="demo-row-radio-buttons-group-label"
@@ -399,7 +400,7 @@ function EventCreation() {
                     }
                     label="Yes"
                     sx={{
-                      width: isSmallScreen ? "155px" : "225px",
+                      width: isSmallScreen ? "140px" : "225px",
                       border: "1px solid #cad3dd",
                       borderRadius: "7px",
                       fontSize: "0.8rem",
@@ -407,7 +408,7 @@ function EventCreation() {
                       display: "flex",
                       alignItems: "center",
                       justifyContent: "center",
-                      marginLeft: "-6px",
+                      // marginLeft: "-6px",
                     }}
                   />
                   <FormControlLabel
@@ -420,7 +421,7 @@ function EventCreation() {
                     }
                     label="No"
                     sx={{
-                      width: isSmallScreen ? "155px" : "225px",
+                      width: isSmallScreen ? "140px" : "225px",
                       border: "1px solid #cad3dd",
                       borderRadius: "7px",
                       textAlign: "center",
@@ -429,7 +430,7 @@ function EventCreation() {
                       display: "flex",
                       alignItems: "center",
                       justifyContent: "center",
-                      marginLeft: "-6px",
+                      // marginLeft: "-6px",
                     }}
                   />
                 </RadioGroup>
