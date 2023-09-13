@@ -5,6 +5,7 @@ import {
   Button,
   useTheme,
   useMediaQuery,
+  stepClasses,
 } from "@mui/material";
 import Santa from "../home/Santa.png";
 import Avatar from "@mui/material/Avatar";
@@ -24,6 +25,7 @@ import EditEvent from "./editEvent";
 import MyWishes from "../mywishes";
 import Messages from "../messages";
 import { MyContext, useDrawStatus } from "../../Components/MyContext";
+import HomeTab from "./hometab";
 
 function EventView() {
   const [eventDetails, setEventDetails] = useState({});
@@ -748,355 +750,24 @@ function EventView() {
         </Typography>
       </Box>
       {activeTab === 0 && (
-        <Box
-          sx={{
-            padding: "15px 0",
-            display: "flex",
-            width: "100%",
-            justifyContent: "space-between",
-            flexDirection: isSmallScreen ? "column" : "row",
-            gap: isSmallScreen ? "10px" : 0,
-          }}
-        >
-          <Box
-            sx={{
-              width: isSmallScreen ? "100%" : "48%",
-              padding: "24px 16px",
-              background: "#fff",
-              border: "1px solid #e8ecf1",
-              borderRadius: "10px",
-            }}
-          >
-            <Typography
-              variant="h5"
-              sx={{
-                fontSize: "20px",
-                lineHeight: "25px",
-                paddingBottom: "16px",
-                marginBottom: "16px",
-                borderBottom: "1px solid #e8ecf1",
-                fontWeight: "bold",
-              }}
-            >
-              Your gift exchange checklist
-            </Typography>
-            <Box
-              sx={{
-                display: "flex",
-                flexDirection: "column",
-                gap: "5px",
-                justifyContent: "center",
-              }}
-            >
-              {eventDetails.userId !== playerUserId ? null : (
-                <Typography
-                  sx={{
-                    display: "flex",
-                    gap: "5px",
-                    alignItems: "center",
-                    flexWrap: "wrap",
-                    marginBottom: "10px",
-                    fontSize: isSmallScreen ? "12px" : "initial",
-                  }}
-                >
-                  {players.length <= 2 ? (
-                    <CancelOutlinedIcon
-                      sx={{
-                        color: "red",
-                        width: "18px",
-                        height: "18px",
-                      }}
-                    />
-                  ) : (
-                    <CheckCircleOutlineIcon
-                      sx={{
-                        color: "green",
-                        width: "18px",
-                        height: "18px",
-                      }}
-                    />
-                  )}
-                  At least 3 participants joined
-                </Typography>
-              )}
-              <Typography
-                sx={{
-                  display: "flex",
-                  gap: "5px",
-                  alignItems: "center",
-                  flexWrap: "wrap",
-                  marginBottom: "10px",
-                  fontSize: isSmallScreen ? "12px" : "initial",
-                }}
-              >
-                {eventDetails.userId !== playerUserId ? (
-                  <>
-                    {!eventDetails.drawNames ? (
-                      <CancelOutlinedIcon
-                        sx={{
-                          color: "red",
-                          width: "18px",
-                          height: "18px",
-                        }}
-                      />
-                    ) : (
-                      <CheckCircleOutlineIcon
-                        sx={{
-                          color: "green",
-                          width: "18px",
-                          height: "18px",
-                        }}
-                      />
-                    )}{" "}
-                  </>
-                ) : (
-                  <>
-                    {" "}
-                    {drawStatus === false ? (
-                      <CancelOutlinedIcon
-                        sx={{
-                          color: "red",
-                          width: "18px",
-                          height: "18px",
-                        }}
-                      />
-                    ) : (
-                      <CheckCircleOutlineIcon
-                        sx={{
-                          color: "green",
-                          width: "18px",
-                          height: "18px",
-                        }}
-                      />
-                    )}
-                  </>
-                )}
-                Name to be drawn by the organizer
-              </Typography>
-              <Typography
-                sx={{
-                  display: "flex",
-                  gap: "5px",
-                  alignItems: "center",
-                  flexWrap: "wrap",
-                  marginBottom: "10px",
-                  fontSize: isSmallScreen ? "12px" : "initial",
-                }}
-              >
-                {productDetails.length === 0 ? (
-                  <CancelOutlinedIcon
-                    sx={{
-                      color: "red",
-                      width: "18px",
-                      height: "18px",
-                    }}
-                  />
-                ) : (
-                  <CheckCircleOutlineIcon
-                    sx={{
-                      color: "green",
-                      width: "18px",
-                      height: "18px",
-                    }}
-                  />
-                )}
-                Add to your wish list
-              </Typography>
-            </Box>
-          </Box>
-          <Box
-            sx={{
-              width: isSmallScreen ? "100%" : "50%",
-              padding: "24px 16px",
-              background: "#fff",
-              border: "1px solid #e8ecf1",
-              borderRadius: "10px",
-            }}
-          >
-            <Box
-              sx={{
-                paddingBottom: "16px",
-                marginBottom: "16px",
-                borderBottom: "1px solid #e8ecf1",
-                display: "flex",
-                flexWrap: "wrap",
-                alignItems: "center",
-                justifyContent: "space-between",
-              }}
-            >
-              <Box
-                sx={{
-                  flexBasis: "calc(100% - 134px)",
-                  maxWidth: "calc(100% - 134px)",
-                  fontSize: "13px",
-                  lineHeight: "18px",
-                  color: "#5e6577",
-                  display: "flex",
-                }}
-              >
-                <img
-                  src={Mail}
-                  style={{ filter: "hue-rotate(180deg)", paddingRight: "10px" }}
-                />
-                <Box>
-                  <Typography
-                    sx={{
-                      fontWeight: 600,
-                      fontSize: "13px",
-                      color: "#101a34",
-                      wordBreak: "break-all",
-                    }}
-                  >
-                    RSVP Status:
-                  </Typography>
-                  {eventDetails.confirmation === true ? (
-                    <>
-                      <Typography
-                        sx={{
-                          marginBottom: 0,
-                          fontSize: "13px",
-                        }}
-                      >
-                        Participating
-                      </Typography>
-                    </>
-                  ) : (
-                    <>
-                      <Typography
-                        sx={{
-                          marginBottom: 0,
-                          fontSize: "13px",
-                        }}
-                      >
-                        Not Participating
-                      </Typography>
-                    </>
-                  )}
-                </Box>
-              </Box>
-            </Box>
-            {eventDetails.confirmation === true ? (
-              <>
-                <Box
-                  sx={{
-                    paddingBottom: "16px",
-                    marginBottom: "16px",
-                    borderBottom: "1px solid #e8ecf1",
-                    display: "flex",
-                    flexWrap: "wrap",
-                    alignItems: "center",
-                    justifyContent: "space-between",
-                  }}
-                >
-                  <Box
-                    sx={{
-                      // flexBasis: "calc(100% - 134px)",
-                      // maxWidth: "calc(100% - 134px)",
-                      fontSize: "13px",
-                      lineHeight: "18px",
-                      color: "#5e6577",
-                      display: "flex",
-                    }}
-                  >
-                    <img
-                      src={Gift}
-                      style={{
-                        paddingRight: "10px",
-                        filter: "hue-rotate(180deg)",
-                      }}
-                    />
-                    <Box>
-                      <Typography
-                        sx={{
-                          marginBottom: "2px",
-                          fontWeight: 600,
-                          fontSize: "13px",
-                          lineHeight: "18px",
-                          color: "#101a34",
-                          wordBreak: "break-all",
-                        }}
-                      >
-                        You're giving to:
-                      </Typography>
-                      <Typography
-                        sx={{
-                          marginBottom: 0,
-                          fontSize: "13px",
-                        }}
-                      >
-                        {eventDetails.drawNames === true ? (
-                          <> {receiver} </>
-                        ) : (
-                          <>
-                            Check back after the draw date on{" "}
-                            {eventDetails.rsvpDate}
-                          </>
-                        )}
-                      </Typography>
-                    </Box>
-                  </Box>
-                </Box>
-                <Box
-                  sx={{
-                    paddingBottom: "16px",
-                    marginBottom: "16px",
-                    display: "flex",
-                    flexWrap: "wrap",
-                    alignItems: "center",
-                    justifyContent: "space-between",
-                  }}
-                >
-                  <Box
-                    sx={{
-                      // flexBasis: "calc(100% - 134px)",
-                      // maxWidth: "calc(100% - 134px)",
-                      fontSize: "13px",
-                      lineHeight: "18px",
-                      color: "#5e6577",
-                      display: "flex",
-                    }}
-                  >
-                    <img
-                      src={Santa1}
-                      style={{
-                        paddingRight: "10px",
-                        filter: "hue-rotate(180deg)",
-                      }}
-                    />
-                    <Box>
-                      <Typography
-                        sx={{
-                          fontWeight: 600,
-                          fontSize: "13px",
-                          color: "#101a34",
-                          wordBreak: "break-all",
-                        }}
-                      >
-                        Your gift giver:
-                      </Typography>
-                      {eventDatePassed ? (
-                        <>{giver}</>
-                      ) : (
-                        <Typography
-                          sx={{
-                            marginBottom: 0,
-                            fontSize: "13px",
-                          }}
-                        >
-                          Your gift giver will be revealed after the gift
-                          exchange date set by the event organizer on{" "}
-                          {eventDetails.giftExchangeDate}
-                        </Typography>
-                      )}
-                    </Box>
-                  </Box>
-                </Box>{" "}
-              </>
-            ) : (
-              <></>
-            )}
-          </Box>{" "}
-        </Box>
+        <HomeTab
+          eventId={eventId}
+          playerUserId={playerUserId}
+          setRsvpDate={setRsvpDate}
+          setEventDatePassed={setEventDatePassed}
+          setIsButtonDisabled={setIsButtonDisabled}
+          setReceiver={setReceiver}
+          setGiver={setGiver}
+          setName={setName}
+          setPlayers={setPlayers}
+          setParticipantsId={setParticipantsId}
+          setProductDetails={setProductDetails}
+          players={players}
+          productDetails={productDetails}
+          receiver={receiver}
+          eventDatePassed={eventDatePassed}
+          giver={giver}
+        />
       )}
       {activeTab === 1 && (
         <Box>
