@@ -36,13 +36,13 @@ function TabsList({
   };
 
   return (
-    <Box>
+    <>
       <Box
         sx={{
           display: "flex",
           alignItems: "center",
           justifyContent: "center",
-          borderTop: "1px solid #cad3dd",
+          // borderTop: "1px solid #cad3dd",
         }}
       >
         <Typography
@@ -122,40 +122,38 @@ function TabsList({
           My Wishes
         </Typography>
       </Box>
-      <Box>
-        {activeTab === 0 && (
-          <HomeTab
+      {activeTab === 0 && (
+        <HomeTab
+          eventId={eventId}
+          playerUserId={playerUserId}
+          players={players}
+          productDetails={productDetails}
+          receiver={receiver}
+          eventDatePassed={eventDatePassed}
+          giver={giver}
+          eventDetails={eventDetails}
+        />
+      )}
+      {activeTab === 1 && (
+        <Box>
+          <Participants />
+        </Box>
+      )}
+      {activeTab === 2 && (
+        <Box>
+          <Messages eventId={eventId} userId={playerUserId} />
+        </Box>
+      )}
+      {activeTab === 3 && (
+        <Box>
+          <MyWishes
             eventId={eventId}
-            playerUserId={playerUserId}
-            players={players}
-            productDetails={productDetails}
-            receiver={receiver}
-            eventDatePassed={eventDatePassed}
-            giver={giver}
-            eventDetails={eventDetails}
+            userId={playerUserId}
+            onProductAdded={handleProductAdded}
           />
-        )}
-        {activeTab === 1 && (
-          <Box>
-            <Participants />
-          </Box>
-        )}
-        {activeTab === 2 && (
-          <Box>
-            <Messages eventId={eventId} userId={playerUserId} />
-          </Box>
-        )}
-        {activeTab === 3 && (
-          <Box>
-            <MyWishes
-              eventId={eventId}
-              userId={playerUserId}
-              onProductAdded={handleProductAdded}
-            />
-          </Box>
-        )}
-      </Box>
-    </Box>
+        </Box>
+      )}
+    </>
   );
 }
 
