@@ -73,86 +73,6 @@ function EventView() {
     if (userLoggedIn === "true") {
       setIsLoggedIn(true);
     }
-    axios
-      .get(`${process.env.REACT_APP_BASE_URL}/event/get/${eventId}`)
-      .then((response) => {
-        console.log("Get response: ", response);
-        console.log("Get response data: ", response.data);
-        setEventDetails(response.data);
-        if (response.data.rsvpDate && currentDate) {
-          const rsvpDate = new Date(response.data.rsvpDate);
-          const isRSVPDatePassed = currentDate > rsvpDate;
-          setRsvpDate(isRSVPDatePassed);
-          console.log("rsvp passed: ", isRSVPDatePassed);
-        }
-        if (response.data.giftExchangeDate && currentDate) {
-          const eventDate = new Date(response.data.giftExchangeDate);
-          const isEventDatePassed = currentDate > eventDate;
-          setEventDatePassed(isEventDatePassed);
-          console.log("Event Date Passed: ", isEventDatePassed);
-        }
-        setIsButtonDisabled(response.data.drawNames);
-        if (response.data.drawNames === true) {
-          axios
-            .get(`${process.env.REACT_APP_BASE_URL}/user/get/${playerUserId}`)
-            .then((res) => {
-              console.log("User Name by userId: ", res.data);
-              const userFullName =
-                res.data.firstName +
-                (res.data.secondName ? " " + res.data.secondName : "");
-
-              // Filter drawnNames to find receiver and giver names
-              const receiverFilteredNames = response.data.drawnNames.filter(
-                (name) => name.giver === userFullName
-              );
-              const giverFilteredNames = response.data.drawnNames.filter(
-                (name) => name.receiver === userFullName
-              );
-
-              // Update state if names are found
-              if (receiverFilteredNames.length > 0) {
-                console.log("Receiver: ", receiverFilteredNames[0].receiver);
-                const receiverName = receiverFilteredNames[0].receiver;
-                setReceiver(receiverName);
-              }
-
-              if (giverFilteredNames.length > 0) {
-                console.log("Giver: ", giverFilteredNames[0].giver);
-                const giverName = giverFilteredNames[0].giver;
-                setGiver(giverName);
-              }
-            });
-        }
-      });
-    axios
-      .get(`${process.env.REACT_APP_BASE_URL}/event/user/${eventId}`)
-      .then((response) => {
-        console.log("User Name get response: ", response);
-        console.log("user name get response data: ", response.data);
-        setName(response.data);
-      });
-    axios
-      .get(`${process.env.REACT_APP_BASE_URL}/player/${eventId}`)
-      .then((response) => {
-        console.log("Participants List: ", response.data);
-        setPlayers(response.data);
-      });
-    axios
-      .get(
-        `${process.env.REACT_APP_BASE_URL}/player/id/${playerUserId}?eventId=${eventId}`
-      )
-      .then((response) => {
-        console.log("ParticipantsId: ", response.data[0]);
-        setParticipantsId(response.data[0]);
-        axios
-          .get(
-            `${process.env.REACT_APP_BASE_URL}/product/all/${response.data[0]}`
-          )
-          .then((res) => {
-            console.log("Product Details: ", res.data);
-            setProductDetails(res.data);
-          });
-      });
   }, []);
 
   useEffect(() => {
@@ -656,46 +576,25 @@ function EventView() {
           </Box>
         </Box>
       </Box>
-      <TabsList />
-      {activeTab === 0 && (
-        <HomeTab
-          eventId={eventId}
-          playerUserId={playerUserId}
-          setRsvpDate={setRsvpDate}
-          setEventDatePassed={setEventDatePassed}
-          setIsButtonDisabled={setIsButtonDisabled}
-          setReceiver={setReceiver}
-          setGiver={setGiver}
-          setName={setName}
-          setPlayers={setPlayers}
-          setParticipantsId={setParticipantsId}
-          setProductDetails={setProductDetails}
-          players={players}
-          productDetails={productDetails}
-          receiver={receiver}
-          eventDatePassed={eventDatePassed}
-          giver={giver}
-        />
-      )}
-      {activeTab === 1 && (
-        <Box>
-          <Participants />
-        </Box>
-      )}
-      {activeTab === 2 && (
-        <Box>
-          <Messages eventId={eventId} userId={playerUserId} />
-        </Box>
-      )}
-      {activeTab === 3 && (
-        <Box>
-          <MyWishes
-            eventId={eventId}
-            userId={playerUserId}
-            onProductAdded={handleProductAdded}
-          />
-        </Box>
-      )}
+      <TabsList
+        eventId={eventId}
+        playerUserId={playerUserId}
+        setRsvpDate={setRsvpDate}
+        setEventDatePassed={setEventDatePassed}
+        setIsButtonDisabled={setIsButtonDisabled}
+        setReceiver={setReceiver}
+        setGiver={setGiver}
+        setName={setName}
+        setPlayers={setPlayers}
+        setParticipantsId={setParticipantsId}
+        setProductDetails={setProductDetails}
+        players={players}
+        productDetails={productDetails}
+        receiver={receiver}
+        eventDatePassed={eventDatePassed}
+        giver={giver}
+        participantsId={participantsId}
+      />
       <Footer sx={{ marginTop: "auto" }} />
       <Invite
         open={invitePage}
