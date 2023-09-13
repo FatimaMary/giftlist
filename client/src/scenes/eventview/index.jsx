@@ -13,13 +13,9 @@ import EditCalendarOutlinedIcon from "@mui/icons-material/EditCalendarOutlined";
 import axios from "axios";
 import { useSearchParams } from "react-router-dom";
 import Footer from "../../Components/Footer";
-import Participants from "../participants";
 import Invite from "../success/invite";
 import EditEvent from "./editEvent";
-import MyWishes from "../mywishes";
-import Messages from "../messages";
 import { MyContext, useDrawStatus } from "../../Components/MyContext";
-import HomeTab from "./hometab";
 import TabsList from "./tabsList";
 
 function EventView() {
@@ -45,6 +41,7 @@ function EventView() {
   const drawStatus = getDrawStatus(eventId);
   console.log("player user id: ", playerUserId);
   const { setIsLoggedIn } = useContext(MyContext);
+  const [productDetails, setProductDetails] = useState([]);
 
   const handleEventEdit = (editedEventData) => {
     console.log("Edited event Data: ", editedEventData);
@@ -61,6 +58,86 @@ function EventView() {
     if (userLoggedIn === "true") {
       setIsLoggedIn(true);
     }
+    axios
+      .get(`${process.env.REACT_APP_BASE_URL}/event/get/${eventId}`)
+      .then((response) => {
+        console.log("Get response: ", response);
+        console.log("Get response data: ", response.data);
+        setEventDetails(response.data);
+        if (response.data.rsvpDate && currentDate) {
+          const rsvpDate = new Date(response.data.rsvpDate);
+          const isRSVPDatePassed = currentDate > rsvpDate;
+          setRsvpDate(isRSVPDatePassed);
+          console.log("rsvp passed: ", isRSVPDatePassed);
+        }
+        if (response.data.giftExchangeDate && currentDate) {
+          const eventDate = new Date(response.data.giftExchangeDate);
+          const isEventDatePassed = currentDate > eventDate;
+          setEventDatePassed(isEventDatePassed);
+          console.log("Event Date Passed: ", isEventDatePassed);
+        }
+        setIsButtonDisabled(response.data.drawNames);
+        if (response.data.drawNames === true) {
+          axios
+            .get(`${process.env.REACT_APP_BASE_URL}/user/get/${playerUserId}`)
+            .then((res) => {
+              console.log("User Name by userId: ", res.data);
+              const userFullName =
+                res.data.firstName +
+                (res.data.secondName ? " " + res.data.secondName : "");
+
+              // Filter drawnNames to find receiver and giver names
+              const receiverFilteredNames = response.data.drawnNames.filter(
+                (name) => name.giver === userFullName
+              );
+              const giverFilteredNames = response.data.drawnNames.filter(
+                (name) => name.receiver === userFullName
+              );
+
+              // Update state if names are found
+              if (receiverFilteredNames.length > 0) {
+                console.log("Receiver: ", receiverFilteredNames[0].receiver);
+                const receiverName = receiverFilteredNames[0].receiver;
+                setReceiver(receiverName);
+              }
+
+              if (giverFilteredNames.length > 0) {
+                console.log("Giver: ", giverFilteredNames[0].giver);
+                const giverName = giverFilteredNames[0].giver;
+                setGiver(giverName);
+              }
+            });
+        }
+      });
+    axios
+      .get(`${process.env.REACT_APP_BASE_URL}/event/user/${eventId}`)
+      .then((response) => {
+        console.log("User Name get response: ", response);
+        console.log("user name get response data: ", response.data);
+        setName(response.data);
+      });
+    axios
+      .get(`${process.env.REACT_APP_BASE_URL}/player/${eventId}`)
+      .then((response) => {
+        console.log("Participants List: ", response.data);
+        setPlayers(response.data);
+      });
+    axios
+      .get(
+        `${process.env.REACT_APP_BASE_URL}/player/id/${playerUserId}?eventId=${eventId}`
+      )
+      .then((response) => {
+        console.log("ParticipantsId: ", response.data[0]);
+        setParticipantsId(response.data[0]);
+        axios
+          .get(
+            `${process.env.REACT_APP_BASE_URL}/product/all/${response.data[0]}`
+          )
+          .then((res) => {
+            console.log("Product Details: ", res.data);
+            setProductDetails(res.data);
+          });
+      });
   }, []);
 
   useEffect(() => {
@@ -547,39 +624,37 @@ function EventView() {
               lineHeight: "140%",
               color: "#5e6577",
               paddingBottom: "17px",
-              borderBottom: "1px solid #cad3dd",
             }}
           >
-            <Typography
-              sx={{
-                height: "20px",
-                overflow: "hidden",
-                maxWidth: "500px",
-                wordBreak: "break-word",
-                margin: "0px",
+            <div
+              style={{
+                width: "800px",
+                whiteSpace: "wrap",
               }}
             >
-              {eventDetails.details}
-            </Typography>
+              <Typography
+                sx={{
+                  height: "20px",
+                  margin: "10px",
+                }}
+              >
+                {eventDetails.details}
+              </Typography>
+            </div>
           </Box>
         </Box>
       </Box>
       <TabsList
         eventId={eventId}
         playerUserId={playerUserId}
-        setRsvpDate={setRsvpDate}
-        setEventDatePassed={setEventDatePassed}
-        setIsButtonDisabled={setIsButtonDisabled}
-        setReceiver={setReceiver}
-        setGiver={setGiver}
-        setName={setName}
-        setPlayers={setPlayers}
-        setParticipantsId={setParticipantsId}
         players={players}
         receiver={receiver}
         eventDatePassed={eventDatePassed}
         giver={giver}
         participantsId={participantsId}
+        productDetails={productDetails}
+        setProductDetails={setProductDetails}
+        eventDetails={eventDetails}
       />
       <Footer sx={{ marginTop: "auto" }} />
       <Invite

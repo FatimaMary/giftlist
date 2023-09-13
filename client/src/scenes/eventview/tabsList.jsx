@@ -9,24 +9,18 @@ import axios from "axios";
 function TabsList({
   eventId,
   playerUserId,
-  setRsvpDate,
-  setEventDatePassed,
-  setIsButtonDisabled,
-  setReceiver,
-  setGiver,
-  setName,
-  setPlayers,
-  setParticipantsId,
   players,
   receiver,
   giver,
   eventDatePassed,
   participantsId,
+  productDetails,
+  setProductDetails,
+  eventDetails,
 }) {
   const [activeTab, setActiveTab] = useState(0);
   const theme = useTheme();
   const isSmallScreen = useMediaQuery(theme.breakpoints.down("sm"));
-  const [productDetails, setProductDetails] = useState([]);
 
   const handleProductAdded = () => {
     // Fetch the updated product details and update the state
@@ -48,6 +42,7 @@ function TabsList({
           display: "flex",
           alignItems: "center",
           justifyContent: "center",
+          borderTop: "1px solid #cad3dd",
         }}
       >
         <Typography
@@ -132,20 +127,12 @@ function TabsList({
           <HomeTab
             eventId={eventId}
             playerUserId={playerUserId}
-            setRsvpDate={setRsvpDate}
-            setEventDatePassed={setEventDatePassed}
-            setIsButtonDisabled={setIsButtonDisabled}
-            setReceiver={setReceiver}
-            setGiver={setGiver}
-            setName={setName}
-            setPlayers={setPlayers}
-            setParticipantsId={setParticipantsId}
-            setProductDetails={setProductDetails}
             players={players}
             productDetails={productDetails}
             receiver={receiver}
             eventDatePassed={eventDatePassed}
             giver={giver}
+            eventDetails={eventDetails}
           />
         )}
         {activeTab === 1 && (
