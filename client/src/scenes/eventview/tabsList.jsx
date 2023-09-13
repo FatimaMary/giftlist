@@ -17,9 +17,7 @@ function TabsList({
   setName,
   setPlayers,
   setParticipantsId,
-  setProductDetails,
   players,
-  productDetails,
   receiver,
   giver,
   eventDatePassed,
@@ -28,6 +26,7 @@ function TabsList({
   const [activeTab, setActiveTab] = useState(0);
   const theme = useTheme();
   const isSmallScreen = useMediaQuery(theme.breakpoints.down("sm"));
+  const [productDetails, setProductDetails] = useState([]);
 
   const handleProductAdded = () => {
     // Fetch the updated product details and update the state

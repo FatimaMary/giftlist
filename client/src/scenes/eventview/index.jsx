@@ -24,7 +24,6 @@ import TabsList from "./tabsList";
 
 function EventView() {
   const [eventDetails, setEventDetails] = useState({});
-  const [activeTab, setActiveTab] = useState(0);
   const [name, setName] = useState([]);
   const [players, setPlayers] = useState([]);
   const [invitePage, setInvitePage] = useState(false);
@@ -36,7 +35,6 @@ function EventView() {
   const [isButtonDisabled, setIsButtonDisabled] = useState(false);
   const [receiver, setReceiver] = useState([]);
   const [participantsId, setParticipantsId] = useState(0);
-  const [productDetails, setProductDetails] = useState([]);
   const theme = useTheme();
   const isSmallScreen = useMediaQuery(theme.breakpoints.down("sm"));
   const [rsvpDate, setRsvpDate] = useState(false);
@@ -56,16 +54,6 @@ function EventView() {
     setRsvpDate(isRSVPDatePassed);
     setEventDetails(editedEventData);
     setEditPage(false);
-  };
-
-  const handleProductAdded = () => {
-    // Fetch the updated product details and update the state
-    axios
-      .get(`${process.env.REACT_APP_BASE_URL}/product/all/${participantsId}`)
-      .then((res) => {
-        console.log("Updated Product Details: ", res.data);
-        setProductDetails(res.data);
-      });
   };
 
   useEffect(() => {
@@ -587,9 +575,7 @@ function EventView() {
         setName={setName}
         setPlayers={setPlayers}
         setParticipantsId={setParticipantsId}
-        setProductDetails={setProductDetails}
         players={players}
-        productDetails={productDetails}
         receiver={receiver}
         eventDatePassed={eventDatePassed}
         giver={giver}
