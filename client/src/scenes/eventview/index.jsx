@@ -5,7 +5,6 @@ import {
   Button,
   useTheme,
   useMediaQuery,
-  stepClasses,
 } from "@mui/material";
 import Santa from "../home/Santa.png";
 import Avatar from "@mui/material/Avatar";
@@ -13,11 +12,6 @@ import ShareOutlinedIcon from "@mui/icons-material/ShareOutlined";
 import EditCalendarOutlinedIcon from "@mui/icons-material/EditCalendarOutlined";
 import axios from "axios";
 import { useSearchParams } from "react-router-dom";
-import CheckCircleOutlineIcon from "@mui/icons-material/CheckCircleOutline";
-import CancelOutlinedIcon from "@mui/icons-material/CancelOutlined";
-import Mail from "./mail12.svg";
-import Gift from "./gift12.svg";
-import Santa1 from "./santa12.svg";
 import Footer from "../../Components/Footer";
 import Participants from "../participants";
 import Invite from "../success/invite";
@@ -26,16 +20,17 @@ import MyWishes from "../mywishes";
 import Messages from "../messages";
 import { MyContext, useDrawStatus } from "../../Components/MyContext";
 import HomeTab from "./hometab";
+import TabsList from "./tabsList";
 
 function EventView() {
   const [eventDetails, setEventDetails] = useState({});
+  const [activeTab, setActiveTab] = useState(0);
   const [name, setName] = useState([]);
   const [players, setPlayers] = useState([]);
   const [invitePage, setInvitePage] = useState(false);
   const [searchParam] = useSearchParams();
   const eventId = searchParam.get("eventId");
   const playerUserId = searchParam.get("userId");
-  const [activeTab, setActiveTab] = useState(0);
   const [editPage, setEditPage] = useState(false);
   const [drawnNames, setDrawnNames] = useState([]);
   const [isButtonDisabled, setIsButtonDisabled] = useState(false);
@@ -195,10 +190,6 @@ function EventView() {
       children: `${name.split(" ")[0][0]}`,
     };
   }
-
-  const handleTabActive = (index) => {
-    setActiveTab(index);
-  };
 
   const handleDrawNames = () => {
     axios
@@ -665,90 +656,7 @@ function EventView() {
           </Box>
         </Box>
       </Box>
-      <Box
-        sx={{
-          display: "flex",
-          alignItems: "center",
-          justifyContent: "center",
-        }}
-      >
-        <Typography
-          isActive={activeTab === 0}
-          className={`tab ${activeTab === 0 ? "active" : "notactive"}`}
-          sx={{
-            color: "#101a34",
-            fontWeight: 600,
-            fontSize: isSmallScreen ? "13px" : "17px",
-            lineHeight: "22px",
-            textAlign: "center",
-            marginRight: "20px",
-            padding: "0 0 6px",
-            "&:hover": {
-              cursor: "pointer",
-            },
-          }}
-          onClick={() => handleTabActive(0)}
-        >
-          Home
-        </Typography>
-        <Typography
-          isActive={activeTab === 1}
-          className={`tab ${activeTab === 1 ? "active" : "notactive"}`}
-          sx={{
-            color: "#101a34",
-            fontWeight: 600,
-            fontSize: isSmallScreen ? "13px" : "17px",
-            lineHeight: "22px",
-            textAlign: "center",
-            marginRight: "20px",
-            padding: "0 0 6px",
-            "&:hover": {
-              cursor: "pointer",
-            },
-          }}
-          onClick={() => handleTabActive(1)}
-        >
-          Participants
-        </Typography>
-        <Typography
-          isActive={activeTab === 2}
-          className={`tab ${activeTab === 2 ? "active" : "notactive"}`}
-          sx={{
-            color: "#101a34",
-            fontWeight: 600,
-            fontSize: isSmallScreen ? "13px" : "17px",
-            lineHeight: "22px",
-            textAlign: "center",
-            marginRight: "20px",
-            padding: "0 0 6px",
-            "&:hover": {
-              cursor: "pointer",
-            },
-          }}
-          onClick={() => handleTabActive(2)}
-        >
-          Messages
-        </Typography>
-        <Typography
-          isActive={activeTab === 3}
-          className={`tab ${activeTab === 3 ? "active" : "notactive"}`}
-          sx={{
-            color: "#101a34",
-            fontWeight: 600,
-            fontSize: isSmallScreen ? "13px" : "17px",
-            lineHeight: "22px",
-            textAlign: "center",
-            marginRight: "20px",
-            padding: "0 0 6px",
-            "&:hover": {
-              cursor: "pointer",
-            },
-          }}
-          onClick={() => handleTabActive(3)}
-        >
-          My Wishes
-        </Typography>
-      </Box>
+      <TabsList />
       {activeTab === 0 && (
         <HomeTab
           eventId={eventId}
