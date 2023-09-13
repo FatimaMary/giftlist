@@ -56,7 +56,7 @@ function App() {
                 <Route path="budget" element={<Budget />} />
                 <Route path="home" element={<Home />} />
                 <Route path="success" element={<Success />} />
-                <Route path="eventview" element={<EventView2 />} />
+                <Route path="eventview" element={<EventView />} />
                 <Route path="eventview1" element={<EventView1 />} />
                 <Route path="participants" element={<Participants />} />
                 <Route path="invite" element={<Invite />} />
