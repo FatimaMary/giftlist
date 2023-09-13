@@ -1,4 +1,4 @@
-import { Avatar, Box, Button, Typography } from "@mui/material";
+import { Box, Typography } from "@mui/material";
 import React from "react";
 import ButtonsTab from "./buttons";
 import DrawNameBtn from "./DrawNameBtn";
