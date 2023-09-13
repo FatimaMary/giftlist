@@ -1,15 +1,6 @@
 import React, { useContext, useEffect, useState } from "react";
-import {
-  Box,
-  Typography,
-  Button,
-  useTheme,
-  useMediaQuery,
-} from "@mui/material";
+import { Box, useTheme, useMediaQuery } from "@mui/material";
 import Santa from "../home/Santa.png";
-import Avatar from "@mui/material/Avatar";
-import ShareOutlinedIcon from "@mui/icons-material/ShareOutlined";
-import EditCalendarOutlinedIcon from "@mui/icons-material/EditCalendarOutlined";
 import axios from "axios";
 import { useSearchParams } from "react-router-dom";
 import Footer from "../../Components/Footer";
@@ -17,7 +8,6 @@ import Invite from "../success/invite";
 import EditEvent from "./editEvent";
 import { MyContext, useDrawStatus } from "../../Components/MyContext";
 import TabsList from "./tabsList";
-import ButtonsTab from "./buttons";
 import Details from "./details";
 
 function EventView() {
@@ -171,12 +161,6 @@ function EventView() {
         }
       });
   }, [drawStatus]);
-
-  function stringAvatar(name) {
-    return {
-      children: `${name.split(" ")[0][0]}`,
-    };
-  }
 
   const handleDrawNames = () => {
     axios
