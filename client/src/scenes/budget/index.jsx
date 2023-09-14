@@ -11,10 +11,11 @@ import {
 } from "@mui/material";
 import axios from "axios";
 import { useSearchParams, useNavigate } from "react-router-dom";
-import ArrowCircleLeftOutlinedIcon from "@mui/icons-material/ArrowCircleLeftOutlined";
 import Gift from "../mywishes/gift.png";
 import Footer from "../../Components/Footer";
 import { MyContext } from "../../Components/MyContext";
+import Budget1 from "./budget1";
+import BudgetForm from "./BudgetForm";
 
 function Budget() {
   const [budget, setBudget] = useState();
@@ -81,37 +82,9 @@ function Budget() {
     }
   };
 
-  const handleClick = () => {
-    navigate(`/eventcreate?userId=${userId}`);
-  };
-
   return (
     <Box backgroundColor="#FFEAEA" width="100vw" p="50px 30px 33px 30px">
-      <Box
-        sx={{
-          display: "flex",
-          alignItems: "center",
-          marginBottom: "1rem",
-        }}
-        onClick={handleClick}
-      >
-        <ArrowCircleLeftOutlinedIcon
-          sx={{
-            fontSize: "1.2rem",
-            color: "#C21010",
-          }}
-        />
-        <Button
-          sx={{
-            textTransform: "inherit",
-            color: "#C21010",
-            fontWeight: "bold",
-            fontSize: "1rem",
-          }}
-        >
-          Step1
-        </Button>
-      </Box>
+      <Budget1 userId={userId} />
       <Box
         sx={{
           minHeight: "80vh",
@@ -154,112 +127,15 @@ function Budget() {
               Gift exchange rules
             </Typography>
           </Box>
-          <Box>
-            <Box
-              sx={{
-                marginBottom: "20px",
-              }}
-            >
-              <Typography
-                sx={{
-                  fontFamily: "Poppins,sans-serif",
-                  fontWeight: 600,
-                  fontSize: "13px",
-                  lineHeight: "18px",
-                  color: "#C21010",
-                  wordBreak: "break-all",
-                  marginLeft: "15px",
-                }}
-              >
-                Spending limit per gift
-              </Typography>
-              <ThemeProvider theme={theme}>
-                <TextField
-                  placeholder="Enter Min Budget"
-                  sx={{
-                    width: "100%",
-                    background: "#fff",
-                    borderRadius: "7px",
-                    padding: "8px 15px",
-                    fontWeight: 400,
-                    fontSize: "1rem",
-                    color: "#101a34",
-                    lineHeight: "27px",
-                    "& .MuiOutlinedInput-root": {
-                      height: "44px",
-                    },
-                    marginLeft: "0px",
-                  }}
-                  value={budget}
-                  onChange={(e) => setBudget(e.target.value)}
-                  error={!!errors.budget}
-                  helperText={errors.budget}
-                />
-              </ThemeProvider>
-            </Box>
-            <Box
-              sx={{
-                marginBottom: "20px",
-              }}
-            >
-              <Typography
-                sx={{
-                  fontFamily: "Poppins,sans-serif",
-                  fontWeight: 600,
-                  fontSize: "13px",
-                  lineHeight: "18px",
-                  color: "#C21010",
-                  wordBreak: "break-all",
-                  marginLeft: "15px",
-                }}
-              >
-                Other details(Optional)
-              </Typography>
-              <ThemeProvider theme={theme}>
-                <TextField
-                  placeholder="Enter your text"
-                  multiline
-                  rows={4}
-                  sx={{
-                    width: isSmallScreen ? "90%" : "95%",
-                    marginLeft: "15px",
-                  }}
-                  value={details}
-                  onChange={(e) => setdetails(e.target.value)}
-                />
-              </ThemeProvider>
-            </Box>
-            <Box
-              sx={{
-                display: "flex",
-                alignItems: "center",
-                justifyContent: "center",
-              }}
-            >
-              <Button
-                variant="contained"
-                onClick={handleSubmit}
-                sx={{
-                  border: "2px solid #C21010",
-                  borderRadius: "10px",
-                  width: isSmallScreen ? "45%" : "50%",
-                  fontSize: "1rem",
-                  color: "white",
-                  background: "#C21010",
-                  textTransform: "inherit",
-                  fontWeight: "bold",
-                  "&:hover": {
-                    backgroundColor: "#fff",
-                    color: "#C21010",
-                    border: "1px solid #C21010",
-                  },
-                  marginTop: "10px",
-                }}
-              >
-                Submit
-              </Button>
-            </Box>
-          </Box>
+          <BudgetForm
+            handleSubmit={handleSubmit}
+            budget={budget}
+            setdetails={setdetails}
+            setBudget={setBudget}
+            details={details}
+            errors={errors}
+            isSmallScreen={isSmallScreen}
+          />
         </Box>
       </Box>
       <Footer />
