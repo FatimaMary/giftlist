@@ -1,6 +1,5 @@
 import React, { useContext, useEffect, useState } from "react";
 import { Box, useTheme, useMediaQuery } from "@mui/material";
-import Santa from "../home/Santa.png";
 import axios from "axios";
 import { useSearchParams } from "react-router-dom";
 import Footer from "../../Components/Footer";
@@ -8,7 +7,7 @@ import Invite from "../success/invite";
 import EditEvent from "./editEvent";
 import { MyContext, useDrawStatus } from "../../Components/MyContext";
 import TabsList from "./tabsList";
-import Details from "./details";
+import Santa from "./Santa";
 
 function EventView() {
   const [eventDetails, setEventDetails] = useState({});
@@ -162,6 +161,9 @@ function EventView() {
       });
   }, [drawStatus]);
 
+  const isDrawButtonVisible = rsvpDate && players.length >= 3;
+  console.log("isButton is visibile: ", isDrawButtonVisible);
+
   const handleDrawNames = () => {
     axios
       .get(`${process.env.REACT_APP_BASE_URL}/player/drawn/${eventId}`)
@@ -172,8 +174,6 @@ function EventView() {
       });
   };
 
-  const isDrawButtonVisible = rsvpDate && players.length >= 3;
-  console.log("isButton is visibile: ", isDrawButtonVisible);
   return (
     <Box
       backgroundColor="#FFEAEA"
@@ -181,38 +181,18 @@ function EventView() {
       p="50px 30px 33px 30px"
       minHeight="100vh"
     >
-      <Box
-        sx={{
-          display: "flex",
-          justifyContent: "space-between",
-          width: "100%",
-          flexDirection: isSmallScreen ? "column" : "row",
-        }}
-      >
-        <Box>
-          <img
-            src={Santa}
-            alt="santa image"
-            height={200}
-            width={isSmallScreen ? "100%" : "250"}
-            style={{
-              margin: isSmallScreen ? "auto auto" : "0",
-            }}
-          />
-        </Box>
-        <Details
-          eventDetails={eventDetails}
-          playerUserId={playerUserId}
-          rsvpDate={rsvpDate}
-          setEditPage={setEditPage}
-          setInvitePage={setInvitePage}
-          isSmallScreen={isSmallScreen}
-          isButtonDisabled={isButtonDisabled}
-          isDrawButtonVisible={isDrawButtonVisible}
-          handleDrawNames={handleDrawNames}
-          name={name}
-        />
-      </Box>
+      <Santa
+        eventDetails={eventDetails}
+        playerUserId={playerUserId}
+        rsvpDate={rsvpDate}
+        setEditPage={setEditPage}
+        setInvitePage={setInvitePage}
+        isSmallScreen={isSmallScreen}
+        isButtonDisabled={isButtonDisabled}
+        handleDrawNames={handleDrawNames}
+        name={name}
+        isDrawButtonVisible={isDrawButtonVisible}
+      />
       <TabsList
         eventId={eventId}
         playerUserId={playerUserId}

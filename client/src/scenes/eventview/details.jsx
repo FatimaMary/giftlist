@@ -11,9 +11,9 @@ function Details({
   setInvitePage,
   isSmallScreen,
   isButtonDisabled,
-  isDrawButtonVisible,
   handleDrawNames,
   name,
+  isDrawButtonVisible,
 }) {
   return (
     <Box
