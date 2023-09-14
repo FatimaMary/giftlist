@@ -21,7 +21,7 @@ import ForgotPassword from "./Components/ResetPassword";
 import { sendPasswordResetEmail } from "firebase/auth";
 import "./App.css";
 import { createTheme, ThemeProvider } from "@mui/material/styles";
-import EventView2 from "./scenes/eventview/EventView2";
+
 function App() {
   const [isLoggedIn, setIsLoggedIn] = useState(false);
 
