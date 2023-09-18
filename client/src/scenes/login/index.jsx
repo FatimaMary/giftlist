@@ -1,15 +1,6 @@
 import React, { useState, useContext, useEffect } from "react";
-import {
-  Box,
-  Typography,
-  TextField,
-  Button,
-  createTheme,
-  ThemeProvider,
-  useTheme,
-  useMediaQuery,
-} from "@mui/material";
-import { Link, useNavigate } from "react-router-dom";
+import { Box, createTheme, useTheme, useMediaQuery } from "@mui/material";
+import { useNavigate } from "react-router-dom";
 import { signInWithEmailAndPassword } from "firebase/auth";
 import { auth } from "../../firebase";
 import Navbar from "../../Components/Navbar";
@@ -23,7 +14,7 @@ function Login() {
     password: "",
   });
   const [errors, setErrors] = useState({});
-  const { isLoggedIn, setIsLoggedIn } = useContext(MyContext);
+  const { setIsLoggedIn } = useContext(MyContext);
   const themes = useTheme();
   const isSmallScreen = useMediaQuery(themes.breakpoints.down("sm"));
 
