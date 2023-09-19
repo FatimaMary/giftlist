@@ -42,7 +42,6 @@ function TabsList({
           display: "flex",
           alignItems: "center",
           justifyContent: "center",
-          // borderTop: "1px solid #cad3dd",
         }}
       >
         <Typography
@@ -54,7 +53,7 @@ function TabsList({
             fontSize: isSmallScreen ? "13px" : "17px",
             lineHeight: "22px",
             textAlign: "center",
-            marginRight: "20px",
+            marginRight: isSmallScreen ? "12px" : "20px",
             padding: "0 0 6px",
             "&:hover": {
               cursor: "pointer",
@@ -73,7 +72,7 @@ function TabsList({
             fontSize: isSmallScreen ? "13px" : "17px",
             lineHeight: "22px",
             textAlign: "center",
-            marginRight: "20px",
+            marginRight: isSmallScreen ? "12px" : "20px",
             padding: "0 0 6px",
             "&:hover": {
               cursor: "pointer",
@@ -92,7 +91,7 @@ function TabsList({
             fontSize: isSmallScreen ? "13px" : "17px",
             lineHeight: "22px",
             textAlign: "center",
-            marginRight: "20px",
+            marginRight: isSmallScreen ? "12px" : "20px",
             padding: "0 0 6px",
             "&:hover": {
               cursor: "pointer",
@@ -111,7 +110,7 @@ function TabsList({
             fontSize: isSmallScreen ? "13px" : "17px",
             lineHeight: "22px",
             textAlign: "center",
-            marginRight: "20px",
+            // marginRight: isSmallScreen ? "12px" : "20px",
             padding: "0 0 6px",
             "&:hover": {
               cursor: "pointer",

@@ -177,7 +177,7 @@ function EventView() {
   return (
     <Box
       backgroundColor="#FFEAEA"
-      width="90vw"
+      width="100vw"
       p="50px 30px 33px 30px"
       minHeight="100vh"
     >

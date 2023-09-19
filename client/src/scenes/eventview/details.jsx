@@ -20,7 +20,7 @@ function Details({
       sx={{
         width: "100%",
         margin: "15px",
-        borderBottom: "1px solid #cad3dd",
+        // borderBottom: "1px solid #cad3dd",
       }}
     >
       <Box
@@ -100,8 +100,8 @@ function Details({
               fontSize: "13px",
               lineHeight: "16px",
               color: "#5e6577",
-              paddingRight: "15px",
-              marginRight: "15px",
+              paddingRight: isSmallScreen ? 0 : "15px",
+              marginRight: isSmallScreen ? 0 : "15px",
             }}
           >
             Gift budget:{" "}
@@ -122,16 +122,16 @@ function Details({
       <Box
         sx={{
           fontSize: "15px",
-          lineHeight: "140%",
+          // lineHeight: "140%",
           color: "#5e6577",
-          paddingBottom: "17px",
-          width: "600px",
+          paddingBottom: "15px",
+          width: "100%",
           whiteSpace: "wrap",
+          borderBottom: "1px solid #cad3dd",
         }}
       >
         <Typography
           sx={{
-            height: "20px",
             margin: "10px",
           }}
         >
