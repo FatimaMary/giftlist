@@ -27,7 +27,7 @@ function Details({
         sx={{
           display: "flex",
           alignItems: isSmallScreen ? "flex-start" : "center",
-          justifyContent: "space-between",
+          justifyContent: isSmallScreen ? "flex-start" : "space-between",
           marginBottom: "15px",
           flexDirection: isSmallScreen ? "column" : "row",
         }}
@@ -57,9 +57,11 @@ function Details({
         sx={{
           display: "flex",
           justifyContent: "felx-start",
-          alignItems: isSmallScreen ? "flex-start" : "center",
+          alignItems: "flex-start",
           marginBottom: "22px",
-          flexDirection: isSmallScreen ? "column" : "row",
+          flexDirection: "row",
+          flexWrap: "wrap",
+          gap: "10px",
         }}
       >
         <Typography
@@ -77,35 +79,37 @@ function Details({
             {eventDetails.giftExchangeDate}
           </span>
         </Typography>
-        <Typography
-          sx={{
-            fontSize: "13px",
-            lineHeight: "16px",
-            color: "#5e6577",
-            paddingRight: "15px",
-            marginRight: "15px",
-            borderRight: isSmallScreen ? "none" : "1px solid #cad3dd",
-          }}
-        >
-          RSVP by:{" "}
-          <span style={{ fontWeight: 600, color: "#101a34" }}>
-            {eventDetails.rsvpDate}
-          </span>
-        </Typography>
-        <Typography
-          sx={{
-            fontSize: "13px",
-            lineHeight: "16px",
-            color: "#5e6577",
-            paddingRight: "15px",
-            marginRight: "15px",
-          }}
-        >
-          Gift budget:{" "}
-          <span style={{ fontWeight: 600, color: "#101a34" }}>
-            {eventDetails.budget}
-          </span>
-        </Typography>
+        <Box sx={{ display: "flex", flexDirection: "row" }}>
+          <Typography
+            sx={{
+              fontSize: "13px",
+              lineHeight: "16px",
+              color: "#5e6577",
+              paddingRight: "15px",
+              marginRight: "15px",
+              borderRight: isSmallScreen ? "none" : "1px solid #cad3dd",
+            }}
+          >
+            RSVP by:{" "}
+            <span style={{ fontWeight: 600, color: "#101a34" }}>
+              {eventDetails.rsvpDate}
+            </span>
+          </Typography>
+          <Typography
+            sx={{
+              fontSize: "13px",
+              lineHeight: "16px",
+              color: "#5e6577",
+              paddingRight: "15px",
+              marginRight: "15px",
+            }}
+          >
+            Gift budget:{" "}
+            <span style={{ fontWeight: 600, color: "#101a34" }}>
+              ₹ {eventDetails.budget}
+            </span>
+          </Typography>
+        </Box>
       </Box>
       <DrawNameBtn
         eventDetails={eventDetails}
