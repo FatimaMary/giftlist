@@ -122,7 +122,7 @@ function Details({
       <Box
         sx={{
           fontSize: "15px",
-          // lineHeight: "140%",
+          paddingRight: "10px",
           color: "#5e6577",
           paddingBottom: "15px",
           width: "100%",

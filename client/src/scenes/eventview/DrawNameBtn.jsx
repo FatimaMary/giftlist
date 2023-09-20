@@ -68,8 +68,7 @@ function DrawNameBtn({
           </Typography>
         </Box>
       </Box>
-
-      <Box>
+      <Box sx={{ paddingRight: "15px" }}>
         {eventDetails.userId !== playerUserId ? null : (
           <>
             {!isDrawButtonVisible ? (

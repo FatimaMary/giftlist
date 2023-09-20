@@ -1,8 +1,7 @@
 import { Box, Typography, useTheme, useMediaQuery } from "@mui/material";
 import CheckCircleOutlineIcon from "@mui/icons-material/CheckCircleOutline";
 import CancelOutlinedIcon from "@mui/icons-material/CancelOutlined";
-import { useEffect, useState } from "react";
-import { MyContext, useDrawStatus } from "../../Components/MyContext";
+import { useDrawStatus } from "../../Components/MyContext";
 
 function HomeTabLeft({
   eventDetails,

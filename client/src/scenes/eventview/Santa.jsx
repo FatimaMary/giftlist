@@ -31,7 +31,7 @@ function Santa({
           height={200}
           width={isSmallScreen ? "100%" : "250"}
           style={{
-            margin: isSmallScreen ? "auto auto" : "0",
+            margin: isSmallScreen ? "auto auto" : "0px",
           }}
         />
       </Box>
