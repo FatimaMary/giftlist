@@ -1,7 +1,14 @@
 import { Box, Typography } from "@mui/material";
-import React from "react";
+import React, { useState } from "react";
 import ButtonsTab from "./buttons";
 import DrawNameBtn from "./DrawNameBtn";
+
+const styles = {
+  showMoreButton: {
+    cursor: "pointer",
+    color: "blue",
+  },
+};
 
 function Details({
   eventDetails,
@@ -15,6 +22,11 @@ function Details({
   name,
   isDrawButtonVisible,
 }) {
+  const [showMore, setShowMore] = useState(false);
+
+  const toggleShowMore = () => {
+    setShowMore(!showMore);
+  };
   return (
     <Box
       sx={{
@@ -119,24 +131,40 @@ function Details({
         isButtonDisabled={isButtonDisabled}
         name={name}
       />
-      <Box
-        sx={{
-          fontSize: "15px",
-          paddingRight: "10px",
-          color: "#5e6577",
-          paddingBottom: "15px",
-          width: "100%",
-          whiteSpace: "wrap",
-          borderBottom: "1px solid #cad3dd",
-        }}
-      >
-        <Typography
+      <Box sx={{ borderBottom: "1px solid #cad3dd", lineHeight: "140%" }}>
+        <Box
           sx={{
-            margin: "10px",
+            fontSize: "15px",
+            paddingRight: "10px",
+            color: "#5e6577",
+            maxWidth: showMore ? "100%" : "500px",
+            overflow: "hidden",
+            height: showMore ? "auto" : "32px",
+            lineHeight: "20px",
           }}
+          className="event-details-content"
         >
-          {eventDetails.details}
-        </Typography>
+          <Typography
+            sx={{
+              margin: "10px",
+            }}
+          >
+            {eventDetails.details}
+          </Typography>
+        </Box>
+        {eventDetails.details && eventDetails.details.length > 50 && (
+          <Box
+            onClick={toggleShowMore}
+            sx={{
+              cursor: "pointer",
+              color: "#C21010",
+              fontSize: "13px",
+              marginLeft: "10px",
+            }}
+          >
+            {showMore ? "Show Less" : "Show More"}
+          </Box>
+        )}
       </Box>
     </Box>
   );
