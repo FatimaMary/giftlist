@@ -1,6 +1,6 @@
 import { Box, Button, Typography } from "@mui/material";
 import CopyInvitation from "../copyinvitation";
-import Light from "./bow.png";
+import Light from "./bell.png";
 
 function Success1({
   moveToEventview,

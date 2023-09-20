@@ -1,5 +1,5 @@
 import { Box, Typography } from "@mui/material";
-import Star from "./star1.png";
+import Star from "./star2.png";
 
 function Header() {
   return (

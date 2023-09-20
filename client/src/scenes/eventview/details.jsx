@@ -2,13 +2,8 @@ import { Box, Typography } from "@mui/material";
 import React, { useState } from "react";
 import ButtonsTab from "./buttons";
 import DrawNameBtn from "./DrawNameBtn";
-
-const styles = {
-  showMoreButton: {
-    cursor: "pointer",
-    color: "blue",
-  },
-};
+import KeyboardArrowDownIcon from "@mui/icons-material/KeyboardArrowDown";
+import KeyboardArrowUpIcon from "@mui/icons-material/KeyboardArrowUp";
 
 function Details({
   eventDetails,

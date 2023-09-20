@@ -178,7 +178,7 @@ function EventView() {
     <Box
       backgroundColor="#FFEAEA"
       width="100%"
-      p="50px 12px 33px 12px"
+      p={isSmallScreen ? "50px 12px 33px 12px" : "50px 30px 33px 30px"}
       minHeight="100vh"
     >
       <Santa
