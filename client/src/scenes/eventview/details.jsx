@@ -27,7 +27,6 @@ function Details({
       sx={{
         width: "100%",
         margin: "15px",
-        // borderBottom: "1px solid #cad3dd",
       }}
     >
       <Box
@@ -79,6 +78,7 @@ function Details({
             paddingRight: "15px",
             marginRight: "15px",
             borderRight: isSmallScreen ? "none" : "1px solid #cad3dd",
+            marginLeft: "6px",
           }}
         >
           Exchange gifts by:{" "}
@@ -154,10 +154,19 @@ function Details({
               cursor: "pointer",
               color: "#C21010",
               fontSize: "13px",
-              marginLeft: "10px",
+              marginLeft: "5px",
             }}
           >
-            {showMore ? "Show Less" : "Show More"}
+            {showMore ? (
+              <Box sx={{ display: "flex" }}>
+                <KeyboardArrowDownIcon />
+                Show Less{" "}
+              </Box>
+            ) : (
+              <Box sx={{ display: "flex" }}>
+                <KeyboardArrowUpIcon /> Show More
+              </Box>
+            )}
           </Box>
         )}
       </Box>

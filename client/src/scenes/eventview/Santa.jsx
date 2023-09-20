@@ -1,5 +1,5 @@
 import React from "react";
-import SantaImg from "../home/Santa.png";
+import SantaImg from "../home/7.png";
 import { Box } from "@mui/material";
 import Details from "./details";
 
