@@ -155,16 +155,17 @@ function Details({
               color: "#C21010",
               fontSize: "13px",
               marginLeft: "5px",
+              fontWeight: 600,
             }}
           >
             {showMore ? (
               <Box sx={{ display: "flex" }}>
                 <KeyboardArrowDownIcon />
-                Show Less{" "}
+                Show less{" "}
               </Box>
             ) : (
               <Box sx={{ display: "flex" }}>
-                <KeyboardArrowUpIcon /> Show More
+                <KeyboardArrowUpIcon /> Show more
               </Box>
             )}
           </Box>
