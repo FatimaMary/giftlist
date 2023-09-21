@@ -1,7 +1,7 @@
 import { Box, Card, CardContent, CardMedia, Typography } from "@mui/material";
 import CalendarMonthIcon from "@mui/icons-material/CalendarMonth";
 import { useNavigate } from "react-router";
-import Santa from "./Santa.png";
+import Santa from "./SantaImages.png";
 
 function Past({ pastEvents, isSmallScreen, userId }) {
   const navigate = useNavigate();
@@ -72,7 +72,7 @@ function Past({ pastEvents, isSmallScreen, userId }) {
                       alt="Image Description"
                       sx={{
                         height: isSmallScreen ? "100%" : "100%",
-                        width: isSmallScreen ? "50%" : "80%",
+                        width: isSmallScreen ? "40%" : "70%",
                         marginLeft: "auto",
                         marginRight: "auto",
                       }}

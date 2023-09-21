@@ -1,7 +1,7 @@
 import { Box, Card, CardContent, CardMedia, Typography } from "@mui/material";
 import CalendarMonthIcon from "@mui/icons-material/CalendarMonth";
 import { useNavigate } from "react-router";
-import Santa from "./7.png";
+import Santa from "./SantaImages.png";
 
 function Upcoming({ upcomingEvents, isSmallScreen, userId }) {
   const navigate = useNavigate();
@@ -36,7 +36,7 @@ function Upcoming({ upcomingEvents, isSmallScreen, userId }) {
                 alt="Image Description"
                 sx={{
                   height: isSmallScreen ? "100%" : "100%",
-                  width: isSmallScreen ? "50%" : "80%",
+                  width: isSmallScreen ? "40%" : "70%",
                   marginLeft: "auto",
                   marginRight: "auto",
                 }}
