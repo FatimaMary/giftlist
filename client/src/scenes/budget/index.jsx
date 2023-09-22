@@ -64,7 +64,7 @@ function Budget() {
       validateErrors.budget = "Budget is required";
     }
     if (isNaN(parseFloat(budget)) || parseFloat(budget) <= 0) {
-      validateErrors.budget = "Budget must be a positive number.";
+      validateErrors.budget = "Budget is required";
     }
     if (Object.keys(validateErrors).length > 0) {
       setErrors(validateErrors);
