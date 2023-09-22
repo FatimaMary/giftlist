@@ -78,7 +78,7 @@ function Details({
             paddingRight: "15px",
             marginRight: "15px",
             borderRight: isSmallScreen ? "none" : "1px solid #cad3dd",
-            marginLeft: "6px",
+            marginLeft: "5px",
           }}
         >
           Exchange gifts by:{" "}
@@ -134,14 +134,14 @@ function Details({
             color: "#5e6577",
             maxWidth: showMore ? "100%" : "500px",
             overflow: "hidden",
-            height: showMore ? "auto" : "32px",
+            height: showMore ? "auto" : "30px",
             lineHeight: "20px",
           }}
           className="event-details-content"
         >
           <Typography
             sx={{
-              margin: "10px",
+              marginLeft: "5px",
             }}
           >
             {eventDetails.details}
@@ -154,7 +154,7 @@ function Details({
               cursor: "pointer",
               color: "#C21010",
               fontSize: "13px",
-              marginLeft: "5px",
+              marginLeft: "0px",
               fontWeight: 600,
             }}
           >
