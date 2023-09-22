@@ -47,6 +47,7 @@ function Details({
             maxWidth: "73%",
             fontWeight: 600,
             color: "#101a34",
+            marginLeft: "4px",
           }}
         >
           {eventDetails.eventName}
