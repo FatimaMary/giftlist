@@ -93,24 +93,36 @@ function Past({ pastEvents, isSmallScreen, userId }) {
                       },
                     }}
                   >
-                    <Typography
+                    <Box
                       sx={{
-                        fontSize: 16,
-                        opacity: 0.7,
-                        "&:hover": {
-                          opacity: 1,
-                        },
+                        display: "flex",
+                        alignItems: "center",
+                        gap: "2px",
                       }}
-                      variant="h6"
-                      fontWeight="bold"
                     >
                       <CalendarMonthIcon
                         sx={{
-                          fontSize: "20px",
+                          fontSize: "17px",
+                          opacity: 0.7,
+                          "&:hover": {
+                            opacity: 1,
+                          },
                         }}
                       />
-                      {cardData.giftExchangeDate}
-                    </Typography>
+                      <Typography
+                        sx={{
+                          fontSize: 16,
+                          opacity: 0.7,
+                          "&:hover": {
+                            opacity: 1,
+                          },
+                        }}
+                        variant="h6"
+                        fontWeight="bold"
+                      >
+                        {cardData.giftExchangeDate}
+                      </Typography>
+                    </Box>
                     <Typography variant="body2" fontWeight="bold">
                       {cardData.eventName}
                     </Typography>
