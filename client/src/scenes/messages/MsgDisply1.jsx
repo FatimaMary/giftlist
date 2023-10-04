@@ -27,6 +27,7 @@ function MsgDisply1({ messageDetails }) {
     };
   }
   const reversedMessageDetails = [...messageDetails].reverse();
+
   return (
     <>
       {reversedMessageDetails.map((singleDetail, i) => (
@@ -46,7 +47,7 @@ function MsgDisply1({ messageDetails }) {
             sx={{
               display: "flex",
               alignItems: "center",
-              maxWidth: "25%",
+              width: "30%",
               paddingRight: "20px",
               flexWrap: "wrap",
             }}

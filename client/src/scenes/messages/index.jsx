@@ -107,9 +107,6 @@ function Messages({ eventId, userId }) {
       });
   };
 
-  const reversedMessageDetails = [...messageDetails].reverse();
-  console.log("Reversed message details: ", reversedMessageDetails);
-
   return (
     <Box
       sx={{
