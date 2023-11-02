@@ -74,7 +74,7 @@ function CopyInvitation({
           inputRef={textFieldRef}
           defaultValue={`We're going to draw names for ${eventName}! Make a wish list and draw a name so that everyone has time to buy a gift.
 Date of the gift exchange: ${giftExchangeDate}
-Gift amount: ${budget}
+Gift amount:  ₹ ${budget}
 click on the link to join 
 https://main.d2ox3js0flnzdp.amplifyapp.com/eventview1?eventId=${eventId}`}
           sx={{ width: "100%", minWidth: "none" }}
